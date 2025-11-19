@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0b1220;
+  --foreground: #e5edf5;
+  --muted: #c6d4e5;
+  --card: #101a2d;
+  --card-muted: #0f1b2f;
+  --brand-teal: #16c7b6;
+  --brand-teal-strong: #0ea39e;
+  --brand-teal-alt: #279a92;
+  --brand-orange: #f97316;
+  --brand-slate: #0b1220;
+  --accent-amber: #fbbf24;
+  --brand-sand: #f1e7d8;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-card: var(--card);
+  --color-card-muted: var(--card-muted);
+  --color-brand-teal: var(--brand-teal);
+  --color-brand-teal-strong: var(--brand-teal-strong);
+  --color-brand-teal-alt: var(--brand-teal-alt);
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-slate: var(--brand-slate);
+  --color-accent-amber: var(--accent-amber);
+  --color-brand-sand: var(--brand-sand);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #070c18;
+    --foreground: #e7eef9;
+    --muted: #c2d0e6;
+    --card: #0c1324;
+    --card-muted: #0b101c;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+}
+
+a {
+  color: inherit;
+}
