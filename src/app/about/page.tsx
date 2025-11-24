@@ -83,7 +83,7 @@ const team = [
   },
   {
     name: "Patrick Calandro",
-    title: "Principal AV Integrator",
+    title: "Founder & Principal Integrator",
     bio: "Patrick oversees AV system design, translating executive expectations into documented room standards that installers can actually follow. He turns complex requirements into repeatable, field-ready builds.",
   },
   {
