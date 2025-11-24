@@ -40,7 +40,10 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <div className="hidden lg:block">
+        <div className="hidden items-center gap-4 lg:flex">
+          <a href="tel:+15052075211" className="text-sm font-semibold text-slate-800 hover:text-brand-teal">
+            (505) 207-5211
+          </a>
           <Link
             href="/contact"
             className="rounded-full bg-brand-teal px-4 py-2 text-sm font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
@@ -77,6 +80,12 @@ export function Header() {
             >
               Plan my next build
             </Link>
+            <a
+              href="tel:+15052075211"
+              className="rounded-lg px-3 py-2 text-center font-semibold text-slate-800 transition hover:bg-white/60 hover:text-brand-teal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
+            >
+              (505) 207-5211
+            </a>
           </div>
         </div>
       ) : null}

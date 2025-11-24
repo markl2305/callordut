@@ -11,11 +11,20 @@ export function Footer() {
             Smart rooms, AV, and security design for teams that care about the experience.
           </p>
           <div className="text-sm text-muted">
-            <div>
-              Phone: <span className="text-foreground">(505) 315-7773</span>
+            <div className="text-foreground font-semibold">CalLord Unified Technologies LLC</div>
+            <div>13170 Central Ave SE Suite B537</div>
+            <div>Albuquerque, NM 87123, United States</div>
+            <div className="mt-2">
+              Phone:{" "}
+              <a href="tel:+15052075211" className="text-foreground hover:text-brand-teal">
+                (505) 207-5211
+              </a>
             </div>
             <div>
-              Email: <span className="text-foreground">sales@callordut.com</span>
+              Email:{" "}
+              <a href="mailto:sales@callordut.com" className="text-foreground hover:text-brand-teal">
+                sales@callordut.com
+              </a>
             </div>
             <p className="mt-2 max-w-xs text-[13px] leading-relaxed">
               Nationwide projects welcome. Public entities can access our{" "}
@@ -24,6 +33,13 @@ export function Footer() {
               </Link>{" "}
               for pre-vetted compliance.
             </p>
+            <div className="mt-3 flex gap-4 text-xs font-semibold">
+              <Link href="/privacy" className="transition hover:text-brand-teal">
+                Privacy Policy
+              </Link>
+              <span className="text-white/30">|</span>
+              <span className="text-white/60">Terms (coming soon)</span>
+            </div>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-6 text-sm font-semibold text-muted sm:grid-cols-3">

@@ -1,7 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
 import { CTASection } from "../../components/CTASection";
 import { GlassPanel } from "../../components/GlassPanel";
+
+export const metadata: Metadata = {
+  title: "Smart Room Design & Documentation | CalLord UT",
+  description:
+    "Virtual visit suites, hybrid offices, and immersive rooms documented with drawings, elevations, and touchpanel flows so every operator knows what to expect.",
+};
 
 const bestFor = [
   "Senior living & healthcare",

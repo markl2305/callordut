@@ -1,6 +1,13 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { CTASection } from "../../components/CTASection";
 import { GlassPanel } from "../../components/GlassPanel";
+
+export const metadata: Metadata = {
+  title: "AV Integration & Conference Room Systems | CalLord UT",
+  description:
+    "Design-led AV integration for conference rooms, hybrid boardrooms, and training spaces. Clear documentation, rock-solid joins, and systems your operators actually trust.",
+};
 
 const bestFor = [
   "Executive leaders & boardrooms",

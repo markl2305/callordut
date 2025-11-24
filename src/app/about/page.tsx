@@ -1,7 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
 import { CTASection } from "../components/CTASection";
 import { SectionHeader } from "../components/SectionHeader";
+
+export const metadata: Metadata = {
+  title: "About CalLord Unified Technologies | Design-Led AV & Security",
+  description:
+    "Meet the team behind CalLord UT and our design-first approach to AV, smart rooms, and cannabis-ready security for operators nationwide.",
+};
 
 const processSteps = [
   {

@@ -1,6 +1,13 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { CTASection } from "../../components/CTASection";
 import { GlassPanel } from "../../components/GlassPanel";
+
+export const metadata: Metadata = {
+  title: "Remote Installation Project Management | CalLord UT",
+  description:
+    "We coordinate your preferred installers, punch lists, and commissioning so you don’t have to babysit the AV or security install.",
+};
 
 const bestFor = [
   "Owners & operators with trusted installers",

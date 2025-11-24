@@ -1,7 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
 import { CTASection } from "../../components/CTASection";
 import { GlassPanel } from "../../components/GlassPanel";
+
+export const metadata: Metadata = {
+  title: "Cannabis Security & Compliance | Eagle Eye & Brivo Design",
+  description:
+    "Cameras, access control, and retention plans for cannabis dispensaries and grow facilities. Built on Eagle Eye Networks and Brivo to meet New Mexico and nationwide compliance requirements.",
+};
 
 const bestFor = [
   "Licensed dispensaries",

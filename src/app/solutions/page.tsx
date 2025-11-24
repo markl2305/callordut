@@ -1,4 +1,11 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Services | AV Integration, Smart Rooms & Cannabis Security",
+  description:
+    "Explore CalLord’s four core services: AV integration & systems, cannabis security & compliance, smart room design & documentation, and remote installation project management.",
+};
 
 const croOfferings = [
   {

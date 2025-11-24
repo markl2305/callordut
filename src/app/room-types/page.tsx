@@ -1,7 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
 import { coreRoomTypes } from "../data/roomTypes";
 
+export const metadata: Metadata = {
+  title: "Room Templates & Recipes | CalLord Unified Technologies",
+  description:
+    "Executive boardrooms, team meeting rooms, training spaces, telehealth rooms, and focus pods — room templates refined across real projects.",
+};
 const roomImages: Record<string, { src: string; alt: string }> = {
   "executive-boardroom": {
     src: "/room-executive-boardroom-topdown.png",
