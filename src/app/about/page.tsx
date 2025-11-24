@@ -77,19 +77,19 @@ const principles = [
 
 const team = [
   {
+    name: "Mark Lord",
+    title: "Founder & Managing Director",
+    bio: "Mark leads overall direction for CalLord UT, tying AV, smart rooms, and cannabis security into one roadmap. He architects Eagle Eye + Brivo deployments for regulated facilities and keeps every engagement aligned with compliance, documentation, and long-term support.",
+  },
+  {
     name: "Patrick Calandro",
-    title: "Founder & Principal Integrator",
-    bio: "Patrick leads design strategy and oversees every AV integration, translating executive expectations into documented room standards that installers can actually follow.",
+    title: "Principal AV Integrator",
+    bio: "Patrick oversees AV system design, translating executive expectations into documented room standards that installers can actually follow. He turns complex requirements into repeatable, field-ready builds.",
   },
   {
     name: "Amanda Martinez",
     title: "Director of Client Experience",
     bio: "Amanda coordinates discovery workshops, shepherds stakeholders through approvals, and keeps operator feedback embedded in every drawing set.",
-  },
-  {
-    name: "Mark Lord",
-    title: "Security & Compliance Lead",
-    bio: "Mark architects Eagle Eye + Brivo deployments for cannabis and regulated facilities, aligning coverage maps, retention policies, and audits with inspectors’ checklists.",
   },
   {
     name: "Joshua Dworsky",

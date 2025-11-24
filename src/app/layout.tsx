@@ -51,9 +51,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
         <Header />
-        <div className="pt-24 lg:pt-32">
-          {children}
-        </div>
+        <main className="pt-20 lg:pt-28">{children}</main>
         <Footer />
       </body>
     </html>
