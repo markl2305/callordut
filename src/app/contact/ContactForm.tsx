@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type ChangeEvent, type FormEvent } from "react";
+import { trackLead } from "@/lib/analytics";
 
 const roomOptions = [
   "Executive Boardroom",
@@ -64,6 +65,7 @@ export function ContactForm() {
       }
 
       setStatus("success");
+      trackLead({ formName: "Contact Page Form" });
       setForm({
         name: "",
         email: "",

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type ChangeEvent, type FormEvent } from "react";
+import { trackLead } from "@/lib/analytics";
 
 type SolutionsLeadFormProps = {
   services: string[];
@@ -46,6 +47,7 @@ export function SolutionsLeadForm({ services }: SolutionsLeadFormProps) {
       }
 
       setStatus("success");
+      trackLead({ formName: "Solutions Page Form" });
       setForm({
         name: "",
         email: "",

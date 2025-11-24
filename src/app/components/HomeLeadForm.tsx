@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type ChangeEvent, type FormEvent } from "react";
+import { trackLead } from "@/lib/analytics";
 
 type HomeLeadFormProps = {
   roomTypes?: string[];
@@ -47,6 +48,7 @@ export function HomeLeadForm({ roomTypes = [] }: HomeLeadFormProps) {
       }
 
       setStatus("success");
+      trackLead({ formName: "Homepage Lead Form" });
       setForm({
         name: "",
         company: "",
