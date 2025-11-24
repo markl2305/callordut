@@ -25,7 +25,7 @@ export function Header() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-30 border-b border-slate-800/60 bg-brand-sand shadow-md shadow-slate-950/40">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 lg:px-6">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:py-4.5 lg:px-6 lg:py-5">
         <Link href="/" className="flex items-center gap-3" onClick={closeMenu}>
           <BrandMark tagline="UNIFIED TECHNOLOGIES" textClassName="text-slate-900" />
         </Link>

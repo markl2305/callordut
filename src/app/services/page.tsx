@@ -165,12 +165,12 @@ export default function ServicesPage() {
                 ))}
               </ul>
             </div>
-            <div className="rounded-3xl border border-brand-sand/60 bg-brand-sand/30 p-6 text-brand-slate shadow-[0_20px_60px_-50px_rgba(242,232,220,0.8)]">
-              <h3 className="text-2xl font-semibold">How we solve it</h3>
-              <ul className="mt-4 space-y-3 text-sm text-slate-700">
+            <div className="rounded-3xl border border-slate-600/60 bg-slate-900/80 p-6 text-slate-100 shadow-md shadow-black/50">
+              <h3 className="text-2xl font-semibold text-slate-50">How we solve it</h3>
+              <ul className="mt-4 space-y-3 text-sm text-slate-200">
                 {challenges.map((item) => (
                   <li key={item.solution}>
-                    <p className="font-semibold">{item.title}</p>
+                    <p className="font-semibold text-slate-50">{item.title}</p>
                     <p className="leading-relaxed">{item.solution}</p>
                   </li>
                 ))}
