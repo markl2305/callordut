@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { CTASection } from "../components/CTASection";
 import type { RoomTypeDefinition } from "../data/roomTypes";
+import { getRoomTypeBySlug } from "../data/roomTypes";
 import { siteConfig } from "../../config/site";
 
 const serviceLinkMap: Record<string, string> = {
@@ -163,7 +164,8 @@ export function RoomTypeTemplate({ room }: RoomTypeTemplateProps) {
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const roomName = roomImages[params.slug]?.alt.replace("Top-down layout of ", "").replace(" layout", "") ?? params.slug;
+  const room = getRoomTypeBySlug(params.slug);
+  const roomName = room?.name ?? params.slug.replace(/-/g, " ");
   return {
     title: `${roomName} Design Template | CalLord UT`,
     description: `${roomName} template for teams who need reliable AV, smart rooms, and security. ${siteConfig.serviceArea}`,
