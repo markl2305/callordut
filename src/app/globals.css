@@ -6,13 +6,13 @@
   --muted: #c6d4e5;
   --card: #101a2d;
   --card-muted: #0f1b2f;
-  --brand-teal: #16c7b6;
+  --brand-teal: #279a92;
   --brand-teal-strong: #0ea39e;
-  --brand-teal-alt: #279a92;
+  --brand-teal-alt: #44c1b7;
   --brand-orange: #f97316;
   --brand-slate: #0b1220;
   --accent-amber: #fbbf24;
-  --brand-sand: #f1e7d8;
+  --brand-sand: #f2e8dc;
 }
 
 @theme inline {
