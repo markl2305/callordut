@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { CTASection } from "../../components/CTASection";
+import { GlassPanel } from "../../components/GlassPanel";
 
 const bestFor = [
   "Licensed dispensaries",
@@ -110,17 +111,16 @@ export default function CannabisSecurityPage() {
               camera/door plan inside Eagle Eye + Brivo, and leave you with a package that makes inspectors nod instead of frown.
             </p>
           </div>
-          <div className="rounded-3xl border border-brand-sand/60 bg-brand-sand/30 p-6 text-brand-slate shadow-[0_20px_60px_-50px_rgba(242,232,220,0.8)]">
-            <h4 className="text-lg font-semibold">Deliverables</h4>
-            <ul className="mt-3 space-y-2 text-sm text-slate-700">
+          <GlassPanel title="Deliverables" className="shadow-[0_20px_60px_-50px_rgba(242,232,220,0.35)]">
+            <ul className="space-y-2 text-sm">
               {deliverables.map((deliverable) => (
                 <li key={deliverable} className="flex items-start gap-2">
-                  <span className="mt-1 h-1.5 w-1.5 rounded-full bg-brand-teal" aria-hidden />
-                  <span>{deliverable}</span>
+                  <span className="mt-1 h-1.5 w-1.5 rounded-full bg-teal-400" aria-hidden />
+                  <span className="leading-relaxed text-slate-200">{deliverable}</span>
                 </li>
               ))}
             </ul>
-          </div>
+          </GlassPanel>
         </section>
 
         <section className="mt-16 rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40 lg:mt-24">
@@ -143,18 +143,18 @@ export default function CannabisSecurityPage() {
           </ul>
         </section>
 
-        <section className="mt-16 space-y-8 lg:mt-24">
-          <h3 className="text-2xl font-semibold">Before your next inspection</h3>
-          <div className="rounded-3xl border border-brand-sand/60 bg-brand-sand/30 p-6 text-brand-slate">
-            <ul className="space-y-3 text-sm text-slate-700">
+        <section className="mt-16 space-y-6 lg:mt-24">
+          <h3 className="text-2xl font-semibold text-foreground">Before your next inspection</h3>
+          <GlassPanel>
+            <ul className="space-y-3 text-sm">
               {inspectionChecklist.map((item) => (
                 <li key={item} className="flex items-start gap-2">
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-brand-teal" aria-hidden />
-                  <span>{item}</span>
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-teal-400" aria-hidden />
+                  <span className="leading-relaxed text-slate-200">{item}</span>
                 </li>
               ))}
             </ul>
-          </div>
+          </GlassPanel>
         </section>
 
         <section className="mt-16 space-y-8 lg:mt-24">
