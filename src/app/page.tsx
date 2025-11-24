@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { RoomTypesShowcase } from "./components/RoomTypesShowcase";
+import { HomeLeadForm } from "./components/HomeLeadForm";
 import { siteConfig } from "../config/site";
 
 export const metadata: Metadata = {
@@ -542,94 +543,7 @@ export default function Home() {
               Give us a room or area, a rough budget, and how you use it today — AV, smart rooms, or security. We’ll come back with a simple plan and options.
             </p>
           </div>
-          <form className="grid gap-4 lg:grid-cols-2">
-            <div className="space-y-2">
-              <label htmlFor="name" className="text-sm font-semibold text-foreground">
-                Name*
-              </label>
-              <input
-                id="name"
-                name="name"
-                required
-                className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
-                placeholder="Your name"
-              />
-            </div>
-            <div className="space-y-2">
-              <label htmlFor="company" className="text-sm font-semibold text-foreground">
-                Company / Community*
-              </label>
-              <input
-                id="company"
-                name="company"
-                required
-                className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
-                placeholder="e.g., Willow Grove Senior Living"
-              />
-            </div>
-            <div className="space-y-2">
-              <label htmlFor="email" className="text-sm font-semibold text-foreground">
-                Email*
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
-                placeholder="you@company.com"
-              />
-            </div>
-            <div className="space-y-2">
-              <label htmlFor="phone" className="text-sm font-semibold text-foreground">
-                Phone (optional)
-              </label>
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
-                className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
-                placeholder="(555) 123-4567"
-              />
-            </div>
-            <div className="space-y-2">
-              <label htmlFor="room-type" className="text-sm font-semibold text-foreground">
-                What kind of room?
-              </label>
-              <select
-                id="room-type"
-                name="room-type"
-                className="mt-2 w-full rounded-md border border-slate-700 bg-slate-900/70 px-3 py-2 text-sm text-slate-100 focus:border-brand-teal focus:outline-none focus:ring-1 focus:ring-brand-teal"
-              >
-                <option value="">Choose a room type</option>
-                {roomTypes.map((room) => (
-                  <option key={room.name} value={room.name}>
-                    {room.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="space-y-2 lg:col-span-2">
-              <label htmlFor="issues" className="text-sm font-semibold text-foreground">
-                What isn’t working today?
-              </label>
-              <textarea
-                id="issues"
-                name="issues"
-                rows={4}
-                className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
-                placeholder="Describe the room, usage, and current pain points."
-              />
-            </div>
-            <div className="lg:col-span-2">
-              <button
-                type="submit"
-                className="inline-flex items-center justify-center rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
-              >
-                Get my room plan
-              </button>
-            </div>
-          </form>
+          <HomeLeadForm roomTypes={roomTypes.map((room) => room.name)} />
         </section>
       </main>
 

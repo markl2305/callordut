@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { SolutionsLeadForm } from "../components/SolutionsLeadForm";
 
 export const metadata: Metadata = {
   title: "Services | AV Integration, Smart Rooms & Cannabis Security",
@@ -158,52 +159,7 @@ export default function SolutionsPage() {
             <p className="mt-2 text-sm text-slate-700">
               No hard sell. We’ll review your rooms, ask a few questions, and recommend a path—even if that means a different partner.
             </p>
-            <form className="mt-6 grid gap-4 lg:grid-cols-2">
-              <input
-                required
-                name="name"
-                placeholder="Name"
-                className="rounded-2xl border border-brand-sand/60 bg-white/80 px-4 py-3 text-sm text-brand-slate placeholder:text-slate-500 focus:border-brand-teal focus:outline-none"
-              />
-              <input
-                required
-                type="email"
-                name="email"
-                placeholder="Email"
-                className="rounded-2xl border border-brand-sand/60 bg-white/80 px-4 py-3 text-sm text-brand-slate placeholder:text-slate-500 focus:border-brand-teal focus:outline-none"
-              />
-              <input
-                name="company"
-                placeholder="Company or facility"
-                className="rounded-2xl border border-brand-sand/60 bg-white/80 px-4 py-3 text-sm text-brand-slate placeholder:text-slate-500 focus:border-brand-teal focus:outline-none"
-              />
-              <select
-                name="service"
-                className="rounded-2xl border border-brand-sand/60 bg-white/80 px-4 py-3 text-sm text-brand-slate focus:border-brand-teal focus:outline-none"
-                defaultValue=""
-              >
-                <option value="" disabled>
-                  What do you need help with?
-                </option>
-                {croOfferings.map((offering) => (
-                  <option key={offering.title} value={offering.title}>
-                    {offering.title}
-                  </option>
-                ))}
-              </select>
-              <textarea
-                name="project"
-                rows={4}
-                placeholder="Tell us about your rooms or security project"
-                className="rounded-2xl border border-brand-sand/60 bg-white/80 px-4 py-3 text-sm text-brand-slate placeholder:text-slate-500 focus:border-brand-teal focus:outline-none lg:col-span-2"
-              />
-              <button
-                type="submit"
-                className="lg:col-span-2 inline-flex items-center justify-center rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90"
-              >
-                Request my planning call
-              </button>
-            </form>
+            <SolutionsLeadForm services={croOfferings.map((offering) => offering.title)} />
           </div>
         </section>
 
