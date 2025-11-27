@@ -19,8 +19,12 @@ export default function PrivacyPage() {
               <p>We collect information you submit through our contact forms, including name, email, phone, company, room details, and any message you provide. We may also receive basic analytics data from our website traffic tools.</p>
             </section>
             <section>
-              <h2 className="text-lg font-semibold text-slate-50">How we use it</h2>
-              <p>We use your information solely to respond to inquiries, scope projects, and deliver services. We do not sell or rent your information. Relevant details may be shared with security vendors or subcontractors only when necessary to fulfill project work.</p>
+              <h2 className="text-lg font-semibold text-slate-50">How we use your info</h2>
+              <p>We use your information solely to respond to inquiries, scope projects, and deliver services. We do not sell or rent your information. Relevant details may be shared with trusted vendors or subcontractors only when necessary to fulfill project work.</p>
+            </section>
+            <section>
+              <h2 className="text-lg font-semibold text-slate-50">SMS/MMS consent</h2>
+              <p>When you submit a form on callordut.com and provide your phone number, you consent to receive calls and text messages (SMS/MMS) from CalLord Unified Technologies related to your inquiry or project. Message and data rates may apply. You can opt out anytime by replying STOP, and you can reply HELP for assistance. We do not sell your phone number or contact details.</p>
             </section>
             <section>
               <h2 className="text-lg font-semibold text-slate-50">Storage and security</h2>

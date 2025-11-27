@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { trackLead } from "@/lib/analytics";
 
@@ -137,7 +138,7 @@ export function ContactForm() {
           value={form.phone}
           onChange={updateField("phone")}
           className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
-          placeholder="(505) 207-5211"
+          placeholder="(866) 657-2383"
         />
       </div>
       <div className="space-y-2">
@@ -211,6 +212,13 @@ export function ContactForm() {
         >
           {status === "loading" ? "Sending…" : "Plan my next build"}
         </button>
+        <p className="mt-3 text-xs text-slate-200">
+          By submitting, you agree to receive calls and text messages (SMS/MMS) about your request. Message and data rates may apply. We do not sell your information. See our{" "}
+          <Link href="/privacy" className="font-semibold text-brand-teal underline-offset-2 hover:underline">
+            Privacy Policy
+          </Link>
+          .
+        </p>
       </div>
       {status === "success" ? (
         <p className="lg:col-span-2 text-sm font-semibold text-emerald-200">

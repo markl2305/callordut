@@ -41,8 +41,8 @@ export function Header() {
           ))}
         </nav>
         <div className="hidden items-center gap-4 lg:flex">
-          <a href="tel:+15052075211" className="text-sm font-semibold text-slate-800 hover:text-brand-teal">
-            (505) 207-5211
+          <a href="tel:+18666572383" className="text-sm font-semibold text-slate-800 hover:text-brand-teal">
+            (866) 657-2383
           </a>
           <Link
             href="/contact"
@@ -81,10 +81,10 @@ export function Header() {
               Plan my next build
             </Link>
             <a
-              href="tel:+15052075211"
+              href="tel:+18666572383"
               className="rounded-lg px-3 py-2 text-center font-semibold text-slate-800 transition hover:bg-white/60 hover:text-brand-teal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
             >
-              (505) 207-5211
+              (866) 657-2383
             </a>
           </div>
         </div>

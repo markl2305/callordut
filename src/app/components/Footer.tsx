@@ -16,8 +16,8 @@ export function Footer() {
             <div>Albuquerque, NM 87123, United States</div>
             <div className="mt-2">
               Phone:{" "}
-              <a href="tel:+15052075211" className="text-foreground hover:text-brand-teal">
-                (505) 207-5211
+              <a href="tel:+18666572383" className="text-foreground hover:text-brand-teal">
+                (866) 657-2383
               </a>
             </div>
             <div>
@@ -26,6 +26,13 @@ export function Footer() {
                 mark@mail.callordut.com
               </a>
             </div>
+            <p className="mt-2 max-w-xs text-[13px] leading-relaxed">
+              By contacting us you agree we may call or text (SMS/MMS) about your request; message and data rates may apply. We do not sell your information. See our{" "}
+              <Link href="/privacy" className="font-semibold text-brand-teal underline-offset-2 hover:underline">
+                Privacy Policy
+              </Link>
+              .
+            </p>
             <p className="mt-2 max-w-xs text-[13px] leading-relaxed">
               Nationwide projects welcome. Public entities can access our{" "}
               <Link href="/partnerships/cooperative-purchasing" className="font-semibold text-brand-teal underline-offset-2 hover:underline">

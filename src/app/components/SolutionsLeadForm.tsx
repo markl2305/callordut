@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { trackLead } from "@/lib/analytics";
 
@@ -119,6 +120,13 @@ export function SolutionsLeadForm({ services }: SolutionsLeadFormProps) {
       >
         {status === "loading" ? "Sending…" : "Request my planning call"}
       </button>
+      <p className="lg:col-span-2 text-xs text-brand-slate">
+        By submitting, you agree to receive calls and text messages (SMS/MMS) about your request. Message and data rates may apply. We do not sell your information. See our{" "}
+        <Link href="/privacy" className="font-semibold text-brand-teal underline-offset-2 hover:underline">
+          Privacy Policy
+        </Link>
+        .
+      </p>
       {status === "success" ? (
         <p className="lg:col-span-2 text-sm font-semibold text-emerald-800">Thanks — your message has been sent. We’ll reach out soon.</p>
       ) : null}

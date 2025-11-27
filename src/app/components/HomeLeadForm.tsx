@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { trackLead } from "@/lib/analytics";
 
@@ -165,6 +166,13 @@ export function HomeLeadForm({ roomTypes = [] }: HomeLeadFormProps) {
         >
           {status === "loading" ? "Sending…" : "Get my room plan"}
         </button>
+        <p className="mt-3 text-xs text-slate-200">
+          By submitting, you agree to receive calls and text messages (SMS/MMS) about your request. Message and data rates may apply. We do not sell your information. See our{" "}
+          <Link href="/privacy" className="font-semibold text-brand-teal underline-offset-2 hover:underline">
+            Privacy Policy
+          </Link>
+          .
+        </p>
       </div>
       {status === "success" ? (
         <p className="lg:col-span-2 text-sm font-semibold text-emerald-200">Thanks — your message has been sent. We’ll reach out soon.</p>
