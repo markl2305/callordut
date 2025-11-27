@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { trackLead } from "@/lib/analytics";
+import { event as gaEvent } from "@/lib/gtag";
 
 const roomOptions = [
   "Executive Boardroom",
@@ -66,6 +67,13 @@ export function ContactForm() {
       }
 
       setStatus("success");
+      if (typeof window !== "undefined") {
+        gaEvent("lead_submit", {
+          form_id: "callord_main_contact",
+          page_location: window.location.href,
+          page_path: window.location.pathname,
+        });
+      }
       trackLead({ formName: "Contact Page Form" });
       setForm({
         name: "",
