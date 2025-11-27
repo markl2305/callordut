@@ -2,7 +2,7 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const DEFAULT_RECIPIENT = process.env.CONTACT_RECIPIENT_EMAIL || "mark@callordut.com";
+const DEFAULT_RECIPIENT = process.env.CONTACT_RECIPIENT_EMAIL || "mark@mail.callordut.com";
 const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || "CalLord Unified Technologies <leads@callordut.com>";
 
 export async function POST(request) {

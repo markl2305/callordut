@@ -22,8 +22,8 @@ export function Footer() {
             </div>
             <div>
               Email:{" "}
-              <a href="mailto:sales@callordut.com" className="text-foreground hover:text-brand-teal">
-                sales@callordut.com
+              <a href="mailto:mark@mail.callordut.com" className="text-foreground hover:text-brand-teal">
+                mark@mail.callordut.com
               </a>
             </div>
             <p className="mt-2 max-w-xs text-[13px] leading-relaxed">
