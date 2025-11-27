@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { trackLead } from "@/lib/analytics";
+import { event as gaEvent } from "@/lib/gtag";
 
 type HomeLeadFormProps = {
   roomTypes?: string[];
@@ -49,6 +50,14 @@ export function HomeLeadForm({ roomTypes = [] }: HomeLeadFormProps) {
       }
 
       setStatus("success");
+      if (typeof window !== "undefined") {
+        console.log("Firing GA lead_submit");
+        gaEvent("lead_submit", {
+          form_id: "callord_home_lead_form",
+          page_location: window.location.href,
+          page_path: window.location.pathname,
+        });
+      }
       trackLead({ formName: "Homepage Lead Form" });
       setForm({
         name: "",

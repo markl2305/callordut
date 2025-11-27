@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { trackLead } from "@/lib/analytics";
+import { event as gaEvent } from "@/lib/gtag";
 
 type SolutionsLeadFormProps = {
   services: string[];
@@ -48,6 +49,14 @@ export function SolutionsLeadForm({ services }: SolutionsLeadFormProps) {
       }
 
       setStatus("success");
+      if (typeof window !== "undefined") {
+        console.log("Firing GA lead_submit");
+        gaEvent("lead_submit", {
+          form_id: "callord_solutions_lead_form",
+          page_location: window.location.href,
+          page_path: window.location.pathname,
+        });
+      }
       trackLead({ formName: "Solutions Page Form" });
       setForm({
         name: "",

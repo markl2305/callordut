@@ -68,6 +68,7 @@ export function ContactForm() {
 
       setStatus("success");
       if (typeof window !== "undefined") {
+        console.log("Firing GA lead_submit");
         gaEvent("lead_submit", {
           form_id: "callord_main_contact",
           page_location: window.location.href,
