@@ -27,14 +27,14 @@ export function CTASection({
         <div className="flex flex-wrap items-center gap-3">
           <Link
             href={primaryHref}
-            className="rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
+            className="inline-flex items-center justify-center rounded-full bg-brand-teal px-6 py-3 text-center text-base font-semibold leading-snug text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
           >
             {primaryLabel}
           </Link>
           {secondaryLabel && secondaryHref ? (
             <Link
               href={secondaryHref}
-              className="rounded-full border border-brand-teal/70 px-6 py-3 text-base font-semibold text-brand-teal transition hover:-translate-y-0.5 hover:bg-brand-teal/10 hover:text-brand-slate focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
+              className="inline-flex items-center justify-center rounded-full border border-brand-teal/70 px-6 py-3 text-center text-base font-semibold leading-snug text-brand-teal transition hover:-translate-y-0.5 hover:bg-brand-teal/10 hover:text-brand-slate focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
             >
               {secondaryLabel}
             </Link>
