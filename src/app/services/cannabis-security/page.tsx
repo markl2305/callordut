@@ -3,11 +3,13 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { CTASection } from "../../components/CTASection";
 import { GlassPanel } from "../../components/GlassPanel";
+import { CannabisAssessmentForm } from "./CannabisAssessmentForm";
+import { CannabisChecklistForm } from "./CannabisChecklistForm";
 
 export const metadata: Metadata = {
   title: "Cannabis Security Systems that pass inspection the first time",
   description:
-    "Compliant cannabis security for licensed facilities in NM, CO, AZ, OK, TX. Camera, access, monitoring, and documentation designed to meet state requirements and protect your license.",
+    "Compliant cannabis security for licensed facilities in NM, CO, AZ. Camera, access, monitoring, and documentation designed to meet state requirements and protect your license.",
 };
 
 const bestFor = [
@@ -18,7 +20,7 @@ const bestFor = [
 ];
 
 const complianceFocus = [
-  "Designed to meet state cannabis security regulations (NM, CO, AZ, OK, TX)",
+  "Designed to meet state cannabis security regulations (NM, CO, AZ)",
   "Camera, access, intrusion, and monitoring inspectors understand",
   "Full documentation for inspections and renewals",
 ];
@@ -48,7 +50,7 @@ const trustBand = [
 ];
 
 const whatYouGet = [
-  "Designs mapped to NM, CO, AZ, OK, TX cannabis requirements",
+  "Designs mapped to NM, CO, AZ cannabis requirements",
   "Camera, access, and alarm layouts inspectors can verify",
   "Documentation packages for regulators and renewals",
   "Coordination with IT and monitoring providers",
@@ -114,21 +116,21 @@ export default function CannabisSecurityPage() {
               Cannabis Security Systems that pass inspection the first time
             </h1>
             <p className="mt-4 text-lg leading-relaxed text-muted lg:text-xl">
-              Compliant cannabis security for licensed facilities in NM, CO, AZ, OK, TX—camera, access, monitoring, and documentation designed to meet state requirements and protect your license. We still cover broader commercial security, but cannabis is a core specialization.
+              Compliant cannabis security for licensed facilities in NM, CO, AZ—camera, access, monitoring, and documentation designed to meet state requirements and protect your license. We still cover broader commercial security, but cannabis is a core specialization.
             </p>
             <p className="mt-3 text-sm text-slate-200">
               Built on Eagle Eye Networks + Brivo for cloud audit trails inspectors understand. No mystery DVRs.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                href="/contact#lead-form"
+                href="#assessment-form"
                 className="rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)]"
                 data-cta="hero-primary-compliance-assessment"
               >
                 Request a Free Compliance Assessment
               </Link>
               <Link
-                href="/contact#lead-form"
+                href="#checklist-form"
                 className="rounded-full border border-brand-teal/70 px-6 py-3 text-base font-semibold text-brand-teal transition hover:-translate-y-0.5 hover:bg-brand-teal/10 hover:text-brand-slate"
                 data-cta="hero-secondary-checklist"
               >
@@ -230,13 +232,25 @@ export default function CannabisSecurityPage() {
               ))}
             </ul>
             <Link
-              href="/contact#lead-form"
+              href="#assessment-form"
               className="mt-5 inline-flex w-full justify-center rounded-full bg-brand-teal px-5 py-3 text-sm font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90"
               data-cta="stake-midpage"
             >
               Talk to a Cannabis Security Designer
             </Link>
           </div>
+        </section>
+
+        <section id="assessment-form" className="mt-16 space-y-4 lg:mt-24">
+          <h3 className="text-2xl font-semibold text-foreground">Request a Free Compliance Assessment</h3>
+          <p className="text-sm text-slate-200">Higher intent? Share the essentials and we’ll map a compliant plan and schedule time.</p>
+          <CannabisAssessmentForm />
+        </section>
+
+        <section id="checklist-form" className="mt-16 space-y-4 lg:mt-24">
+          <h3 className="text-2xl font-semibold text-foreground">Get the Cannabis Security Checklist</h3>
+          <p className="text-sm text-slate-200">Lower friction—tell us where you operate and we’ll send the checklist immediately.</p>
+          <CannabisChecklistForm />
         </section>
 
         <section className="mt-16 rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40 lg:mt-24">
@@ -318,7 +332,7 @@ export default function CannabisSecurityPage() {
             </div>
             <div>
               <p className="font-semibold text-foreground">Which states do you cover?</p>
-              <p className="mt-1 leading-relaxed">Cannabis focus in NM, CO, AZ, OK, TX. We also support broader security elsewhere as needed.</p>
+              <p className="mt-1 leading-relaxed">Cannabis focus in NM, CO, AZ. We also support broader security elsewhere as needed.</p>
             </div>
             <div>
               <p className="font-semibold text-foreground">Can you work with existing systems?</p>
@@ -339,7 +353,9 @@ export default function CannabisSecurityPage() {
           title="Ready for a cannabis security plan that passes inspection?"
           subtitle="Send your floor plans, license details, and timeline—we’ll map cameras, access, and monitoring to state requirements and get you ready for inspection."
           primaryLabel="Request a Free Compliance Assessment"
-          primaryHref="/contact#lead-form"
+          primaryHref="#assessment-form"
+          secondaryLabel="Get the Cannabis Security Checklist"
+          secondaryHref="#checklist-form"
         />
       </main>
     </div>
