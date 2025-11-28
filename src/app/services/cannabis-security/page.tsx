@@ -5,25 +5,31 @@ import { CTASection } from "../../components/CTASection";
 import { GlassPanel } from "../../components/GlassPanel";
 
 export const metadata: Metadata = {
-  title: "Cannabis Security & Compliance | Eagle Eye & Brivo Design",
+  title: "Cannabis Security Systems that pass inspection the first time",
   description:
-    "Cameras, access control, and retention plans for cannabis dispensaries and grow facilities. Built on Eagle Eye Networks and Brivo to meet New Mexico and nationwide compliance requirements.",
+    "Compliant cannabis security for licensed facilities in NM, CO, AZ, OK, TX. Camera, access, monitoring, and documentation designed to meet state requirements and protect your license.",
 };
 
 const bestFor = [
-  "Licensed dispensaries",
-  "Grow + processing facilities",
-  "Multi-site / MSO security teams",
-  "Owners preparing for inspections",
+  "Dispensaries heading to first inspection",
+  "Cultivation / processing sites that outgrew DIY",
+  "Multi-site operators standardizing templates",
+  "Teams burned by generic AV/security vendors",
+];
+
+const complianceFocus = [
+  "Designed to meet state cannabis security regulations (NM, CO, AZ, OK, TX)",
+  "Camera, access, intrusion, and monitoring inspectors understand",
+  "Full documentation for inspections and renewals",
 ];
 
 const deliverables = [
   "Camera coverage maps with risers and critical asset focus",
-  "Access control strategies and credential policies built on Brivo",
+  "Access control layouts, credentials, and policies inspectors can verify",
   "Video retention + storage planning calibrated to state rules",
-  "Incident + audit logging configuration within Eagle Eye Networks",
+  "Intrusion + monitoring-ready design with audit logging configured",
   "Compliance-ready drawing set, device schedules, and documentation",
-  "Audits of existing deployments with remediation roadmap",
+  "Remediation roadmaps for existing deployments that need to pass",
 ];
 
 const optionalUpgrades = [
@@ -31,6 +37,33 @@ const optionalUpgrades = [
   "Environmental sensors tied to alerting",
   "Visitor management workflows with camera tie-ins",
   "Integration with POS / inventory tracking",
+];
+
+const trustBand = [
+  "Video surveillance design + install experience",
+  "Access control & intrusion coordination",
+  "Remote monitoring ready (cloud-first stacks)",
+  "Locally owned in the Southwest",
+  "Specialized in cannabis facilities",
+];
+
+const whatYouGet = [
+  "Designs mapped to NM, CO, AZ, OK, TX cannabis requirements",
+  "Camera, access, and alarm layouts inspectors can verify",
+  "Documentation packages for regulators and renewals",
+  "Coordination with IT and monitoring providers",
+];
+
+const whatsAtStake = [
+  "Revenue loss during shutdowns if you fail inspection",
+  "Scrambling under inspector pressure without a plan",
+  "Higher costs when rushed upgrades are forced",
+];
+
+const howItWorks = [
+  "Share facility details: floor plan, license, notes, timeline",
+  "Map requirements to your layout: cameras, access, intrusion, retention",
+  "Deliver a clear plan + quote so you can move with confidence",
 ];
 
 const inspectionChecklist = [
@@ -76,26 +109,32 @@ export default function CannabisSecurityPage() {
             <div className="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-slate-950/70 to-slate-950/90" aria-hidden />
           </div>
           <div className="relative">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-teal">Core service</p>
-            <h1 className="mt-4 text-4xl font-semibold leading-tight text-foreground sm:text-5xl lg:text-6xl">Cannabis Security & Compliance</h1>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-teal">Security</p>
+            <h1 className="mt-4 text-4xl font-semibold leading-tight text-foreground sm:text-5xl lg:text-6xl">
+              Cannabis Security Systems that pass inspection the first time
+            </h1>
             <p className="mt-4 text-lg leading-relaxed text-muted lg:text-xl">
-              Cameras, access control, retention, and documentation built explicitly for cannabis operators. Our systems are designed around
-              <strong> Eagle Eye Networks</strong> and <strong> Brivo</strong> so you have modern cloud audit trails—not mystery DVRs.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/contact"
-              className="rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)]"
-            >
-              Plan my next build
-            </Link>
-            <Link
-              href="/services"
-              className="rounded-full border border-brand-teal/70 px-6 py-3 text-base font-semibold text-brand-teal transition hover:-translate-y-0.5 hover:bg-brand-teal/10 hover:text-brand-slate"
-            >
-              Back to all services
-            </Link>
-          </div>
+              Compliant cannabis security for licensed facilities in NM, CO, AZ, OK, TX—camera, access, monitoring, and documentation designed to meet state requirements and protect your license. We still cover broader commercial security, but cannabis is a core specialization.
+            </p>
+            <p className="mt-3 text-sm text-slate-200">
+              Built on Eagle Eye Networks + Brivo for cloud audit trails inspectors understand. No mystery DVRs.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/contact#lead-form"
+                className="rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)]"
+                data-cta="hero-primary-compliance-assessment"
+              >
+                Request a Free Compliance Assessment
+              </Link>
+              <Link
+                href="/contact#lead-form"
+                className="rounded-full border border-brand-teal/70 px-6 py-3 text-base font-semibold text-brand-teal transition hover:-translate-y-0.5 hover:bg-brand-teal/10 hover:text-brand-slate"
+                data-cta="hero-secondary-checklist"
+              >
+                Get the Cannabis Security Checklist
+              </Link>
+            </div>
           </div>
         </section>
 
@@ -108,6 +147,18 @@ export default function CannabisSecurityPage() {
               </span>
             ))}
           </div>
+        </section>
+
+        <section className="mt-12 rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40 lg:mt-16">
+          <h3 className="text-2xl font-semibold">Compliance focus</h3>
+          <ul className="mt-3 space-y-2 text-sm leading-relaxed text-slate-200">
+            {complianceFocus.map((item) => (
+              <li key={item} className="flex items-start gap-2">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-brand-teal" aria-hidden />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
         </section>
 
         <section className="mt-16 grid gap-6 lg:mt-24 lg:grid-cols-[1.1fr,0.9fr]">
@@ -138,6 +189,68 @@ export default function CannabisSecurityPage() {
           </p>
         </section>
 
+        <section className="mt-16 grid gap-4 rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-sm text-slate-100 shadow-md shadow-black/40 lg:mt-24 lg:grid-cols-2">
+          <div>
+            <h3 className="text-lg font-semibold text-foreground">Trusted in regulated environments</h3>
+            <p className="mt-2 leading-relaxed text-slate-200">
+              We design and manage security for regulated operators and vendors—cannabis is a core focus, and we still support broader commercial security requirements.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {trustBand.map((item) => (
+              <span key={item} className="rounded-full border border-brand-teal/50 px-3 py-1.5 text-xs font-semibold text-brand-teal">
+                {item}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-16 grid gap-6 lg:mt-24 lg:grid-cols-[1.05fr,0.95fr]">
+          <GlassPanel title="What you get">
+            <ul className="space-y-2 text-sm">
+              {whatYouGet.map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-teal-400" aria-hidden />
+                  <span className="leading-relaxed text-slate-200">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </GlassPanel>
+          <div className="rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40">
+            <h3 className="text-2xl font-semibold">What’s at stake</h3>
+            <p className="mt-3 text-sm leading-relaxed text-slate-200">
+              Failed inspections can pause operations, incur fines, and force rushed upgrades. We design to pass the first time.
+            </p>
+            <ul className="mt-3 space-y-2 text-sm text-slate-200">
+              {whatsAtStake.map((item) => (
+                <li key={item} className="flex items-start gap-2">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-brand-teal" aria-hidden />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <Link
+              href="/contact#lead-form"
+              className="mt-5 inline-flex w-full justify-center rounded-full bg-brand-teal px-5 py-3 text-sm font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90"
+              data-cta="stake-midpage"
+            >
+              Talk to a Cannabis Security Designer
+            </Link>
+          </div>
+        </section>
+
+        <section className="mt-16 rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40 lg:mt-24">
+          <h3 className="text-2xl font-semibold">How it works</h3>
+          <ol className="mt-3 space-y-3 text-sm text-slate-200">
+            {howItWorks.map((step, idx) => (
+              <li key={step} className="flex items-start gap-3">
+                <span className="mt-0.5 h-6 w-6 rounded-full bg-brand-teal text-center text-xs font-bold text-brand-slate">{idx + 1}</span>
+                <span className="leading-relaxed">{step}</span>
+              </li>
+            ))}
+          </ol>
+        </section>
+
         <section className="mt-16 space-y-4 lg:mt-24">
           <h3 className="text-2xl font-semibold">Optional upgrades & variants</h3>
           <ul className="space-y-2 text-sm text-muted">
@@ -161,6 +274,9 @@ export default function CannabisSecurityPage() {
                 </li>
               ))}
             </ul>
+            <p className="mt-4 text-sm text-slate-200">
+              Want the full Cannabis Security Inspection Checklist? Request it via the form and select the checklist option—we’ll send the coverage, access, and documentation basics you need.
+            </p>
           </GlassPanel>
         </section>
 
@@ -180,11 +296,50 @@ export default function CannabisSecurityPage() {
           </div>
         </section>
 
+        <section className="mt-16 rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40 lg:mt-24">
+          <h3 className="text-2xl font-semibold">Testimonials</h3>
+          <p className="mt-3 text-sm leading-relaxed text-slate-200">Client feedback coming soon.</p>
+        </section>
+
+        <section className="mt-16 space-y-6 lg:mt-24">
+          <h3 className="text-2xl font-semibold">FAQs</h3>
+          <div className="space-y-4 text-sm text-slate-200">
+            <div>
+              <p className="font-semibold text-foreground">Do you focus on cannabis only?</p>
+              <p className="mt-1 leading-relaxed">Cannabis is a core specialization. We also support broader commercial/enterprise security needs with the same documentation rigor.</p>
+            </div>
+            <div>
+              <p className="font-semibold text-foreground">Can you fix a failed inspection?</p>
+              <p className="mt-1 leading-relaxed">Yes. We audit what failed, remediate gaps, and deliver documentation inspectors expect.</p>
+            </div>
+            <div>
+              <p className="font-semibold text-foreground">Do you handle install?</p>
+              <p className="mt-1 leading-relaxed">We design and can manage installation partners, ensuring the build matches the approved plan.</p>
+            </div>
+            <div>
+              <p className="font-semibold text-foreground">Which states do you cover?</p>
+              <p className="mt-1 leading-relaxed">Cannabis focus in NM, CO, AZ, OK, TX. We also support broader security elsewhere as needed.</p>
+            </div>
+            <div>
+              <p className="font-semibold text-foreground">Can you work with existing systems?</p>
+              <p className="mt-1 leading-relaxed">Yes. We integrate or replace where needed and map everything to state requirements.</p>
+            </div>
+            <div>
+              <p className="font-semibold text-foreground">How fast can you move?</p>
+              <p className="mt-1 leading-relaxed">We prioritize urgent inspections and can stage a rapid plan with phased rollout.</p>
+            </div>
+            <div>
+              <p className="font-semibold text-foreground">Will you coordinate with legal/compliance teams?</p>
+              <p className="mt-1 leading-relaxed">Yes. We work directly with compliance and legal stakeholders to align on requirements and documentation.</p>
+            </div>
+          </div>
+        </section>
+
         <CTASection
-          title="Ready to plan your cannabis security rollout?"
-          subtitle="Send us your floor plans, compliance timeline, and current pain points—we’ll map the next version on Eagle Eye + Brivo."
-          primaryLabel="Talk to a designer"
-          primaryHref="/contact"
+          title="Ready for a cannabis security plan that passes inspection?"
+          subtitle="Send your floor plans, license details, and timeline—we’ll map cameras, access, and monitoring to state requirements and get you ready for inspection."
+          primaryLabel="Request a Free Compliance Assessment"
+          primaryHref="/contact#lead-form"
         />
       </main>
     </div>
