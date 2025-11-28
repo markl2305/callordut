@@ -285,7 +285,7 @@ export default function Home() {
         >
           <div className="absolute inset-0">
             <Image
-              src="/hero-conference-room.png"
+              src="/hero-conference-room.webp.png"
               alt="Modern conference room designed for hybrid meetings"
               fill
               priority
