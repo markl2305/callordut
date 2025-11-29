@@ -50,6 +50,12 @@ export default function RoomTypesHubPage() {
         </section>
 
         <section className="mt-16 space-y-8 lg:mt-24">
+          <div className="space-y-3">
+            <h2 className="text-3xl font-semibold text-foreground lg:text-4xl">Room Types</h2>
+            <p className="max-w-3xl text-lg leading-relaxed text-muted">
+              Proven configurations we build again and again. Start with a template, customize for your space, and skip the trial-and-error.
+            </p>
+          </div>
           <div className="grid gap-4 md:grid-cols-2">
             {coreRoomTypes.map((room) => (
               <Link
