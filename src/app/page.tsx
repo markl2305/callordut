@@ -6,22 +6,22 @@ import { HomeLeadForm } from "./components/HomeLeadForm";
 import { siteConfig } from "../config/site";
 
 export const metadata: Metadata = {
-  title: "Smart Rooms, AV & Security Design | CalLord Unified Technologies",
+  title: "CalLord Unified Technologies | Smart Rooms, AV & Security Design",
   description:
-    "CalLord Unified Technologies designs AV systems, smart rooms, and cannabis security so every meeting, resident check-in, and virtual visit just works. Based in Albuquerque, serving teams nationwide.",
+    "AV systems, smart rooms, and security designed for senior living, cannabis, offices, and hospitality. Documented. Supported. Done right. Serving New Mexico, Colorado, and Arizona.",
   openGraph: {
-    title: "Smart Rooms, AV & Security Design | CalLord Unified Technologies",
+    title: "CalLord Unified Technologies | Smart Rooms, AV & Security Design",
     description:
-      "CalLord Unified Technologies designs AV systems, smart rooms, and cannabis security so every meeting, resident check-in, and virtual visit just works.",
+      "AV systems, smart rooms, and security designed for senior living, cannabis, offices, and hospitality. Documented. Supported. Done right. Serving New Mexico, Colorado, and Arizona.",
     url: siteConfig.website,
     siteName: siteConfig.shortName,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Smart Rooms, AV & Security Design | CalLord Unified Technologies",
+    title: "CalLord Unified Technologies | Smart Rooms, AV & Security Design",
     description:
-      "AV integration, smart rooms, and cannabis security designed for operators. Based in Albuquerque, serving teams nationwide.",
+      "AV systems, smart rooms, and security designed for senior living, cannabis, offices, and hospitality. Documented. Supported. Done right.",
   },
 };
 
