@@ -318,7 +318,7 @@ export default function Home() {
                   ◎
                 </div>
                 <h3 className="text-xl font-semibold text-foreground">{value.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-200">{value.copy}</p>
+                <p className="mt-2 text-sm leading-relaxed text-slate-200">{value.body}</p>
               </div>
             ))}
           </div>
