@@ -54,6 +54,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <Script
+          src="https://unpkg.com/@elevenlabs/convai-widget-embed"
+          strategy="afterInteractive"
+        />
         {gaMeasurementId ? (
           <>
             <Script
@@ -80,6 +84,7 @@ export default function RootLayout({
       >
         <Header />
         <main className="pt-20 lg:pt-28">{children}</main>
+        <elevenlabs-convai agent-id="agent_8401kb8nr99ffnb9m236xyabwjyx"></elevenlabs-convai>
         <Footer />
       </body>
     </html>
