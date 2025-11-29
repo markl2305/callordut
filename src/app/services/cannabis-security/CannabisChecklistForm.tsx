@@ -9,6 +9,7 @@ type Status = "idle" | "loading" | "success" | "error";
 export function CannabisChecklistForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
+  const checklistUrl = "/Cannabis%20Facility%20Security%20Readiness%20Checklist.pdf";
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -35,6 +36,7 @@ export function CannabisChecklistForm() {
         `State: ${form.state || "N/A"}`,
         `Facility type: ${form.facilityType || "N/A"}`,
         `Notes: ${form.notes || "N/A"}`,
+        `Checklist download: ${typeof window !== "undefined" ? `${window.location.origin}${checklistUrl}` : checklistUrl}`,
       ].join("\n");
 
       const response = await fetch("/api/contact", {
@@ -187,7 +189,13 @@ export function CannabisChecklistForm() {
             By submitting, you agree to receive calls and text messages (SMS/MMS) about your request. Message and data rates may apply. We do not sell your information.
           </p>
           {status === "success" ? (
-            <p className="text-sm font-semibold text-emerald-200">Checklist on the way. Check your email.</p>
+            <p className="text-sm font-semibold text-emerald-200">
+              Checklist on the way. Check your email or{" "}
+              <a href={checklistUrl} className="font-semibold text-brand-teal underline-offset-2 hover:underline">
+                download it here
+              </a>
+              .
+            </p>
           ) : null}
           {error ? <p className="text-sm font-semibold text-red-200">{error}</p> : null}
         </div>
