@@ -94,8 +94,8 @@ export function Footer() {
         <div className="flex flex-wrap items-center gap-3">
           <span className="text-foreground font-semibold">CalLord Unified Technologies LLC</span>
           <span className="text-white/30">|</span>
-          <a href="tel:+15052261457" className="hover:text-brand-teal">
-            (505) 226-1457
+          <a href="tel:+18666572383" className="hover:text-brand-teal">
+            (866) 657-2383
           </a>
           <span className="text-white/30">|</span>
           <a href="mailto:mark@mail.callordut.com" className="hover:text-brand-teal">
