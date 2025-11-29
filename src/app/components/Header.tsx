@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { type FocusEvent, useState } from "react";
 import { BrandMark } from "./BrandMark";
 
 const primaryLinks = [
@@ -38,7 +38,44 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [roomTypesOpen, setRoomTypesOpen] = useState(false);
   const [industriesOpen, setIndustriesOpen] = useState(false);
-  const closeMenu = () => setMenuOpen(false);
+  const closeDropdowns = () => {
+    setRoomTypesOpen(false);
+    setIndustriesOpen(false);
+  };
+  const closeMenu = () => {
+    setMenuOpen(false);
+    closeDropdowns();
+  };
+  const openDropdown = (type: "roomTypes" | "industries") => {
+    if (type === "roomTypes") {
+      setRoomTypesOpen(true);
+      setIndustriesOpen(false);
+    } else {
+      setIndustriesOpen(true);
+      setRoomTypesOpen(false);
+    }
+  };
+  const toggleMobileDropdown = (type: "roomTypes" | "industries") => {
+    if (type === "roomTypes") {
+      setRoomTypesOpen((open) => {
+        const next = !open;
+        if (next) setIndustriesOpen(false);
+        return next;
+      });
+    } else {
+      setIndustriesOpen((open) => {
+        const next = !open;
+        if (next) setRoomTypesOpen(false);
+        return next;
+      });
+    }
+  };
+  const handleDropdownBlur = (event: FocusEvent<HTMLDivElement>) => {
+    const nextFocus = event.relatedTarget as Node | null;
+    if (!nextFocus || !event.currentTarget.contains(nextFocus)) {
+      closeDropdowns();
+    }
+  };
   const pathname = usePathname();
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname?.startsWith(href));
   const navLinks = primaryLinks;
@@ -52,14 +89,17 @@ export function Header() {
         <nav className="hidden items-center gap-4 text-sm font-semibold text-slate-800 lg:flex">
           {navLinks.map((link) =>
             link.items ? (
-              <div key={link.label} className="relative">
+              <div
+                key={link.label}
+                className="relative"
+                onMouseEnter={() => openDropdown(link.label === "Room Types" ? "roomTypes" : "industries")}
+                onMouseLeave={closeDropdowns}
+                onFocus={() => openDropdown(link.label === "Room Types" ? "roomTypes" : "industries")}
+                onBlur={handleDropdownBlur}
+              >
                 <button
                   className="flex items-center gap-1 rounded-full px-3 py-2 transition hover:text-brand-teal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
-                  onClick={() =>
-                    link.label === "Room Types"
-                      ? setRoomTypesOpen((open) => !open)
-                      : setIndustriesOpen((open) => !open)
-                  }
+                  type="button"
                   aria-expanded={link.label === "Room Types" ? roomTypesOpen : industriesOpen}
                 >
                   {link.label}
@@ -73,10 +113,7 @@ export function Header() {
                           <Link
                             href={item.href}
                             className="block rounded-xl px-3 py-2 transition hover:bg-slate-100"
-                            onClick={() => {
-                              setRoomTypesOpen(false);
-                              setIndustriesOpen(false);
-                            }}
+                            onClick={closeDropdowns}
                           >
                             {item.label}
                           </Link>
@@ -127,11 +164,7 @@ export function Header() {
                 <div key={link.label} className="rounded-lg border border-slate-300/70 bg-white/60 px-3 py-2">
                   <button
                     className="flex w-full items-center justify-between text-left"
-                    onClick={() =>
-                      link.label === "Room Types"
-                        ? setRoomTypesOpen((open) => !open)
-                        : setIndustriesOpen((open) => !open)
-                    }
+                    onClick={() => toggleMobileDropdown(link.label === "Room Types" ? "roomTypes" : "industries")}
                     aria-expanded={link.label === "Room Types" ? roomTypesOpen : industriesOpen}
                   >
                     <span>{link.label}</span>
