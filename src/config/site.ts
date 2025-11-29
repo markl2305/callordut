@@ -5,7 +5,7 @@ export const siteConfig = {
   address: "CalLord Unified Technologies LLC, 13170 Central Ave SE Suite B537, Albuquerque, NM 87123, United States",
   phone: "(866) 657-2383",
   phoneHref: "tel:+18666572383",
-  email: "mark@mail.callordut.com",
+  email: "sales@callordut.com",
   website: "https://callordut.com",
   serviceArea: "Based in Albuquerque, serving teams nationwide.",
 };

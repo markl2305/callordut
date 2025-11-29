@@ -11,7 +11,7 @@ export default function PrivacyPage() {
         <div className="rounded-3xl border border-white/10 bg-slate-900/70 p-8 shadow-xl shadow-black/40">
           <h1 className="text-3xl font-semibold lg:text-4xl">Privacy Policy</h1>
           <p className="mt-3 text-sm text-slate-200">
-            Updated for CalLord Unified Technologies LLC. If you have questions, contact <a href="mailto:mark@mail.callordut.com" className="font-semibold text-brand-teal">mark@mail.callordut.com</a>.
+            Updated for CalLord Unified Technologies LLC. If you have questions, contact <a href="mailto:sales@callordut.com" className="font-semibold text-brand-teal">sales@callordut.com</a>.
           </p>
           <div className="mt-6 space-y-4 text-sm leading-relaxed text-slate-200">
             <section>
@@ -32,11 +32,11 @@ export default function PrivacyPage() {
             </section>
             <section>
               <h2 className="text-lg font-semibold text-slate-50">Your choices</h2>
-              <p>You can request access, correction, or deletion of your data by emailing <a href="mailto:mark@mail.callordut.com" className="font-semibold text-brand-teal">mark@mail.callordut.com</a>. We will honor reasonable requests promptly.</p>
+              <p>You can request access, correction, or deletion of your data by emailing <a href="mailto:sales@callordut.com" className="font-semibold text-brand-teal">sales@callordut.com</a>. We will honor reasonable requests promptly.</p>
             </section>
             <section>
               <h2 className="text-lg font-semibold text-slate-50">Questions</h2>
-              <p>For any privacy concerns, contact us at <a href="mailto:mark@mail.callordut.com" className="font-semibold text-brand-teal">mark@mail.callordut.com</a>.</p>
+              <p>For any privacy concerns, contact us at <a href="mailto:sales@callordut.com" className="font-semibold text-brand-teal">sales@callordut.com</a>.</p>
             </section>
           </div>
         </div>

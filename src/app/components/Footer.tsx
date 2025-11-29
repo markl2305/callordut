@@ -98,8 +98,8 @@ export function Footer() {
             (866) 657-2383
           </a>
           <span className="text-white/30">|</span>
-          <a href="mailto:mark@mail.callordut.com" className="hover:text-brand-teal">
-            mark@mail.callordut.com
+          <a href="mailto:sales@callordut.com" className="hover:text-brand-teal">
+            sales@callordut.com
           </a>
         </div>
         <div className="flex flex-wrap items-center gap-3">
