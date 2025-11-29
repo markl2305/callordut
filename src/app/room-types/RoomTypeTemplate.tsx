@@ -1,15 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
-import { CTASection } from "../components/CTASection";
 import type { RoomTypeDefinition } from "../data/roomTypes";
-import { getRoomTypeBySlug } from "../data/roomTypes";
+import { getRoomTypeBySlug, coreRoomTypes } from "../data/roomTypes";
 import { siteConfig } from "../../config/site";
 
 const serviceLinkMap: Record<string, string> = {
-  "AV Integration & Systems": "/services/av-integration",
-  "Cannabis Security & Compliance": "/services/cannabis-security",
-  "Smart Room Design & Documentation": "/services/smart-rooms",
+  "AV Integration & Systems": "/av-integration",
+  "Cannabis Security & Compliance": "/cannabis-security",
+  "Smart Room Design & Documentation": "/smart-room-design",
   "Remote Project Management": "/services/project-management",
 };
 
@@ -120,6 +119,7 @@ export function RoomTypeTemplate({ room }: RoomTypeTemplateProps) {
                 </li>
               ))}
             </ul>
+            <p className="mt-4 text-xs font-semibold text-slate-600">Capacity: {room.capacity}</p>
           </div>
         </section>
 
@@ -152,12 +152,46 @@ export function RoomTypeTemplate({ room }: RoomTypeTemplateProps) {
           </section>
         ) : null}
 
-        <CTASection
-          title={`Ready to design your ${room.name}?`}
-          subtitle="Share the room, constraints, and timeline—we’ll reply with a phased plan and template you can run with."
-          primaryLabel="Plan my next build"
-          primaryHref="/contact"
-        />
+        <section className="mt-16 grid gap-4 rounded-3xl border border-white/10 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40 lg:mt-24 lg:grid-cols-2">
+          <div className="space-y-2">
+            <h3 className="text-xl font-semibold text-foreground">Get this room designed</h3>
+            <p className="text-sm text-slate-200">We’ll document and spec this room template for your space.</p>
+            <Link
+              href="/smart-room-design"
+              className="inline-flex items-center justify-center rounded-full bg-brand-teal px-5 py-3 text-sm font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90"
+            >
+              Get Room Design
+            </Link>
+          </div>
+          <div className="space-y-2">
+            <h3 className="text-xl font-semibold text-foreground">Need full-service install?</h3>
+            <p className="text-sm text-slate-200">We handle design + installation + commissioning end to end.</p>
+            <Link
+              href="/av-integration"
+              className="inline-flex items-center justify-center rounded-full border border-brand-teal/70 px-5 py-3 text-sm font-semibold text-brand-teal transition hover:-translate-y-0.5 hover:bg-brand-teal/10 hover:text-brand-slate"
+            >
+              Explore AV Integration
+            </Link>
+          </div>
+        </section>
+
+        <section className="mt-16 space-y-4 lg:mt-24">
+          <h3 className="text-2xl font-semibold text-foreground">Related room types</h3>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {coreRoomTypes
+              .filter((r) => r.slug !== room.slug)
+              .slice(0, 3)
+              .map((related) => (
+                <Link
+                  key={related.slug}
+                  href={`/room-types/${related.slug}`}
+                  className="rounded-2xl border border-slate-600/60 bg-slate-900/70 p-4 text-sm font-semibold text-brand-teal shadow-md shadow-black/40 transition hover:-translate-y-0.5 hover:border-brand-teal"
+                >
+                  {related.name} →
+                </Link>
+              ))}
+          </div>
+        </section>
       </main>
     </div>
   );
