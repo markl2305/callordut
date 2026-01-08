@@ -5,13 +5,20 @@ import { usePathname } from "next/navigation";
 import { type FocusEvent, useState } from "react";
 import { BrandMark } from "./BrandMark";
 
-const primaryLinks = [
+type DropdownType = "roomTypes" | "industries" | "solutions";
+
+type NavLink =
+  | { label: string; href: string }
+  | { label: string; href: string; dropdown: DropdownType; items: { label: string; href: string }[] };
+
+const primaryLinks: NavLink[] = [
   { label: "Smart Rooms", href: "/smart-room-design" },
   { label: "Cannabis Security", href: "/cannabis-security" },
   { label: "AV Integration", href: "/av-integration" },
   {
     label: "Room Types",
     href: "/room-types",
+    dropdown: "roomTypes",
     items: [
       { label: "Executive Boardroom", href: "/room-types/executive-boardroom" },
       { label: "Team Meeting Room", href: "/room-types/team-meeting-room" },
@@ -21,8 +28,15 @@ const primaryLinks = [
     ],
   },
   {
+    label: "Solutions",
+    href: "/solutions",
+    dropdown: "solutions",
+    items: [{ label: "Multifamily", href: "/solutions/multifamily-security" }],
+  },
+  {
     label: "Industries",
     href: "/industries",
+    dropdown: "industries",
     items: [
       { label: "Senior Living", href: "/industries/senior-living" },
       { label: "Cannabis", href: "/industries/cannabis" },
@@ -39,34 +53,51 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [roomTypesOpen, setRoomTypesOpen] = useState(false);
   const [industriesOpen, setIndustriesOpen] = useState(false);
+  const [solutionsOpen, setSolutionsOpen] = useState(false);
   const closeDropdowns = () => {
     setRoomTypesOpen(false);
     setIndustriesOpen(false);
+    setSolutionsOpen(false);
   };
   const closeMenu = () => {
     setMenuOpen(false);
     closeDropdowns();
   };
-  const openDropdown = (type: "roomTypes" | "industries") => {
+  const openDropdown = (type: DropdownType) => {
     if (type === "roomTypes") {
       setRoomTypesOpen(true);
       setIndustriesOpen(false);
-    } else {
+      setSolutionsOpen(false);
+    } else if (type === "industries") {
       setIndustriesOpen(true);
       setRoomTypesOpen(false);
+      setSolutionsOpen(false);
+    } else {
+      setSolutionsOpen(true);
+      setRoomTypesOpen(false);
+      setIndustriesOpen(false);
     }
   };
-  const toggleMobileDropdown = (type: "roomTypes" | "industries") => {
+  const toggleMobileDropdown = (type: DropdownType) => {
     if (type === "roomTypes") {
       setRoomTypesOpen((open) => {
         const next = !open;
         if (next) setIndustriesOpen(false);
         return next;
       });
-    } else {
+    } else if (type === "industries") {
       setIndustriesOpen((open) => {
         const next = !open;
         if (next) setRoomTypesOpen(false);
+        return next;
+      });
+    } else {
+      setSolutionsOpen((open) => {
+        const next = !open;
+        if (next) {
+          setRoomTypesOpen(false);
+          setIndustriesOpen(false);
+        }
         return next;
       });
     }
@@ -89,24 +120,24 @@ export function Header() {
         </Link>
         <nav className="hidden items-center gap-4 text-sm font-semibold text-slate-800 lg:flex">
           {navLinks.map((link) =>
-            link.items ? (
+            "items" in link ? (
               <div
                 key={link.label}
                 className="relative"
-                onMouseEnter={() => openDropdown(link.label === "Room Types" ? "roomTypes" : "industries")}
+                onMouseEnter={() => openDropdown(link.dropdown)}
                 onMouseLeave={closeDropdowns}
-                onFocus={() => openDropdown(link.label === "Room Types" ? "roomTypes" : "industries")}
+                onFocus={() => openDropdown(link.dropdown)}
                 onBlur={handleDropdownBlur}
               >
                 <button
                   className="flex items-center gap-1 rounded-full px-3 py-2 transition hover:text-brand-teal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
                   type="button"
-                  aria-expanded={link.label === "Room Types" ? roomTypesOpen : industriesOpen}
+                  aria-expanded={link.dropdown === "roomTypes" ? roomTypesOpen : link.dropdown === "industries" ? industriesOpen : solutionsOpen}
                 >
                   {link.label}
                   <span aria-hidden>▾</span>
                 </button>
-                {(link.label === "Room Types" ? roomTypesOpen : industriesOpen) ? (
+                {(link.dropdown === "roomTypes" ? roomTypesOpen : link.dropdown === "industries" ? industriesOpen : solutionsOpen) ? (
                   <div className="absolute left-0 mt-2 min-w-[220px] rounded-2xl border border-white/10 bg-white/90 p-3 text-slate-900 shadow-xl shadow-slate-900/20">
                     <ul className="space-y-1 text-sm font-semibold">
                       {link.items.map((item) => (
@@ -161,17 +192,17 @@ export function Header() {
         <div className="border-t border-slate-800/50 bg-brand-sand px-4 py-4 lg:hidden">
           <div className="flex flex-col gap-3 text-sm font-semibold text-slate-800">
             {navLinks.map((link) =>
-              link.items ? (
+              "items" in link ? (
                 <div key={link.label} className="rounded-lg border border-slate-300/70 bg-white/60 px-3 py-2">
                   <button
                     className="flex w-full items-center justify-between text-left"
-                    onClick={() => toggleMobileDropdown(link.label === "Room Types" ? "roomTypes" : "industries")}
-                    aria-expanded={link.label === "Room Types" ? roomTypesOpen : industriesOpen}
+                    onClick={() => toggleMobileDropdown(link.dropdown)}
+                    aria-expanded={link.dropdown === "roomTypes" ? roomTypesOpen : link.dropdown === "industries" ? industriesOpen : solutionsOpen}
                   >
                     <span>{link.label}</span>
-                    <span aria-hidden>{(link.label === "Room Types" ? roomTypesOpen : industriesOpen) ? "▴" : "▾"}</span>
+                    <span aria-hidden>{(link.dropdown === "roomTypes" ? roomTypesOpen : link.dropdown === "industries" ? industriesOpen : solutionsOpen) ? "▴" : "▾"}</span>
                   </button>
-                  {(link.label === "Room Types" ? roomTypesOpen : industriesOpen) ? (
+                  {(link.dropdown === "roomTypes" ? roomTypesOpen : link.dropdown === "industries" ? industriesOpen : solutionsOpen) ? (
                     <div className="mt-2 space-y-1">
                       {link.items.map((item) => (
                         <Link
