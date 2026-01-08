@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
 };
 
-const heroServices = [
+const heroPillars = [
   {
     title: "Smart Room Design",
     subtitle: "Fixed-price packages. 3–7 day delivery.",
@@ -32,16 +32,31 @@ const heroServices = [
     cta: { label: "See Design Packages", href: "/smart-room-design" },
   },
   {
-    title: "Cannabis Security",
-    subtitle: "Pass your inspection — first time, on schedule.",
-    body: "State-compliant camera, access control, and retention systems for Colorado, New Mexico, and Arizona operators.",
-    cta: { label: "Book Free Assessment", href: "/cannabis-security" },
-  },
-  {
     title: "Full-Service AV Integration",
     subtitle: "Design. Install. Support.",
     body: "End-to-end AV systems for conference rooms, displays, audio, and control — managed from discovery through long-term support.",
     cta: { label: "Tell Us About Your Space", href: "/contact" },
+  },
+];
+
+const heroSecurityServices = [
+  {
+    title: "Property Security",
+    subtitle: "Portfolio-ready, cloud-native protection.",
+    body: "Unified security for properties that need visibility, accountability, and a clean upgrade path.",
+    cta: { label: "Explore Property Security", href: "/solutions/property-security" },
+  },
+  {
+    title: "Multifamily Security",
+    subtitle: "Resident safety, simplified operations.",
+    body: "Cloud video and access control for apartments, condos, and mixed-use communities.",
+    cta: { label: "See Multifamily Security", href: "/solutions/multifamily-security" },
+  },
+  {
+    title: "Cannabis Security",
+    subtitle: "Pass your inspection - first time, on schedule.",
+    body: "State-compliant camera, access control, and retention systems for Colorado, New Mexico, and Arizona operators.",
+    cta: { label: "Book Free Assessment", href: "/cannabis-security" },
   },
 ];
 
@@ -147,7 +162,7 @@ export default function Home() {
                 </h1>
                 <p className="text-lg font-semibold leading-relaxed text-muted lg:text-xl">For Teams Who Can’t Afford Bad Calls</p>
                 <p className="text-base leading-relaxed text-slate-200 lg:text-lg">
-                  AV systems, smart rooms, and security designed for senior living, cannabis, offices, and hospitality. Documented. Supported. Done right.
+                  AV systems, smart rooms, and security designed for multifamily, senior living, cannabis, offices, and hospitality. Documented. Supported. Done right.
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-3">
@@ -168,7 +183,26 @@ export default function Home() {
             <div className="relative overflow-hidden rounded-3xl border border-slate-600/60 bg-slate-900/70 p-5 text-slate-100 shadow-md shadow-black/40">
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(39,154,146,0.35),transparent_45%),radial-gradient(circle_at_100%_0%,rgba(249,115,22,0.15),transparent_45%)]" />
               <div className="relative z-10 grid gap-4 sm:grid-cols-2">
-                {heroServices.map((card) => (
+                <div className="sm:col-span-2 text-xs font-semibold uppercase tracking-[0.3em] text-brand-teal">Security</div>
+                {heroSecurityServices.map((card) => (
+                  <div
+                    key={card.title}
+                    className="flex h-full flex-col justify-between rounded-2xl border border-slate-600/60 bg-slate-900/80 p-4 text-slate-100 shadow-inner shadow-black/40"
+                  >
+                    <div className="space-y-2">
+                      <h3 className="text-lg font-semibold text-foreground">{card.title}</h3>
+                      <p className="text-sm font-semibold text-brand-teal">{card.subtitle}</p>
+                      <p className="text-sm leading-relaxed text-slate-200">{card.body}</p>
+                    </div>
+                    <Link
+                      href={card.cta.href}
+                      className="mt-4 inline-flex items-center justify-center rounded-full bg-brand-teal px-4 py-2 text-sm font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90"
+                    >
+                      {card.cta.label}
+                    </Link>
+                  </div>
+                ))}
+                {heroPillars.map((card) => (
                   <div
                     key={card.title}
                     className="flex h-full flex-col justify-between rounded-2xl border border-slate-600/60 bg-slate-900/80 p-4 text-slate-100 shadow-inner shadow-black/40"

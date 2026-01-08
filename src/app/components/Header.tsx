@@ -5,44 +5,47 @@ import { usePathname } from "next/navigation";
 import { type FocusEvent, useState } from "react";
 import { BrandMark } from "./BrandMark";
 
-type DropdownType = "roomTypes" | "industries" | "solutions";
+type DropdownType = "smartRooms" | "security" | "industries";
 
 type NavLink =
   | { label: string; href: string }
   | { label: string; href: string; dropdown: DropdownType; items: { label: string; href: string }[] };
 
 const primaryLinks: NavLink[] = [
-  { label: "Smart Rooms", href: "/smart-room-design" },
-  { label: "Cannabis Security", href: "/cannabis-security" },
-  { label: "AV Integration", href: "/av-integration" },
   {
-    label: "Room Types",
-    href: "/room-types",
-    dropdown: "roomTypes",
+    label: "Smart Rooms",
+    href: "/smart-room-design",
+    dropdown: "smartRooms",
     items: [
-      { label: "Executive Boardroom", href: "/room-types/executive-boardroom" },
-      { label: "Team Meeting Room", href: "/room-types/team-meeting-room" },
+      { label: "Executive Boardrooms", href: "/room-types/executive-boardroom" },
+      { label: "Team Meeting Rooms", href: "/room-types/team-meeting-room" },
       { label: "Virtual Visit / Telehealth", href: "/room-types/virtual-visit-telehealth" },
-      { label: "Training / All-Hands", href: "/room-types/training-all-hands" },
-      { label: "Small Hybrid / Focus Pod", href: "/room-types/small-hybrid-focus-pod" },
+      { label: "Focus Pods", href: "/room-types/small-hybrid-focus-pod" },
+      { label: "View All Room Types", href: "/room-types" },
     ],
   },
   {
-    label: "Solutions",
-    href: "/solutions",
-    dropdown: "solutions",
-    items: [{ label: "Multifamily", href: "/solutions/multifamily-security" }],
+    label: "Security",
+    href: "/solutions/property-security",
+    dropdown: "security",
+    items: [
+      { label: "Property Security", href: "/solutions/property-security" },
+      { label: "Multifamily Security", href: "/solutions/multifamily-security" },
+      { label: "Cannabis Security", href: "/cannabis-security" },
+      { label: "Banking / Financial Institutions", href: "/solutions/financial-institutions" },
+    ],
   },
+  { label: "AV Integration", href: "/av-integration" },
   {
     label: "Industries",
     href: "/industries",
     dropdown: "industries",
     items: [
+      { label: "Multifamily", href: "/solutions/multifamily-security" },
       { label: "Senior Living", href: "/industries/senior-living" },
       { label: "Cannabis", href: "/industries/cannabis" },
       { label: "Hospitality", href: "/industries/hospitality" },
-      { label: "Offices", href: "/industries/offices" },
-      { label: "Financial Institutions", href: "/solutions/financial-institutions" },
+      { label: "Small & Mid-Sized Offices", href: "/industries/offices" },
     ],
   },
   { label: "About", href: "/about" },
@@ -51,56 +54,54 @@ const primaryLinks: NavLink[] = [
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [roomTypesOpen, setRoomTypesOpen] = useState(false);
+  const [smartRoomsOpen, setSmartRoomsOpen] = useState(false);
   const [industriesOpen, setIndustriesOpen] = useState(false);
-  const [solutionsOpen, setSolutionsOpen] = useState(false);
+  const [securityOpen, setSecurityOpen] = useState(false);
   const closeDropdowns = () => {
-    setRoomTypesOpen(false);
+    setSmartRoomsOpen(false);
     setIndustriesOpen(false);
-    setSolutionsOpen(false);
+    setSecurityOpen(false);
   };
   const closeMenu = () => {
     setMenuOpen(false);
     closeDropdowns();
   };
   const openDropdown = (type: DropdownType) => {
-    if (type === "roomTypes") {
-      setRoomTypesOpen(true);
-      setIndustriesOpen(false);
-      setSolutionsOpen(false);
-    } else if (type === "industries") {
-      setIndustriesOpen(true);
-      setRoomTypesOpen(false);
-      setSolutionsOpen(false);
-    } else {
-      setSolutionsOpen(true);
-      setRoomTypesOpen(false);
-      setIndustriesOpen(false);
-    }
+    setSmartRoomsOpen(type === "smartRooms");
+    setIndustriesOpen(type === "industries");
+    setSecurityOpen(type === "security");
   };
   const toggleMobileDropdown = (type: DropdownType) => {
-    if (type === "roomTypes") {
-      setRoomTypesOpen((open) => {
-        const next = !open;
-        if (next) setIndustriesOpen(false);
-        return next;
-      });
-    } else if (type === "industries") {
-      setIndustriesOpen((open) => {
-        const next = !open;
-        if (next) setRoomTypesOpen(false);
-        return next;
-      });
-    } else {
-      setSolutionsOpen((open) => {
+    if (type === "smartRooms") {
+      setSmartRoomsOpen((open) => {
         const next = !open;
         if (next) {
-          setRoomTypesOpen(false);
           setIndustriesOpen(false);
+          setSecurityOpen(false);
         }
         return next;
       });
+      return;
     }
+    if (type === "industries") {
+      setIndustriesOpen((open) => {
+        const next = !open;
+        if (next) {
+          setSmartRoomsOpen(false);
+          setSecurityOpen(false);
+        }
+        return next;
+      });
+      return;
+    }
+    setSecurityOpen((open) => {
+      const next = !open;
+      if (next) {
+        setSmartRoomsOpen(false);
+        setIndustriesOpen(false);
+      }
+      return next;
+    });
   };
   const handleDropdownBlur = (event: FocusEvent<HTMLDivElement>) => {
     const nextFocus = event.relatedTarget as Node | null;
@@ -132,13 +133,15 @@ export function Header() {
                 <button
                   className="flex items-center gap-1 rounded-full px-3 py-2 transition hover:text-brand-teal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
                   type="button"
-                  aria-expanded={link.dropdown === "roomTypes" ? roomTypesOpen : link.dropdown === "industries" ? industriesOpen : solutionsOpen}
+                  aria-expanded={
+                    link.dropdown === "smartRooms" ? smartRoomsOpen : link.dropdown === "industries" ? industriesOpen : securityOpen
+                  }
                 >
                   {link.label}
                   <span aria-hidden>▾</span>
                 </button>
-                {(link.dropdown === "roomTypes" ? roomTypesOpen : link.dropdown === "industries" ? industriesOpen : solutionsOpen) ? (
-                  <div className="absolute left-0 mt-2 min-w-[220px] rounded-2xl border border-white/10 bg-white/90 p-3 text-slate-900 shadow-xl shadow-slate-900/20">
+                {(link.dropdown === "smartRooms" ? smartRoomsOpen : link.dropdown === "industries" ? industriesOpen : securityOpen) ? (
+                  <div className="absolute left-0 top-full min-w-[220px] rounded-2xl border border-white/10 bg-white/90 p-3 text-slate-900 shadow-xl shadow-slate-900/20">
                     <ul className="space-y-1 text-sm font-semibold">
                       {link.items.map((item) => (
                         <li key={item.href}>
@@ -197,12 +200,18 @@ export function Header() {
                   <button
                     className="flex w-full items-center justify-between text-left"
                     onClick={() => toggleMobileDropdown(link.dropdown)}
-                    aria-expanded={link.dropdown === "roomTypes" ? roomTypesOpen : link.dropdown === "industries" ? industriesOpen : solutionsOpen}
+                    aria-expanded={
+                      link.dropdown === "smartRooms" ? smartRoomsOpen : link.dropdown === "industries" ? industriesOpen : securityOpen
+                    }
                   >
                     <span>{link.label}</span>
-                    <span aria-hidden>{(link.dropdown === "roomTypes" ? roomTypesOpen : link.dropdown === "industries" ? industriesOpen : solutionsOpen) ? "▴" : "▾"}</span>
+                    <span aria-hidden>
+                      {(link.dropdown === "smartRooms" ? smartRoomsOpen : link.dropdown === "industries" ? industriesOpen : securityOpen)
+                        ? "▴"
+                        : "▾"}
+                    </span>
                   </button>
-                  {(link.dropdown === "roomTypes" ? roomTypesOpen : link.dropdown === "industries" ? industriesOpen : solutionsOpen) ? (
+                  {(link.dropdown === "smartRooms" ? smartRoomsOpen : link.dropdown === "industries" ? industriesOpen : securityOpen) ? (
                     <div className="mt-2 space-y-1">
                       {link.items.map((item) => (
                         <Link
