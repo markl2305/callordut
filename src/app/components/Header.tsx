@@ -28,6 +28,7 @@ const primaryLinks = [
       { label: "Cannabis", href: "/industries/cannabis" },
       { label: "Hospitality", href: "/industries/hospitality" },
       { label: "Offices", href: "/industries/offices" },
+      { label: "Financial Institutions", href: "/solutions/financial-institutions" },
     ],
   },
   { label: "About", href: "/about" },
