@@ -78,23 +78,39 @@ const principles = [
 const team = [
   {
     name: "Mark Lord",
-    title: "Founder & Managing Director",
-    bio: "Mark leads overall direction for CalLord UT, tying AV, smart rooms, and cannabis security into one roadmap. He architects Eagle Eye + Brivo deployments for regulated facilities and keeps every engagement aligned with compliance, documentation, and long-term support.",
+    title: "Co-Founder",
+    image: "/mark.jpeg",
+    bio: "Mark focuses on strategic direction, partnerships, and long-term vision at CalLord Unified Technologies. He works to ensure the company delivers practical, reliable technology solutions that support real operational needs.",
   },
   {
-    name: "Patrick Calandro",
-    title: "Founder & Principal Integrator",
-    bio: "Patrick oversees AV system design, translating executive expectations into documented room standards that installers can actually follow. He turns complex requirements into repeatable, field-ready builds.",
+    name: "Patrick Calandro, CTS",
+    title: "Co-Founder & Chief Operations Officer",
+    image: "/patrick.jpeg",
+    bio: "Patrick leads operations, systems design, and project execution across CalLord’s deployments. With deep experience in integrated technology environments, he ensures projects are delivered cleanly, reliably, and to specification.",
+  },
+  {
+    name: "Brianna Lord",
+    title: "Business Manager",
+    image: "/bri.jpeg",
+    bio: "Brianna manages business operations, marketing coordination, and client communications. She ensures internal processes, messaging, and customer touchpoints remain organized, consistent, and professional.",
   },
   {
     name: "Amanda Martinez",
-    title: "Director of Client Experience",
-    bio: "Amanda coordinates discovery workshops, shepherds stakeholders through approvals, and keeps operator feedback embedded in every drawing set.",
+    title: "Project Manager",
+    image: "/amanda.jpeg",
+    bio: "Amanda coordinates project timelines, vendor communication, and delivery milestones. She bridges client needs with technical execution to keep projects moving smoothly from planning through completion.",
   },
   {
     name: "Joshua Dworsky",
-    title: "Remote Project Manager",
-    bio: "Joshua quarterbacks local installers, runs punch lists, and ensures commissioning videos, naming conventions, and documentation are ready for your IT team day two.",
+    title: "Engineering Manager",
+    image: "/joshua.jpeg",
+    bio: "Joshua leads engineering and system architecture for CalLord projects. He is responsible for ensuring solutions are technically sound, secure, and aligned with real-world operational requirements.",
+  },
+  {
+    name: "Trevor Garcia",
+    title: "Information Technology Technician",
+    image: "/trevor.jpeg",
+    bio: "Trevor supports installation, configuration, and on-site technical execution. He works hands-on with systems and infrastructure to ensure deployments are completed accurately and perform as intended.",
   },
 ];
 
@@ -185,14 +201,24 @@ export default function AboutPage() {
           <SectionHeader
             kicker="Team"
             title="People who keep rooms calm"
-            subtitle="Four leaders cover design, client experience, security/compliance, and remote installation management."
+            subtitle="A focused team covering strategy, operations, project delivery, and hands-on execution."
           />
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-8 md:grid-cols-2">
             {team.map((member) => (
-              <div key={member.name} className="rounded-2xl border border-slate-600/60 bg-slate-900/70 p-5 text-slate-100 shadow-md shadow-black/40">
-                <p className="text-sm font-semibold text-brand-teal">{member.title}</p>
-                <h3 className="text-xl font-semibold text-foreground">{member.name}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-200">{member.bio}</p>
+              <div key={member.name} className="flex items-start gap-4 text-slate-100">
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  width={72}
+                  height={72}
+                  className="h-14 w-14 max-h-[56px] max-w-[56px] flex-shrink-0 rounded-full object-cover md:h-16 md:w-16 md:max-h-[64px] md:max-w-[64px] lg:h-[72px] lg:w-[72px] lg:max-h-[72px] lg:max-w-[72px]"
+                  sizes="(min-width: 1024px) 72px, (min-width: 768px) 64px, 56px"
+                />
+                <div>
+                  <p className="text-sm font-semibold text-brand-teal">{member.title}</p>
+                  <h3 className="text-xl font-semibold text-foreground">{member.name}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-slate-200">{member.bio}</p>
+                </div>
               </div>
             ))}
           </div>
