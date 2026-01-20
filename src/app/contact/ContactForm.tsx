@@ -219,7 +219,7 @@ export function ContactForm() {
           disabled={status === "loading"}
           className="inline-flex w-full items-center justify-center rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal disabled:cursor-not-allowed disabled:opacity-80"
         >
-          {status === "loading" ? "Sending…" : "Plan my next build"}
+          {status === "loading" ? "Sending…" : "Schedule Free Assessment"}
         </button>
         <p className="mt-3 text-xs text-slate-200">
           By submitting, you agree to receive calls and text messages (SMS/MMS) about your request. Message and data rates may apply. We do not sell your information. See our{" "}

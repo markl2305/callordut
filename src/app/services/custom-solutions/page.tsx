@@ -39,7 +39,7 @@ export default function CustomSolutionsPage() {
               href="/contact"
               className="rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)]"
             >
-              Plan my custom project
+              Schedule Free Assessment
             </Link>
             <Link
               href="/services"
@@ -50,7 +50,7 @@ export default function CustomSolutionsPage() {
           </div>
         </section>
 
-        <section className="mt-16 space-y-6 lg:mt-24">
+        <section className="mt-20 space-y-6 lg:mt-28">
           <h2 className="text-2xl font-semibold">Where custom work makes sense</h2>
           <div className="rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40">
             <ul className="space-y-3 text-sm text-slate-200">
@@ -64,7 +64,7 @@ export default function CustomSolutionsPage() {
           </div>
         </section>
 
-        <section className="mt-16 space-y-6 lg:mt-24">
+        <section className="mt-20 space-y-6 lg:mt-28">
           <h2 className="text-2xl font-semibold">What’s included</h2>
           <div className="rounded-3xl border border-brand-sand/60 bg-brand-sand/30 p-6 text-brand-slate shadow-[0_20px_60px_-50px_rgba(242,232,220,0.8)]">
             <ul className="space-y-3 text-sm text-slate-700">
@@ -78,9 +78,9 @@ export default function CustomSolutionsPage() {
           </div>
         </section>
 
-        <section className="mt-16 space-y-6 lg:mt-24">
+        <section className="mt-20 space-y-6 lg:mt-28">
           <h2 className="text-2xl font-semibold">Why teams choose us for custom work</h2>
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2">
             {reasons.map((reason) => (
               <div key={reason} className="rounded-2xl border border-slate-600/60 bg-slate-900/70 p-5 text-slate-100 shadow-md shadow-black/40">
                 <p className="text-sm leading-relaxed text-slate-200">{reason}</p>
@@ -92,7 +92,7 @@ export default function CustomSolutionsPage() {
         <CTASection
           title="Ready to map a unique space?"
           subtitle="Share drawings, mood boards, or a rough vision—we’ll translate it into a buildable plan and coordinate the right partners."
-          primaryLabel="Talk to a designer"
+          primaryLabel="Schedule Free Assessment"
           primaryHref="/contact"
         />
       </main>

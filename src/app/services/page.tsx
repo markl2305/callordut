@@ -129,7 +129,7 @@ export default function ServicesPage() {
                 href="/contact"
                 className="rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
               >
-                Talk to a designer
+                Schedule Free Assessment
               </Link>
               <Link
                 href="#room-types"
@@ -141,7 +141,7 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        <section className="mt-16 space-y-6 lg:mt-24">
+        <section className="mt-20 space-y-6 lg:mt-28">
           <SectionHeader
             title="Tailored AV, smart rooms, and security for every environment"
             subtitle="From small businesses and senior communities to cannabis facilities, hospitality venues, and member clubs, we design cohesive systems that feel finished—without resurrecting industry silos."
@@ -152,7 +152,7 @@ export default function ServicesPage() {
           </p>
         </section>
 
-        <section className="mt-16 space-y-8 lg:mt-24">
+        <section className="mt-20 space-y-8 lg:mt-28">
           <div className="grid gap-6 lg:grid-cols-2">
             <div className="rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40">
               <h3 className="text-2xl font-semibold text-foreground">Common challenges</h3>
@@ -179,7 +179,7 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        <section className="mt-16 space-y-6 lg:mt-24">
+        <section className="mt-20 space-y-6 lg:mt-28">
           <SectionHeader
             title="Cross-industry services"
             subtitle="A consistent set of services supports every deployment, whether it’s a hospitality suite, cannabis grow, or member clubhouse."
@@ -196,7 +196,7 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        <section className="mt-16 lg:mt-20">
+        <section className="mt-20 lg:mt-24">
           <div className="rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40">
             <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
               <div>
@@ -230,12 +230,12 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        <section className="mt-16 space-y-8 lg:mt-24">
+        <section className="mt-20 space-y-8 lg:mt-28">
           <SectionHeader
             title="Four core offerings"
             subtitle="Each service stands alone, but they’re strongest when combined into a single roadmap."
           />
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2">
             {services.map((service) => (
               <ServiceCard key={service.title} {...service} tone="sand" />
             ))}
@@ -250,7 +250,7 @@ export default function ServicesPage() {
 
         <section
           id="room-types"
-          className="mt-16 space-y-8 border-t border-brand-teal/20 pt-12 lg:mt-24 lg:pt-16"
+          className="mt-20 space-y-8 border-t border-brand-teal/20 pt-12 lg:mt-28 lg:pt-16"
         >
           <RoomTypesShowcase
             heading="Systems and rooms we build again and again"
@@ -261,7 +261,7 @@ export default function ServicesPage() {
         <CTASection
           title="Tell us what you’re building next"
           subtitle="Share a quick brief about your rooms, cannabis facility, or upcoming rollout—we’ll reply with a plan and options."
-          primaryLabel="Plan my next build"
+          primaryLabel="Schedule Free Assessment"
           primaryHref="/contact"
         />
       </main>

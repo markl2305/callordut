@@ -96,13 +96,13 @@ export default function CannabisSecurityPage() {
               href="/contact#assessment-form"
               className="rounded-full bg-brand-teal px-5 py-3 text-sm font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90"
             >
-              Book Free Compliance Assessment
+              Schedule Free Assessment
             </Link>
             <Link
               href="/contact"
               className="rounded-full border border-brand-teal/70 px-5 py-3 text-sm font-semibold text-brand-teal transition hover:-translate-y-0.5 hover:bg-brand-teal/10 hover:text-brand-slate"
             >
-              Contact Us
+              Contact Sales
             </Link>
           </div>
         </section>
@@ -187,7 +187,7 @@ export default function CannabisSecurityPage() {
               href="/contact#assessment-form"
               className="inline-flex items-center justify-center rounded-full bg-brand-teal px-5 py-3 text-sm font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90"
             >
-              Book Free Compliance Assessment
+              Schedule Free Assessment
             </Link>
             <Link
               href="tel:+18666572383"

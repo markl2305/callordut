@@ -93,7 +93,7 @@ export default function FinancialInstitutionsPage() {
               href="/contact"
               className="rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)]"
             >
-              Request a Security Assessment
+              Schedule Free Assessment
             </Link>
             <Link
               href="#platform"
@@ -104,7 +104,7 @@ export default function FinancialInstitutionsPage() {
           </div>
         </section>
 
-        <section className="mt-12 rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40 lg:mt-16">
+        <section className="mt-16 rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40 lg:mt-20">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-teal">Trust strip</p>
           <div className="mt-3 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <h2 className="text-2xl font-semibold text-foreground">Built for regulated environments. Designed for distributed banking.</h2>
@@ -118,7 +118,7 @@ export default function FinancialInstitutionsPage() {
           </div>
         </section>
 
-        <section className="mt-16 space-y-4 lg:mt-24">
+        <section className="mt-20 space-y-4 lg:mt-28">
           <SectionHeader title="So Much More Than Cameras" />
           <p className="text-sm leading-relaxed text-slate-200">
             Modern banking security requires more than video recording. It requires intelligence, visibility, and control.
@@ -129,9 +129,9 @@ export default function FinancialInstitutionsPage() {
           </p>
         </section>
 
-        <section className="mt-16 space-y-8 lg:mt-24">
+        <section className="mt-20 space-y-8 lg:mt-28">
           <SectionHeader title="Core Capabilities" />
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2">
             {coreCapabilities.map((capability) => (
               <div
                 key={capability.title}
@@ -151,7 +151,7 @@ export default function FinancialInstitutionsPage() {
           </div>
         </section>
 
-        <section className="mt-16 space-y-4 lg:mt-24">
+        <section className="mt-20 space-y-4 lg:mt-28">
           <SectionHeader title="Designed for Real-World Banking Operations" />
           <ul className="space-y-2 text-sm text-slate-200">
             {useCases.map((item) => (
@@ -163,7 +163,7 @@ export default function FinancialInstitutionsPage() {
           </ul>
         </section>
 
-        <section className="mt-16 grid gap-6 lg:mt-24 lg:grid-cols-[1.05fr,0.95fr]">
+        <section className="mt-20 grid gap-6 lg:mt-28 lg:grid-cols-[1.05fr,0.95fr]">
           <div className="rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40">
             <h3 className="text-2xl font-semibold text-foreground">Why Financial Institutions Choose CalLord</h3>
             <p className="mt-3 text-sm leading-relaxed text-slate-200">
@@ -184,7 +184,7 @@ export default function FinancialInstitutionsPage() {
           </div>
         </section>
 
-        <section id="platform" className="mt-16 rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40 lg:mt-24">
+        <section id="platform" className="mt-20 rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40 lg:mt-28">
           <h3 className="text-2xl font-semibold text-foreground">Industry-Leading Platforms. One Unified System.</h3>
           <p className="mt-3 text-sm leading-relaxed text-slate-200">
             CalLord partners with Eagle Eye Networks and Brivo to deliver a complete cloud-native security solution — combining AI video
@@ -195,7 +195,7 @@ export default function FinancialInstitutionsPage() {
         <CTASection
           title="Let’s Modernize Your Security Infrastructure"
           subtitle="If your institution is ready to move beyond legacy security systems, CalLord can help you design and deploy a modern, cloud-native solution."
-          primaryLabel="Schedule a Consultation"
+          primaryLabel="Schedule Free Assessment"
           primaryHref="/contact"
         />
       </main>

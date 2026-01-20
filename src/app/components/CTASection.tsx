@@ -12,13 +12,13 @@ interface CTASectionProps {
 export function CTASection({
   title,
   subtitle,
-  primaryLabel = "Plan my next build",
+  primaryLabel = "Schedule Free Assessment",
   primaryHref = "/contact",
   secondaryLabel,
   secondaryHref,
 }: CTASectionProps) {
   return (
-    <section className="mt-16 rounded-3xl border border-brand-teal/30 bg-gradient-to-br from-brand-teal/15 via-brand-teal/10 to-brand-slate/40 px-6 py-12 lg:mt-24 lg:px-12">
+    <section className="mt-20 rounded-3xl border border-brand-teal/30 bg-gradient-to-br from-brand-teal/15 via-brand-teal/10 to-brand-slate/40 px-6 py-12 lg:mt-28 lg:px-12">
       <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
         <div className="space-y-3">
           <h2 className="text-3xl font-semibold text-foreground lg:text-4xl">{title}</h2>

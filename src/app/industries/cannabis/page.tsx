@@ -49,7 +49,7 @@ export default function CannabisIndustryPage() {
             href="/contact"
             className="mt-4 inline-flex items-center justify-center rounded-full bg-brand-teal px-5 py-3 text-sm font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90"
           >
-            Book Free Assessment
+            Schedule Free Assessment
           </Link>
         </div>
       </main>

@@ -177,7 +177,7 @@ export function FooterCTAForm() {
           disabled={status === "loading"}
           className="inline-flex items-center justify-center rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal disabled:cursor-not-allowed disabled:opacity-80"
         >
-          {status === "loading" ? "Sending…" : "Get Started"}
+          {status === "loading" ? "Sending…" : "Schedule Free Assessment"}
         </button>
       </div>
       {status === "success" ? (

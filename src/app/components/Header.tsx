@@ -26,10 +26,9 @@ const primaryLinks: NavLink[] = [
   },
   {
     label: "Security",
-    href: "/solutions/property-security",
+    href: "/solutions",
     dropdown: "security",
     items: [
-      { label: "Property Security", href: "/solutions/property-security" },
       { label: "Multifamily Security", href: "/solutions/multifamily-security" },
       { label: "Cannabis Security", href: "/cannabis-security" },
       { label: "Banking / Financial Institutions", href: "/solutions/financial-institutions" },
@@ -172,14 +171,14 @@ export function Header() {
           )}
         </nav>
         <div className="hidden items-center gap-4 lg:flex">
-          <a href="tel:+18666572383" className="text-sm font-semibold text-slate-800 hover:text-brand-teal">
+          <a href="tel:+18666572383" className="text-sm font-semibold text-slate-900 hover:text-brand-teal">
             (866) 657-2383
           </a>
           <Link
             href="/contact"
             className="inline-flex h-11 items-center justify-center rounded-full bg-brand-teal px-5 text-sm font-semibold text-brand-slate whitespace-nowrap transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
           >
-            Plan my next build
+            Schedule Free Assessment
           </Link>
         </div>
         <button
@@ -242,11 +241,11 @@ export function Header() {
               onClick={closeMenu}
               className="inline-flex items-center justify-center rounded-lg bg-brand-teal px-3 py-2 text-center font-semibold text-brand-slate transition hover:bg-brand-teal/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
             >
-              Plan my next build
+              Schedule Free Assessment
             </Link>
             <a
               href="tel:+18666572383"
-              className="rounded-lg px-3 py-2 text-center font-semibold text-slate-800 transition hover:bg-white/60 hover:text-brand-teal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
+              className="rounded-lg px-3 py-2 text-center font-semibold text-slate-900 transition hover:bg-white/60 hover:text-brand-teal focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
             >
               (866) 657-2383
             </a>

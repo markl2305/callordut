@@ -90,10 +90,17 @@ export function Footer() {
           </div>
         </div>
       </div>
-      <div className="mx-auto mt-8 flex max-w-6xl flex-col gap-2 px-4 text-xs text-muted lg:flex-row lg:items-center lg:justify-between lg:px-6">
+      <div className="mx-auto mt-8 flex max-w-6xl flex-col gap-4 border-t border-white/10 px-4 pt-6 text-xs text-muted lg:flex-row lg:items-center lg:justify-between lg:px-6">
         <div className="flex flex-wrap items-center gap-3">
           <span className="text-foreground font-semibold">CalLord Unified Technologies LLC</span>
           <span className="text-white/30">|</span>
+          <span>© 2025 CalLord Unified Technologies</span>
+          <span className="text-white/30">|</span>
+          <Link href="/privacy" className="hover:text-brand-teal">
+            Privacy Policy
+          </Link>
+        </div>
+        <div className="flex flex-wrap items-center gap-3 lg:border-l lg:border-white/10 lg:pl-6">
           <a href="tel:+18666572383" className="hover:text-brand-teal">
             (866) 657-2383
           </a>
@@ -101,13 +108,6 @@ export function Footer() {
           <a href="mailto:sales@callordut.com" className="hover:text-brand-teal">
             sales@callordut.com
           </a>
-        </div>
-        <div className="flex flex-wrap items-center gap-3">
-          <span>© 2025 CalLord Unified Technologies</span>
-          <span className="text-white/30">|</span>
-          <Link href="/privacy" className="hover:text-brand-teal">
-            Privacy Policy
-          </Link>
         </div>
       </div>
     </footer>

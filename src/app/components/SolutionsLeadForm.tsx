@@ -127,7 +127,7 @@ export function SolutionsLeadForm({ services }: SolutionsLeadFormProps) {
         disabled={status === "loading"}
         className="lg:col-span-2 inline-flex items-center justify-center rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 disabled:cursor-not-allowed disabled:opacity-80"
       >
-        {status === "loading" ? "Sending…" : "Request my planning call"}
+        {status === "loading" ? "Sending…" : "Schedule Free Assessment"}
       </button>
       <p className="lg:col-span-2 text-xs text-brand-slate">
         By submitting, you agree to receive calls and text messages (SMS/MMS) about your request. Message and data rates may apply. We do not sell your information. See our{" "}

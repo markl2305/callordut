@@ -132,7 +132,7 @@ export default function AboutPage() {
                 href="/contact"
                 className="rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
               >
-                Plan my next build
+                Schedule Free Assessment
               </Link>
               <Link
                 href="/services"
@@ -279,7 +279,7 @@ export default function AboutPage() {
         <CTASection
           title="Ready to stop apologizing for your conference rooms?"
           subtitle="We’ll audit your current rooms, outline a phased plan, and coordinate local partners so Monday morning feels calm."
-          primaryLabel="Plan my next build"
+          primaryLabel="Schedule Free Assessment"
           primaryHref="/contact"
           secondaryLabel="See our services"
           secondaryHref="/services"

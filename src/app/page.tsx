@@ -41,13 +41,13 @@ const heroPillars = [
 
 const heroSecurityServices = [
   {
-    title: "Property Security",
+    title: "Multifamily Security",
     subtitle: "Portfolio-ready, cloud-native protection.",
     body: "Unified security for properties that need visibility, accountability, and a clean upgrade path.",
-    cta: { label: "Explore Property Security", href: "/solutions/property-security" },
+    cta: { label: "See Multifamily Security", href: "/solutions/multifamily-security" },
   },
   {
-    title: "Multifamily Security",
+    title: "Resident Safety",
     subtitle: "Resident safety, simplified operations.",
     body: "Cloud video and access control for apartments, condos, and mixed-use communities.",
     cta: { label: "See Multifamily Security", href: "/solutions/multifamily-security" },
@@ -56,7 +56,7 @@ const heroSecurityServices = [
     title: "Cannabis Security",
     subtitle: "Pass your inspection - first time, on schedule.",
     body: "State-compliant camera, access control, and retention systems for Colorado, New Mexico, and Arizona operators.",
-    cta: { label: "Book Free Assessment", href: "/cannabis-security" },
+    cta: { label: "Schedule Free Assessment", href: "/cannabis-security" },
   },
 ];
 
@@ -170,7 +170,7 @@ export default function Home() {
                   href="#footer-cta"
                   className="rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
                 >
-                  Get Started
+                  Schedule Free Assessment
                 </Link>
                 <Link
                   href="#room-types"
@@ -225,7 +225,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="mt-16 space-y-6 rounded-3xl border border-white/10 bg-slate-900/70 p-6 shadow-md shadow-black/40 lg:mt-24 lg:p-8">
+        <section className="mt-20 space-y-6 rounded-3xl border border-white/10 bg-slate-900/70 p-6 shadow-md shadow-black/40 lg:mt-28 lg:p-8">
           <div className="grid gap-6 lg:grid-cols-[1.3fr,0.9fr] lg:items-center">
             <dl className="grid grid-cols-2 gap-4 text-slate-100 sm:grid-cols-3">
               {trustStats.map((stat) => (
@@ -250,7 +250,7 @@ export default function Home() {
 
         <section
           id="industries"
-          className="mt-16 space-y-8 border-t border-brand-teal/20 pt-12 lg:mt-24 lg:pt-16"
+          className="mt-20 space-y-8 border-t border-brand-teal/20 pt-12 lg:mt-28 lg:pt-16"
         >
           <div className="space-y-3">
             <h2 className="text-3xl font-semibold text-foreground lg:text-4xl">Built for Teams Who Can’t Afford Downtime</h2>
@@ -258,7 +258,7 @@ export default function Home() {
               We focus on environments where every meeting, resident check-in, or virtual visit actually matters.
             </p>
           </div>
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2">
             {serveCards.map((item) => (
               <Link
                 key={item.title}
@@ -279,12 +279,12 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="process" className="mt-16 space-y-8 lg:mt-24">
+        <section id="process" className="mt-20 space-y-8 lg:mt-28">
           <div className="space-y-3">
             <h2 className="text-3xl font-semibold text-foreground lg:text-4xl">From Idea to “It Just Works”</h2>
             <p className="max-w-2xl text-lg leading-relaxed text-muted">A clear path so your team knows exactly what happens next.</p>
           </div>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {processSteps.map((step, index) => (
               <div
                 key={step.title}
@@ -303,7 +303,7 @@ export default function Home() {
 
         <section
           id="room-types"
-          className="mt-16 space-y-8 border-t border-brand-teal/20 pt-12 lg:mt-24 lg:pt-16"
+          className="mt-20 space-y-8 border-t border-brand-teal/20 pt-12 lg:mt-28 lg:pt-16"
         >
           <div className="space-y-3">
             <h2 className="text-3xl font-semibold text-foreground lg:text-4xl">Start With a Proven Design</h2>
@@ -311,7 +311,7 @@ export default function Home() {
               We’ve engineered room configurations that work — so you don’t start from scratch. Pick a template, customize for your space, and skip the trial-and-error.
             </p>
           </div>
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2">
             {roomTemplates.map((room) => (
               <Link
                 key={room.title}
@@ -337,12 +337,12 @@ export default function Home() {
           </Link>
         </section>
 
-        <section id="why" className="mt-16 space-y-8 lg:mt-24">
+        <section id="why" className="mt-20 space-y-8 lg:mt-28">
           <div className="space-y-3">
             <h2 className="text-3xl font-semibold text-foreground lg:text-4xl">Why Teams Choose CalLord</h2>
             <p className="max-w-2xl text-lg leading-relaxed text-muted">Design, delivery, and support all speak the language of operators.</p>
           </div>
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-3">
             {differentiators.map((value) => (
               <div
                 key={value.title}
@@ -358,7 +358,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="mt-16 space-y-8 rounded-3xl bg-brand-sand px-6 py-10 text-slate-900 lg:mt-24 lg:px-12">
+        <section className="mt-20 space-y-8 rounded-3xl bg-brand-sand px-6 py-10 text-slate-900 lg:mt-28 lg:px-12">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
             <div>
               <h2 className="text-3xl font-semibold lg:text-4xl">Powered by platforms you already trust.</h2>
@@ -406,7 +406,7 @@ export default function Home() {
 
         <section
           id="footer-cta"
-          className="mt-16 space-y-8 rounded-3xl border border-brand-teal/30 bg-gradient-to-br from-brand-teal/15 via-brand-teal/10 to-brand-slate/40 px-6 py-12 lg:mt-24 lg:px-12"
+          className="mt-20 space-y-8 rounded-3xl border border-brand-teal/30 bg-gradient-to-br from-brand-teal/15 via-brand-teal/10 to-brand-slate/40 px-6 py-12 lg:mt-28 lg:px-12"
         >
           <div className="space-y-3">
             <h2 className="text-3xl font-semibold text-foreground lg:text-4xl">

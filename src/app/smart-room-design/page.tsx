@@ -128,7 +128,7 @@ export default function SmartRoomDesignPage() {
               href="/contact"
               className="rounded-full bg-brand-teal px-5 py-3 text-sm font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90"
             >
-              Schedule Consultation
+              Schedule Free Assessment
             </Link>
             <Link
               href="#pricing"
@@ -189,7 +189,7 @@ export default function SmartRoomDesignPage() {
                   href="/contact"
                   className="mt-6 inline-flex items-center justify-center rounded-full bg-brand-teal px-4 py-2 text-sm font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90"
                 >
-                  Get Started
+                  Schedule Free Assessment
                 </Link>
               </div>
             ))}
@@ -260,7 +260,7 @@ export default function SmartRoomDesignPage() {
               href="/contact"
               className="inline-flex items-center justify-center rounded-full bg-brand-teal px-5 py-3 text-sm font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90"
             >
-              Schedule Consultation
+              Schedule Free Assessment
             </Link>
             <Link
               href="tel:+18666572383"

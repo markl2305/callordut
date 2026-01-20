@@ -68,7 +68,7 @@ export default function AvIntegrationPage() {
               href="/contact"
               className="rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)]"
             >
-              Plan my next build
+              Schedule Free Assessment
             </Link>
             <Link
               href="/services"
@@ -79,7 +79,7 @@ export default function AvIntegrationPage() {
           </div>
         </section>
 
-        <section className="mt-16 space-y-6 lg:mt-24">
+        <section className="mt-20 space-y-6 lg:mt-28">
           <h2 className="text-2xl font-semibold">Who this is for</h2>
           <div className="flex flex-wrap gap-2">
             {bestFor.map((item) => (
@@ -90,7 +90,7 @@ export default function AvIntegrationPage() {
           </div>
         </section>
 
-        <section className="mt-16 grid gap-6 lg:mt-24 lg:grid-cols-[1.1fr,0.9fr]">
+        <section className="mt-20 grid gap-6 lg:mt-28 lg:grid-cols-[1.1fr,0.9fr]">
           <div className="rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40">
             <h3 className="text-2xl font-semibold">What we deliver</h3>
             <p className="mt-3 text-sm leading-relaxed text-slate-200">
@@ -110,7 +110,7 @@ export default function AvIntegrationPage() {
           </GlassPanel>
         </section>
 
-        <section className="mt-16 space-y-4 lg:mt-24">
+        <section className="mt-20 space-y-4 lg:mt-28">
           <h3 className="text-2xl font-semibold">Optional upgrades & variants</h3>
           <ul className="space-y-2 text-sm text-muted">
             {optionalUpgrades.map((upgrade) => (
@@ -122,9 +122,9 @@ export default function AvIntegrationPage() {
           </ul>
         </section>
 
-        <section className="mt-16 space-y-8 lg:mt-24">
+        <section className="mt-20 space-y-8 lg:mt-28">
           <h3 className="text-2xl font-semibold">How it fits with the other services</h3>
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2">
             {otherServices.map((service) => (
               <Link
                 key={service.title}
@@ -141,7 +141,7 @@ export default function AvIntegrationPage() {
         <CTASection
           title="Ready to plan your AV integration?"
           subtitle="Tell us which rooms or campuses need help and we’ll build a phased roadmap based on your gear, timeline, and operators."
-          primaryLabel="Talk to a designer"
+          primaryLabel="Schedule Free Assessment"
           primaryHref="/contact"
         />
       </main>

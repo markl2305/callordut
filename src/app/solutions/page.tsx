@@ -79,7 +79,7 @@ export default function SolutionsPage() {
               href="/contact"
               className="rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)]"
             >
-              Plan with a designer
+              Schedule Free Assessment
             </Link>
             <Link
               href="#contact"
@@ -90,7 +90,7 @@ export default function SolutionsPage() {
           </div>
         </section>
 
-        <section className="mt-16 rounded-3xl border border-brand-sand/60 bg-brand-sand/40 px-6 py-10 text-brand-slate shadow-[0_25px_80px_-60px_rgba(242,232,220,0.9)]">
+        <section className="mt-20 rounded-3xl border border-brand-sand/60 bg-brand-sand/40 px-6 py-10 text-brand-slate shadow-[0_25px_80px_-60px_rgba(242,232,220,0.9)]">
           <h2 className="text-2xl font-semibold">Why teams choose CalLord</h2>
           <ul className="mt-4 space-y-3 text-sm text-slate-700">
             <li>Design-first, documentation-heavy approach so nothing is tribal knowledge.</li>
@@ -100,7 +100,7 @@ export default function SolutionsPage() {
           </ul>
         </section>
 
-        <section className="mt-16 space-y-8">
+        <section className="mt-20 space-y-8">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-teal">Which fits you?</p>
             <h2 className="mt-3 text-3xl font-semibold text-foreground">Four pathways, one partner.</h2>
@@ -143,17 +143,17 @@ export default function SolutionsPage() {
               href="#contact"
               className="inline-flex rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90"
             >
-              Tell us what you’re building
+              Schedule Free Assessment
             </Link>
           </div>
         </section>
 
-        <section className="mt-16 rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40">
+        <section className="mt-20 rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40">
           <h3 className="text-2xl font-semibold">“They documented everything so well that our staff stopped texting IT for help.”</h3>
           <p className="mt-3 text-sm text-slate-200">Director of Operations, regional senior-living group</p>
         </section>
 
-        <section id="contact" className="mt-16 space-y-6">
+        <section id="contact" className="mt-20 space-y-6">
           <div className="rounded-3xl border border-brand-sand/50 bg-brand-sand/30 p-6 text-brand-slate">
             <h3 className="text-2xl font-semibold">Ready for a plan?</h3>
             <p className="mt-2 text-sm text-slate-700">
@@ -163,7 +163,7 @@ export default function SolutionsPage() {
           </div>
         </section>
 
-        <section className="mt-16 space-y-6">
+        <section className="mt-20 space-y-6">
           <h3 className="text-2xl font-semibold">Questions we get from campaigns</h3>
           <div className="space-y-4">
             {faq.map((item) => (
