@@ -1,15 +1,21 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import { CTASection } from "../../components/CTASection";
 import { GlassPanel } from "../../components/GlassPanel";
 import { CannabisAssessmentForm } from "./CannabisAssessmentForm";
 import { CannabisChecklistForm } from "./CannabisChecklistForm";
+import { CANNABIS_CONTENT_ENABLED } from "@/config/flags";
 
-export const metadata: Metadata = {
+const metadataBase: Metadata = {
   title: "Cannabis Security Systems that pass inspection the first time",
   description:
     "Compliant cannabis security for licensed facilities in NM, CO, AZ. Camera, access, monitoring, and documentation designed to meet state requirements and protect your license.",
+};
+const metadataHidden: Metadata = {
+  title: "Security Services | CalLord",
+  description: "Compliance-ready security design and documentation for high-security commercial environments.",
 };
 
 const bestFor = [
@@ -95,7 +101,21 @@ const otherServices = [
   },
 ];
 
+export function generateMetadata(): Metadata {
+  if (!CANNABIS_CONTENT_ENABLED) {
+    // TEMP: Cannabis content hidden for insurance audit
+    return { ...metadataHidden, robots: { index: false, follow: false } };
+  }
+
+  return metadataBase;
+}
+
 export default function CannabisSecurityPage() {
+  if (!CANNABIS_CONTENT_ENABLED) {
+    // TEMP: Cannabis content hidden for insurance audit
+    redirect("/solutions");
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-brand-slate via-[#0f1d32] to-[#0b1220] text-foreground">
       <main className="mx-auto max-w-5xl px-4 pb-24 pt-10 lg:px-0">

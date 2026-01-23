@@ -7,7 +7,6 @@ import { siteConfig } from "../../config/site";
 
 const serviceLinkMap: Record<string, string> = {
   "AV Integration & Systems": "/av-integration",
-  "Cannabis Security & Compliance": "/cannabis-security",
   "Smart Room Design & Documentation": "/smart-room-design",
   "Remote Project Management": "/services/project-management",
 };

@@ -7,11 +7,11 @@ import { FooterCTAForm } from "./components/FooterCTAForm";
 export const metadata: Metadata = {
   title: "CalLord Unified Technologies | Smart Rooms, AV & Security Design",
   description:
-    "AV systems, smart rooms, and security designed for senior living, cannabis, offices, and hospitality. Documented. Supported. Done right. Serving New Mexico, Colorado, and Arizona.",
+    "AV systems, smart rooms, and security designed for senior living, offices, and hospitality. Documented. Supported. Done right. Serving New Mexico, Colorado, and Arizona.",
   openGraph: {
     title: "CalLord Unified Technologies | Smart Rooms, AV & Security Design",
     description:
-      "AV systems, smart rooms, and security designed for senior living, cannabis, offices, and hospitality. Documented. Supported. Done right. Serving New Mexico, Colorado, and Arizona.",
+      "AV systems, smart rooms, and security designed for senior living, offices, and hospitality. Documented. Supported. Done right. Serving New Mexico, Colorado, and Arizona.",
     url: siteConfig.website,
     siteName: siteConfig.shortName,
     type: "website",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "CalLord Unified Technologies | Smart Rooms, AV & Security Design",
     description:
-      "AV systems, smart rooms, and security designed for senior living, cannabis, offices, and hospitality. Documented. Supported. Done right.",
+      "AV systems, smart rooms, and security designed for senior living, offices, and hospitality. Documented. Supported. Done right.",
   },
 };
 
@@ -52,12 +52,6 @@ const heroSecurityServices = [
     body: "Cloud video and access control for apartments, condos, and mixed-use communities.",
     cta: { label: "See Multifamily Security", href: "/solutions/multifamily-security" },
   },
-  {
-    title: "Cannabis Security",
-    subtitle: "Pass your inspection - first time, on schedule.",
-    body: "State-compliant camera, access control, and retention systems for Colorado, New Mexico, and Arizona operators.",
-    cta: { label: "Schedule Free Assessment", href: "/cannabis-security" },
-  },
 ];
 
 const trustStats = [
@@ -73,11 +67,6 @@ const serveCards = [
     title: "Senior Living Communities",
     body: "Private virtual visit rooms, common-area AV, and camera coverage that keeps residents connected without tech friction.",
     href: "/industries/senior-living",
-  },
-  {
-    title: "Cannabis Operations",
-    body: "Cameras, access control, retention policies, and compliance audits designed for state regulations and inspections.",
-    href: "/industries/cannabis",
   },
   {
     title: "Hospitality & Private Clubs",
@@ -124,7 +113,7 @@ const differentiators = [
   },
   {
     title: "Security-Ready by Design",
-    body: "AV and rooms are designed with camera coverage, access control, and compliance in mind — especially for regulated industries like cannabis.",
+    body: "AV and rooms are designed with camera coverage, access control, and compliance in mind for regulated environments.",
   },
   {
     title: "Future-Ready Rooms",
@@ -162,7 +151,7 @@ export default function Home() {
                 </h1>
                 <p className="text-lg font-semibold leading-relaxed text-muted lg:text-xl">For Teams Who Can’t Afford Bad Calls</p>
                 <p className="text-base leading-relaxed text-slate-200 lg:text-lg">
-                  AV systems, smart rooms, and security designed for multifamily, senior living, cannabis, offices, and hospitality. Documented. Supported. Done right.
+                  AV systems, smart rooms, and security designed for multifamily, senior living, offices, and hospitality. Documented. Supported. Done right.
                 </p>
               </div>
               <div className="flex flex-wrap items-center gap-3">

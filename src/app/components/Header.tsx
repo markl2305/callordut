@@ -30,7 +30,6 @@ const primaryLinks: NavLink[] = [
     dropdown: "security",
     items: [
       { label: "Multifamily Security", href: "/solutions/multifamily-security" },
-      { label: "Cannabis Security", href: "/cannabis-security" },
       { label: "Banking / Financial Institutions", href: "/solutions/financial-institutions" },
     ],
   },
@@ -42,7 +41,6 @@ const primaryLinks: NavLink[] = [
     items: [
       { label: "Multifamily", href: "/solutions/multifamily-security" },
       { label: "Senior Living", href: "/industries/senior-living" },
-      { label: "Cannabis", href: "/industries/cannabis" },
       { label: "Hospitality", href: "/industries/hospitality" },
       { label: "Small & Mid-Sized Offices", href: "/industries/offices" },
     ],

@@ -54,11 +54,6 @@ const otherServices = [
     href: "/services/av-integration",
   },
   {
-    title: "Cannabis Security & Compliance",
-    copy: "Security rollouts rely on the same remote PM muscle—especially when Eagle Eye + Brivo must be followed precisely.",
-    href: "/services/cannabis-security",
-  },
-  {
     title: "Smart Room Design & Documentation",
     copy: "Once the smart-room recipe is defined, remote PM keeps installers honest and handoffs clean.",
     href: "/services/smart-rooms",

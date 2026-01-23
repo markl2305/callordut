@@ -5,7 +5,7 @@ const scenarios = [
   "Boutique hospitality venues and speakeasies with non-standard footprints",
   "Mixed-use spaces that need to shift between live events, meetings, and member experiences",
   "Historic or architecturally sensitive rooms where infrastructure must disappear",
-  "Large custom cannabis facilities that blend retail, grow, and compliance zones",
+  "Large custom facilities that blend retail, operations, and compliance zones",
 ];
 
 const inclusions = [

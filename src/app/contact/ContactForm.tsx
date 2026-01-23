@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { trackLead } from "@/lib/analytics";
 import { event as gaEvent } from "@/lib/gtag";
+import { CANNABIS_CONTENT_ENABLED } from "@/config/flags";
 
 const roomOptions = [
   "Executive Boardroom",
@@ -15,6 +16,10 @@ const roomOptions = [
   "Cannabis Security",
   "Other",
 ];
+// TEMP: Cannabis content hidden for insurance audit
+const visibleRoomOptions = CANNABIS_CONTENT_ENABLED
+  ? roomOptions
+  : roomOptions.filter((option) => option !== "Cannabis Security");
 
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -191,7 +196,7 @@ export function ContactForm() {
           <option value="" disabled>
             Choose a room type (optional)
           </option>
-          {roomOptions.map((option) => (
+          {visibleRoomOptions.map((option) => (
             <option key={option} value={option} className="text-slate-900">
               {option}
             </option>

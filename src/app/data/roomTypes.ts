@@ -1,3 +1,5 @@
+import { CANNABIS_CONTENT_ENABLED } from "@/config/flags";
+
 export interface RoomTypeDefinition {
   id: string;
   slug: string;
@@ -11,6 +13,14 @@ export interface RoomTypeDefinition {
   recommendedServices: string[];
   heroHighlights: string[];
 }
+
+const sanitizeRecommendedServices = (services: string[]) => {
+  if (CANNABIS_CONTENT_ENABLED) {
+    return services;
+  }
+  // TEMP: Cannabis content hidden for insurance audit
+  return services.filter((service) => service !== "Cannabis Security & Compliance");
+};
 
 export const coreRoomTypes: RoomTypeDefinition[] = [
   {
@@ -29,11 +39,11 @@ export const coreRoomTypes: RoomTypeDefinition[] = [
       "Documented touchpanel flows for moderators",
     ],
     optionalUpgrades: ["Multi-camera speaker tracking", "Recording + archival to cloud", "Integrated security views"],
-    recommendedServices: [
+    recommendedServices: sanitizeRecommendedServices([
       "AV Integration & Systems",
       "Smart Room Design & Documentation",
       "Remote Project Management",
-    ],
+    ]),
     heroHighlights: ["Single-touch starts with documented presets", "Executive-ready presence for investors and boards"],
   },
   {
@@ -52,7 +62,7 @@ export const coreRoomTypes: RoomTypeDefinition[] = [
       "Quick-reference placards or QR guides",
     ],
     optionalUpgrades: ["Room scheduling panels", "Occupancy insights", "Assistive listening"],
-    recommendedServices: ["AV Integration & Systems", "Smart Room Design & Documentation"],
+    recommendedServices: sanitizeRecommendedServices(["AV Integration & Systems", "Smart Room Design & Documentation"]),
     heroHighlights: ["Every location feels identical to HQ", "Hybrid teammates hear and see clearly every time"],
   },
   {
@@ -71,7 +81,7 @@ export const coreRoomTypes: RoomTypeDefinition[] = [
       "Broadcast/streaming patch panel",
     ],
     optionalUpgrades: ["Remote participation pods", "Translation feeds", "Camera automation"],
-    recommendedServices: ["AV Integration & Systems", "Remote Project Management"],
+    recommendedServices: sanitizeRecommendedServices(["AV Integration & Systems", "Remote Project Management"]),
     heroHighlights: ["Presenter + audience audio stay balanced", "Streaming-ready signal paths for every event"],
   },
   {
@@ -90,11 +100,11 @@ export const coreRoomTypes: RoomTypeDefinition[] = [
       "Integrated camera + privacy shroud",
     ],
     optionalUpgrades: ["Environmental sensors", "Remote support panel", "Visitor scheduling"],
-    recommendedServices: [
+    recommendedServices: sanitizeRecommendedServices([
       "Smart Room Design & Documentation",
       "AV Integration & Systems",
       "Cannabis Security & Compliance",
-    ],
+    ]),
     heroHighlights: ["Privacy-first visits for residents and families", "Staff-friendly controls with one-button dialing"],
   },
   {
@@ -113,7 +123,7 @@ export const coreRoomTypes: RoomTypeDefinition[] = [
       "Cable-free laptop prompts",
     ],
     optionalUpgrades: ["Privacy film", "Integrated security sensors"],
-    recommendedServices: ["Smart Room Design & Documentation", "Remote Project Management"],
+    recommendedServices: sanitizeRecommendedServices(["Smart Room Design & Documentation", "Remote Project Management"]),
     heroHighlights: ["Bookable pods with pro-grade AV", "Instant start for interviews and quick standups"],
   },
 ];

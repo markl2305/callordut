@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Smart Rooms, AV & Security Design | CalLord Unified Technologies",
   description:
-    "CalLord Unified Technologies designs AV systems, smart rooms, and cannabis security so every meeting, resident check-in, and virtual visit just works. Based in Albuquerque, serving teams nationwide.",
+    "CalLord Unified Technologies designs AV systems, smart rooms, and security so every meeting, resident check-in, and virtual visit just works. Based in Albuquerque, serving teams nationwide.",
   icons: [
     { rel: "icon", url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     { rel: "icon", url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Smart Rooms, AV & Security Design | CalLord Unified Technologies",
     description:
-      "CalLord Unified Technologies designs AV systems, smart rooms, and cannabis security so every meeting, resident check-in, and virtual visit just works.",
+      "CalLord Unified Technologies designs AV systems, smart rooms, and security so every meeting, resident check-in, and virtual visit just works.",
     url: siteConfig.website,
     siteName: siteConfig.shortName,
     type: "website",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Smart Rooms, AV & Security Design | CalLord Unified Technologies",
     description:
-      "AV integration, smart rooms, and cannabis security designed for operators. Based in Albuquerque, serving teams nationwide.",
+      "AV integration, smart rooms, and security designed for operators. Based in Albuquerque, serving teams nationwide.",
   },
 };
 

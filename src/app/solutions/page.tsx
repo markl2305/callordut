@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { SolutionsLeadForm } from "../components/SolutionsLeadForm";
 
 export const metadata: Metadata = {
-  title: "Services | AV Integration, Smart Rooms & Cannabis Security",
+  title: "Services | AV Integration, Smart Rooms & Security",
   description:
-    "Explore CalLord’s four core services: AV integration & systems, cannabis security & compliance, smart room design & documentation, and remote installation project management.",
+    "Explore CalLord’s core services: AV integration & systems, smart room design & documentation, and remote installation project management.",
 };
 
 const croOfferings = [
@@ -16,14 +16,6 @@ const croOfferings = [
     bullets: ["One-touch join flows", "Audio + camera tuned for your table", "Room templates for rollout"],
     fit: ["Leadership rooms", "Client-facing spaces", "Multi-site teams"],
     href: "/services/av-integration",
-  },
-  {
-    title: "Cannabis Security & Compliance",
-    pain: "Inspectors asking for coverage maps you can’t produce and DVRs no one wants to own.",
-    promise: "Design + documentation on Eagle Eye Networks & Brivo so inspections feel predictable.",
-    bullets: ["Coverage maps + retention plans", "Access control workflows", "Audit-ready packages"],
-    fit: ["Dispensaries", "Grow facilities", "MSO security leads"],
-    href: "/services/cannabis-security",
   },
   {
     title: "Smart Room Design & Documentation",
@@ -54,7 +46,7 @@ const faq = [
   },
   {
     q: "What industries do you serve?",
-    a: "Our sweet spot spans small business, senior living and care environments, cannabis operators, hospitality venues, and mission-driven organizations that can’t afford failed calls or compliance issues.",
+    a: "Our sweet spot spans small business, senior living and care environments, hospitality venues, and mission-driven organizations that can’t afford failed calls or compliance issues.",
   },
   {
     q: "Do you do one-off rooms?",
@@ -72,7 +64,7 @@ export default function SolutionsPage() {
             AV, smart rooms, and security that feel finished—day one.
           </h1>
           <p className="mt-4 text-lg leading-relaxed text-muted lg:text-xl">
-            CalLord Unified Technologies designs operator-friendly rooms, cannabis-ready security, and remote-friendly project management for teams that can’t afford failed calls or messy inspections.
+            CalLord Unified Technologies designs operator-friendly rooms, security, and remote-friendly project management for teams that can’t afford failed calls or messy inspections.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
@@ -103,7 +95,7 @@ export default function SolutionsPage() {
         <section className="mt-20 space-y-8">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-teal">Which fits you?</p>
-            <h2 className="mt-3 text-3xl font-semibold text-foreground">Four pathways, one partner.</h2>
+            <h2 className="mt-3 text-3xl font-semibold text-foreground">Three pathways, one partner.</h2>
             <p className="mt-2 text-lg text-muted">Pick the track that matches your current pain. We can start with one—or combine them into a rollout plan.</p>
           </div>
           <div className="grid gap-4 md:grid-cols-2">

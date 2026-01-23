@@ -2,12 +2,11 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Industries | CalLord Unified Technologies",
-  description: "Explore how CalLord serves senior living, cannabis, hospitality, and offices with smart rooms, AV, and security.",
+  description: "Explore how CalLord serves senior living, hospitality, and offices with smart rooms, AV, and security.",
 };
 
 const industries = [
   { label: "Senior Living", href: "/industries/senior-living" },
-  { label: "Cannabis", href: "/industries/cannabis" },
   { label: "Hospitality", href: "/industries/hospitality" },
   { label: "Offices", href: "/industries/offices" },
 ];

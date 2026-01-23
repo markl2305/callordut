@@ -36,11 +36,6 @@ const optionalUpgrades = [
 
 const otherServices = [
   {
-    title: "Cannabis Security & Compliance",
-    copy: "Layer cameras, access, and retention policies—especially for spaces that touch compliance-heavy workflows.",
-    href: "/services/cannabis-security",
-  },
-  {
     title: "Smart Room Design & Documentation",
     copy: "Document the rooms, telehealth suites, and pods so every site looks like HQ without flying out the whole team.",
     href: "/services/smart-rooms",

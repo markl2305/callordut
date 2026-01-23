@@ -32,9 +32,6 @@ export function Footer() {
               <Link href="/smart-room-design" className="transition hover:text-brand-teal">
                 Smart Room Design
               </Link>
-              <Link href="/cannabis-security" className="transition hover:text-brand-teal">
-                Cannabis Security
-              </Link>
               <Link href="/av-integration" className="transition hover:text-brand-teal">
                 AV Integration
               </Link>
@@ -45,9 +42,6 @@ export function Footer() {
             <div className="flex flex-col gap-2">
               <Link href="/industries/senior-living" className="transition hover:text-brand-teal">
                 Senior Living
-              </Link>
-              <Link href="/industries/cannabis" className="transition hover:text-brand-teal">
-                Cannabis
               </Link>
               <Link href="/industries/hospitality" className="transition hover:text-brand-teal">
                 Hospitality

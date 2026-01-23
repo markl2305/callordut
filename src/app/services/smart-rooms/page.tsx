@@ -41,11 +41,6 @@ const otherServices = [
     href: "/services/av-integration",
   },
   {
-    title: "Cannabis Security & Compliance",
-    copy: "Virtual visit and telehealth suites often need integrated security + privacy policies from the start.",
-    href: "/services/cannabis-security",
-  },
-  {
     title: "Remote Installation Project Management",
     copy: "Use your preferred local installers while we quarterback punch lists, QA, and documentation for each smart room rollout.",
     href: "/services/project-management",

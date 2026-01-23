@@ -7,9 +7,9 @@ import { ServiceCard } from "../components/ServiceCard";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Services | AV Integration, Smart Rooms & Cannabis Security",
+  title: "Services | AV Integration, Smart Rooms & Security",
   description:
-    "Explore CalLord’s four core services: AV integration & systems, cannabis security & compliance, smart room design & documentation, and remote installation project management.",
+    "Explore CalLord’s core services: AV integration & systems, smart room design & documentation, remote installation project management, and custom solutions.",
 };
 
 const challenges = [
@@ -25,7 +25,7 @@ const challenges = [
   },
   {
     title: "Compliance + security pressure",
-    body: "Cannabis and member-based venues need provable access and video history.",
+    body: "Regulated venues and member-based clubs need provable access and video history.",
     solution: "Security zones run on Eagle Eye Networks + Brivo with retention, credential, and audit trails baked in.",
   },
   {
@@ -55,18 +55,6 @@ const services = [
     ],
     href: "/services/av-integration",
     icon: <Image src="/services-av-integration-icon.png" alt="AV integration icon" width={48} height={48} className="h-12 w-12" />,
-  },
-  {
-    title: "Cannabis Security & Compliance",
-    description: "Camera, access control, and retention plans built with Eagle Eye Networks and Brivo.",
-    bullets: [
-      "Coverage maps and critical asset focus",
-      "Access control design with restricted zones",
-      "Retention/storage planning matched to regulations",
-      "Audits and documentation packages for inspectors",
-    ],
-    href: "/services/cannabis-security",
-    icon: <Image src="/services-cannabis-security-icon.png" alt="Cannabis security icon" width={48} height={48} className="h-12 w-12" />,
   },
   {
     title: "Smart Room Design & Documentation",
@@ -144,7 +132,7 @@ export default function ServicesPage() {
         <section className="mt-20 space-y-6 lg:mt-28">
           <SectionHeader
             title="Tailored AV, smart rooms, and security for every environment"
-            subtitle="From small businesses and senior communities to cannabis facilities, hospitality venues, and member clubs, we design cohesive systems that feel finished—without resurrecting industry silos."
+            subtitle="From small businesses and senior communities to hospitality venues and member clubs, we design cohesive systems that feel finished—without resurrecting industry silos."
           />
           <p className="text-sm leading-relaxed text-muted">
             Whether it’s a boardroom, a private speakeasy, or a statewide rollout of telehealth suites, the toolkit stays the same: documented design,
@@ -182,7 +170,7 @@ export default function ServicesPage() {
         <section className="mt-20 space-y-6 lg:mt-28">
           <SectionHeader
             title="Cross-industry services"
-            subtitle="A consistent set of services supports every deployment, whether it’s a hospitality suite, cannabis grow, or member clubhouse."
+            subtitle="A consistent set of services supports every deployment, whether it’s a hospitality suite or member clubhouse."
           />
           <div className="rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40">
             <ul className="space-y-3 text-sm text-slate-200">
@@ -203,7 +191,7 @@ export default function ServicesPage() {
                 <p className="text-sm font-semibold text-brand-teal uppercase tracking-[0.2em]">Custom & hospitality builds</p>
                 <p className="mt-2 text-lg font-semibold text-foreground">Need something outside the template?</p>
                 <p className="text-sm leading-relaxed text-slate-200">
-                  From bespoke hospitality venues to mixed-use cannabis spaces, we map custom AV + security plans that stay serviceable.
+                  From bespoke hospitality venues to mixed-use community spaces, we map custom AV + security plans that stay serviceable.
                 </p>
                 <ul className="mt-3 space-y-2 text-sm text-muted">
                   <li className="flex items-start gap-2">
@@ -260,7 +248,7 @@ export default function ServicesPage() {
 
         <CTASection
           title="Tell us what you’re building next"
-          subtitle="Share a quick brief about your rooms, cannabis facility, or upcoming rollout—we’ll reply with a plan and options."
+          subtitle="Share a quick brief about your rooms or upcoming rollout—we’ll reply with a plan and options."
           primaryLabel="Schedule Free Assessment"
           primaryHref="/contact"
         />

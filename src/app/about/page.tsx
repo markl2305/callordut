@@ -7,7 +7,7 @@ import { SectionHeader } from "../components/SectionHeader";
 export const metadata: Metadata = {
   title: "About CalLord Unified Technologies | Design-Led AV & Security",
   description:
-    "Meet the team behind CalLord UT and our design-first approach to AV, smart rooms, and cannabis-ready security for operators nationwide.",
+    "Meet the team behind CalLord UT and our design-first approach to AV, smart rooms, and security for operators nationwide.",
 };
 
 const processSteps = [
@@ -51,11 +51,11 @@ const audiences = [
     ],
   },
   {
-    title: "Cannabis operators",
+    title: "Hospitality groups",
     bullets: [
-      "Seed-to-sale security with Eagle Eye + Brivo",
-      "Retention policies that satisfy inspectors",
-      "Multi-site visibility for MSO operators",
+      "Guest-facing AV that feels effortless",
+      "Discrete security and access control planning",
+      "Documentation that scales across locations",
     ],
   },
   {
@@ -168,7 +168,7 @@ export default function AboutPage() {
               Every room starts with operator interviews and recordings. We map how teams speak about their spaces so the final documentation feels native—plain-language call flows, annotated drawings, and inventory lists that live in the same shared folder as the rest of your projects. No mystery boxes.
             </p>
             <p className="text-base leading-relaxed text-muted">
-              Because our projects regularly span multiple sites, we built remote collaboration into our DNA. Clear rev-control, video walkthroughs, and modern platforms mean a GC in Albuquerque, an IT lead in Denver, and a cannabis compliance officer in Phoenix are all staring at the same truth.
+              Because our projects regularly span multiple sites, we built remote collaboration into our DNA. Clear rev-control, video walkthroughs, and modern platforms mean a GC in Albuquerque, an IT lead in Denver, and a compliance officer in Phoenix are all staring at the same truth.
             </p>
           </div>
         </section>

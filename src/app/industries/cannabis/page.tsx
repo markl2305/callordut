@@ -1,13 +1,33 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { CANNABIS_CONTENT_ENABLED } from "@/config/flags";
 
-export const metadata: Metadata = {
+const metadataBase: Metadata = {
   title: "Cannabis Facility Security | Compliance Design | CalLord",
   description:
     "Security systems designed for cannabis compliance. Camera coverage, access control, and retention infrastructure for CO, NM, and AZ operations.",
 };
+const metadataHidden: Metadata = {
+  title: "Industries | CalLord",
+  description: "Security and AV solutions for regulated, hospitality, and commercial environments.",
+};
+
+export function generateMetadata(): Metadata {
+  if (!CANNABIS_CONTENT_ENABLED) {
+    // TEMP: Cannabis content hidden for insurance audit
+    return { ...metadataHidden, robots: { index: false, follow: false } };
+  }
+
+  return metadataBase;
+}
 
 export default function CannabisIndustryPage() {
+  if (!CANNABIS_CONTENT_ENABLED) {
+    // TEMP: Cannabis content hidden for insurance audit
+    redirect("/industries");
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-brand-slate via-[#0f1d32] to-[#0b1220] text-foreground">
       <main className="mx-auto max-w-5xl px-4 pb-16 pt-16 lg:px-0">
