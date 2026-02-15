@@ -20,12 +20,7 @@ export const metadata: Metadata = {
   title: "Smart Rooms, AV & Security Design | CalLord Unified Technologies",
   description:
     "CalLord Unified Technologies designs AV systems, smart rooms, and security so every meeting, resident check-in, and virtual visit just works. Based in Albuquerque, serving teams nationwide.",
-  icons: [
-    { rel: "icon", url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-    { rel: "icon", url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-    { rel: "icon", url: "/favicon-48x48.png", sizes: "48x48", type: "image/png" },
-    { rel: "icon", url: "/favicon-64x64.png", sizes: "64x64", type: "image/png" },
-  ],
+  icons: { icon: "/icon.svg" },
   metadataBase: new URL(siteConfig.website),
   openGraph: {
     title: "Smart Rooms, AV & Security Design | CalLord Unified Technologies",
