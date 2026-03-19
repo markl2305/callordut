@@ -11,9 +11,13 @@ export function Footer() {
             Smart rooms, AV, and security design for teams that care about the experience.
           </p>
           <p className="mt-2 max-w-xs text-[13px] leading-relaxed">
-            By contacting us you agree we may call or text (SMS/MMS) about your request; message and data rates may apply. We do not sell your information. See our{" "}
+            By contacting us you agree we may call or text (SMS/MMS) about your request. Message frequency varies. Message and data rates may apply. Reply STOP to opt out. Reply HELP for help. We do not sell your information. See our{" "}
             <Link href="/privacy" className="font-semibold text-brand-teal underline-offset-2 hover:underline">
               Privacy Policy
+            </Link>{" "}
+            and{" "}
+            <Link href="/sms-terms" className="font-semibold text-brand-teal underline-offset-2 hover:underline">
+              SMS Terms
             </Link>
             .
           </p>
@@ -92,6 +96,10 @@ export function Footer() {
           <span className="text-white/30">|</span>
           <Link href="/privacy" className="hover:text-brand-teal">
             Privacy Policy
+          </Link>
+          <span className="text-white/30">|</span>
+          <Link href="/sms-terms" className="hover:text-brand-teal">
+            SMS Terms
           </Link>
         </div>
         <div className="flex flex-wrap items-center gap-3 lg:border-l lg:border-white/10 lg:pl-6">

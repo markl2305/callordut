@@ -227,9 +227,13 @@ export function ContactForm() {
           {status === "loading" ? "Sending…" : "Schedule Free Assessment"}
         </button>
         <p className="mt-3 text-xs text-slate-200">
-          By submitting, you agree to receive calls and text messages (SMS/MMS) about your request. Message and data rates may apply. We do not sell your information. See our{" "}
+          By submitting, you agree to receive calls and text messages (SMS/MMS) from CalLord Unified Technologies about your request. Message frequency varies. Message and data rates may apply. Reply STOP to opt out. Reply HELP for help. Consent is not a condition of purchase. We do not sell your information. See our{" "}
           <Link href="/privacy" className="font-semibold text-brand-teal underline-offset-2 hover:underline">
             Privacy Policy
+          </Link>{" "}
+          and{" "}
+          <Link href="/sms-terms" className="font-semibold text-brand-teal underline-offset-2 hover:underline">
+            SMS Terms
           </Link>
           .
         </p>
