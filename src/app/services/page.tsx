@@ -101,27 +101,27 @@ const services = [
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-brand-slate via-[#0f1d32] to-[#0b1220] text-foreground">
+    <div className="min-h-screen bg-paper text-ink">
       <main className="mx-auto max-w-6xl px-4 pb-20 pt-6 lg:px-6">
-        <section className="rounded-3xl border border-white/5 bg-gradient-to-br from-brand-slate via-[#10223a] to-[#0b1220] px-6 py-14 shadow-[0_25px_80px_-40px_rgba(0,0,0,0.8)] lg:px-12 lg:py-20">
+        <section className="border border-rule bg-cream px-6 py-14 lg:px-12 lg:py-20">
           <div className="space-y-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-teal">Our services</p>
-            <h1 className="text-4xl font-semibold leading-tight text-foreground sm:text-5xl lg:text-6xl">
+            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-teal">Our services</p>
+            <h1 className="font-serif text-4xl font-normal leading-tight text-ink sm:text-5xl lg:text-6xl">
               One partner for AV, smart rooms, and security.
             </h1>
-            <p className="text-lg leading-relaxed text-muted lg:text-xl">
+            <p className="text-lg leading-relaxed text-ink-soft lg:text-xl">
               No more juggling AV vendors, IT contractors, and security integrators. CalLord designs the stack, documents every detail, and coordinates the install so your team can get back to actual work.
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <Link
                 href="/contact"
-                className="rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
+                className="h-btn bg-teal px-6 py-3.5 text-sm font-medium text-on-teal"
               >
                 Schedule Free Assessment
               </Link>
               <Link
                 href="#room-types"
-                className="rounded-full border border-brand-teal/70 px-6 py-3 text-base font-semibold text-brand-teal transition hover:-translate-y-0.5 hover:bg-brand-teal/10 hover:text-brand-slate focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
+                className="h-btn border border-ink bg-transparent px-6 py-3.5 text-sm font-medium text-ink"
               >
                 Explore room types
               </Link>
@@ -134,7 +134,7 @@ export default function ServicesPage() {
             title="Tailored AV, smart rooms, and security for every environment"
             subtitle="From small businesses and senior communities to hospitality venues and member clubs, we design cohesive systems that feel finished—without resurrecting industry silos."
           />
-          <p className="text-sm leading-relaxed text-muted">
+          <p className="text-sm leading-relaxed text-ink-soft">
             Whether it’s a boardroom, a private speakeasy, or a statewide rollout of telehealth suites, the toolkit stays the same: documented design,
             repeatable room patterns, and support that extends well past day-one turnover.
           </p>
@@ -142,23 +142,23 @@ export default function ServicesPage() {
 
         <section className="mt-20 space-y-8 lg:mt-28">
           <div className="grid gap-6 lg:grid-cols-2">
-            <div className="rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40">
-              <h3 className="text-2xl font-semibold text-foreground">Common challenges</h3>
-              <ul className="mt-4 space-y-3 text-sm text-slate-200">
+            <div className="border border-rule bg-cream p-6 text-ink">
+              <h3 className="font-serif text-2xl font-normal text-ink">Common challenges</h3>
+              <ul className="mt-4 space-y-3 text-sm text-ink-soft">
                 {challenges.map((item) => (
                   <li key={item.title}>
-                    <p className="font-semibold text-foreground">{item.title}</p>
+                    <p className="font-medium text-ink">{item.title}</p>
                     <p className="leading-relaxed">{item.body}</p>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="rounded-3xl border border-slate-600/60 bg-slate-900/80 p-6 text-slate-100 shadow-md shadow-black/50">
-              <h3 className="text-2xl font-semibold text-slate-50">How we solve it</h3>
-              <ul className="mt-4 space-y-3 text-sm text-slate-200">
+            <div className="border border-rule bg-cream p-6 text-ink">
+              <h3 className="font-serif text-2xl font-normal text-ink">How we solve it</h3>
+              <ul className="mt-4 space-y-3 text-sm text-ink-soft">
                 {challenges.map((item) => (
                   <li key={item.solution}>
-                    <p className="font-semibold text-slate-50">{item.title}</p>
+                    <p className="font-medium text-ink">{item.title}</p>
                     <p className="leading-relaxed">{item.solution}</p>
                   </li>
                 ))}
@@ -172,11 +172,11 @@ export default function ServicesPage() {
             title="Cross-industry services"
             subtitle="A consistent set of services supports every deployment, whether it’s a hospitality suite or member clubhouse."
           />
-          <div className="rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40">
-            <ul className="space-y-3 text-sm text-slate-200">
+          <div className="border border-rule bg-cream p-6 text-ink">
+            <ul className="space-y-3 text-sm text-ink-soft">
               {crossIndustryServices.map((item) => (
                 <li key={item} className="flex items-start gap-2">
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-brand-teal" aria-hidden />
+                  <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
                   <span className="leading-relaxed">{item}</span>
                 </li>
               ))}
@@ -185,32 +185,32 @@ export default function ServicesPage() {
         </section>
 
         <section className="mt-20 lg:mt-24">
-          <div className="rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40">
+          <div className="border border-rule bg-cream p-6 text-ink">
             <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
               <div>
-                <p className="text-sm font-semibold text-brand-teal uppercase tracking-[0.2em]">Custom & hospitality builds</p>
-                <p className="mt-2 text-lg font-semibold text-foreground">Need something outside the template?</p>
-                <p className="text-sm leading-relaxed text-slate-200">
+                <p className="font-mono text-[11px] font-medium text-teal uppercase tracking-[0.16em]">Custom & hospitality builds</p>
+                <p className="mt-2 font-serif text-lg font-normal text-ink">Need something outside the template?</p>
+                <p className="text-sm leading-relaxed text-ink-soft">
                   From bespoke hospitality venues to mixed-use community spaces, we map custom AV + security plans that stay serviceable.
                 </p>
-                <ul className="mt-3 space-y-2 text-sm text-muted">
+                <ul className="mt-3 space-y-2 text-sm text-ink-soft">
                   <li className="flex items-start gap-2">
-                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-brand-teal" aria-hidden />
+                    <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
                     <span>Protect the guest experience with discreet installs, lighting cues, and operator-friendly controls.</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-brand-teal" aria-hidden />
+                    <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
                     <span>Coordinate with architects and fabricators so tech disappears into the design intent.</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-brand-teal" aria-hidden />
+                    <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
                     <span>Document service paths and support plans that keep boutique venues calm after opening night.</span>
                   </li>
                 </ul>
               </div>
               <Link
                 href="/services/custom-solutions"
-                className="inline-flex items-center rounded-full border border-brand-teal/70 px-6 py-3 text-sm font-semibold text-brand-teal transition hover:-translate-y-0.5 hover:bg-brand-teal/10 hover:text-brand-slate"
+                className="h-btn inline-flex items-center border border-ink bg-transparent px-6 py-3.5 text-sm font-medium text-ink"
               >
                 Explore custom solutions
               </Link>
@@ -228,9 +228,9 @@ export default function ServicesPage() {
               <ServiceCard key={service.title} {...service} tone="sand" />
             ))}
           </div>
-          <div className="rounded-3xl border border-slate-600/60 bg-slate-900/70 p-5 text-sm text-slate-200 shadow-md shadow-black/40">
+          <div className="border border-rule bg-cream p-5 text-sm text-ink-soft">
             Have a hospitality venue or unusual space?{" "}
-            <Link href="/services/custom-solutions" className="font-semibold text-brand-teal">
+            <Link href="/services/custom-solutions" className="font-medium text-teal">
               Explore our custom solutions →
             </Link>
           </div>
@@ -238,7 +238,7 @@ export default function ServicesPage() {
 
         <section
           id="room-types"
-          className="mt-20 space-y-8 border-t border-brand-teal/20 pt-12 lg:mt-28 lg:pt-16"
+          className="mt-20 space-y-8 border-t border-rule pt-12 lg:mt-28 lg:pt-16"
         >
           <RoomTypesShowcase
             heading="Systems and rooms we build again and again"

@@ -13,18 +13,19 @@ const industries = [
 
 export default function IndustriesIndexPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-brand-slate via-[#0f1d32] to-[#0b1220] text-foreground">
+    <div className="min-h-screen bg-paper text-ink">
       <main className="mx-auto max-w-4xl px-4 pb-16 pt-16 lg:px-0">
-        <h1 className="text-4xl font-semibold leading-tight sm:text-5xl">Industries</h1>
-        <p className="mt-3 text-base text-slate-200">
+        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-teal">Industries</p>
+        <h1 className="mt-4 font-serif text-4xl font-normal leading-tight text-ink sm:text-5xl">Industries</h1>
+        <p className="mt-3 text-base text-ink-soft">
           AV, smart rooms, and security for teams that can’t afford downtime.
         </p>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        <div className="mt-8 grid gap-0 border-t border-rule sm:grid-cols-2">
           {industries.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-2xl border border-white/10 bg-slate-900/70 p-5 text-sm font-semibold text-foreground shadow-md shadow-black/30 transition hover:-translate-y-0.5 hover:border-brand-teal/50"
+              className="h-hover-cream border-b border-rule p-6 font-serif text-xl font-normal text-ink sm:border-r sm:[&:nth-child(even)]:border-r-0"
             >
               {item.label}
             </Link>

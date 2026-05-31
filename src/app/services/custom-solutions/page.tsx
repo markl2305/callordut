@@ -25,25 +25,25 @@ const reasons = [
 
 export default function CustomSolutionsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-brand-slate via-[#0f1d32] to-[#0b1220] text-foreground">
+    <div className="min-h-screen bg-paper text-ink">
       <main className="mx-auto max-w-5xl px-4 pb-24 pt-10 lg:px-0">
-        <section className="rounded-3xl border border-white/5 bg-gradient-to-br from-brand-slate via-[#10223a] to-[#0b1220] px-6 py-14 shadow-[0_35px_110px_-60px_rgba(0,0,0,0.9)] lg:px-12 lg:py-20">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-teal">Custom solutions</p>
-          <h1 className="mt-4 text-4xl font-semibold leading-tight text-foreground sm:text-5xl">Tailored AV & security for unique spaces.</h1>
-          <p className="mt-4 text-lg leading-relaxed text-muted">
+        <section className="border border-rule bg-cream px-6 py-14 lg:px-12 lg:py-20">
+          <p className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-teal">Custom solutions</p>
+          <h1 className="mt-4 font-serif text-4xl font-normal leading-tight text-ink sm:text-5xl">Tailored AV & security for unique spaces.</h1>
+          <p className="mt-4 text-lg leading-relaxed text-ink-soft">
             When your venue, hospitality concept, or custom build doesn’t fit a room template, CalLord maps every detail—from infrastructure
             to control surfaces—so the finished experience feels intentional and scalable.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/contact"
-              className="rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)]"
+              className="h-btn bg-teal px-6 py-3.5 text-sm font-medium text-on-teal"
             >
               Schedule Free Assessment
             </Link>
             <Link
               href="/services"
-              className="rounded-full border border-brand-teal/70 px-6 py-3 text-base font-semibold text-brand-teal transition hover:-translate-y-0.5 hover:bg-brand-teal/10 hover:text-brand-slate"
+              className="h-btn border border-ink bg-transparent px-6 py-3.5 text-sm font-medium text-ink"
             >
               Back to services
             </Link>
@@ -51,12 +51,12 @@ export default function CustomSolutionsPage() {
         </section>
 
         <section className="mt-20 space-y-6 lg:mt-28">
-          <h2 className="text-2xl font-semibold">Where custom work makes sense</h2>
-          <div className="rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40">
-            <ul className="space-y-3 text-sm text-slate-200">
+          <h2 className="font-serif text-2xl font-normal text-ink">Where custom work makes sense</h2>
+          <div className="border border-rule bg-cream p-6 text-ink">
+            <ul className="space-y-3 text-sm text-ink-soft">
               {scenarios.map((scenario) => (
                 <li key={scenario} className="flex items-start gap-2">
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-brand-teal" aria-hidden />
+                  <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
                   <span className="leading-relaxed">{scenario}</span>
                 </li>
               ))}
@@ -65,12 +65,12 @@ export default function CustomSolutionsPage() {
         </section>
 
         <section className="mt-20 space-y-6 lg:mt-28">
-          <h2 className="text-2xl font-semibold">What’s included</h2>
-          <div className="rounded-3xl border border-brand-sand/60 bg-brand-sand/30 p-6 text-brand-slate shadow-[0_20px_60px_-50px_rgba(242,232,220,0.8)]">
-            <ul className="space-y-3 text-sm text-slate-700">
+          <h2 className="font-serif text-2xl font-normal text-ink">What’s included</h2>
+          <div className="border border-rule bg-cream-deep p-6 text-ink">
+            <ul className="space-y-3 text-sm text-ink-soft">
               {inclusions.map((item) => (
                 <li key={item} className="flex items-start gap-2">
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-brand-teal" aria-hidden />
+                  <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
                   <span className="leading-relaxed">{item}</span>
                 </li>
               ))}
@@ -79,11 +79,11 @@ export default function CustomSolutionsPage() {
         </section>
 
         <section className="mt-20 space-y-6 lg:mt-28">
-          <h2 className="text-2xl font-semibold">Why teams choose us for custom work</h2>
+          <h2 className="font-serif text-2xl font-normal text-ink">Why teams choose us for custom work</h2>
           <div className="grid gap-6 md:grid-cols-2">
             {reasons.map((reason) => (
-              <div key={reason} className="rounded-2xl border border-slate-600/60 bg-slate-900/70 p-5 text-slate-100 shadow-md shadow-black/40">
-                <p className="text-sm leading-relaxed text-slate-200">{reason}</p>
+              <div key={reason} className="border border-rule bg-cream p-5 text-ink">
+                <p className="text-sm leading-relaxed text-ink-soft">{reason}</p>
               </div>
             ))}
           </div>

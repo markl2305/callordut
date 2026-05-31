@@ -45,16 +45,16 @@ export function RoomTypeTemplate({ room }: RoomTypeTemplateProps) {
   const selectedImage = roomImages[room.slug] ?? roomImages.default;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-brand-slate via-[#0f1d32] to-[#0b1220] text-foreground">
+    <div className="min-h-screen bg-paper text-ink">
       <main className="mx-auto max-w-5xl px-4 pb-24 pt-10 lg:px-0">
-        <section className="rounded-3xl border border-white/5 bg-gradient-to-br from-brand-slate via-[#10223a] to-[#0b1220] px-6 py-14 shadow-[0_30px_90px_-50px_rgba(0,0,0,0.9)] lg:px-12 lg:py-20">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-teal">Room template</p>
-          <h1 className="mt-4 text-4xl font-semibold leading-tight text-foreground sm:text-5xl lg:text-6xl">{room.name}</h1>
-          <p className="mt-4 text-lg leading-relaxed text-muted lg:text-xl">{room.summary}</p>
-          <ul className="mt-6 space-y-2 text-sm text-muted">
+        <section className="border border-rule bg-cream px-6 py-14 lg:px-12 lg:py-20">
+          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-teal">Room template</p>
+          <h1 className="mt-4 font-serif text-4xl font-normal leading-tight text-ink sm:text-5xl lg:text-6xl">{room.name}</h1>
+          <p className="mt-4 text-lg leading-relaxed text-ink-soft lg:text-xl">{room.summary}</p>
+          <ul className="mt-6 space-y-2 text-sm text-ink-soft">
             {room.heroHighlights.map((highlight) => (
               <li key={highlight} className="flex items-start gap-2">
-                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-brand-teal" aria-hidden />
+                <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
                 <span>{highlight}</span>
               </li>
             ))}
@@ -62,13 +62,13 @@ export function RoomTypeTemplate({ room }: RoomTypeTemplateProps) {
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/contact"
-              className="rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)]"
+              className="h-btn bg-teal px-6 py-3.5 text-sm font-medium text-on-teal"
             >
               Plan this room
             </Link>
             <Link
               href="/room-types"
-              className="rounded-full border border-brand-teal/70 px-6 py-3 text-base font-semibold text-brand-teal transition hover:-translate-y-0.5 hover:bg-brand-teal/10 hover:text-brand-slate"
+              className="h-btn border border-ink px-6 py-3.5 text-sm font-medium text-ink"
             >
               Explore all room types
             </Link>
@@ -76,10 +76,10 @@ export function RoomTypeTemplate({ room }: RoomTypeTemplateProps) {
         </section>
 
         <section className="mt-16 space-y-6 lg:mt-24">
-          <h2 className="text-2xl font-semibold">Best for</h2>
+          <h2 className="font-serif text-2xl font-normal text-ink">Best for</h2>
           <div className="flex flex-wrap gap-2">
             {room.idealUseCases.map((useCase) => (
-              <span key={useCase} className="rounded-full border border-brand-teal/50 px-4 py-2 text-sm font-semibold text-brand-teal">
+              <span key={useCase} className="border border-rule px-4 py-2 font-mono text-[11px] uppercase tracking-[0.16em] text-teal">
                 {useCase}
               </span>
             ))}
@@ -87,49 +87,51 @@ export function RoomTypeTemplate({ room }: RoomTypeTemplateProps) {
         </section>
 
         <section className="mt-16 grid gap-6 lg:mt-24 lg:grid-cols-[1.2fr,0.8fr]">
-          <div className="rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40">
+          <div className="border border-rule bg-cream p-6 text-ink">
             <div className="mb-4 flex items-center gap-4">
-              <Image
-                src={selectedImage.src}
-                alt={selectedImage.alt}
-                width={140}
-                height={140}
-                className="h-28 w-28 rounded-2xl border border-brand-teal/30 bg-slate-950/60 object-contain"
-              />
+              <div className="border border-rule bg-cream p-2">
+                <Image
+                  src={selectedImage.src}
+                  alt={selectedImage.alt}
+                  width={140}
+                  height={140}
+                  className="h-24 w-24 object-contain"
+                />
+              </div>
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-teal">Layout</p>
-                <p className="text-sm text-slate-200">Top-down reference for this room type</p>
+                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-teal">Layout</p>
+                <p className="text-sm text-ink-soft">Top-down reference for this room type</p>
               </div>
             </div>
-            <h2 className="text-2xl font-semibold">Core design pattern</h2>
-            <p className="mt-3 text-sm leading-relaxed text-slate-200">
+            <h2 className="font-serif text-2xl font-normal text-ink">Core design pattern</h2>
+            <p className="mt-3 text-sm leading-relaxed text-ink-soft">
               {room.description}
               <br />
-              <span className="text-brand-sand/90">Capacity: {room.capacity}</span>
+              <span className="text-ink-faint">Capacity: {room.capacity}</span>
             </p>
           </div>
-          <div className="rounded-3xl border border-brand-sand/60 bg-brand-sand/30 p-6 text-brand-slate shadow-[0_20px_60px_-50px_rgba(242,232,220,0.8)]">
-            <h3 className="text-lg font-semibold">Core AV features</h3>
-            <ul className="mt-3 space-y-2 text-sm text-slate-700">
+          <div className="border border-rule bg-cream-deep p-6 text-ink">
+            <h3 className="font-serif text-lg font-normal text-ink">Core AV features</h3>
+            <ul className="mt-3 space-y-2 text-sm text-ink-soft">
               {room.coreFeatures.map((feature) => (
                 <li key={feature} className="flex items-start gap-2">
-                  <span className="mt-1 h-1.5 w-1.5 rounded-full bg-brand-teal" aria-hidden />
+                  <span className="mt-1 h-1.5 w-1.5 bg-teal" aria-hidden />
                   <span>{feature}</span>
                 </li>
               ))}
             </ul>
-            <p className="mt-4 text-xs font-semibold text-slate-600">Capacity: {room.capacity}</p>
+            <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.16em] text-ink-faint">Capacity: {room.capacity}</p>
           </div>
         </section>
 
         <section className="mt-16 space-y-6 lg:mt-24">
-          <h2 className="text-2xl font-semibold">Recommended services</h2>
+          <h2 className="font-serif text-2xl font-normal text-ink">Recommended services</h2>
           <div className="grid gap-4 md:grid-cols-2">
             {room.recommendedServices.map((service) => (
               <Link
                 key={service}
                 href={serviceLinkMap[service] ?? "/services"}
-                className="rounded-2xl border border-slate-600/60 bg-slate-900/70 px-5 py-4 text-sm font-semibold text-slate-100 shadow-md shadow-black/40 transition hover:-translate-y-0.5 hover:border-brand-teal/50"
+                className="h-hover-cream border border-rule bg-cream px-5 py-4 text-sm font-medium text-ink"
               >
                 {service}
               </Link>
@@ -139,11 +141,11 @@ export function RoomTypeTemplate({ room }: RoomTypeTemplateProps) {
 
         {room.optionalUpgrades ? (
           <section className="mt-16 space-y-4 lg:mt-24">
-            <h2 className="text-2xl font-semibold">Optional upgrades & variants</h2>
-            <ul className="space-y-2 text-sm text-muted">
+            <h2 className="font-serif text-2xl font-normal text-ink">Optional upgrades &amp; variants</h2>
+            <ul className="space-y-2 text-sm text-ink-soft">
               {room.optionalUpgrades.map((upgrade) => (
                 <li key={upgrade} className="flex items-start gap-2">
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-brand-teal" aria-hidden />
+                  <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
                   <span>{upgrade}</span>
                 </li>
               ))}
@@ -151,23 +153,23 @@ export function RoomTypeTemplate({ room }: RoomTypeTemplateProps) {
           </section>
         ) : null}
 
-        <section className="mt-16 grid gap-4 rounded-3xl border border-white/10 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40 lg:mt-24 lg:grid-cols-2">
+        <section className="mt-16 grid gap-4 border border-rule bg-cream p-6 text-ink lg:mt-24 lg:grid-cols-2">
           <div className="space-y-2">
-            <h3 className="text-xl font-semibold text-foreground">Get this room designed</h3>
-            <p className="text-sm text-slate-200">We’ll document and spec this room template for your space.</p>
+            <h3 className="font-serif text-xl font-normal text-ink">Get this room designed</h3>
+            <p className="text-sm text-ink-soft">We’ll document and spec this room template for your space.</p>
             <Link
               href="/smart-room-design"
-              className="inline-flex items-center justify-center rounded-full bg-brand-teal px-5 py-3 text-sm font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90"
+              className="h-btn inline-flex items-center justify-center bg-teal px-6 py-3.5 text-sm font-medium text-on-teal"
             >
               Get Room Design
             </Link>
           </div>
           <div className="space-y-2">
-            <h3 className="text-xl font-semibold text-foreground">Need full-service install?</h3>
-            <p className="text-sm text-slate-200">We handle design + installation + commissioning end to end.</p>
+            <h3 className="font-serif text-xl font-normal text-ink">Need full-service install?</h3>
+            <p className="text-sm text-ink-soft">We handle design + installation + commissioning end to end.</p>
             <Link
               href="/av-integration"
-              className="inline-flex items-center justify-center rounded-full border border-brand-teal/70 px-5 py-3 text-sm font-semibold text-brand-teal transition hover:-translate-y-0.5 hover:bg-brand-teal/10 hover:text-brand-slate"
+              className="h-btn inline-flex items-center justify-center border border-ink px-6 py-3.5 text-sm font-medium text-ink"
             >
               Explore AV Integration
             </Link>
@@ -175,7 +177,7 @@ export function RoomTypeTemplate({ room }: RoomTypeTemplateProps) {
         </section>
 
         <section className="mt-16 space-y-4 lg:mt-24">
-          <h3 className="text-2xl font-semibold text-foreground">Related room types</h3>
+          <h3 className="font-serif text-2xl font-normal text-ink">Related room types</h3>
           <div className="grid gap-3 sm:grid-cols-2">
             {coreRoomTypes
               .filter((r) => r.slug !== room.slug)
@@ -184,7 +186,7 @@ export function RoomTypeTemplate({ room }: RoomTypeTemplateProps) {
                 <Link
                   key={related.slug}
                   href={`/room-types/${related.slug}`}
-                  className="rounded-2xl border border-slate-600/60 bg-slate-900/70 p-4 text-sm font-semibold text-brand-teal shadow-md shadow-black/40 transition hover:-translate-y-0.5 hover:border-brand-teal"
+                  className="h-hover-cream border border-rule bg-cream p-4 text-sm font-medium text-teal"
                 >
                   {related.name} →
                 </Link>

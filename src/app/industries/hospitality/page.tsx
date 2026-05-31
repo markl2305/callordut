@@ -9,26 +9,27 @@ export const metadata: Metadata = {
 
 export default function HospitalityPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-brand-slate via-[#0f1d32] to-[#0b1220] text-foreground">
+    <div className="min-h-screen bg-paper text-ink">
       <main className="mx-auto max-w-5xl px-4 pb-16 pt-16 lg:px-0">
-        <h1 className="text-4xl font-semibold leading-tight sm:text-5xl">AV & Security for Hospitality Venues</h1>
-        <p className="mt-3 text-base text-slate-200">
+        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-teal">Hospitality</p>
+        <h1 className="mt-4 font-serif text-4xl font-normal leading-tight text-ink sm:text-5xl">AV &amp; Security for Hospitality Venues</h1>
+        <p className="mt-3 text-base text-ink-soft">
           Discreet technology that protects the vibe — for lounges, boutique hotels, private clubs, and event spaces.
         </p>
-        <div className="mt-10 space-y-4 text-sm leading-relaxed text-slate-200">
-          <h2 className="text-2xl font-semibold text-foreground">Hospitality-Specific Challenges</h2>
+        <div className="mt-10 space-y-4 text-sm leading-relaxed text-ink-soft">
+          <h2 className="font-serif text-2xl font-normal text-ink">Hospitality-Specific Challenges</h2>
           <ul className="space-y-3">
             <li>
-              <strong className="text-foreground">Technology that breaks the atmosphere.</strong> Visible cables and clunky controls ruin the experience.
+              <strong className="font-medium text-ink">Technology that breaks the atmosphere.</strong> Visible cables and clunky controls ruin the experience.
             </li>
             <li>
-              <strong className="text-foreground">Events that go sideways.</strong> Presenters can’t connect, music cuts out, lighting is wrong.
+              <strong className="font-medium text-ink">Events that go sideways.</strong> Presenters can’t connect, music cuts out, lighting is wrong.
             </li>
             <li>
-              <strong className="text-foreground">Security without the security feel.</strong> Guests expect safety without feeling surveilled.
+              <strong className="font-medium text-ink">Security without the security feel.</strong> Guests expect safety without feeling surveilled.
             </li>
           </ul>
-          <h2 className="text-2xl font-semibold text-foreground">How We Help</h2>
+          <h2 className="font-serif text-2xl font-normal text-ink">How We Help</h2>
           <ul className="space-y-2">
             <li>Invisible integration — hidden equipment and concealed cabling.</li>
             <li>Event-ready AV — presentations, music, and lighting that just work.</li>
@@ -36,19 +37,19 @@ export default function HospitalityPage() {
             <li>24/7 support availability for critical events.</li>
           </ul>
         </div>
-        <div className="mt-8 grid gap-3 text-sm text-brand-teal">
-          <Link href="/av-integration" className="font-semibold underline-offset-2 hover:underline">
+        <div className="mt-8 grid gap-3 text-sm text-teal">
+          <Link href="/av-integration" className="h-link font-medium underline-offset-2 hover:underline">
             AV Integration →
           </Link>
-          <Link href="/smart-room-design" className="font-semibold underline-offset-2 hover:underline">
+          <Link href="/smart-room-design" className="h-link font-medium underline-offset-2 hover:underline">
             Smart Room Design →
           </Link>
         </div>
         <div className="mt-10">
-          <h2 className="text-2xl font-semibold text-foreground">Protect the Vibe While Protecting the Venue</h2>
+          <h2 className="font-serif text-2xl font-normal text-ink">Protect the Vibe While Protecting the Venue</h2>
           <Link
             href="/contact"
-            className="mt-4 inline-flex items-center justify-center rounded-full bg-brand-teal px-5 py-3 text-sm font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90"
+            className="h-btn mt-4 inline-flex items-center justify-center bg-teal px-6 py-3.5 text-sm font-medium text-on-teal"
           >
             Tell Us About Your Space
           </Link>

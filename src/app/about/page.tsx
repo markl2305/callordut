@@ -44,26 +44,25 @@ const team = [
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground noise-overlay">
+    <div className="min-h-screen bg-paper text-ink">
       <main className="mx-auto max-w-6xl px-4 pb-20 pt-6 lg:px-6">
 
         {/* Hero */}
         <FadeIn>
-          <section className="relative overflow-hidden rounded-3xl border border-white/[0.06] bg-gradient-to-br from-[#0c1222] via-[#0a1020] to-background px-6 py-14 lg:px-12 lg:py-20">
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_20%,rgba(39,154,146,0.1),transparent_50%)]" />
-            <div className="relative space-y-4">
-              <span className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-teal">About CalLord Unified Technologies</span>
-              <h1 className="text-4xl font-semibold leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+          <section className="border border-rule bg-cream px-6 py-14 lg:px-12 lg:py-20">
+            <div className="space-y-4">
+              <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-teal">About CalLord Unified Technologies</span>
+              <h1 className="font-serif text-4xl font-normal leading-tight tracking-tight text-ink sm:text-5xl lg:text-6xl">
                 We design rooms that don't embarrass you on Monday morning.
               </h1>
-              <p className="max-w-3xl text-lg leading-relaxed text-muted lg:text-xl">
+              <p className="max-w-3xl text-lg leading-relaxed text-ink-soft lg:text-xl">
                 CalLord is a design-led AV, smart room, and security partner for teams that can't afford failed calls or compliance drama. We obsess over documentation, operator experience, and remote collaboration so your rooms feel effortless every time you tap "Join".
               </p>
               <div className="flex flex-wrap items-center gap-3">
-                <Link href="/contact" className="rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-[#070a14] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_50px_-15px_rgba(39,154,146,0.6)]">
+                <Link href="/contact" className="h-btn bg-teal px-6 py-3.5 text-sm font-medium text-on-teal">
                   Schedule Free Assessment
                 </Link>
-                <Link href="/services" className="rounded-full border border-white/10 bg-white/5 px-6 py-3 text-base font-semibold text-slate-200 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-teal/30">
+                <Link href="/services" className="h-btn border border-ink bg-transparent px-6 py-3.5 text-sm font-medium text-ink">
                   See our services
                 </Link>
               </div>
@@ -73,10 +72,9 @@ export default function AboutPage() {
 
         {/* Photo */}
         <FadeIn delay={0.1} className="mt-8 lg:mt-12">
-          <section className="overflow-hidden rounded-3xl border border-white/[0.06]">
+          <section className="overflow-hidden border border-rule">
             <div className="relative h-64 w-full sm:h-80 lg:h-96">
               <Image src="/about-designer-desk-av-drawings.png" alt="AV designer desk with technical room drawings" fill className="object-cover" priority />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#070a14]/80 via-[#070a14]/40 to-[#070a14]/80" />
             </div>
           </section>
         </FadeIn>
@@ -86,10 +84,10 @@ export default function AboutPage() {
           <SectionHeader kicker="Who we are" title="Design-first integrators with a documentation habit" subtitle="We started CalLord to fix meeting rooms that only 'the AV person' could start, to translate complex security requirements into clear drawings, and to remove the chaos from working with out-of-town installers." />
           <FadeIn>
             <div className="grid gap-6 lg:grid-cols-2">
-              <p className="text-base leading-relaxed text-muted">
+              <p className="text-base leading-relaxed text-ink-soft">
                 Every room starts with operator interviews and recordings. We map how teams speak about their spaces so the final documentation feels native—plain-language call flows, annotated drawings, and inventory lists that live in the same shared folder as the rest of your projects. No mystery boxes.
               </p>
-              <p className="text-base leading-relaxed text-muted">
+              <p className="text-base leading-relaxed text-ink-soft">
                 Because our projects regularly span multiple sites, we built remote collaboration into our DNA. Clear rev-control, video walkthroughs, and modern platforms mean a GC in Albuquerque, an IT lead in Denver, and a compliance officer in Phoenix are all staring at the same truth.
               </p>
             </div>
@@ -104,14 +102,14 @@ export default function AboutPage() {
           <Stagger className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
             {processSteps.map((step, index) => (
               <StaggerItem key={step.title}>
-                <div className="glass-card rounded-2xl p-5 h-full">
-                  <div className="mb-4 flex items-center gap-3 text-sm font-semibold text-brand-teal">
-                    <span className="flex h-8 w-8 items-center justify-center rounded-full border border-brand-teal/30 bg-brand-teal/10 text-xs">
+                <div className="border border-rule bg-cream p-5 h-full">
+                  <div className="mb-4 flex items-center gap-3 text-sm font-medium text-teal">
+                    <span className="flex h-8 w-8 items-center justify-center border border-teal/40 bg-teal/10 font-mono text-xs">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     {step.title}
                   </div>
-                  <p className="text-sm leading-relaxed text-muted">{step.description}</p>
+                  <p className="text-sm leading-relaxed text-ink-soft">{step.description}</p>
                 </div>
               </StaggerItem>
             ))}
@@ -132,13 +130,13 @@ export default function AboutPage() {
                     alt={member.name}
                     width={72}
                     height={72}
-                    className="h-14 w-14 max-h-[56px] max-w-[56px] flex-shrink-0 rounded-full object-cover ring-2 ring-white/[0.06] md:h-16 md:w-16 md:max-h-[64px] md:max-w-[64px] lg:h-[72px] lg:w-[72px] lg:max-h-[72px] lg:max-w-[72px]"
+                    className="h-14 w-14 max-h-[56px] max-w-[56px] flex-shrink-0 object-cover border border-rule md:h-16 md:w-16 md:max-h-[64px] md:max-w-[64px] lg:h-[72px] lg:w-[72px] lg:max-h-[72px] lg:max-w-[72px]"
                     sizes="(min-width: 1024px) 72px, (min-width: 768px) 64px, 56px"
                   />
                   <div>
-                    <p className="text-sm font-medium text-brand-teal">{member.title}</p>
-                    <h3 className="text-xl font-semibold text-foreground">{member.name}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted">{member.bio}</p>
+                    <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-teal">{member.title}</p>
+                    <h3 className="mt-1 font-serif text-xl font-normal text-ink">{member.name}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-soft">{member.bio}</p>
                   </div>
                 </div>
               </StaggerItem>
@@ -155,11 +153,11 @@ export default function AboutPage() {
             {audiences.map((audience) => (
               <StaggerItem key={audience.title}>
                 <GlowCard className="h-full">
-                  <h3 className="text-lg font-semibold text-foreground">{audience.title}</h3>
-                  <ul className="mt-3 space-y-2 text-sm text-muted">
+                  <h3 className="font-serif text-xl font-normal text-ink">{audience.title}</h3>
+                  <ul className="mt-3 space-y-2 text-sm text-ink-soft">
                     {audience.bullets.map((bullet) => (
                       <li key={bullet} className="flex items-start gap-2">
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-teal" />
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-teal" />
                         <span className="leading-relaxed">{bullet}</span>
                       </li>
                     ))}
@@ -175,19 +173,19 @@ export default function AboutPage() {
           <SectionHeader kicker="Values & principles" title="What guides every build" subtitle="These are the habits and guardrails that shape every CalLord project." />
           <FadeIn>
             <div className="grid gap-6 lg:grid-cols-[1.2fr,0.8fr]">
-              <div className="glass-card rounded-3xl p-6">
-                <ul className="space-y-3 text-sm text-muted">
+              <div className="border border-rule bg-cream p-6">
+                <ul className="space-y-3 text-sm text-ink-soft">
                   {principles.map((principle) => (
                     <li key={principle} className="flex items-start gap-2">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-teal" />
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-teal" />
                       <span className="leading-relaxed">{principle}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-              <div className="rounded-3xl border border-brand-teal/20 bg-gradient-to-br from-brand-teal/[0.08] to-transparent p-6">
-                <h3 className="text-2xl font-semibold text-foreground">What matters to us when we build for you</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted">
+              <div className="border border-teal/40 bg-teal/10 p-6">
+                <h3 className="font-serif text-2xl font-normal text-ink">What matters to us when we build for you</h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-soft">
                   We treat every space like it needs to survive a leadership offsite or a compliance inspection. That means obsessive documentation, calm operators, and platforms that can be supported long after the ribbon-cutting.
                 </p>
               </div>

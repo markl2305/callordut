@@ -73,17 +73,17 @@ const whyCallord = [
 
 export default function FinancialInstitutionsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-brand-slate via-[#0f1d32] to-[#0b1220] text-foreground">
+    <div className="min-h-screen bg-paper text-ink">
       <main className="mx-auto max-w-5xl px-4 pb-24 pt-10 lg:px-0">
-        <section className="rounded-3xl border border-white/5 bg-gradient-to-br from-brand-slate via-[#10223a] to-[#0b1220] px-6 py-14 shadow-[0_35px_110px_-60px_rgba(0,0,0,0.9)] lg:px-12 lg:py-20">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-teal">Financial institutions</p>
-          <h1 className="mt-4 text-4xl font-semibold leading-tight text-foreground sm:text-5xl lg:text-6xl">
+        <section className="border border-rule bg-cream px-6 py-14 lg:px-12 lg:py-20">
+          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-teal">Financial institutions</p>
+          <h1 className="mt-4 font-serif text-4xl font-normal leading-tight text-ink sm:text-5xl lg:text-6xl">
             Cloud-Native Physical Security for Banks & Credit Unions
           </h1>
-          <p className="mt-4 text-lg leading-relaxed text-muted lg:text-xl">
+          <p className="mt-4 text-lg leading-relaxed text-ink-soft lg:text-xl">
             AI-powered video surveillance and access control, designed and deployed by CalLord Unified Technologies.
           </p>
-          <p className="mt-3 text-sm leading-relaxed text-slate-200">
+          <p className="mt-3 text-sm leading-relaxed text-ink-soft">
             CalLord Unified Technologies designs and deploys modern, cloud-native physical security systems for financial institutions. By
             combining Eagle Eye Networks&apos; AI video surveillance with Brivo&apos;s cloud access control, we deliver a unified security platform
             built for today&apos;s banking environment.
@@ -91,26 +91,26 @@ export default function FinancialInstitutionsPage() {
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/contact"
-              className="rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)]"
+              className="h-btn bg-teal px-6 py-3.5 text-sm font-medium text-on-teal"
             >
               Schedule Free Assessment
             </Link>
             <Link
               href="#platform"
-              className="rounded-full border border-brand-teal/70 px-6 py-3 text-base font-semibold text-brand-teal transition hover:-translate-y-0.5 hover:bg-brand-teal/10 hover:text-brand-slate"
+              className="h-btn border border-ink px-6 py-3.5 text-sm font-medium text-ink"
             >
               See the Platform
             </Link>
           </div>
         </section>
 
-        <section className="mt-16 rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40 lg:mt-20">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-teal">Trust strip</p>
+        <section className="mt-16 border border-rule bg-cream p-6 text-ink lg:mt-20">
+          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-teal">Trust strip</p>
           <div className="mt-3 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <h2 className="text-2xl font-semibold text-foreground">Built for regulated environments. Designed for distributed banking.</h2>
-            <div className="flex flex-wrap gap-2 text-sm text-slate-200">
+            <h2 className="font-serif text-2xl font-normal text-ink">Built for regulated environments. Designed for distributed banking.</h2>
+            <div className="flex flex-wrap gap-2 text-sm text-ink-soft">
               {trustStrip.map((item) => (
-                <span key={item} className="rounded-full border border-brand-teal/50 px-4 py-2 text-xs font-semibold text-brand-teal">
+                <span key={item} className="border border-rule px-4 py-2 font-mono text-[11px] uppercase tracking-[0.16em] text-teal">
                   {item}
                 </span>
               ))}
@@ -120,10 +120,10 @@ export default function FinancialInstitutionsPage() {
 
         <section className="mt-20 space-y-4 lg:mt-28">
           <SectionHeader title="So Much More Than Cameras" />
-          <p className="text-sm leading-relaxed text-slate-200">
+          <p className="text-sm leading-relaxed text-ink-soft">
             Modern banking security requires more than video recording. It requires intelligence, visibility, and control.
           </p>
-          <p className="text-sm leading-relaxed text-slate-200">
+          <p className="text-sm leading-relaxed text-ink-soft">
             By integrating Eagle Eye&apos;s AI-powered cloud video with Brivo&apos;s cloud access control, CalLord delivers a unified security system
             that improves safety, speeds investigations, and simplifies operations.
           </p>
@@ -135,13 +135,13 @@ export default function FinancialInstitutionsPage() {
             {coreCapabilities.map((capability) => (
               <div
                 key={capability.title}
-                className="rounded-2xl border border-slate-600/60 bg-slate-900/70 p-6 text-sm text-slate-100 shadow-md shadow-black/40"
+                className="border border-rule bg-cream p-6 text-sm text-ink"
               >
-                <h3 className="text-base font-semibold text-foreground">{capability.title}</h3>
-                <ul className="mt-3 space-y-2 text-slate-200">
+                <h3 className="font-serif text-base font-normal text-ink">{capability.title}</h3>
+                <ul className="mt-3 space-y-2 text-ink-soft">
                   {capability.bullets.map((bullet) => (
                     <li key={bullet} className="flex items-start gap-2">
-                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-brand-teal" aria-hidden />
+                      <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
                       <span>{bullet}</span>
                     </li>
                   ))}
@@ -153,10 +153,10 @@ export default function FinancialInstitutionsPage() {
 
         <section className="mt-20 space-y-4 lg:mt-28">
           <SectionHeader title="Designed for Real-World Banking Operations" />
-          <ul className="space-y-2 text-sm text-slate-200">
+          <ul className="space-y-2 text-sm text-ink-soft">
             {useCases.map((item) => (
               <li key={item} className="flex items-start gap-2">
-                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-brand-teal" aria-hidden />
+                <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
                 <span>{item}</span>
               </li>
             ))}
@@ -164,19 +164,19 @@ export default function FinancialInstitutionsPage() {
         </section>
 
         <section className="mt-20 grid gap-6 lg:mt-28 lg:grid-cols-[1.05fr,0.95fr]">
-          <div className="rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40">
-            <h3 className="text-2xl font-semibold text-foreground">Why Financial Institutions Choose CalLord</h3>
-            <p className="mt-3 text-sm leading-relaxed text-slate-200">
+          <div className="border border-rule bg-cream p-6 text-ink">
+            <h3 className="font-serif text-2xl font-normal text-ink">Why Financial Institutions Choose CalLord</h3>
+            <p className="mt-3 text-sm leading-relaxed text-ink-soft">
               CalLord Unified Technologies is a trusted security integrator for regulated environments. We design, deploy, and support physical
               security systems that scale with your institution and adapt to evolving threats.
             </p>
           </div>
-          <div className="rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40">
-            <h3 className="text-lg font-semibold text-foreground">What you can expect</h3>
-            <ul className="mt-3 space-y-2 text-sm text-slate-200">
+          <div className="border border-rule bg-cream p-6 text-ink">
+            <h3 className="font-serif text-lg font-normal text-ink">What you can expect</h3>
+            <ul className="mt-3 space-y-2 text-sm text-ink-soft">
               {whyCallord.map((item) => (
                 <li key={item} className="flex items-start gap-2">
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-brand-teal" aria-hidden />
+                  <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
                   <span>{item}</span>
                 </li>
               ))}
@@ -184,9 +184,9 @@ export default function FinancialInstitutionsPage() {
           </div>
         </section>
 
-        <section id="platform" className="mt-20 rounded-3xl border border-slate-600/60 bg-slate-900/70 p-6 text-slate-100 shadow-md shadow-black/40 lg:mt-28">
-          <h3 className="text-2xl font-semibold text-foreground">Industry-Leading Platforms. One Unified System.</h3>
-          <p className="mt-3 text-sm leading-relaxed text-slate-200">
+        <section id="platform" className="mt-20 border border-rule bg-cream p-6 text-ink lg:mt-28">
+          <h3 className="font-serif text-2xl font-normal text-ink">Industry-Leading Platforms. One Unified System.</h3>
+          <p className="mt-3 text-sm leading-relaxed text-ink-soft">
             CalLord partners with Eagle Eye Networks and Brivo to deliver a complete cloud-native security solution — combining AI video
             surveillance and modern access control into a single, cohesive platform.
           </p>

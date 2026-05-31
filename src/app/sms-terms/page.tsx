@@ -9,22 +9,23 @@ export const metadata = {
 
 export default function SmsTermsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-brand-slate via-[#0f1d32] to-[#0b1220] text-foreground">
+    <div className="min-h-screen bg-paper text-ink">
       <main className="mx-auto max-w-4xl px-4 pb-16 pt-10 lg:px-0">
-        <div className="rounded-3xl border border-white/10 bg-slate-900/70 p-8 shadow-xl shadow-black/40">
-          <h1 className="text-3xl font-semibold lg:text-4xl">
+        <div className="bg-cream border border-rule p-8">
+          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-teal">Legal</p>
+          <h1 className="mt-3 font-serif text-3xl font-normal tracking-tight text-ink lg:text-4xl">
             SMS Messaging Terms
           </h1>
-          <p className="mt-3 text-sm text-slate-200">
+          <p className="mt-3 text-sm text-ink-soft">
             CalLord Unified Technologies — Mobile Messaging Program
           </p>
-          <p className="mt-1 text-xs text-slate-400">
+          <p className="mt-1 text-xs text-ink-faint">
             Last updated: March 18, 2026
           </p>
 
-          <div className="mt-8 space-y-6 text-sm leading-relaxed text-slate-200">
+          <div className="mt-8 space-y-6 text-sm leading-relaxed text-ink-soft">
             <section>
-              <h2 className="text-lg font-semibold text-slate-50">
+              <h2 className="font-serif text-xl font-normal text-ink">
                 Program Description
               </h2>
               <p>
@@ -39,7 +40,7 @@ export default function SmsTermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-slate-50">
+              <h2 className="font-serif text-xl font-normal text-ink">
                 How to Opt In
               </h2>
               <p>
@@ -53,7 +54,7 @@ export default function SmsTermsPage() {
                   including our contact form at{" "}
                   <Link
                     href="/contact"
-                    className="font-semibold text-brand-teal"
+                    className="font-medium text-teal"
                   >
                     callordut.com/contact
                   </Link>
@@ -85,7 +86,7 @@ export default function SmsTermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-slate-50">
+              <h2 className="font-serif text-xl font-normal text-ink">
                 Types of Messages
               </h2>
               <p>Messages you may receive include:</p>
@@ -102,7 +103,7 @@ export default function SmsTermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-slate-50">
+              <h2 className="font-serif text-xl font-normal text-ink">
                 Message Frequency
               </h2>
               <p>
@@ -115,11 +116,11 @@ export default function SmsTermsPage() {
               </p>
             </section>
 
-            <section className="rounded-2xl border border-brand-teal/30 bg-brand-teal/10 p-5">
-              <h2 className="text-lg font-semibold text-slate-50">
+            <section className="border border-teal/40 bg-teal/10 p-5">
+              <h2 className="font-serif text-xl font-normal text-ink">
                 Message and Data Rates
               </h2>
-              <p className="mt-1 font-semibold text-slate-100">
+              <p className="mt-1 font-medium text-ink">
                 Message and data rates may apply. Please contact your mobile
                 carrier for details about your messaging plan and any charges
                 that may apply to messages you send or receive.
@@ -127,7 +128,7 @@ export default function SmsTermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-slate-50">
+              <h2 className="font-serif text-xl font-normal text-ink">
                 How to Opt Out (STOP)
               </h2>
               <p>
@@ -141,14 +142,14 @@ export default function SmsTermsPage() {
                 You may also opt out by contacting us directly at{" "}
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="font-semibold text-brand-teal"
+                  className="font-medium text-teal"
                 >
                   {siteConfig.email}
                 </a>{" "}
                 or{" "}
                 <a
                   href={siteConfig.phoneHref}
-                  className="font-semibold text-brand-teal"
+                  className="font-medium text-teal"
                 >
                   {siteConfig.phone}
                 </a>
@@ -157,7 +158,7 @@ export default function SmsTermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-slate-50">
+              <h2 className="font-serif text-xl font-normal text-ink">
                 How to Get Help (HELP)
               </h2>
               <p>
@@ -172,7 +173,7 @@ export default function SmsTermsPage() {
                   Email:{" "}
                   <a
                     href={`mailto:${siteConfig.email}`}
-                    className="font-semibold text-brand-teal"
+                    className="font-medium text-teal"
                   >
                     {siteConfig.email}
                   </a>
@@ -181,7 +182,7 @@ export default function SmsTermsPage() {
                   Phone:{" "}
                   <a
                     href={siteConfig.phoneHref}
-                    className="font-semibold text-brand-teal"
+                    className="font-medium text-teal"
                   >
                     {siteConfig.phone}
                   </a>
@@ -190,7 +191,7 @@ export default function SmsTermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-slate-50">
+              <h2 className="font-serif text-xl font-normal text-ink">
                 Consent Not Required for Purchase
               </h2>
               <p>
@@ -202,7 +203,7 @@ export default function SmsTermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-slate-50">
+              <h2 className="font-serif text-xl font-normal text-ink">
                 Privacy and Data Protection
               </h2>
               <p>
@@ -224,7 +225,7 @@ export default function SmsTermsPage() {
                 information, please see our{" "}
                 <Link
                   href="/privacy"
-                  className="font-semibold text-brand-teal"
+                  className="font-medium text-teal"
                 >
                   Privacy Policy
                 </Link>
@@ -233,7 +234,7 @@ export default function SmsTermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-slate-50">
+              <h2 className="font-serif text-xl font-normal text-ink">
                 Supported Carriers
               </h2>
               <p>
@@ -244,18 +245,18 @@ export default function SmsTermsPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-slate-50">
+              <h2 className="font-serif text-xl font-normal text-ink">
                 Contact Information
               </h2>
-              <div className="mt-3 rounded-2xl border border-white/10 bg-white/5 p-5">
-                <p className="font-semibold text-slate-50">
+              <div className="mt-3 border border-rule bg-paper p-5">
+                <p className="font-medium text-ink">
                   {siteConfig.shortName}
                 </p>
                 <p className="mt-2">
                   Email:{" "}
                   <a
                     href={`mailto:${siteConfig.email}`}
-                    className="font-semibold text-brand-teal"
+                    className="font-medium text-teal"
                   >
                     {siteConfig.email}
                   </a>
@@ -264,7 +265,7 @@ export default function SmsTermsPage() {
                   Phone:{" "}
                   <a
                     href={siteConfig.phoneHref}
-                    className="font-semibold text-brand-teal"
+                    className="font-medium text-teal"
                   >
                     {siteConfig.phone}
                   </a>
@@ -273,7 +274,7 @@ export default function SmsTermsPage() {
                 <p className="mt-2">
                   <Link
                     href="/privacy"
-                    className="font-semibold text-brand-teal"
+                    className="font-medium text-teal"
                   >
                     Privacy Policy
                   </Link>
@@ -281,8 +282,8 @@ export default function SmsTermsPage() {
               </div>
             </section>
 
-            <div className="mt-8 border-t border-white/10 pt-6">
-              <p className="text-xs text-slate-400">
+            <div className="mt-8 border-t border-rule pt-6">
+              <p className="text-xs text-ink-faint">
                 Last updated: March 18, 2026. By opting in to receive SMS
                 messages from CalLord Unified Technologies, you acknowledge that
                 you have read and agree to these SMS Messaging Terms.

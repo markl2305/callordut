@@ -103,115 +103,115 @@ export default function CannabisSecurityPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-brand-slate via-[#0f1d32] to-[#0b1220] text-foreground">
+    <div className="min-h-screen bg-paper text-ink">
       <main className="mx-auto max-w-5xl px-4 pb-20 pt-16 lg:px-0">
-        <section className="rounded-3xl border border-white/10 bg-slate-900/70 p-8 shadow-xl shadow-black/40">
-          <h1 className="text-4xl font-semibold leading-tight sm:text-5xl">Pass Your Cannabis Facility Inspection</h1>
-          <p className="mt-2 text-lg font-semibold text-brand-teal">First Time. On Schedule.</p>
-          <p className="mt-4 text-base text-slate-200">
+        <section className="border border-rule bg-cream p-8 text-ink">
+          <h1 className="font-serif text-4xl font-normal leading-tight tracking-tight sm:text-5xl">Pass Your Cannabis Facility Inspection</h1>
+          <p className="mt-2 font-serif text-lg italic text-teal">First Time. On Schedule.</p>
+          <p className="mt-4 text-base text-ink-soft">
             State-compliant security design for Colorado, New Mexico, and Arizona cultivation and dispensary operators. We engineer compliant systems so you pass inspection — without delays, rework, or surprise costs.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               href="/contact#assessment-form"
-              className="rounded-full bg-brand-teal px-5 py-3 text-sm font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90"
+              className="h-btn inline-flex items-center justify-center bg-teal px-6 py-3.5 text-sm font-medium text-on-teal"
             >
               Schedule Free Assessment
             </Link>
             <Link
               href="/contact"
-              className="rounded-full border border-brand-teal/70 px-5 py-3 text-sm font-semibold text-brand-teal transition hover:-translate-y-0.5 hover:bg-brand-teal/10 hover:text-brand-slate"
+              className="h-btn inline-flex items-center justify-center border border-ink px-6 py-3.5 text-sm font-medium text-ink"
             >
               Contact Sales
             </Link>
           </div>
         </section>
 
-        <section className="mt-12 rounded-3xl border border-white/10 bg-slate-900/70 p-8 shadow-md shadow-black/30">
-          <h2 className="text-2xl font-semibold text-foreground">Key Value</h2>
-          <ul className="mt-4 space-y-2 text-sm text-slate-200">
+        <section className="mt-12 border border-rule bg-cream p-8 text-ink">
+          <h2 className="font-serif text-2xl font-normal text-ink">Key Value</h2>
+          <ul className="mt-4 space-y-2 text-sm text-ink-soft">
             {valueProps.map((item) => (
               <li key={item} className="flex items-start gap-2">
-                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-brand-teal" aria-hidden />
+                <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
                 <span>{item}</span>
               </li>
             ))}
           </ul>
           <div className="mt-5 flex flex-wrap items-center gap-3">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-300">Implementation Partners</span>
-            <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-slate-100 ring-1 ring-white/20">Eagle Eye Networks</span>
-            <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-slate-100 ring-1 ring-white/20">Brivo</span>
+            <span className="font-mono text-[11px] font-normal uppercase tracking-[0.16em] text-ink-faint">Implementation Partners</span>
+            <span className="border border-rule px-3 py-1 font-mono text-[10.5px] uppercase tracking-[0.04em] text-ink">Eagle Eye Networks</span>
+            <span className="border border-rule px-3 py-1 font-mono text-[10.5px] uppercase tracking-[0.04em] text-ink">Brivo</span>
           </div>
         </section>
 
-        <section className="mt-12 space-y-6 rounded-3xl border border-white/10 bg-slate-900/70 p-8 shadow-md shadow-black/30">
-          <h2 className="text-2xl font-semibold text-foreground">Why Most Cannabis Security Installations Fail Inspection</h2>
-          <p className="text-sm text-slate-200">State regulators are strict. These three mistakes account for 80% of compliance failures.</p>
+        <section className="mt-12 space-y-6 border border-rule bg-cream p-8 text-ink">
+          <h2 className="font-serif text-2xl font-normal text-ink">Why Most Cannabis Security Installations Fail Inspection</h2>
+          <p className="text-sm text-ink-soft">State regulators are strict. These three mistakes account for 80% of compliance failures.</p>
           <div className="grid gap-4 md:grid-cols-3">
             {problems.map((item) => (
-              <div key={item.title} className="rounded-2xl border border-slate-600/60 bg-slate-900/70 p-5 text-slate-100 shadow-md shadow-black/40">
-                <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-200">{item.body}</p>
+              <div key={item.title} className="border border-rule bg-paper p-5 text-ink">
+                <h3 className="font-serif text-lg font-normal text-ink">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{item.body}</p>
               </div>
             ))}
           </div>
         </section>
 
-        <section className="mt-12 space-y-6 rounded-3xl border border-white/10 bg-slate-900/70 p-8 shadow-md shadow-black/30">
-          <h2 className="text-2xl font-semibold text-foreground">Three Steps to Compliance Approval</h2>
+        <section className="mt-12 space-y-6 border border-rule bg-cream p-8 text-ink">
+          <h2 className="font-serif text-2xl font-normal text-ink">Three Steps to Compliance Approval</h2>
           <div className="grid gap-4 md:grid-cols-3">
             {steps.map((step, idx) => (
-              <div key={step.title} className="relative rounded-2xl border border-slate-600/60 bg-slate-900/70 p-5 text-slate-100 shadow-md shadow-black/40">
-                <div className="absolute right-4 top-4 text-sm font-semibold text-brand-teal/60">{String(idx + 1).padStart(2, "0")}</div>
-                <h3 className="text-lg font-semibold text-foreground">{step.title}</h3>
-                <p className="text-xs font-semibold text-brand-teal">{step.duration}</p>
-                <p className="mt-2 text-sm leading-relaxed text-slate-200">{step.body}</p>
+              <div key={step.title} className="relative border border-rule bg-paper p-5 text-ink">
+                <div className="absolute right-4 top-4 font-serif text-sm italic text-teal/60">{String(idx + 1).padStart(2, "0")}</div>
+                <h3 className="font-serif text-lg font-normal text-ink">{step.title}</h3>
+                <p className="font-mono text-[11px] uppercase tracking-[0.04em] text-teal">{step.duration}</p>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{step.body}</p>
               </div>
             ))}
           </div>
-          <div className="rounded-2xl border border-brand-teal/40 bg-brand-teal/10 p-5 text-brand-slate shadow-inner shadow-black/20">
-            <h3 className="text-lg font-semibold text-foreground">Our Guarantee</h3>
-            <p className="mt-2 text-sm text-slate-100">If you fail inspection due to our design, we fix it free or refund your fee.</p>
+          <div className="border border-rule bg-teal/10 p-5 text-ink">
+            <h3 className="font-serif text-lg font-normal text-ink">Our Guarantee</h3>
+            <p className="mt-2 text-sm text-ink-soft">If you fail inspection due to our design, we fix it free or refund your fee.</p>
           </div>
         </section>
 
-        <section className="mt-12 space-y-5 rounded-3xl border border-white/10 bg-slate-900/70 p-8 shadow-md shadow-black/30">
-          <h2 className="text-2xl font-semibold text-foreground">What Cannabis Operators Say</h2>
+        <section className="mt-12 space-y-5 border border-rule bg-cream p-8 text-ink">
+          <h2 className="font-serif text-2xl font-normal text-ink">What Cannabis Operators Say</h2>
           <div className="grid gap-4 md:grid-cols-3">
             {testimonials.map((item) => (
-              <div key={item.quote} className="rounded-2xl border border-slate-600/60 bg-slate-900/70 p-5 text-slate-100 shadow-md shadow-black/40">
-                <p className="text-sm leading-relaxed text-slate-100">“{item.quote}”</p>
-                <p className="mt-3 text-xs font-semibold text-slate-300">{item.name}</p>
+              <div key={item.quote} className="border border-rule bg-paper p-5 text-ink">
+                <p className="font-serif text-sm leading-relaxed text-ink">“{item.quote}”</p>
+                <p className="mt-3 font-mono text-[10.5px] uppercase tracking-[0.04em] text-ink-faint">{item.name}</p>
               </div>
             ))}
           </div>
         </section>
 
-        <section className="mt-12 space-y-5 rounded-3xl border border-white/10 bg-slate-900/70 p-8 shadow-md shadow-black/30">
-          <h2 className="text-2xl font-semibold text-foreground">Common Questions</h2>
-          <div className="space-y-4 text-sm leading-relaxed text-slate-200">
+        <section className="mt-12 space-y-5 border border-rule bg-cream p-8 text-ink">
+          <h2 className="font-serif text-2xl font-normal text-ink">Common Questions</h2>
+          <div className="space-y-4 text-sm leading-relaxed text-ink-soft">
             {faqs.map((item) => (
               <div key={item.q}>
-                <p className="font-semibold text-foreground">{item.q}</p>
+                <p className="font-medium text-ink">{item.q}</p>
                 <p className="mt-1">{item.a}</p>
               </div>
             ))}
           </div>
         </section>
 
-        <section className="mt-12 space-y-5 rounded-3xl border border-white/10 bg-slate-900/70 p-8 shadow-md shadow-black/30">
-          <h2 className="text-2xl font-semibold text-foreground">Your License Deadline Isn’t Flexible</h2>
-          <p className="text-sm text-slate-200">30-minute call. No obligation. Fixed-price quote within 48 hours if you want to proceed.</p>
+        <section className="mt-12 space-y-5 border border-rule bg-cream p-8 text-ink">
+          <h2 className="font-serif text-2xl font-normal text-ink">Your License Deadline Isn’t Flexible</h2>
+          <p className="text-sm text-ink-soft">30-minute call. No obligation. Fixed-price quote within 48 hours if you want to proceed.</p>
           <div className="flex flex-wrap gap-3">
             <Link
               href="/contact#assessment-form"
-              className="inline-flex items-center justify-center rounded-full bg-brand-teal px-5 py-3 text-sm font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90"
+              className="h-btn inline-flex items-center justify-center bg-teal px-6 py-3.5 text-sm font-medium text-on-teal"
             >
               Schedule Free Assessment
             </Link>
             <Link
               href="tel:+18666572383"
-              className="inline-flex items-center justify-center rounded-full border border-brand-teal/70 px-5 py-3 text-sm font-semibold text-brand-teal transition hover:-translate-y-0.5 hover:bg-brand-teal/10 hover:text-brand-slate"
+              className="h-btn inline-flex items-center justify-center border border-ink px-6 py-3.5 text-sm font-medium text-ink"
             >
               Call (866) 657-2383
             </Link>
@@ -219,17 +219,17 @@ export default function CannabisSecurityPage() {
         </section>
 
         <section className="mt-12 space-y-3">
-          <h3 className="text-xl font-semibold text-foreground">Cannabis Industry Resources</h3>
+          <h3 className="font-serif text-xl font-normal text-ink">Cannabis Industry Resources</h3>
           <div className="grid gap-3 sm:grid-cols-2">
             <Link
               href="/industries/cannabis"
-              className="rounded-2xl border border-slate-600/60 bg-slate-900/70 p-4 text-sm font-semibold text-brand-teal shadow-md shadow-black/40 transition hover:-translate-y-0.5 hover:border-brand-teal"
+              className="h-hover-cream border border-rule bg-cream p-4 text-sm font-medium text-teal"
             >
               Cannabis Industry Overview →
             </Link>
             <Link
               href="/about"
-              className="rounded-2xl border border-slate-600/60 bg-slate-900/70 p-4 text-sm font-semibold text-brand-teal shadow-md shadow-black/40 transition hover:-translate-y-0.5 hover:border-brand-teal"
+              className="h-hover-cream border border-rule bg-cream p-4 text-sm font-medium text-teal"
             >
               Security Technology Partners →
             </Link>

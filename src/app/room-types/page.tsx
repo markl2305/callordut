@@ -37,22 +37,22 @@ const roomImages: Record<string, { src: string; alt: string }> = {
 
 export default function RoomTypesHubPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-brand-slate via-[#0f1d32] to-[#0b1220] text-foreground">
+    <div className="min-h-screen bg-paper text-ink">
       <main className="mx-auto max-w-6xl px-4 pb-24 pt-10 lg:px-6">
-        <section className="rounded-3xl border border-white/5 bg-gradient-to-br from-brand-slate via-[#112033] to-[#0b1220] px-6 py-14 shadow-[0_35px_100px_-60px_rgba(0,0,0,0.8)] lg:px-12 lg:py-20">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-teal">Room recipes</p>
-          <h1 className="mt-4 text-4xl font-semibold leading-tight text-foreground sm:text-5xl lg:text-6xl">
+        <section className="border border-rule bg-cream px-6 py-14 lg:px-12 lg:py-20">
+          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-teal">Room recipes</p>
+          <h1 className="mt-4 font-serif text-4xl font-normal leading-tight text-ink sm:text-5xl lg:text-6xl">
             Room types we build again and again.
           </h1>
-          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-muted lg:text-xl">
+          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-ink-soft lg:text-xl">
             Each template captures the AV, smart-room, and security details needed to go from sketch to first call—then scale across other sites.
           </p>
         </section>
 
         <section className="mt-16 space-y-8 lg:mt-24">
           <div className="space-y-3">
-            <h2 className="text-3xl font-semibold text-foreground lg:text-4xl">Room Types</h2>
-            <p className="max-w-3xl text-lg leading-relaxed text-muted">
+            <h2 className="font-serif text-3xl font-normal text-ink lg:text-4xl">Room Types</h2>
+            <p className="max-w-3xl text-lg leading-relaxed text-ink-soft">
               Proven configurations we build again and again. Start with a template, customize for your space, and skip the trial-and-error.
             </p>
           </div>
@@ -61,34 +61,36 @@ export default function RoomTypesHubPage() {
               <Link
                 key={room.slug}
                 href={`/room-types/${room.slug}`}
-                className="group block rounded-2xl border border-slate-600/60 bg-slate-900/70 p-5 text-slate-100 shadow-md shadow-black/40 transition hover:-translate-y-1 hover:border-brand-teal/50"
+                className="group h-hover-cream block border border-rule bg-cream p-5 text-ink"
               >
                 <div className="mb-3 flex items-center gap-3">
-                  <Image
-                    src={(roomImages[room.slug] ?? roomImages.default).src}
-                    alt={(roomImages[room.slug] ?? roomImages.default).alt}
-                    width={96}
-                    height={96}
-                    className="h-20 w-20 rounded-2xl border border-brand-teal/30 bg-slate-950/60 object-contain"
-                  />
-                  <span className="rounded-full bg-brand-sand/70 px-3 py-1 text-xs font-semibold text-brand-slate">
+                  <div className="border border-rule bg-cream p-2">
+                    <Image
+                      src={(roomImages[room.slug] ?? roomImages.default).src}
+                      alt={(roomImages[room.slug] ?? roomImages.default).alt}
+                      width={96}
+                      height={96}
+                      className="h-16 w-16 object-contain"
+                    />
+                  </div>
+                  <span className="border border-rule px-3 py-1 font-mono text-[11px] uppercase tracking-[0.16em] text-teal">
                     {room.capacity}
                   </span>
                 </div>
                 <div className="flex items-center justify-between gap-4">
                   <div>
-                    <h3 className="text-xl font-semibold text-foreground">{room.name}</h3>
-                    <p className="text-sm text-slate-200">{room.summary}</p>
+                    <h3 className="font-serif text-xl font-normal text-ink">{room.name}</h3>
+                    <p className="text-sm text-ink-soft">{room.summary}</p>
                   </div>
                 </div>
-                <div className="mt-4 flex flex-wrap gap-2 text-xs text-brand-teal">
+                <div className="mt-4 flex flex-wrap gap-2">
                   {room.idealUseCases.slice(0, 3).map((useCase) => (
-                    <span key={useCase} className="rounded-full border border-brand-teal/50 px-3 py-1">
+                    <span key={useCase} className="border border-rule px-3 py-1 font-mono text-[11px] uppercase tracking-[0.16em] text-teal">
                       {useCase}
                     </span>
                   ))}
                 </div>
-                <span className="mt-4 inline-flex items-center text-sm font-semibold text-brand-teal transition group-hover:text-brand-teal/80">
+                <span className="mt-4 inline-flex items-center text-sm font-medium text-teal">
                   View template →
                 </span>
               </Link>

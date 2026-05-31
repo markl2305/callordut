@@ -1,10 +1,25 @@
 "use client";
 
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useState, type ChangeEvent, type FormEvent, type CSSProperties } from "react";
 import { trackLead } from "@/lib/analytics";
 import { event as gaEvent } from "@/lib/gtag";
+import { Mono, FONT } from "../../components/heritage/primitives";
 
 type Status = "idle" | "loading" | "success" | "error";
+
+const fieldStyle: CSSProperties = {
+  fontFamily: FONT.sans,
+  fontSize: 15,
+  padding: "11px 0",
+  background: "transparent",
+  border: "none",
+  borderBottom: "1px solid var(--h-ink)",
+  color: "var(--h-ink)",
+  outline: "none",
+  width: "100%",
+};
+
+const labelWrap: CSSProperties = { display: "flex", flexDirection: "column", gap: 7 };
 
 export function CannabisChecklistForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -87,34 +102,30 @@ export function CannabisChecklistForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-3xl border border-brand-teal/25 bg-slate-900/70 p-6 shadow-md shadow-black/30 lg:p-7"
+      style={{ border: "1px solid var(--h-rule)", background: "var(--h-cream)", padding: "clamp(24px, 4vw, 36px)" }}
     >
-      <div className="grid gap-4 lg:grid-cols-2">
-        <input type="text" name="company_website" value={form.honeypot} onChange={updateField("honeypot")} className="hidden" tabIndex={-1} />
-        <div className="space-y-2 lg:col-span-2">
-          <p className="text-sm font-semibold text-foreground">Get the Cannabis Security Checklist</p>
-          <p className="text-sm text-slate-300">
+      <div className="cl-grid-2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+        <input type="text" name="company_website" value={form.honeypot} onChange={updateField("honeypot")} style={{ display: "none" }} tabIndex={-1} />
+        <div style={{ gridColumn: "1 / -1", display: "flex", flexDirection: "column", gap: 8 }}>
+          <p style={{ fontFamily: FONT.serif, fontSize: 22, fontWeight: 400, color: "var(--h-ink)", margin: 0, letterSpacing: "-0.01em" }}>Get the Cannabis Security Checklist</p>
+          <p style={{ fontFamily: FONT.sans, fontSize: 14, color: "var(--h-ink-soft)", lineHeight: 1.6, margin: 0 }}>
             Coverage & retention basics, entry/exit + secure access control, and monitoring/documentation essentials. We’ll send it right after you submit.
           </p>
         </div>
-        <div className="space-y-2">
-          <label className="text-sm font-semibold text-foreground" htmlFor="checklist-name">
-            Name*
-          </label>
+        <label style={labelWrap}>
+          <Mono>Name*</Mono>
           <input
             id="checklist-name"
             name="name"
             required
             value={form.name}
             onChange={updateField("name")}
-            className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
+            style={fieldStyle}
             placeholder="Your name"
           />
-        </div>
-        <div className="space-y-2">
-          <label className="text-sm font-semibold text-foreground" htmlFor="checklist-email">
-            Work email*
-          </label>
+        </label>
+        <label style={labelWrap}>
+          <Mono>Work email*</Mono>
           <input
             id="checklist-email"
             type="email"
@@ -122,20 +133,18 @@ export function CannabisChecklistForm() {
             required
             value={form.email}
             onChange={updateField("email")}
-            className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
+            style={fieldStyle}
             placeholder="you@company.com"
           />
-        </div>
-        <div className="space-y-2">
-          <label className="text-sm font-semibold text-foreground" htmlFor="checklist-state">
-            State
-          </label>
+        </label>
+        <label style={labelWrap}>
+          <Mono>State</Mono>
           <select
             id="checklist-state"
             name="state"
             value={form.state}
             onChange={updateField("state")}
-            className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
+            style={fieldStyle}
           >
             <option value="">Select</option>
             <option value="NM">New Mexico</option>
@@ -143,17 +152,15 @@ export function CannabisChecklistForm() {
             <option value="AZ">Arizona</option>
             <option value="Other">Other</option>
           </select>
-        </div>
-        <div className="space-y-2">
-          <label className="text-sm font-semibold text-foreground" htmlFor="checklist-facility">
-            Facility type
-          </label>
+        </label>
+        <label style={labelWrap}>
+          <Mono>Facility type</Mono>
           <select
             id="checklist-facility"
             name="facilityType"
             value={form.facilityType}
             onChange={updateField("facilityType")}
-            className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
+            style={fieldStyle}
           >
             <option value="">Select</option>
             <option value="Dispensary">Dispensary</option>
@@ -162,42 +169,52 @@ export function CannabisChecklistForm() {
             <option value="Multi-site / MSO">Multi-site / MSO</option>
             <option value="Other">Other</option>
           </select>
-        </div>
-        <div className="space-y-2 lg:col-span-2">
-          <label className="text-sm font-semibold text-foreground" htmlFor="checklist-notes">
-            What do you need help with? (optional)
-          </label>
+        </label>
+        <label style={{ ...labelWrap, gridColumn: "1 / -1" }}>
+          <Mono>What do you need help with? (optional)</Mono>
           <textarea
             id="checklist-notes"
             name="notes"
             rows={3}
             value={form.notes}
             onChange={updateField("notes")}
-            className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
+            style={{ ...fieldStyle, resize: "vertical" }}
             placeholder="Upcoming inspection, remediation, standardizing sites, etc."
           />
-        </div>
-        <div className="lg:col-span-2 flex flex-col gap-2">
+        </label>
+        <div style={{ gridColumn: "1 / -1", display: "flex", flexDirection: "column", gap: 12 }}>
           <button
             type="submit"
             disabled={status === "loading"}
-            className="inline-flex items-center justify-center rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal disabled:cursor-not-allowed disabled:opacity-80"
+            className="h-btn"
+            style={{
+              fontFamily: FONT.sans,
+              fontSize: 14,
+              fontWeight: 500,
+              background: "var(--h-ink)",
+              color: "var(--h-paper)",
+              border: "none",
+              padding: "15px 26px",
+              cursor: status === "loading" ? "wait" : "pointer",
+              alignSelf: "flex-start",
+              opacity: status === "loading" ? 0.8 : 1,
+            }}
           >
             {status === "loading" ? "Sending…" : "Send me the checklist"}
           </button>
-          <p className="text-xs text-slate-200">
+          <p style={{ fontFamily: FONT.sans, fontSize: 12, color: "var(--h-ink-faint)", lineHeight: 1.55, margin: 0 }}>
             By submitting, you agree to receive calls and text messages (SMS/MMS) about your request. Message and data rates may apply. We do not sell your information.
           </p>
           {status === "success" ? (
-            <p className="text-sm font-semibold text-emerald-200">
+            <p style={{ fontFamily: FONT.sans, fontSize: 14, color: "var(--h-teal)", margin: 0 }}>
               Checklist on the way. Check your email or{" "}
-              <a href={checklistUrl} className="font-semibold text-brand-teal underline-offset-2 hover:underline">
+              <a href={checklistUrl} style={{ color: "var(--h-teal)", textDecoration: "underline" }}>
                 download it here
               </a>
               .
             </p>
           ) : null}
-          {error ? <p className="text-sm font-semibold text-red-200">{error}</p> : null}
+          {error ? <p style={{ fontFamily: FONT.sans, fontSize: 14, color: "#b4452a", margin: 0 }}>{error}</p> : null}
         </div>
       </div>
     </form>

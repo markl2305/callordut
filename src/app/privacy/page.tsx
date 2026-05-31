@@ -9,29 +9,30 @@ export const metadata = {
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-brand-slate via-[#0f1d32] to-[#0b1220] text-foreground">
+    <div className="min-h-screen bg-paper text-ink">
       <main className="mx-auto max-w-4xl px-4 pb-16 pt-10 lg:px-0">
-        <div className="rounded-3xl border border-white/10 bg-slate-900/70 p-8 shadow-xl shadow-black/40">
-          <h1 className="text-3xl font-semibold lg:text-4xl">
+        <div className="bg-cream border border-rule p-8">
+          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-teal">Legal</p>
+          <h1 className="mt-3 font-serif text-3xl font-normal tracking-tight text-ink lg:text-4xl">
             Privacy Policy
           </h1>
-          <p className="mt-3 text-sm text-slate-200">
+          <p className="mt-3 text-sm text-ink-soft">
             Updated for {siteConfig.legalName}. Last updated: March 18, 2026.
           </p>
-          <p className="mt-1 text-sm text-slate-200">
+          <p className="mt-1 text-sm text-ink-soft">
             If you have questions, contact{" "}
             <a
               href={`mailto:${siteConfig.email}`}
-              className="font-semibold text-brand-teal"
+              className="font-medium text-teal"
             >
               {siteConfig.email}
             </a>
             .
           </p>
 
-          <div className="mt-8 space-y-6 text-sm leading-relaxed text-slate-200">
+          <div className="mt-8 space-y-6 text-sm leading-relaxed text-ink-soft">
             <section>
-              <h2 className="text-lg font-semibold text-slate-50">
+              <h2 className="font-serif text-xl font-normal text-ink">
                 What We Collect
               </h2>
               <p>
@@ -43,7 +44,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-slate-50">
+              <h2 className="font-serif text-xl font-normal text-ink">
                 How We Use Your Info
               </h2>
               <p>
@@ -55,10 +56,10 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-slate-50">
+              <h2 className="font-serif text-xl font-normal text-ink">
                 Information Sharing and Disclosure
               </h2>
-              <p className="font-semibold text-slate-100">
+              <p className="font-medium text-ink">
                 We do not sell, rent, or trade your personal information to
                 third parties for promotional or marketing purposes.
               </p>
@@ -92,8 +93,8 @@ export default function PrivacyPage() {
               </ul>
             </section>
 
-            <section className="rounded-2xl border border-brand-teal/30 bg-brand-teal/10 p-5">
-              <h2 className="text-lg font-semibold text-slate-50">
+            <section className="border border-teal/40 bg-teal/10 p-5">
+              <h2 className="font-serif text-xl font-normal text-ink">
                 SMS/Text Messaging Consent and Data
               </h2>
               <p className="mt-2">
@@ -110,7 +111,7 @@ export default function PrivacyPage() {
                   number and submitting a form on our website at{" "}
                   <Link
                     href="/contact"
-                    className="font-semibold text-brand-teal"
+                    className="font-medium text-teal"
                   >
                     callordut.com/contact
                   </Link>
@@ -137,7 +138,7 @@ export default function PrivacyPage() {
                   or services.
                 </li>
               </ul>
-              <p className="mt-4 font-semibold text-slate-100">
+              <p className="mt-4 font-medium text-ink">
                 We will not share your opt-in to an SMS campaign with any third
                 party for purposes unrelated to providing you with the services
                 of that campaign. We will not share or sell your personal data,
@@ -148,7 +149,7 @@ export default function PrivacyPage() {
                 For complete SMS messaging program details, see our{" "}
                 <Link
                   href="/sms-terms"
-                  className="font-semibold text-brand-teal"
+                  className="font-medium text-teal"
                 >
                   SMS Messaging Terms
                 </Link>
@@ -157,7 +158,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-slate-50">
+              <h2 className="font-serif text-xl font-normal text-ink">
                 Storage and Security
               </h2>
               <p>
@@ -171,7 +172,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-slate-50">
+              <h2 className="font-serif text-xl font-normal text-ink">
                 Data Retention
               </h2>
               <p>
@@ -184,7 +185,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-slate-50">
+              <h2 className="font-serif text-xl font-normal text-ink">
                 Your Choices
               </h2>
               <p>You have the right to:</p>
@@ -199,7 +200,7 @@ export default function PrivacyPage() {
                 To exercise any of these rights, contact us at{" "}
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="font-semibold text-brand-teal"
+                  className="font-medium text-teal"
                 >
                   {siteConfig.email}
                 </a>
@@ -208,7 +209,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-slate-50">
+              <h2 className="font-serif text-xl font-normal text-ink">
                 Cookies and Analytics
               </h2>
               <p>
@@ -221,7 +222,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-slate-50">
+              <h2 className="font-serif text-xl font-normal text-ink">
                 Children&apos;s Privacy
               </h2>
               <p>
@@ -232,7 +233,7 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-slate-50">
+              <h2 className="font-serif text-xl font-normal text-ink">
                 Changes to This Privacy Policy
               </h2>
               <p>
@@ -245,22 +246,22 @@ export default function PrivacyPage() {
             </section>
 
             <section>
-              <h2 className="text-lg font-semibold text-slate-50">
+              <h2 className="font-serif text-xl font-normal text-ink">
                 Contact Us
               </h2>
               <p>
                 If you have questions or concerns about this Privacy Policy or
                 our privacy practices, contact us:
               </p>
-              <div className="mt-3 rounded-2xl border border-white/10 bg-white/5 p-5">
-                <p className="font-semibold text-slate-50">
+              <div className="mt-3 border border-rule bg-paper p-5">
+                <p className="font-medium text-ink">
                   {siteConfig.shortName}
                 </p>
                 <p className="mt-2">
                   Email:{" "}
                   <a
                     href={`mailto:${siteConfig.email}`}
-                    className="font-semibold text-brand-teal"
+                    className="font-medium text-teal"
                   >
                     {siteConfig.email}
                   </a>
@@ -269,7 +270,7 @@ export default function PrivacyPage() {
                   Phone:{" "}
                   <a
                     href={siteConfig.phoneHref}
-                    className="font-semibold text-brand-teal"
+                    className="font-medium text-teal"
                   >
                     {siteConfig.phone}
                   </a>
@@ -278,8 +279,8 @@ export default function PrivacyPage() {
               </div>
             </section>
 
-            <div className="mt-8 border-t border-white/10 pt-6">
-              <p className="text-xs text-slate-400">
+            <div className="mt-8 border-t border-rule pt-6">
+              <p className="text-xs text-ink-faint">
                 By using our website and services, you acknowledge that you have
                 read and understood this Privacy Policy and agree to its terms.
               </p>

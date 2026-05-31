@@ -75,9 +75,9 @@ export function HomeLeadForm({ roomTypes = [] }: HomeLeadFormProps) {
   }
 
   return (
-    <form className="grid gap-4 lg:grid-cols-2" onSubmit={handleSubmit}>
-      <div className="space-y-2">
-        <label htmlFor="name" className="text-sm font-semibold text-foreground">
+    <form className="grid gap-5 lg:grid-cols-2" onSubmit={handleSubmit}>
+      <div className="flex flex-col gap-2">
+        <label htmlFor="name" className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-faint">
           Name*
         </label>
         <input
@@ -86,12 +86,12 @@ export function HomeLeadForm({ roomTypes = [] }: HomeLeadFormProps) {
           required
           value={form.name}
           onChange={updateField("name")}
-          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
+          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal focus:outline-none"
           placeholder="Your name"
         />
       </div>
-      <div className="space-y-2">
-        <label htmlFor="company" className="text-sm font-semibold text-foreground">
+      <div className="flex flex-col gap-2">
+        <label htmlFor="company" className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-faint">
           Company / Community*
         </label>
         <input
@@ -100,12 +100,12 @@ export function HomeLeadForm({ roomTypes = [] }: HomeLeadFormProps) {
           required
           value={form.company}
           onChange={updateField("company")}
-          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
+          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal focus:outline-none"
           placeholder="e.g., Willow Grove Senior Living"
         />
       </div>
-      <div className="space-y-2">
-        <label htmlFor="email" className="text-sm font-semibold text-foreground">
+      <div className="flex flex-col gap-2">
+        <label htmlFor="email" className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-faint">
           Email*
         </label>
         <input
@@ -115,12 +115,12 @@ export function HomeLeadForm({ roomTypes = [] }: HomeLeadFormProps) {
           required
           value={form.email}
           onChange={updateField("email")}
-          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
+          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal focus:outline-none"
           placeholder="you@company.com"
         />
       </div>
-      <div className="space-y-2">
-        <label htmlFor="phone" className="text-sm font-semibold text-foreground">
+      <div className="flex flex-col gap-2">
+        <label htmlFor="phone" className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-faint">
           Phone (optional)
         </label>
         <input
@@ -129,12 +129,12 @@ export function HomeLeadForm({ roomTypes = [] }: HomeLeadFormProps) {
           type="tel"
           value={form.phone}
           onChange={updateField("phone")}
-          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
+          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal focus:outline-none"
           placeholder="(555) 123-4567"
         />
       </div>
-      <div className="space-y-2">
-        <label htmlFor="room-type" className="text-sm font-semibold text-foreground">
+      <div className="flex flex-col gap-2">
+        <label htmlFor="room-type" className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-faint">
           What kind of room?
         </label>
         <select
@@ -142,7 +142,7 @@ export function HomeLeadForm({ roomTypes = [] }: HomeLeadFormProps) {
           name="room-type"
           value={form.roomType}
           onChange={updateField("roomType")}
-          className="mt-2 w-full rounded-md border border-slate-700 bg-slate-900/70 px-3 py-2 text-sm text-slate-100 focus:border-brand-teal focus:outline-none focus:ring-1 focus:ring-brand-teal"
+          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink focus:border-teal focus:outline-none"
         >
           <option value="">Choose a room type</option>
           {roomTypes.map((room) => (
@@ -152,8 +152,8 @@ export function HomeLeadForm({ roomTypes = [] }: HomeLeadFormProps) {
           ))}
         </select>
       </div>
-      <div className="space-y-2 lg:col-span-2">
-        <label htmlFor="issues" className="text-sm font-semibold text-foreground">
+      <div className="flex flex-col gap-2 lg:col-span-2">
+        <label htmlFor="issues" className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-faint">
           What isn’t working today?
         </label>
         <textarea
@@ -163,7 +163,7 @@ export function HomeLeadForm({ roomTypes = [] }: HomeLeadFormProps) {
         required
         value={form.message}
         onChange={updateField("message")}
-        className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
+        className="w-full resize-y border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal focus:outline-none"
         placeholder="Describe the room, usage, and current pain points."
         />
       </div>
@@ -171,23 +171,23 @@ export function HomeLeadForm({ roomTypes = [] }: HomeLeadFormProps) {
         <button
           type="submit"
           disabled={status === "loading"}
-          className="inline-flex items-center justify-center rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal disabled:cursor-not-allowed disabled:opacity-80"
+          className="h-btn inline-flex items-center justify-center bg-ink px-6 py-3.5 text-sm font-medium text-paper disabled:cursor-not-allowed disabled:opacity-80"
         >
           {status === "loading" ? "Sending…" : "Schedule Free Assessment"}
         </button>
-        <p className="mt-3 text-xs text-slate-200">
+        <p className="mt-3 text-xs text-ink-faint">
           By submitting, you agree to receive calls and text messages (SMS/MMS) about your request. Message and data rates may apply. We do not sell your information. See our{" "}
-          <Link href="/privacy" className="font-semibold text-brand-teal underline-offset-2 hover:underline">
+          <Link href="/privacy" className="text-teal hover:underline underline-offset-2">
             Privacy Policy
           </Link>
           .
         </p>
       </div>
       {status === "success" ? (
-        <p className="lg:col-span-2 text-sm font-semibold text-emerald-200">Thanks — your message has been sent. We’ll reach out soon.</p>
+        <p className="lg:col-span-2 text-sm font-medium text-teal">Thanks — your message has been sent. We’ll reach out soon.</p>
       ) : null}
       {status === "error" ? (
-        <p className="lg:col-span-2 text-sm font-semibold text-red-200">{error || "Something went wrong. Please try again."}</p>
+        <p className="lg:col-span-2 text-sm font-medium text-[#b4452a]">{error || "Something went wrong. Please try again."}</p>
       ) : null}
     </form>
   );

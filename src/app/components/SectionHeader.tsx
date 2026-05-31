@@ -14,10 +14,10 @@ export function SectionHeader({ kicker, title, subtitle, align = "left" }: Secti
     <FadeIn>
       <div className={`space-y-3 ${alignment}`}>
         {kicker ? (
-          <span className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-teal">{kicker}</span>
+          <span className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-teal">{kicker}</span>
         ) : null}
-        <h2 className="text-3xl font-semibold tracking-tight text-foreground lg:text-4xl">{title}</h2>
-        {subtitle ? <p className="max-w-3xl text-base leading-relaxed text-muted">{subtitle}</p> : null}
+        <h2 className="font-serif text-3xl font-normal tracking-tight text-ink lg:text-4xl">{title}</h2>
+        {subtitle ? <p className="max-w-3xl text-base leading-relaxed text-ink-soft">{subtitle}</p> : null}
       </div>
     </FadeIn>
   );

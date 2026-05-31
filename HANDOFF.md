@@ -33,6 +33,16 @@ multifamily-security), solutions/page, room-types/* (6) + room-types/page + Room
 partnerships/cooperative-purchasing, smart-room-design. Keep all content/SEO/forms; swap
 dark Tailwind classes → heritage tokens, use heritage primitives where it reads cleaner.
 
+## Re-skin (Task #4) — DONE
+All ~20 long-tail pages re-skinned to heritage (about, privacy, sms-terms, thank-you,
+services/*, industries/*, solutions/*, room-types/* + RoomTypeTemplate, smart-room-design,
+partnerships/cooperative-purchasing) + lead forms (HomeLeadForm, FooterCTAForm,
+SolutionsLeadForm, Cannabis*Form) restyled to underline aesthetic. Shared presentational
+components (SectionHeader, PillBadge, GlassPanel, CTASection, ServiceCard, RoomTypesShowcase,
+GlowCard) re-skinned. Old dead components (components/Header.tsx, Footer.tsx, BrandMark.tsx)
+deleted. **Systemic fix:** moved base element rules (incl. `a{color}`) into `@layer base`
+so Tailwind color utilities win on links (was causing invisible link text on dark panels).
+`next build` clean: 36/36 routes prerendered. Contrast scans clean across sample pages.
+
 ## Then (Task #5)
-`next build` clean → preview verify light/dark all routes → commit → push → merge main →
-Vercel deploy (project `callordut` / dominus) → probe callordut.com live.
+Preview deploy for Mark's review → on approval merge to main → production callordut.com.

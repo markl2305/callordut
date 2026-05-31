@@ -93,31 +93,37 @@
   --font-spectral: var(--font-spectral), Georgia, serif;
 }
 
-* {
-  box-sizing: border-box;
-}
+/* Base element rules MUST live in @layer base so Tailwind's utility layer
+   (text-paper, text-teal, …) still wins on links etc. An unlayered `a {color}`
+   would override every color utility on anchors. */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
 
-html {
-  scroll-behavior: smooth;
-  background: var(--h-paper);
-}
+  html {
+    scroll-behavior: smooth;
+    background: var(--h-paper);
+  }
 
-body {
-  margin: 0;
-  background: var(--h-paper);
-  color: var(--h-ink);
-  font-family: var(--font-inter-tight), -apple-system, system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  transition: background 0.4s ease, color 0.4s ease;
-}
+  body {
+    margin: 0;
+    background: var(--h-paper);
+    color: var(--h-ink);
+    font-family: var(--font-inter-tight), -apple-system, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.4s ease, color 0.4s ease;
+  }
 
-a {
-  color: inherit;
-}
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 
-::selection {
-  background: var(--h-teal);
-  color: var(--h-on-teal);
+  ::selection {
+    background: var(--h-teal);
+    color: var(--h-on-teal);
+  }
 }
 
 /* ── Reveal-on-scroll (replaces motion.js) ──────────────────── */

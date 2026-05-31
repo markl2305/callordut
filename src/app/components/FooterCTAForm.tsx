@@ -84,7 +84,7 @@ export function FooterCTAForm() {
   }
 
   return (
-    <form className="grid gap-4 lg:grid-cols-2" onSubmit={handleSubmit}>
+    <form className="grid gap-5 lg:grid-cols-2" onSubmit={handleSubmit}>
       <input
         type="text"
         name="company_website"
@@ -94,8 +94,8 @@ export function FooterCTAForm() {
         tabIndex={-1}
         autoComplete="off"
       />
-      <div className="space-y-2">
-        <label htmlFor="footer-name" className="text-sm font-semibold text-foreground">
+      <div className="flex flex-col gap-2">
+        <label htmlFor="footer-name" className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-faint">
           Name*
         </label>
         <input
@@ -104,12 +104,12 @@ export function FooterCTAForm() {
           required
           value={form.name}
           onChange={updateField("name")}
-          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
+          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal focus:outline-none"
           placeholder="Your name"
         />
       </div>
-      <div className="space-y-2">
-        <label htmlFor="footer-email" className="text-sm font-semibold text-foreground">
+      <div className="flex flex-col gap-2">
+        <label htmlFor="footer-email" className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-faint">
           Email*
         </label>
         <input
@@ -119,12 +119,12 @@ export function FooterCTAForm() {
           required
           value={form.email}
           onChange={updateField("email")}
-          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
+          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal focus:outline-none"
           placeholder="you@company.com"
         />
       </div>
-      <div className="space-y-2">
-        <label htmlFor="footer-phone" className="text-sm font-semibold text-foreground">
+      <div className="flex flex-col gap-2">
+        <label htmlFor="footer-phone" className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-faint">
           Phone (optional)
         </label>
         <input
@@ -133,12 +133,12 @@ export function FooterCTAForm() {
           name="phone"
           value={form.phone}
           onChange={updateField("phone")}
-          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
+          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal focus:outline-none"
           placeholder="(866) 657-2383"
         />
       </div>
-      <div className="space-y-2">
-        <label htmlFor="footer-space" className="text-sm font-semibold text-foreground">
+      <div className="flex flex-col gap-2">
+        <label htmlFor="footer-space" className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-faint">
           Space type
         </label>
         <select
@@ -146,7 +146,7 @@ export function FooterCTAForm() {
           name="spaceType"
           value={form.spaceType}
           onChange={updateField("spaceType")}
-          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
+          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink focus:border-teal focus:outline-none"
         >
           <option value="">Choose a space</option>
           {spaceTypes.map((type) => (
@@ -156,8 +156,8 @@ export function FooterCTAForm() {
           ))}
         </select>
       </div>
-      <div className="space-y-2 lg:col-span-2">
-        <label htmlFor="footer-message" className="text-sm font-semibold text-foreground">
+      <div className="flex flex-col gap-2 lg:col-span-2">
+        <label htmlFor="footer-message" className="font-mono text-[11px] uppercase tracking-[0.16em] text-ink-faint">
           Message*
         </label>
         <textarea
@@ -167,7 +167,7 @@ export function FooterCTAForm() {
           required
           value={form.message}
           onChange={updateField("message")}
-          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
+          className="w-full resize-y border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal focus:outline-none"
           placeholder="Give us a room or area, rough budget, and how you use it today."
         />
       </div>
@@ -175,16 +175,16 @@ export function FooterCTAForm() {
         <button
           type="submit"
           disabled={status === "loading"}
-          className="inline-flex items-center justify-center rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal disabled:cursor-not-allowed disabled:opacity-80"
+          className="h-btn inline-flex items-center justify-center bg-ink px-6 py-3.5 text-sm font-medium text-paper disabled:cursor-not-allowed disabled:opacity-80"
         >
           {status === "loading" ? "Sending…" : "Schedule Free Assessment"}
         </button>
       </div>
       {status === "success" ? (
-        <p className="lg:col-span-2 text-sm font-semibold text-emerald-200">Thanks — we’ll reach out with a simple plan.</p>
+        <p className="lg:col-span-2 text-sm font-medium text-teal">Thanks — we’ll reach out with a simple plan.</p>
       ) : null}
       {status === "error" ? (
-        <p className="lg:col-span-2 text-sm font-semibold text-red-200">{error || "Something went wrong. Please try again."}</p>
+        <p className="lg:col-span-2 text-sm font-medium text-[#b4452a]">{error || "Something went wrong. Please try again."}</p>
       ) : null}
     </form>
   );

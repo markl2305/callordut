@@ -104,8 +104,7 @@ export function AnimatedCounter({ target, prefix = "", suffix = "", className = 
 export function GlowCard({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
     <div className={`group relative ${className}`}>
-      <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-br from-brand-teal/30 via-transparent to-brand-teal/10 opacity-0 blur-sm transition-opacity duration-500 group-hover:opacity-100" />
-      <div className="relative rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6 backdrop-blur-sm transition-all duration-300 group-hover:border-brand-teal/20 group-hover:bg-white/[0.05]">
+      <div className="relative h-full border border-rule bg-cream p-6 transition-colors duration-300 group-hover:border-teal/40">
         {children}
       </div>
     </div>
