@@ -1,222 +1,124 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { FadeIn, Stagger, StaggerItem, GlowCard } from "../components/MotionWrappers";
+import Image from "next/image";
+import { Wrap, Mono, Roman, Btn, FONT } from "../components/heritage/primitives";
+import { ForgeBlock, ClosingCTA } from "../components/heritage/sections";
 
 export const metadata: Metadata = {
-  title: "AV Integration Services | Conference Rooms & Displays | CalLord",
+  title: "AV Integration & Smart Rooms | CalLord Unified Technologies",
   description:
-    "Full-service AV integration for conference rooms, displays, audio, and video conferencing. Design, installation, and ongoing support for SMBs.",
+    "Boardrooms, council chambers, conference rooms, and command spaces engineered so the meeting starts on time and the picture is always right. Q-SYS, Crestron, Shure — documented and supported.",
+  alternates: { canonical: "/av-integration" },
 };
 
-const services = [
-  "Room audio tuning and DSP alignment",
-  "Microphones, speakers, and acoustic treatments",
-  "Display integration for dual and ultra-wide configurations",
-  "Operator-friendly control surfaces and presets",
-  "Video conferencing system integration (Teams, Zoom, Meet)",
-  "Digital signage and lobby displays",
-  "Project documentation and signal path diagrams",
-  "Ongoing support and system optimization",
-];
-
-const differentiators = [
-  {
-    title: "Operator-First Design",
-    body: "We design for the people who use the room daily — not for the spec sheet. Controls are intuitive. Cables are hidden. The system just works.",
-    icon: "◎",
-  },
-  {
-    title: "Documentation You Can Actually Use",
-    body: "Every project includes complete as-built documentation, signal flow diagrams, and user guides. When your IT person changes, the knowledge doesn't leave.",
-    icon: "◈",
-  },
-  {
-    title: "Long-Term Partnership",
-    body: "We don't disappear after install. Ongoing support, system tweaks, and expansion planning are part of how we work.",
-    icon: "◇",
-  },
-];
-
-const partners = [
-  { name: "Shure", note: "Professional microphones and audio processing", tag: "Audio" },
-  { name: "Microsoft Teams Rooms", note: "Native integration for Teams-based organizations", tag: "Collaboration" },
-];
-
-const process = [
-  { step: "01", text: "Discovery — We map your rooms, users, workflows, and existing equipment" },
-  { step: "02", text: "Design — System architecture, equipment selection, and documentation" },
-  { step: "03", text: "Installation — Coordinated install with our team or trusted local partners" },
-  { step: "04", text: "Commissioning — Testing, tuning, and user training" },
-  { step: "05", text: "Support — Ongoing availability for optimization and expansion" },
-];
-
-const relatedRooms = [
-  { label: "Executive Boardroom", href: "/room-types/executive-boardroom" },
-  { label: "Team Meeting Room", href: "/room-types/team-meeting-room" },
-  { label: "Training / All-Hands Space", href: "/room-types/training-all-hands" },
-  { label: "Small Hybrid / Focus Pod", href: "/room-types/small-hybrid-focus-pod" },
-];
-
-export default function AvIntegrationPage() {
+function AvHero() {
   return (
-    <div className="min-h-screen bg-background text-foreground noise-overlay">
-      <main className="mx-auto max-w-5xl px-4 pb-20 pt-16 lg:px-0">
-
-        {/* Hero */}
-        <FadeIn>
-          <section className="relative overflow-hidden rounded-3xl border border-white/[0.06] bg-gradient-to-br from-[#0c1222] via-[#0a1020] to-background px-6 py-14 lg:px-12 lg:py-20">
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_20%,rgba(39,154,146,0.1),transparent_50%)]" />
-            <div className="relative">
-              <span className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-teal">Core service</span>
-              <h1 className="mt-4 text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-                <span className="text-gradient">AV Integration</span> & Systems
-              </h1>
-              <p className="mt-2 text-lg font-medium text-brand-teal">Conference rooms, displays, audio, and control that just work.</p>
-              <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
-                We design, install, and support AV systems for organizations that can't afford bad calls, failed presentations, or technology that frustrates your team.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link
-                  href="/contact"
-                  className="rounded-full bg-brand-teal px-6 py-3 text-sm font-semibold text-[#070a14] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_50px_-15px_rgba(39,154,146,0.6)]"
-                >
-                  Start a Conversation
-                </Link>
-                <Link
-                  href="#services"
-                  className="rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-slate-200 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-teal/30 hover:bg-white/10"
-                >
-                  View Services
-                </Link>
-              </div>
-            </div>
-          </section>
-        </FadeIn>
-
-        {/* Services */}
-        <FadeIn className="mt-12">
-          <section id="services" className="glass-card rounded-3xl p-8">
-            <h2 className="text-2xl font-semibold text-foreground">What We Build and Support</h2>
-            <ul className="mt-6 grid gap-3 text-sm text-slate-300 sm:grid-cols-2">
-              {services.map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-teal" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
-        </FadeIn>
-
-        {/* Differentiators */}
-        <section className="mt-12">
-          <FadeIn>
-            <h2 className="text-2xl font-semibold text-foreground">Why CalLord for AV Integration</h2>
-          </FadeIn>
-          <Stagger className="mt-6 grid gap-4 md:grid-cols-3">
-            {differentiators.map((item) => (
-              <StaggerItem key={item.title}>
-                <GlowCard className="h-full">
-                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-brand-teal/10 text-lg text-brand-teal ring-1 ring-brand-teal/20">
-                    {item.icon}
-                  </div>
-                  <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">{item.body}</p>
-                </GlowCard>
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </section>
-
-        {/* Partners */}
-        <FadeIn className="mt-12">
-          <section className="glass-card rounded-3xl p-8">
-            <h2 className="text-2xl font-semibold text-foreground">Powered by Platforms You Trust</h2>
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
-              {partners.map((partner) => (
-                <div
-                  key={partner.name}
-                  className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 transition-all duration-300 hover:border-brand-teal/20 hover:bg-white/[0.05]"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="font-semibold text-foreground">{partner.name}</span>
-                    <span className="rounded-full bg-brand-teal/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-brand-teal ring-1 ring-brand-teal/20">
-                      {partner.tag}
-                    </span>
-                  </div>
-                  <p className="mt-2 text-xs leading-relaxed text-muted">{partner.note}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-        </FadeIn>
-
-        {/* Process */}
-        <section className="mt-12">
-          <FadeIn>
-            <h2 className="text-2xl font-semibold text-foreground">How We Work</h2>
-          </FadeIn>
-          <Stagger className="mt-6">
-            {process.map((item) => (
-              <StaggerItem key={item.step}>
-                <div className="group flex items-start gap-4 rounded-xl p-3 transition-colors duration-300 hover:bg-white/[0.02]">
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-brand-teal/30 bg-brand-teal/10 text-xs font-bold text-brand-teal transition-all duration-300 group-hover:bg-brand-teal group-hover:text-[#070a14]">
-                    {item.step}
-                  </span>
-                  <span className="text-sm leading-relaxed text-slate-300">{item.text}</span>
-                </div>
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </section>
-
-        {/* CTA */}
-        <FadeIn className="mt-14">
-          <section className="relative overflow-hidden rounded-3xl">
-            <div className="absolute -inset-[1px] rounded-3xl bg-gradient-to-br from-brand-teal/30 via-transparent to-brand-teal/10" />
-            <div className="relative rounded-3xl bg-[#070a14]/95 p-8">
-              <h2 className="text-2xl font-semibold text-foreground">Let's Talk About Your Space</h2>
-              <p className="mt-2 text-sm text-muted">Tell us about your room, your challenges, and your goals. We'll come back with options.</p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link
-                  href="/contact"
-                  className="rounded-full bg-brand-teal px-6 py-3 text-sm font-semibold text-[#070a14] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_50px_-15px_rgba(39,154,146,0.6)]"
-                >
-                  Start a Conversation
-                </Link>
-                <Link
-                  href="tel:+18666572383"
-                  className="rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-slate-200 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-teal/30"
-                >
-                  Call (866) 657-2383
-                </Link>
-              </div>
-            </div>
-          </section>
-        </FadeIn>
-
-        {/* Related Rooms */}
-        <FadeIn className="mt-12">
-          <h3 className="text-xl font-semibold text-foreground">Explore Room Types</h3>
-          <div className="mt-4 grid gap-3 sm:grid-cols-2">
-            {relatedRooms.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="glass-card glass-card-hover rounded-2xl p-4 text-sm font-semibold text-brand-teal transition-all duration-300"
-              >
-                {item.label} →
-              </Link>
-            ))}
-            <Link
-              href="/room-types"
-              className="glass-card glass-card-hover rounded-2xl p-4 text-sm font-semibold text-brand-teal transition-all duration-300"
-            >
-              View All Room Types →
-            </Link>
+    <section>
+      <Wrap style={{ padding: "64px clamp(24px, 5vw, 56px) 0" }}>
+        <Mono style={{ color: "var(--h-teal)" }}>Discipline II · AV Integration</Mono>
+        <h1 style={{ fontFamily: FONT.serif, fontSize: "clamp(46px, 6vw, 80px)", lineHeight: 1.0, fontWeight: 400, color: "var(--h-ink)", margin: "20px 0 0", letterSpacing: "-0.02em", maxWidth: 1000 }}>
+          Rooms where the technology<br />
+          <span style={{ fontStyle: "italic", color: "var(--h-teal)" }}>simply disappears.</span>
+        </h1>
+        <p style={{ fontFamily: FONT.sans, fontSize: 19, lineHeight: 1.55, color: "var(--h-ink-soft)", marginTop: 26, maxWidth: 620 }}>
+          Boardrooms, council chambers, conference rooms, and command spaces — engineered so the
+          meeting starts on time, the picture is always right, and the system is supported for the long haul.
+        </p>
+        <div style={{ display: "flex", gap: 12, marginTop: 32, flexWrap: "wrap" }}>
+          <Btn href="/contact">Plan a room →</Btn>
+          <Btn href="/security" variant="outline">See Security Systems</Btn>
+        </div>
+      </Wrap>
+      <Wrap style={{ padding: "40px clamp(24px, 5vw, 56px) 0" }}>
+        <figure className="cl-reveal" style={{ margin: 0, border: "1px solid var(--h-rule)", background: "var(--h-cream)", padding: 10 }}>
+          <div style={{ position: "relative", overflow: "hidden", aspectRatio: "16 / 8" }}>
+            <Image src="/heritage/nmfa-chamber.jpg" alt="New Mexico Finance Authority council chamber" fill priority sizes="(max-width: 1340px) 100vw, 1320px" style={{ objectFit: "cover" }} />
           </div>
-        </FadeIn>
-      </main>
-    </div>
+          <figcaption style={{ display: "flex", justifyContent: "space-between", paddingTop: 10, flexWrap: "wrap", gap: 8 }}>
+            <Mono>New Mexico Finance Authority · council chamber</Mono>
+            <Mono style={{ color: "var(--h-teal)" }}>Dual displays · ceiling-mount confidence monitors · dais audio · PTZ</Mono>
+          </figcaption>
+        </figure>
+      </Wrap>
+    </section>
+  );
+}
+
+function AvCase() {
+  const specs = [
+    { k: "Displays", v: "Dual presentation + ceiling-mounted confidence monitors for the dais" },
+    { k: "Audio", v: "Per-seat dais microphones with DSP — every member heard, no feedback" },
+    { k: "Camera", v: "PTZ camera for broadcast and remote participation" },
+    { k: "Acoustics", v: "Suspended acoustic clouds tuned for an open, hard-ceiling chamber" },
+  ];
+  return (
+    <section>
+      <Wrap style={{ padding: "88px clamp(24px, 5vw, 56px)" }}>
+        <Roman label="Flagship · New Mexico Finance Authority" />
+        <div className="cl-grid-split" style={{ display: "grid", gridTemplateColumns: "0.9fr 1.1fr", gap: 56, alignItems: "start" }}>
+          <div>
+            <h2 style={{ fontFamily: FONT.serif, fontSize: "clamp(30px, 3.6vw, 40px)", fontWeight: 400, color: "var(--h-ink)", margin: 0, letterSpacing: "-0.02em", lineHeight: 1.08 }}>
+              A government chamber the public can actually follow.
+            </h2>
+            <p style={{ fontFamily: FONT.sans, fontSize: 16, color: "var(--h-ink-soft)", lineHeight: 1.62, marginTop: 20 }}>
+              The brief: a council space where board members, staff, and the public can all see and hear
+              every word — in the room and on the stream. We engineered the displays, dais audio, camera,
+              and acoustics as one coordinated system, then documented every component for the long term.
+            </p>
+          </div>
+          <div style={{ border: "1px solid var(--h-rule)" }}>
+            {specs.map((s, i) => (
+              <div key={s.k} style={{ display: "grid", gridTemplateColumns: "140px 1fr", gap: 16, padding: "18px 24px", borderTop: i > 0 ? "1px solid var(--h-rule)" : "none" }}>
+                <Mono style={{ color: "var(--h-teal)" }}>{s.k}</Mono>
+                <span style={{ fontFamily: FONT.sans, fontSize: 15, color: "var(--h-ink)", lineHeight: 1.5 }}>{s.v}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Wrap>
+    </section>
+  );
+}
+
+function AvCapabilities() {
+  const caps = [
+    { n: "I", t: "Conference & Boardrooms", d: "One-touch join, automatic camera framing, and audio that picks up every seat.", specs: ["Teams / Zoom Rooms", "Auto-framing camera", "Ceiling / table mics"] },
+    { n: "II", t: "Council & Command", d: "Multi-display chambers, dais microphones, voting-ready audio, and broadcast feeds.", specs: ["Dais audio + DSP", "PTZ broadcast", "Confidence monitors"] },
+    { n: "III", t: "Digital Signage", d: "Wayfinding, lobby displays, and content scheduling that stays on without babysitting.", specs: ["Content scheduling", "Lobby & wayfinding", "Remote management"] },
+    { n: "IV", t: "Programming & Support", d: "Q-SYS and Crestron configuration — commissioned, documented, and supported.", specs: ["Q-SYS · Crestron", "D-Tools docs", "Long-term support"] },
+  ];
+  return (
+    <section style={{ background: "var(--h-cream)", borderTop: "1px solid var(--h-rule)" }}>
+      <Wrap style={{ padding: "88px clamp(24px, 5vw, 56px)" }}>
+        <Roman label="Capabilities" />
+        <div className="cl-grid-2 cl-reveal" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0, border: "1px solid var(--h-rule)", background: "var(--h-paper)" }}>
+          {caps.map((c, i) => (
+            <div key={c.n} style={{ padding: 36, borderRight: i % 2 === 0 ? "1px solid var(--h-rule)" : "none", borderBottom: i < 2 ? "1px solid var(--h-rule)" : "none" }}>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 14 }}>
+                <span style={{ fontFamily: FONT.serif, fontStyle: "italic", fontSize: 24, color: "var(--h-teal)" }}>{c.n}</span>
+                <h3 style={{ fontFamily: FONT.serif, fontSize: 26, fontWeight: 400, color: "var(--h-ink)", margin: 0, letterSpacing: "-0.015em" }}>{c.t}</h3>
+              </div>
+              <p style={{ fontFamily: FONT.sans, fontSize: 15, color: "var(--h-ink-soft)", lineHeight: 1.6, margin: "16px 0 0" }}>{c.d}</p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 22 }}>
+                {c.specs.map((s) => (
+                  <span key={s} style={{ fontFamily: FONT.mono, fontSize: 10.5, color: "var(--h-ink)", border: "1px solid var(--h-rule)", padding: "5px 10px", letterSpacing: "0.04em" }}>{s}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </Wrap>
+    </section>
+  );
+}
+
+export default function AvPage() {
+  return (
+    <>
+      <AvHero />
+      <AvCase />
+      <AvCapabilities />
+      <ForgeBlock variant="inner" />
+      <ClosingCTA />
+    </>
   );
 }

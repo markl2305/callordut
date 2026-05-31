@@ -1,132 +1,233 @@
 @import "tailwindcss";
 
-:root {
-  --background: #070a14;
-  --foreground: #e8edf5;
-  --muted: #94a3b8;
-  --card: #0c1222;
-  --card-muted: #0a0f1c;
-  --brand-teal: #279a92;
-  --brand-teal-strong: #0ea39e;
-  --brand-teal-alt: #44c1b7;
-  --brand-orange: #f97316;
-  --brand-slate: #070a14;
-  --accent-amber: #fbbf24;
-  --brand-sand: #f2e8dc;
+/* ============================================================
+   CalLord — Heritage design system
+   Warm editorial palette, light/dark via [data-theme] on <html>.
+   Tokens are exposed as raw CSS vars (--h-*) for ported inline-
+   style components AND mapped into Tailwind's @theme so utility
+   classes (bg-paper, text-ink, border-rule, text-teal) work and
+   auto-swap with the theme.
+   ============================================================ */
+
+:root,
+:root[data-theme="light"] {
+  --h-paper: #f1ebe0;
+  --h-cream: #e8e0d2;
+  --h-cream-deep: #ded4c2;
+  --h-ink: #171513;
+  --h-ink-soft: #5a534b;
+  --h-ink-faint: #8a8177;
+  --h-teal: #1c8c82;
+  --h-teal-deep: #0f5c55;
+  --h-teal-bright: #2ba89c;
+  --h-rule: rgba(23, 21, 19, 0.14);
+  --h-rule-soft: rgba(23, 21, 19, 0.08);
+  --h-nav-bg: rgba(241, 235, 224, 0.86);
+  --h-on-teal: #f1ebe0;
+  /* logo suite (light) */
+  --h-logo-disc: #f1e7d8;
+  --h-logo-c: #1c8c82;
+  --h-logo-l: #13403b;
+  --h-logo-name: #1c8c82;
+  --h-logo-sub: #3a4a47;
+  --h-logo-bg: #f1ebe0;
+  --h-logo-bg-alt: #e8e0d2;
+}
+
+:root[data-theme="dark"] {
+  --h-paper: #15130e;
+  --h-cream: #1d1a13;
+  --h-cream-deep: #272117;
+  --h-ink: #ece4d6;
+  --h-ink-soft: rgba(236, 228, 214, 0.66);
+  --h-ink-faint: rgba(236, 228, 214, 0.44);
+  --h-teal: #2ba89c;
+  --h-teal-deep: #1c8c82;
+  --h-teal-bright: #42c8b7;
+  --h-rule: rgba(236, 228, 214, 0.16);
+  --h-rule-soft: rgba(236, 228, 214, 0.08);
+  --h-nav-bg: rgba(21, 19, 14, 0.86);
+  --h-on-teal: #15130e;
+  /* logo suite (dark) */
+  --h-logo-disc: #0a0a0a;
+  --h-logo-c: #2ba89c;
+  --h-logo-l: #f1e7d8;
+  --h-logo-name: #ece4d6;
+  --h-logo-sub: #42c8b7;
+  --h-logo-bg: #15130e;
+  --h-logo-bg-alt: #1d1a13;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-muted: var(--muted);
-  --color-card: var(--card);
-  --color-card-muted: var(--card-muted);
-  --color-brand-teal: var(--brand-teal);
-  --color-brand-teal-strong: var(--brand-teal-strong);
-  --color-brand-teal-alt: var(--brand-teal-alt);
-  --color-brand-orange: var(--brand-orange);
-  --color-brand-slate: var(--brand-slate);
-  --color-accent-amber: var(--accent-amber);
-  --color-brand-sand: var(--brand-sand);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: var(--h-paper);
+  --color-cream: var(--h-cream);
+  --color-cream-deep: var(--h-cream-deep);
+  --color-ink: var(--h-ink);
+  --color-ink-soft: var(--h-ink-soft);
+  --color-ink-faint: var(--h-ink-faint);
+  --color-teal: var(--h-teal);
+  --color-teal-deep: var(--h-teal-deep);
+  --color-teal-bright: var(--h-teal-bright);
+  --color-rule: var(--h-rule);
+  --color-rule-soft: var(--h-rule-soft);
+  --color-on-teal: var(--h-on-teal);
+
+  /* Back-compat aliases so not-yet-reskinned utility classes don't look alien */
+  --color-background: var(--h-paper);
+  --color-foreground: var(--h-ink);
+  --color-muted: var(--h-ink-soft);
+  --color-card: var(--h-cream);
+  --color-card-muted: var(--h-cream-deep);
+  --color-brand-teal: var(--h-teal);
+  --color-brand-teal-strong: var(--h-teal-deep);
+  --color-brand-teal-alt: var(--h-teal-bright);
+  --color-brand-orange: #e2632a;
+  --color-brand-slate: var(--h-paper);
+  --color-accent-amber: #e2632a;
+  --color-brand-sand: var(--h-cream);
+
+  --font-serif: var(--font-newsreader), Georgia, serif;
+  --font-sans: var(--font-inter-tight), -apple-system, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+  --font-display: var(--font-space-grotesk), sans-serif;
+  --font-spectral: var(--font-spectral), Georgia, serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #050810;
-    --foreground: #e7eef9;
-    --muted: #94a3b8;
-    --card: #0a0f1c;
-    --card-muted: #080c16;
-  }
+* {
+  box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  background: var(--h-paper);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  margin: 0;
+  background: var(--h-paper);
+  color: var(--h-ink);
+  font-family: var(--font-inter-tight), -apple-system, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
 a {
   color: inherit;
 }
 
-/* Gradient text utility */
-.text-gradient {
-  background: linear-gradient(135deg, #e8edf5 0%, #279a92 50%, #44c1b7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+::selection {
+  background: var(--h-teal);
+  color: var(--h-on-teal);
 }
 
-.text-gradient-teal {
-  background: linear-gradient(135deg, #279a92 0%, #44c1b7 60%, #0ea39e 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Glass card */
-.glass-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.glass-card-hover:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(39, 154, 146, 0.2);
-  box-shadow: 0 0 40px -20px rgba(39, 154, 146, 0.3);
-}
-
-/* Gradient border glow */
-.glow-border {
-  position: relative;
-}
-
-.glow-border::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(39, 154, 146, 0.4), transparent 40%, transparent 60%, rgba(39, 154, 146, 0.2));
+/* ── Reveal-on-scroll (replaces motion.js) ──────────────────── */
+.cl-reveal {
   opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: -1;
-  filter: blur(1px);
+  transform: translateY(22px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.3, 1),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.3, 1);
 }
-
-.glow-border:hover::before {
+.cl-reveal.cl-in {
   opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cl-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }
 
-/* Noise texture overlay */
-.noise-overlay::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  opacity: 0.015;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 50;
+/* ── Shared interaction helpers (keep server components hover-able) ── */
+.h-hover-cream {
+  transition: background 0.2s ease;
+}
+.h-hover-cream:hover {
+  background: var(--h-cream);
+}
+.h-btn {
+  transition: transform 0.18s ease, box-shadow 0.2s ease, background 0.2s ease,
+    color 0.2s ease, border-color 0.2s ease;
+}
+.h-btn:hover {
+  transform: translateY(-1px);
+}
+.h-link {
+  transition: color 0.2s ease;
+}
+.h-link:hover {
+  color: var(--h-teal);
 }
 
-/* Section divider */
+/* ── Legacy utility names kept (restyled) so transitional pages don't break ── */
 .section-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(39, 154, 146, 0.3), transparent);
+  background: var(--h-rule);
+}
+.text-gradient,
+.text-gradient-teal {
+  color: var(--h-teal);
+}
+.glass-card {
+  background: var(--h-cream);
+  border: 1px solid var(--h-rule);
+}
+.glass-card-hover:hover {
+  background: var(--h-cream-deep);
+  border-color: var(--h-teal);
+}
+.noise-overlay::after {
+  content: none;
+}
+.grid-bg {
+  background-image: none;
 }
 
-/* Subtle grid background */
-.grid-bg {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 60px 60px;
+/* ── Header responsive ──────────────────────────────────────── */
+@media (max-width: 940px) {
+  .cl-nav-desktop {
+    display: none !important;
+  }
+  .cl-cta-desktop {
+    display: none !important;
+  }
+  .cl-burger {
+    display: grid !important;
+  }
 }
+@media (min-width: 941px) {
+  .cl-mobile-menu {
+    display: none !important;
+  }
+}
+
+/* ── Responsive grids for ported sections ───────────────────── */
+@media (max-width: 860px) {
+  .cl-grid-2,
+  .cl-grid-3,
+  .cl-grid-4,
+  .cl-grid-split {
+    grid-template-columns: 1fr !important;
+  }
+  .cl-grid-2 > * + *,
+  .cl-grid-3 > * + *,
+  .cl-grid-4 > * + * {
+    border-left: none !important;
+  }
+  .cl-hide-mobile {
+    display: none !important;
+  }
+  .cl-grid-footer {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+@media (max-width: 560px) {
+  .cl-grid-footer {
+    grid-template-columns: 1fr !important;
+  }
+}
+

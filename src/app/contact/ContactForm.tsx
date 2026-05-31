@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useState, type ChangeEvent, type FormEvent, type CSSProperties } from "react";
 import { trackLead } from "@/lib/analytics";
 import { event as gaEvent } from "@/lib/gtag";
 import { CANNABIS_CONTENT_ENABLED } from "@/config/flags";
+import { Mono, FONT } from "../components/heritage/primitives";
 
 const roomOptions = [
   "Executive Boardroom",
@@ -16,10 +17,23 @@ const roomOptions = [
   "Cannabis Security",
   "Other",
 ];
-// TEMP: Cannabis content hidden for insurance audit
 const visibleRoomOptions = CANNABIS_CONTENT_ENABLED
   ? roomOptions
   : roomOptions.filter((option) => option !== "Cannabis Security");
+
+const fieldStyle: CSSProperties = {
+  fontFamily: FONT.sans,
+  fontSize: 15,
+  padding: "11px 0",
+  background: "transparent",
+  border: "none",
+  borderBottom: "1px solid var(--h-ink)",
+  color: "var(--h-ink)",
+  outline: "none",
+  width: "100%",
+};
+
+const labelWrap: CSSProperties = { display: "flex", flexDirection: "column", gap: 7 };
 
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -29,6 +43,7 @@ export function ContactForm() {
     email: "",
     phone: "",
     company: "",
+    service: "",
     roomType: "",
     message: "",
     heardFrom: "",
@@ -58,10 +73,8 @@ export function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...form,
+          company_website: form.honeypot,
           source: "Contact Page Form",
-          heardFrom: form.heardFrom,
-          roomType: form.roomType,
-          honeypot: form.honeypot,
         }),
       });
 
@@ -73,7 +86,6 @@ export function ContactForm() {
 
       setStatus("success");
       if (typeof window !== "undefined") {
-        console.log("Firing GA lead_submit");
         gaEvent("lead_submit", {
           form_id: "callord_main_contact",
           page_location: window.location.href,
@@ -81,16 +93,7 @@ export function ContactForm() {
         });
       }
       trackLead({ formName: "Contact Page Form" });
-      setForm({
-        name: "",
-        email: "",
-        phone: "",
-        company: "",
-        roomType: "",
-        message: "",
-        heardFrom: "",
-        honeypot: "",
-      });
+      setForm({ name: "", email: "", phone: "", company: "", service: "", roomType: "", message: "", heardFrom: "", honeypot: "" });
     } catch (err) {
       console.error("Contact form submission failed", err);
       setError(err instanceof Error ? err.message : "Something went wrong sending your message. Please try again or call us directly.");
@@ -99,151 +102,91 @@ export function ContactForm() {
   }
 
   return (
-    <form
-      className="grid gap-4 rounded-3xl border border-brand-teal/30 bg-gradient-to-br from-brand-teal/15 via-brand-teal/10 to-brand-slate/40 px-6 py-10 lg:grid-cols-2 lg:px-12"
-      onSubmit={handleSubmit}
-    >
-      <input
-        type="text"
-        name="company_website"
-        value={form.honeypot}
-        onChange={updateField("honeypot")}
-        className="hidden"
-        tabIndex={-1}
-        autoComplete="off"
-      />
-      <div className="space-y-2">
-        <label htmlFor="name" className="text-sm font-semibold text-foreground">
-          Name*
-        </label>
-        <input
-          id="name"
-          name="name"
-          required
-          value={form.name}
-          onChange={updateField("name")}
-          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
-          placeholder="Your name"
-        />
-      </div>
-      <div className="space-y-2">
-        <label htmlFor="email" className="text-sm font-semibold text-foreground">
-          Email*
-        </label>
-        <input
-          id="email"
-          type="email"
-          name="email"
-          required
-          value={form.email}
-          onChange={updateField("email")}
-          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
-          placeholder="you@company.com"
-        />
-      </div>
-      <div className="space-y-2">
-        <label htmlFor="phone" className="text-sm font-semibold text-foreground">
-          Phone
-        </label>
-        <input
-          id="phone"
-          type="tel"
-          name="phone"
-          value={form.phone}
-          onChange={updateField("phone")}
-          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
-          placeholder="(866) 657-2383"
-        />
-      </div>
-      <div className="space-y-2">
-        <label htmlFor="heard-from" className="text-sm font-semibold text-foreground">
-          How did you hear about us?
-        </label>
-        <input
-          id="heard-from"
-          name="heard-from"
-          value={form.heardFrom}
-          onChange={updateField("heardFrom")}
-          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
-          placeholder="Referral, search, social, etc."
-        />
-      </div>
-      <div className="space-y-2">
-        <label htmlFor="company" className="text-sm font-semibold text-foreground">
-          Company / Community*
-        </label>
-        <input
-          id="company"
-          name="company"
-          required
-          value={form.company}
-          onChange={updateField("company")}
-          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
-          placeholder="e.g., Willow Grove Senior Living"
-        />
-      </div>
-      <div className="space-y-2">
-        <label htmlFor="room-type" className="text-sm font-semibold text-foreground">
-          What kind of room?
-        </label>
-        <select
-          id="room-type"
-          name="room-type"
-          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
-          value={form.roomType}
-          onChange={updateField("roomType")}
-        >
-          <option value="" disabled>
-            Choose a room type (optional)
-          </option>
+    <form style={{ display: "flex", flexDirection: "column", gap: 20 }} onSubmit={handleSubmit}>
+      <input type="text" name="company_website" value={form.honeypot} onChange={updateField("honeypot")} style={{ display: "none" }} tabIndex={-1} autoComplete="off" aria-hidden />
+
+      <label style={labelWrap}>
+        <Mono>Name</Mono>
+        <input required value={form.name} onChange={updateField("name")} style={fieldStyle} />
+      </label>
+      <label style={labelWrap}>
+        <Mono>Email</Mono>
+        <input type="email" required value={form.email} onChange={updateField("email")} style={fieldStyle} />
+      </label>
+      <label style={labelWrap}>
+        <Mono>Company</Mono>
+        <input value={form.company} onChange={updateField("company")} style={fieldStyle} />
+      </label>
+      <label style={labelWrap}>
+        <Mono>Phone (optional)</Mono>
+        <input type="tel" value={form.phone} onChange={updateField("phone")} style={fieldStyle} />
+      </label>
+      <label style={labelWrap}>
+        <Mono>What do you need</Mono>
+        <select value={form.service} onChange={updateField("service")} style={fieldStyle}>
+          <option value="">Choose one</option>
+          <option value="Security systems">Security systems</option>
+          <option value="AV integration">AV integration</option>
+          <option value="Both">Both</option>
+        </select>
+      </label>
+      <label style={labelWrap}>
+        <Mono>Room or space type (optional)</Mono>
+        <select value={form.roomType} onChange={updateField("roomType")} style={fieldStyle}>
+          <option value="">Choose a room type (optional)</option>
           {visibleRoomOptions.map((option) => (
-            <option key={option} value={option} className="text-slate-900">
+            <option key={option} value={option}>
               {option}
             </option>
           ))}
         </select>
-      </div>
-      <div className="space-y-2 lg:col-span-2">
-        <label htmlFor="project" className="text-sm font-semibold text-foreground">
-          Tell us about your rooms or project*
-        </label>
-        <textarea
-          id="project"
-          name="project"
-          rows={5}
-          required
-          value={form.message}
-          onChange={updateField("message")}
-          className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/50"
-          placeholder="Room types, challenges today, timeline, success looks like..."
-        />
-      </div>
-      <div className="lg:col-span-2">
-        <button
-          type="submit"
-          disabled={status === "loading"}
-          className="inline-flex w-full items-center justify-center rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal disabled:cursor-not-allowed disabled:opacity-80"
-        >
-          {status === "loading" ? "Sending…" : "Schedule Free Assessment"}
-        </button>
-        <p className="mt-3 text-xs text-slate-200">
-          By submitting, you agree to receive calls and text messages (SMS/MMS) from CalLord Unified Technologies about your request. Message frequency varies. Message and data rates may apply. Reply STOP to opt out. Reply HELP for help. Consent is not a condition of purchase. We do not sell your information. See our{" "}
-          <Link href="/privacy" className="font-semibold text-brand-teal underline-offset-2 hover:underline">
-            Privacy Policy
-          </Link>{" "}
-          and{" "}
-          <Link href="/sms-terms" className="font-semibold text-brand-teal underline-offset-2 hover:underline">
-            SMS Terms
-          </Link>
-          .
+      </label>
+      <label style={labelWrap}>
+        <Mono>How did you hear about us? (optional)</Mono>
+        <input value={form.heardFrom} onChange={updateField("heardFrom")} style={fieldStyle} placeholder="Referral, search, social…" />
+      </label>
+      <label style={labelWrap}>
+        <Mono>Tell us about the space</Mono>
+        <textarea rows={3} required value={form.message} onChange={updateField("message")} style={{ ...fieldStyle, resize: "vertical" }} />
+      </label>
+
+      <button
+        type="submit"
+        disabled={status === "loading"}
+        className="h-btn"
+        style={{
+          fontFamily: FONT.sans,
+          fontSize: 14,
+          fontWeight: 500,
+          background: "var(--h-ink)",
+          color: "var(--h-paper)",
+          border: "none",
+          padding: "15px 26px",
+          cursor: status === "loading" ? "wait" : "pointer",
+          alignSelf: "flex-start",
+          marginTop: 8,
+          opacity: status === "loading" ? 0.8 : 1,
+        }}
+      >
+        {status === "loading" ? "Sending…" : "Request a walkthrough →"}
+      </button>
+
+      {status === "success" && (
+        <p style={{ fontFamily: FONT.sans, fontSize: 14, color: "var(--h-teal)", margin: 0 }}>
+          Thanks — your message has been sent. We&apos;ll reach out soon.
         </p>
-      </div>
-      {status === "success" ? (
-        <p className="lg:col-span-2 text-sm font-semibold text-emerald-200">
-          Thanks — your message has been sent. We’ll reach out soon.
-        </p>
-      ) : null}
-      {error ? <p className="lg:col-span-2 text-sm font-semibold text-red-200">{error}</p> : null}
+      )}
+      {error && <p style={{ fontFamily: FONT.sans, fontSize: 14, color: "#b4452a", margin: 0 }}>{error}</p>}
+
+      <p style={{ fontFamily: FONT.sans, fontSize: 12, color: "var(--h-ink-faint)", lineHeight: 1.55, margin: "4px 0 0" }}>
+        By submitting, you agree to receive calls and text messages (SMS/MMS) from CalLord Unified
+        Technologies about your request. Message frequency varies. Message and data rates may apply. Reply
+        STOP to opt out. Reply HELP for help. Consent is not a condition of purchase. We do not sell your
+        information. See our{" "}
+        <Link href="/privacy" style={{ color: "var(--h-teal)", textDecoration: "none" }}>Privacy Policy</Link>{" "}
+        and{" "}
+        <Link href="/sms-terms" style={{ color: "var(--h-teal)", textDecoration: "none" }}>SMS Terms</Link>.
+      </p>
     </form>
   );
 }

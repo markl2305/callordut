@@ -1,64 +1,79 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Newsreader, Spectral, Space_Grotesk, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import { Footer } from "./components/Footer";
-import { Header } from "./components/Header";
+import { Header } from "./components/heritage/Header";
+import { Footer } from "./components/heritage/Footer";
+import { ThemeScript } from "./components/heritage/ThemeScript";
+import { RevealObserver } from "./components/heritage/RevealObserver";
 import { siteConfig } from "../config/site";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const newsreader = Newsreader({
+  variable: "--font-newsreader",
   subsets: ["latin"],
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
+  display: "swap",
 });
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const spectral = Spectral({
+  variable: "--font-spectral",
   subsets: ["latin"],
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
+});
+const interTight = Inter_Tight({
+  variable: "--font-inter-tight",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
+});
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Smart Rooms, AV & Security Design | CalLord Unified Technologies",
+  title: "Commercial Security & AV Integration | CalLord Unified Technologies",
   description:
-    "CalLord Unified Technologies designs AV systems, smart rooms, and security so every meeting, resident check-in, and virtual visit just works. Based in Albuquerque, serving teams nationwide.",
+    "CalLord Unified Technologies designs, installs, and supports commercial security systems and audiovisual integration. Two disciplines, one accountable partner — and an exclusive Forge platform partner.",
   icons: { icon: "/icon.svg" },
   metadataBase: new URL(siteConfig.website),
   openGraph: {
-    title: "Smart Rooms, AV & Security Design | CalLord Unified Technologies",
+    title: "Commercial Security & AV Integration | CalLord Unified Technologies",
     description:
-      "CalLord Unified Technologies designs AV systems, smart rooms, and security so every meeting, resident check-in, and virtual visit just works.",
+      "Commercial security and audiovisual integration. Two disciplines, one accountable partner — designed, installed, and supported for the long term.",
     url: siteConfig.website,
     siteName: siteConfig.shortName,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Smart Rooms, AV & Security Design | CalLord Unified Technologies",
+    title: "Commercial Security & AV Integration | CalLord Unified Technologies",
     description:
-      "AV integration, smart rooms, and security designed for operators. Based in Albuquerque, serving teams nationwide.",
+      "Commercial security and audiovisual integration. Two disciplines, one accountable partner.",
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const gaMeasurementId =
     process.env.NEXT_PUBLIC_GA_ID || process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
-        <Script
-          src="https://unpkg.com/@elevenlabs/convai-widget-embed"
-          strategy="afterInteractive"
-        />
+        <ThemeScript />
         {gaMeasurementId ? (
           <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
-              strategy="afterInteractive"
-            />
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`} strategy="afterInteractive" />
             <Script
               id="ga4-init"
               strategy="afterInteractive"
@@ -75,11 +90,11 @@ export default function RootLayout({
         ) : null}
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground noise-overlay`}
+        className={`${newsreader.variable} ${spectral.variable} ${spaceGrotesk.variable} ${interTight.variable} ${jetbrainsMono.variable} antialiased`}
       >
         <Header />
-        <main className="pt-20 lg:pt-28">{children}</main>
-        <elevenlabs-convai agent-id="agent_8401kb8nr99ffnb9m236xyabwjyx"></elevenlabs-convai>
+        <RevealObserver />
+        <main>{children}</main>
         <Footer />
       </body>
     </html>
