@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0b1220;
-  --foreground: #e5edf5;
-  --muted: #c6d4e5;
-  --card: #101a2d;
-  --card-muted: #0f1b2f;
+  --background: #070a14;
+  --foreground: #e8edf5;
+  --muted: #94a3b8;
+  --card: #0c1222;
+  --card-muted: #0a0f1c;
   --brand-teal: #279a92;
   --brand-teal-strong: #0ea39e;
   --brand-teal-alt: #44c1b7;
   --brand-orange: #f97316;
-  --brand-slate: #0b1220;
+  --brand-slate: #070a14;
   --accent-amber: #fbbf24;
   --brand-sand: #f2e8dc;
 }
@@ -34,12 +34,16 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #070c18;
+    --background: #050810;
     --foreground: #e7eef9;
-    --muted: #c2d0e6;
-    --card: #0c1324;
-    --card-muted: #0b101c;
+    --muted: #94a3b8;
+    --card: #0a0f1c;
+    --card-muted: #080c16;
   }
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -50,4 +54,79 @@ body {
 
 a {
   color: inherit;
+}
+
+/* Gradient text utility */
+.text-gradient {
+  background: linear-gradient(135deg, #e8edf5 0%, #279a92 50%, #44c1b7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-teal {
+  background: linear-gradient(135deg, #279a92 0%, #44c1b7 60%, #0ea39e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-card-hover:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(39, 154, 146, 0.2);
+  box-shadow: 0 0 40px -20px rgba(39, 154, 146, 0.3);
+}
+
+/* Gradient border glow */
+.glow-border {
+  position: relative;
+}
+
+.glow-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(39, 154, 146, 0.4), transparent 40%, transparent 60%, rgba(39, 154, 146, 0.2));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  filter: blur(1px);
+}
+
+.glow-border:hover::before {
+  opacity: 1;
+}
+
+/* Noise texture overlay */
+.noise-overlay::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 50;
+}
+
+/* Section divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(39, 154, 146, 0.3), transparent);
+}
+
+/* Subtle grid background */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
 }

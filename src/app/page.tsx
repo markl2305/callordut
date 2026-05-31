@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { siteConfig } from "../config/site";
 import { FooterCTAForm } from "./components/FooterCTAForm";
+import { FadeIn, Stagger, StaggerItem, AnimatedCounter, GlowCard } from "./components/MotionWrappers";
 
 export const metadata: Metadata = {
   title: "CalLord Unified Technologies | Smart Rooms, AV & Security Design",
@@ -24,111 +25,87 @@ export const metadata: Metadata = {
   },
 };
 
-const heroPillars = [
-  {
-    title: "Smart Room Design",
-    subtitle: "Fixed-price packages. 3–7 day delivery.",
-    body: "Professional D-Tools documentation, equipment specs, and installation guidance — without hiring a full-time AV engineer.",
-    cta: { label: "See Design Packages", href: "/smart-room-design" },
-  },
-  {
-    title: "Full-Service AV Integration",
-    subtitle: "Design. Install. Support.",
-    body: "End-to-end AV systems for conference rooms, displays, audio, and control — managed from discovery through long-term support.",
-    cta: { label: "Tell Us About Your Space", href: "/contact" },
-  },
-];
-
-const heroSecurityServices = [
-  {
-    title: "Multifamily Security",
-    subtitle: "Portfolio-ready, cloud-native protection.",
-    body: "Unified security for properties that need visibility, accountability, and a clean upgrade path.",
-    cta: { label: "See Multifamily Security", href: "/solutions/multifamily-security" },
-  },
-  {
-    title: "Resident Safety",
-    subtitle: "Resident safety, simplified operations.",
-    body: "Cloud video and access control for apartments, condos, and mixed-use communities.",
-    cta: { label: "See Multifamily Security", href: "/solutions/multifamily-security" },
-  },
-];
-
 const trustStats = [
-  { label: "Rooms Delivered", value: "250+" },
-  { label: "Avg. Response", value: "<1hr" },
-  { label: "Uptime Target", value: "99.5%" },
+  { label: "Rooms Delivered", value: 250, suffix: "+" },
+  { label: "Avg. Response", value: 1, prefix: "<", suffix: "hr" },
+  { label: "Uptime Target", value: 99.5, suffix: "%" },
 ];
 
-const trustLogos = ["Eagle Eye Networks", "Brivo", "Q-SYS", "Shure", "Biamp"];
+const trustLogos = ["Eagle Eye Networks", "Brivo", "Shure", "Microsoft Teams Rooms"];
 
 const serveCards = [
   {
     title: "Senior Living Communities",
     body: "Private virtual visit rooms, common-area AV, and camera coverage that keeps residents connected without tech friction.",
     href: "/industries/senior-living",
+    icon: "🏥",
   },
   {
     title: "Hospitality & Private Clubs",
     body: "Discreet AV, lighting cues, and security paths that protect the vibe for lounges, boutique hotels, and private clubs.",
     href: "/industries/hospitality",
+    icon: "🏨",
   },
   {
     title: "Small & Mid-Sized Offices",
     body: "Boardrooms, huddle rooms, displays, audio, and camera systems where presentations just start.",
     href: "/industries/offices",
+    icon: "🏢",
+  },
+  {
+    title: "Multifamily Properties",
+    body: "Unified security for properties that need visibility, accountability, and a clean upgrade path.",
+    href: "/solutions/multifamily-security",
+    icon: "🏘️",
   },
 ];
 
 const processSteps = [
-  {
-    title: "Discover",
-    copy: "We map your rooms, users, and existing gear so we know what we’re building on.",
-  },
-  {
-    title: "Design",
-    copy: "We design audio, video, and control in plain language and schematics.",
-  },
-  {
-    title: "Deliver",
-    copy: "We manage install and configuration with local partners so the room is ready to use.",
-  },
-  {
-    title: "Support",
-    copy: "We stay available for tweaks, expansions, and new rooms as you grow.",
-  },
+  { step: "01", title: "Discover", copy: "We map your rooms, users, and existing gear so we know what we're building on." },
+  { step: "02", title: "Design", copy: "We design audio, video, and control in plain language and schematics." },
+  { step: "03", title: "Deliver", copy: "We manage install and configuration with local partners so the room is ready to use." },
+  { step: "04", title: "Support", copy: "We stay available for tweaks, expansions, and new rooms as you grow." },
 ];
 
 const roomTemplates = [
-  { title: "Executive Boardroom", href: "/room-types/executive-boardroom", useCases: "10–18 people • Quarterly board calls • Investor updates" },
-  { title: "Team Meeting Room", href: "/room-types/team-meeting-room", useCases: "6–10 people • Weekly syncs • Workshops" },
-  { title: "Virtual Visit / Telehealth", href: "/room-types/virtual-visit-telehealth", useCases: "Private visits • Telehealth • Consultations" },
-  { title: "Small Hybrid / Focus Pod", href: "/room-types/small-hybrid-focus-pod", useCases: "1–4 people • Hybrid calls • Focus work" },
+  { title: "Executive Boardroom", href: "/room-types/executive-boardroom", useCases: "10–18 people  •  Board calls  •  Investor updates", image: "/room-executive-boardroom.png" },
+  { title: "Team Meeting Room", href: "/room-types/team-meeting-room", useCases: "6–10 people  •  Weekly syncs  •  Workshops", image: "/room-team-meeting.png" },
+  { title: "Virtual Visit / Telehealth", href: "/room-types/virtual-visit-telehealth", useCases: "Private visits  •  Telehealth  •  Consultations", image: "/room-generic.png" },
+  { title: "Small Hybrid / Focus Pod", href: "/room-types/small-hybrid-focus-pod", useCases: "1–4 people  •  Hybrid calls  •  Focus work", image: "/room-small-hybrid-focus-pod.png" },
 ];
 
 const differentiators = [
   {
     title: "Operator-First Design",
     body: "We speak in floor plans and outcomes — not boxes and part numbers. Every system is designed for the people who use it daily.",
+    icon: "◎",
   },
   {
     title: "Security-Ready by Design",
     body: "AV and rooms are designed with camera coverage, access control, and compliance in mind for regulated environments.",
+    icon: "◈",
   },
   {
     title: "Future-Ready Rooms",
     body: "Systems are designed to be upgraded in pieces — not ripped out every time platforms change. Your investment lasts.",
+    icon: "◇",
   },
+];
+
+const platforms = [
+  { name: "Eagle Eye Networks", tag: "Security", description: "Cloud video surveillance + retention for regulated facilities." },
+  { name: "Brivo", tag: "Access", description: "Cloud access control and credentialing for secure paths and storage." },
+  { name: "Shure", tag: "Audio", description: "Professional microphones and audio processing for clear, reliable sound." },
+  { name: "Microsoft Teams Rooms", tag: "Collaboration", description: "Native integration for Teams-based organizations and hybrid work." },
 ];
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-brand-slate via-[#0f1d32] to-[#0b1220] text-foreground">
+    <div className="min-h-screen bg-background text-foreground noise-overlay">
       <main className="mx-auto max-w-6xl px-4 pb-16 pt-4 lg:px-6">
-        <section
-          id="hero"
-          className="relative isolate overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-br from-brand-slate via-[#10223a] to-[#0b1220] px-6 py-14 shadow-[0_25px_80px_-40px_rgba(0,0,0,0.8)] lg:px-12 lg:py-20"
-        >
+
+        {/* ── HERO ── */}
+        <section className="relative isolate overflow-hidden rounded-3xl">
           <div className="absolute inset-0">
             <Image
               src="/hero-conference-room.webp.png"
@@ -137,285 +114,309 @@ export default function Home() {
               priority
               className="object-cover"
             />
-            <div
-              className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/60 to-slate-950/90"
-              aria-hidden
-            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#070a14]/80 via-[#070a14]/60 to-[#070a14]/95" />
           </div>
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(22,199,182,0.18),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(249,115,22,0.14),transparent_30%),radial-gradient(circle_at_60%_70%,rgba(22,199,182,0.2),transparent_35%)]" />
-          <div className="relative grid gap-10 lg:grid-cols-[1fr,0.95fr] lg:items-start">
-            <div className="space-y-8 pt-4">
-              <div className="space-y-4">
-                <h1 className="text-balance text-4xl font-semibold leading-tight text-foreground sm:text-5xl lg:text-6xl">
-                  Rooms That Just Work
-                </h1>
-                <p className="text-lg font-semibold leading-relaxed text-muted lg:text-xl">For Teams Who Can’t Afford Bad Calls</p>
-                <p className="text-base leading-relaxed text-slate-200 lg:text-lg">
-                  AV systems, smart rooms, and security designed for multifamily, senior living, offices, and hospitality. Documented. Supported. Done right.
-                </p>
-              </div>
-              <div className="flex flex-wrap items-center gap-3">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_20%,rgba(39,154,146,0.15),transparent_50%),radial-gradient(ellipse_at_80%_80%,rgba(39,154,146,0.08),transparent_50%)]" />
+
+          <div className="relative px-6 py-20 lg:px-14 lg:py-28">
+            <FadeIn delay={0.1}>
+              <span className="inline-flex items-center gap-2 rounded-full border border-brand-teal/30 bg-brand-teal/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-teal">
+                <span className="h-1.5 w-1.5 rounded-full bg-brand-teal animate-pulse" />
+                AV &bull; Security &bull; Smart Rooms
+              </span>
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <h1 className="mt-6 max-w-3xl text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl lg:text-7xl">
+                <span className="text-gradient">Rooms That</span>{" "}
+                <span className="text-foreground">Just Work</span>
+              </h1>
+            </FadeIn>
+            <FadeIn delay={0.35}>
+              <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-300 lg:text-xl">
+                AV systems, smart rooms, and security designed for multifamily, senior living, offices, and hospitality.{" "}
+                <span className="text-foreground font-medium">Documented. Supported. Done right.</span>
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.5}>
+              <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Link
                   href="#footer-cta"
-                  className="rounded-full bg-brand-teal px-6 py-3 text-base font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90 hover:shadow-[0_25px_60px_-40px_rgba(39,154,146,0.9)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
+                  className="group relative inline-flex items-center justify-center rounded-full bg-brand-teal px-7 py-3.5 text-base font-semibold text-[#070a14] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_50px_-15px_rgba(39,154,146,0.6)]"
                 >
                   Schedule Free Assessment
                 </Link>
                 <Link
                   href="#room-types"
-                  className="rounded-full border border-brand-teal/70 px-6 py-3 text-base font-semibold text-brand-teal transition hover:-translate-y-0.5 hover:bg-brand-teal/10 hover:text-brand-slate focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-7 py-3.5 text-base font-semibold text-slate-200 transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-teal/30 hover:bg-white/10"
                 >
                   See Room Templates
+                  <span className="text-brand-teal">→</span>
                 </Link>
               </div>
-            </div>
-            <div className="relative overflow-hidden rounded-3xl border border-slate-600/60 bg-slate-900/70 p-5 text-slate-100 shadow-md shadow-black/40">
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(39,154,146,0.35),transparent_45%),radial-gradient(circle_at_100%_0%,rgba(249,115,22,0.15),transparent_45%)]" />
-              <div className="relative z-10 grid gap-4 sm:grid-cols-2">
-                <div className="sm:col-span-2 text-xs font-semibold uppercase tracking-[0.3em] text-brand-teal">Security</div>
-                {heroSecurityServices.map((card) => (
-                  <div
-                    key={card.title}
-                    className="flex h-full flex-col justify-between rounded-2xl border border-slate-600/60 bg-slate-900/80 p-4 text-slate-100 shadow-inner shadow-black/40"
-                  >
-                    <div className="space-y-2">
-                      <h3 className="text-lg font-semibold text-foreground">{card.title}</h3>
-                      <p className="text-sm font-semibold text-brand-teal">{card.subtitle}</p>
-                      <p className="text-sm leading-relaxed text-slate-200">{card.body}</p>
-                    </div>
-                    <Link
-                      href={card.cta.href}
-                      className="mt-4 inline-flex items-center justify-center rounded-full bg-brand-teal px-4 py-2 text-sm font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90"
-                    >
-                      {card.cta.label}
-                    </Link>
-                  </div>
-                ))}
-                {heroPillars.map((card) => (
-                  <div
-                    key={card.title}
-                    className="flex h-full flex-col justify-between rounded-2xl border border-slate-600/60 bg-slate-900/80 p-4 text-slate-100 shadow-inner shadow-black/40"
-                  >
-                    <div className="space-y-2">
-                      <h3 className="text-lg font-semibold text-foreground">{card.title}</h3>
-                      <p className="text-sm font-semibold text-brand-teal">{card.subtitle}</p>
-                      <p className="text-sm leading-relaxed text-slate-200">{card.body}</p>
-                    </div>
-                    <Link
-                      href={card.cta.href}
-                      className="mt-4 inline-flex items-center justify-center rounded-full bg-brand-teal px-4 py-2 text-sm font-semibold text-brand-slate transition hover:-translate-y-0.5 hover:bg-brand-teal/90"
-                    >
-                      {card.cta.label}
-                    </Link>
-                  </div>
-                ))}
-              </div>
-            </div>
+            </FadeIn>
           </div>
         </section>
 
-        <section className="mt-20 space-y-6 rounded-3xl border border-white/10 bg-slate-900/70 p-6 shadow-md shadow-black/40 lg:mt-28 lg:p-8">
-          <div className="grid gap-6 lg:grid-cols-[1.3fr,0.9fr] lg:items-center">
-            <dl className="grid grid-cols-2 gap-4 text-slate-100 sm:grid-cols-3">
+        {/* ── TRUST BAR ── */}
+        <FadeIn className="mt-16 lg:mt-20">
+          <section className="grid gap-6 lg:grid-cols-[1fr,1fr] lg:items-center">
+            <div className="grid grid-cols-3 gap-3">
               {trustStats.map((stat) => (
-                <div key={stat.label} className="rounded-2xl border border-slate-600/50 bg-slate-900/60 p-4 text-center shadow-inner shadow-black/30">
-                  <dt className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-300">{stat.label}</dt>
-                  <dd className="text-2xl font-semibold text-brand-teal">{stat.value}</dd>
+                <div key={stat.label} className="glass-card rounded-2xl p-5 text-center">
+                  <dt className="text-[11px] font-medium uppercase tracking-[0.15em] text-muted">{stat.label}</dt>
+                  <dd className="mt-1 text-2xl font-semibold text-brand-teal lg:text-3xl">
+                    {stat.label === "Avg. Response" ? (
+                      <><span className="text-lg">&lt;</span>1<span className="text-lg">hr</span></>
+                    ) : stat.label === "Uptime Target" ? (
+                      <>99.5<span className="text-lg">%</span></>
+                    ) : (
+                      <AnimatedCounter target={stat.value} suffix={stat.suffix} />
+                    )}
+                  </dd>
                 </div>
               ))}
-            </dl>
-            <div className="flex flex-wrap items-center gap-3">
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-2 lg:justify-end">
               {trustLogos.map((logo) => (
-                <div
+                <span
                   key={logo}
-                  className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-slate-100 transition hover:border-brand-teal/50 hover:text-brand-teal"
+                  className="rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-slate-400 transition-colors duration-300 hover:border-brand-teal/30 hover:text-brand-teal"
                 >
                   {logo}
-                </div>
+                </span>
               ))}
             </div>
-          </div>
-        </section>
+          </section>
+        </FadeIn>
 
-        <section
-          id="industries"
-          className="mt-20 space-y-8 border-t border-brand-teal/20 pt-12 lg:mt-28 lg:pt-16"
-        >
-          <div className="space-y-3">
-            <h2 className="text-3xl font-semibold text-foreground lg:text-4xl">Built for Teams Who Can’t Afford Downtime</h2>
-            <p className="max-w-3xl text-lg leading-relaxed text-muted">
-              We focus on environments where every meeting, resident check-in, or virtual visit actually matters.
-            </p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2">
-            {serveCards.map((item) => (
-              <Link
-                key={item.title}
-                href={item.href}
-                className="group rounded-2xl border border-slate-600/60 bg-slate-900/70 p-5 text-slate-100 shadow-md shadow-black/40 transition hover:-translate-y-1 hover:border-brand-teal/50 hover:shadow-[0_20px_60px_-45px_rgba(22,199,182,0.9)]"
-              >
-                <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-teal/10 text-sm font-semibold text-brand-teal ring-1 ring-brand-teal/30">
-                  ●
-                </div>
-                <div className="mb-4 h-0.5 w-16 rounded-full bg-brand-teal/50 transition group-hover:w-20" aria-hidden />
-                <h3 className="text-xl font-semibold text-foreground">{item.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-200">{item.body}</p>
-                <span className="mt-3 inline-flex items-center text-xs font-semibold text-brand-teal transition group-hover:text-brand-teal/80">
-                  Learn more →
-                </span>
-              </Link>
-            ))}
-          </div>
-        </section>
+        {/* ── DIVIDER ── */}
+        <div className="section-divider mx-auto mt-20 max-w-2xl lg:mt-28" />
 
-        <section id="process" className="mt-20 space-y-8 lg:mt-28">
-          <div className="space-y-3">
-            <h2 className="text-3xl font-semibold text-foreground lg:text-4xl">From Idea to “It Just Works”</h2>
-            <p className="max-w-2xl text-lg leading-relaxed text-muted">A clear path so your team knows exactly what happens next.</p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {processSteps.map((step, index) => (
-              <div
-                key={step.title}
-                className="relative overflow-hidden rounded-2xl border border-slate-600/60 bg-slate-900/70 p-5 text-slate-100 shadow-md shadow-black/40 transition hover:-translate-y-1 hover:border-brand-teal/50 hover:shadow-[0_20px_60px_-45px_rgba(22,199,182,0.9)]"
-              >
-                <div className="absolute right-4 top-4 text-sm font-semibold text-brand-teal/60">
-                  {String(index + 1).padStart(2, "0")}
-                </div>
-                <div className="mb-4 h-0.5 w-14 rounded-full bg-brand-teal/40" aria-hidden />
-                <h3 className="text-xl font-semibold text-foreground">{step.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-slate-200">{step.copy}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section
-          id="room-types"
-          className="mt-20 space-y-8 border-t border-brand-teal/20 pt-12 lg:mt-28 lg:pt-16"
-        >
-          <div className="space-y-3">
-            <h2 className="text-3xl font-semibold text-foreground lg:text-4xl">Start With a Proven Design</h2>
-            <p className="max-w-3xl text-lg leading-relaxed text-muted">
-              We’ve engineered room configurations that work — so you don’t start from scratch. Pick a template, customize for your space, and skip the trial-and-error.
-            </p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2">
-            {roomTemplates.map((room) => (
-              <Link
-                key={room.title}
-                href={room.href}
-                className="group rounded-2xl border border-slate-600/60 bg-slate-900/70 p-5 text-slate-100 shadow-md shadow-black/40 transition hover:-translate-y-1 hover:border-brand-teal/50 hover:shadow-[0_20px_60px_-45px_rgba(22,199,182,0.9)]"
-              >
-                <div className="mb-3 flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-brand-teal" aria-hidden />
-                  <h3 className="text-xl font-semibold text-foreground">{room.title}</h3>
-                </div>
-                <p className="text-sm text-slate-200">{room.useCases}</p>
-                <span className="mt-3 inline-flex items-center text-xs font-semibold text-brand-teal transition group-hover:text-brand-teal/80">
-                  View template →
-                </span>
-              </Link>
-            ))}
-          </div>
-          <Link
-            href="/room-types"
-            className="inline-flex items-center text-sm font-semibold text-brand-teal underline-offset-2 hover:underline"
-          >
-            View All Room Types →
-          </Link>
-        </section>
-
-        <section id="why" className="mt-20 space-y-8 lg:mt-28">
-          <div className="space-y-3">
-            <h2 className="text-3xl font-semibold text-foreground lg:text-4xl">Why Teams Choose CalLord</h2>
-            <p className="max-w-2xl text-lg leading-relaxed text-muted">Design, delivery, and support all speak the language of operators.</p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-3">
-            {differentiators.map((value) => (
-              <div
-                key={value.title}
-                className="rounded-2xl border border-slate-600/60 bg-slate-900/70 p-5 text-slate-100 shadow-md shadow-black/40 transition hover:-translate-y-1 hover:border-brand-teal/50 hover:shadow-[0_20px_60px_-45px_rgba(22,199,182,0.9)]"
-              >
-                <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-teal/15 text-sm font-semibold text-brand-teal ring-1 ring-brand-teal/30">
-                  ◎
-                </div>
-                <h3 className="text-xl font-semibold text-foreground">{value.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-200">{value.body}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="mt-20 space-y-8 rounded-3xl bg-brand-sand px-6 py-10 text-slate-900 lg:mt-28 lg:px-12">
-          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-            <div>
-              <h2 className="text-3xl font-semibold lg:text-4xl">Powered by platforms you already trust.</h2>
-              <p className="mt-2 text-sm leading-relaxed text-slate-700">
-                Security and compliance are grounded in Eagle Eye Networks (cloud video) and Brivo (cloud access). AV stacks layer in modern DSP, control, and room platforms that stay supportable long-term.
+        {/* ── INDUSTRIES ── */}
+        <section id="industries" className="mt-16 lg:mt-24">
+          <FadeIn>
+            <div className="space-y-3">
+              <span className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-teal">Who we serve</span>
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground lg:text-5xl">
+                Built for Teams Who Can't Afford Downtime
+              </h2>
+              <p className="max-w-2xl text-base leading-relaxed text-muted">
+                We focus on environments where every meeting, resident check-in, or virtual visit actually matters.
               </p>
             </div>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            <div className="flex flex-col justify-between rounded-2xl border border-brand-teal/30 bg-white/90 p-5 text-slate-900 shadow-[0_25px_80px_-60px_rgba(12,60,55,0.35)] ring-1 ring-brand-teal/10">
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-lg font-semibold">Eagle Eye Networks</p>
-                <span className="rounded-full bg-brand-teal/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-teal ring-1 ring-brand-teal/30">
-                  Security
-                </span>
-              </div>
-              <p className="mt-3 text-sm leading-relaxed text-slate-700">Cloud video surveillance + retention for regulated facilities.</p>
-            </div>
-            <div className="flex flex-col justify-between rounded-2xl border border-brand-teal/30 bg-white/90 p-5 text-slate-900 shadow-[0_25px_80px_-60px_rgba(12,60,55,0.35)] ring-1 ring-brand-teal/10">
-              <div className="flex items-center justify-between gap-3">
-                <p className="text-lg font-semibold">Brivo</p>
-                <span className="rounded-full bg-brand-teal/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-teal ring-1 ring-brand-teal/30">
-                  Access
-                </span>
-              </div>
-              <p className="mt-3 text-sm leading-relaxed text-slate-700">Cloud access control and credentialing for secure paths and storage.</p>
-            </div>
-            <div className="rounded-2xl border border-white/50 bg-white/90 p-4 text-sm font-semibold text-slate-800 ring-1 ring-brand-teal/10 transition hover:-translate-y-0.5 hover:border-brand-teal hover:text-brand-teal">
-              <p>Q-SYS / Teams Rooms</p>
-              <p className="mt-2 text-xs font-normal text-slate-600">Flexible AV ecosystems for boardrooms, hybrid rooms, and specialty spaces.</p>
-            </div>
-            <div className="rounded-2xl border border-white/50 bg-white/90 p-4 text-sm font-semibold text-slate-800 ring-1 ring-brand-teal/10 transition hover:-translate-y-0.5 hover:border-brand-teal hover:text-brand-teal">
-              <p>Shure / Biamp</p>
-              <p className="mt-2 text-xs font-normal text-slate-600">Professional microphones, DSP, and audio distribution for clear calls.</p>
-            </div>
-          </div>
-          <p className="text-xs text-slate-700">
-            Curious about cooperative purchasing options for public entities?{" "}
-            <Link href="/partnerships/cooperative-purchasing" className="font-semibold text-brand-teal underline-offset-2 hover:underline">
-              Learn about our statewide program
-            </Link>
-            .
-          </p>
+          </FadeIn>
+          <Stagger className="mt-10 grid gap-4 md:grid-cols-2">
+            {serveCards.map((item) => (
+              <StaggerItem key={item.title}>
+                <Link href={item.href} className="group block h-full">
+                  <GlowCard className="h-full">
+                    <div className="flex items-start gap-4">
+                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-teal/10 text-lg ring-1 ring-brand-teal/20">
+                        {item.icon}
+                      </span>
+                      <div>
+                        <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
+                        <p className="mt-2 text-sm leading-relaxed text-muted">{item.body}</p>
+                        <span className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-brand-teal opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                          Learn more <span>→</span>
+                        </span>
+                      </div>
+                    </div>
+                  </GlowCard>
+                </Link>
+              </StaggerItem>
+            ))}
+          </Stagger>
         </section>
 
-        <section
-          id="footer-cta"
-          className="mt-20 space-y-8 rounded-3xl border border-brand-teal/30 bg-gradient-to-br from-brand-teal/15 via-brand-teal/10 to-brand-slate/40 px-6 py-12 lg:mt-28 lg:px-12"
-        >
-          <div className="space-y-3">
-            <h2 className="text-3xl font-semibold text-foreground lg:text-4xl">
-              Tell Us About One Space
-            </h2>
-            <p className="max-w-3xl text-lg leading-relaxed text-muted">
-              Give us a room or area, a rough budget, and how you use it today. We’ll come back with a simple plan and options.
-            </p>
-          </div>
-          <div className="rounded-3xl border border-white/10 bg-white/5 p-4 shadow-inner shadow-black/30 lg:p-6">
-            <div className="flex flex-col gap-2 text-sm text-slate-200 lg:flex-row lg:items-center lg:justify-between">
-              <span>Prefer to talk? Call us directly.</span>
-              <Link href="tel:+18666572383" className="font-semibold text-brand-teal underline-offset-2 hover:underline">
-                (866) 657-2383
-              </Link>
+        {/* ── DIVIDER ── */}
+        <div className="section-divider mx-auto mt-20 max-w-2xl lg:mt-28" />
+
+        {/* ── PROCESS ── */}
+        <section id="process" className="mt-16 lg:mt-24">
+          <FadeIn>
+            <div className="space-y-3">
+              <span className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-teal">How we work</span>
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground lg:text-5xl">
+                From Idea to &ldquo;It Just Works&rdquo;
+              </h2>
+              <p className="max-w-2xl text-base leading-relaxed text-muted">
+                A clear path so your team knows exactly what happens next.
+              </p>
             </div>
-            <div className="mt-4">
-              <FooterCTAForm />
+          </FadeIn>
+          <Stagger className="relative mt-10">
+            {/* Timeline connector */}
+            <div className="absolute left-[22px] top-8 bottom-8 hidden w-px bg-gradient-to-b from-brand-teal/40 via-brand-teal/20 to-transparent lg:block" />
+            <div className="grid gap-4 lg:gap-0">
+              {processSteps.map((step) => (
+                <StaggerItem key={step.step}>
+                  <div className="group flex items-start gap-5 rounded-2xl p-4 transition-colors duration-300 hover:bg-white/[0.02] lg:py-6">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-brand-teal/30 bg-brand-teal/10 text-sm font-bold text-brand-teal transition-all duration-300 group-hover:bg-brand-teal group-hover:text-[#070a14]">
+                      {step.step}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-foreground">{step.title}</h3>
+                      <p className="mt-1 text-sm leading-relaxed text-muted">{step.copy}</p>
+                    </div>
+                  </div>
+                </StaggerItem>
+              ))}
             </div>
-          </div>
+          </Stagger>
+        </section>
+
+        {/* ── DIVIDER ── */}
+        <div className="section-divider mx-auto mt-20 max-w-2xl lg:mt-28" />
+
+        {/* ── ROOM TEMPLATES ── */}
+        <section id="room-types" className="mt-16 lg:mt-24">
+          <FadeIn>
+            <div className="space-y-3">
+              <span className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-teal">Room templates</span>
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground lg:text-5xl">
+                Start With a Proven Design
+              </h2>
+              <p className="max-w-3xl text-base leading-relaxed text-muted">
+                We've engineered room configurations that work — so you don't start from scratch. Pick a template, customize for your space, and skip the trial-and-error.
+              </p>
+            </div>
+          </FadeIn>
+          <Stagger className="mt-10 grid gap-4 md:grid-cols-2">
+            {roomTemplates.map((room) => (
+              <StaggerItem key={room.title}>
+                <Link href={room.href} className="group relative block overflow-hidden rounded-2xl">
+                  <div className="relative h-48 w-full overflow-hidden">
+                    <Image
+                      src={room.image}
+                      alt={room.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#070a14] via-[#070a14]/60 to-transparent" />
+                  </div>
+                  <div className="absolute inset-x-0 bottom-0 p-5">
+                    <h3 className="text-xl font-semibold text-foreground">{room.title}</h3>
+                    <p className="mt-1 text-sm text-slate-300">{room.useCases}</p>
+                    <span className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-brand-teal">
+                      View template <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                    </span>
+                  </div>
+                </Link>
+              </StaggerItem>
+            ))}
+          </Stagger>
+          <FadeIn delay={0.2} className="mt-6">
+            <Link
+              href="/room-types"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-brand-teal transition-colors hover:text-brand-teal-alt"
+            >
+              View All Room Types →
+            </Link>
+          </FadeIn>
+        </section>
+
+        {/* ── DIVIDER ── */}
+        <div className="section-divider mx-auto mt-20 max-w-2xl lg:mt-28" />
+
+        {/* ── WHY CALLORD ── */}
+        <section id="why" className="mt-16 lg:mt-24">
+          <FadeIn>
+            <div className="space-y-3">
+              <span className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-teal">The difference</span>
+              <h2 className="text-3xl font-semibold tracking-tight text-foreground lg:text-5xl">
+                Why Teams Choose CalLord
+              </h2>
+              <p className="max-w-2xl text-base leading-relaxed text-muted">
+                Design, delivery, and support all speak the language of operators.
+              </p>
+            </div>
+          </FadeIn>
+          <Stagger className="mt-10 grid gap-4 md:grid-cols-3">
+            {differentiators.map((value) => (
+              <StaggerItem key={value.title}>
+                <GlowCard>
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-brand-teal/20 to-brand-teal/5 text-lg text-brand-teal ring-1 ring-brand-teal/20">
+                    {value.icon}
+                  </div>
+                  <h3 className="text-lg font-semibold text-foreground">{value.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">{value.body}</p>
+                </GlowCard>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </section>
+
+        {/* ── DIVIDER ── */}
+        <div className="section-divider mx-auto mt-20 max-w-2xl lg:mt-28" />
+
+        {/* ── PLATFORMS ── */}
+        <section className="mt-16 lg:mt-24">
+          <FadeIn>
+            <div className="rounded-3xl border border-white/[0.06] bg-gradient-to-br from-brand-teal/[0.06] via-transparent to-transparent p-8 lg:p-12">
+              <span className="text-xs font-semibold uppercase tracking-[0.25em] text-brand-teal">Technology partners</span>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground lg:text-4xl">
+                Powered by Platforms You Already Trust
+              </h2>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted">
+                Security and compliance are grounded in Eagle Eye Networks and Brivo. AV stacks layer in professional audio and collaboration platforms that stay supportable long-term.
+              </p>
+              <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {platforms.map((p) => (
+                  <div
+                    key={p.name}
+                    className="glass-card glass-card-hover rounded-2xl p-5 transition-all duration-300"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-base font-semibold text-foreground">{p.name}</span>
+                      <span className="rounded-full bg-brand-teal/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-brand-teal ring-1 ring-brand-teal/20">
+                        {p.tag}
+                      </span>
+                    </div>
+                    <p className="mt-3 text-xs leading-relaxed text-muted">{p.description}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-6 text-xs text-muted">
+                Curious about cooperative purchasing options for public entities?{" "}
+                <Link href="/partnerships/cooperative-purchasing" className="font-semibold text-brand-teal underline-offset-2 hover:underline">
+                  Learn about our statewide program
+                </Link>
+                .
+              </p>
+            </div>
+          </FadeIn>
+        </section>
+
+        {/* ── CTA ── */}
+        <section id="footer-cta" className="mt-20 lg:mt-28">
+          <FadeIn>
+            <div className="relative overflow-hidden rounded-3xl">
+              <div className="absolute -inset-[1px] rounded-3xl bg-gradient-to-br from-brand-teal/30 via-transparent to-brand-teal/10" />
+              <div className="relative rounded-3xl bg-[#070a14]/95 px-6 py-12 lg:px-14">
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_0%,rgba(39,154,146,0.12),transparent_60%)]" />
+                <div className="relative space-y-3">
+                  <h2 className="text-3xl font-semibold tracking-tight text-foreground lg:text-5xl">
+                    Tell Us About One Space
+                  </h2>
+                  <p className="max-w-2xl text-base leading-relaxed text-muted">
+                    Give us a room or area, a rough budget, and how you use it today. We'll come back with a simple plan and options.
+                  </p>
+                </div>
+                <div className="relative mt-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 backdrop-blur-sm lg:p-8">
+                  <div className="flex flex-col gap-2 text-sm text-muted lg:flex-row lg:items-center lg:justify-between">
+                    <span>Prefer to talk? Call us directly.</span>
+                    <Link href="tel:+18666572383" className="font-semibold text-brand-teal underline-offset-2 hover:underline">
+                      (866) 657-2383
+                    </Link>
+                  </div>
+                  <div className="mt-5">
+                    <FooterCTAForm />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FadeIn>
         </section>
       </main>
     </div>

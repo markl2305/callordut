@@ -1,6 +1,10 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+let _resend;
+function getResend() {
+  if (!_resend) _resend = new Resend(process.env.RESEND_API_KEY);
+  return _resend;
+}
 
 const DEFAULT_RECIPIENT = process.env.CONTACT_RECIPIENT_EMAIL || "sales@callordut.com";
 const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || "CalLord Unified Technologies <leads@callordut.com>";
@@ -61,7 +65,7 @@ export async function POST(request) {
       message || issues,
     ].filter(Boolean);
 
-    const { error } = await resend.emails.send({
+    const { error } = await getResend().emails.send({
       from: FROM_EMAIL,
       to: [DEFAULT_RECIPIENT, email],
       subject,
