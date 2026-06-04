@@ -6,6 +6,7 @@ import { Header } from "./components/heritage/Header";
 import { Footer } from "./components/heritage/Footer";
 import { ThemeScript } from "./components/heritage/ThemeScript";
 import { RevealObserver } from "./components/heritage/RevealObserver";
+import { JsonLd } from "./components/JsonLd";
 import { siteConfig } from "../config/site";
 
 const newsreader = Newsreader({
@@ -92,6 +93,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body
         className={`${newsreader.variable} ${spectral.variable} ${spaceGrotesk.variable} ${interTight.variable} ${jetbrainsMono.variable} antialiased`}
       >
+        <JsonLd />
         <Header />
         <RevealObserver />
         <main>{children}</main>
