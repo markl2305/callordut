@@ -1,9 +1,11 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "../config/site";
+import { allArticles } from "../lib/learn";
 
 // All indexable routes. /thank-you is intentionally excluded (post-form utility page).
 const ROUTES = [
   "",
+  "/learn",
   "/about",
   "/services",
   "/services/av-integration",
@@ -39,10 +41,17 @@ const ROUTES = [
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.website.replace(/\/$/, "");
   const now = new Date();
-  return ROUTES.map((route) => ({
+  const staticRoutes = ROUTES.map((route) => ({
     url: `${base}${route}`,
     lastModified: now,
-    changeFrequency: route === "" ? "weekly" : "monthly",
+    changeFrequency: (route === "" ? "weekly" : "monthly") as "weekly" | "monthly",
     priority: route === "" ? 1 : route.split("/").length > 2 ? 0.6 : 0.8,
   }));
+  const learnRoutes = allArticles().map((a) => ({
+    url: `${base}${a.url}`,
+    lastModified: a.publishedAt ? new Date(a.publishedAt) : now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+  return [...staticRoutes, ...learnRoutes];
 }
