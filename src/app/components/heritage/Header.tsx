@@ -59,6 +59,7 @@ export function Header() {
     textDecoration: "none",
     fontWeight: active ? 600 : 450,
     cursor: "pointer",
+    display: "inline-block" as const,
     paddingBottom: 4,
     borderBottom: active ? "1.5px solid var(--h-teal)" : "1.5px solid transparent",
     whiteSpace: "nowrap" as const,
@@ -98,7 +99,7 @@ export function Header() {
             entry.items ? (
               <div
                 key={entry.label}
-                style={{ position: "relative" }}
+                style={{ position: "relative", display: "flex", alignItems: "center" }}
                 onMouseEnter={() => setOpen(entry.label)}
                 onMouseLeave={() => setOpen(null)}
               >
