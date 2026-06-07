@@ -17,6 +17,19 @@ export type LearnArticle = {
   body: string;
 };
 
+// Clio embeds raw <script type="application/ld+json"> blocks and <!-- CLIO_META -->
+// HTML comments in the MDX body. MDX (acorn) reads the `{` in both as JSX
+// expressions and fails the build ("Could not parse expression with acorn").
+// Neither is article content — the page renderer emits its own JSON-LD from
+// frontmatter — so strip both before handing the body to MDXRemote.
+function sanitizeBody(src: string): string {
+  return src
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "")
+    .replace(/<!--[\s\S]*?-->/g, "")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
 function walk(dir: string): string[] {
   if (!fs.existsSync(dir)) return [];
   const out: string[] = [];
@@ -42,7 +55,7 @@ export function allArticles(): LearnArticle[] {
         vertical: String(data.vertical || slug[0] || "learn"),
         schemaType: String(data.schema_type || "Article"),
         publishedAt: data.published_at ? String(data.published_at) : null,
-        body: content,
+        body: sanitizeBody(content),
       };
     })
     .sort((a, b) => (b.publishedAt || "").localeCompare(a.publishedAt || ""));
