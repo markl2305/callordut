@@ -17,7 +17,7 @@ export default function PrivacyPage() {
             Privacy Policy
           </h1>
           <p className="mt-3 text-sm text-ink-soft">
-            Updated for {siteConfig.legalName}. Last updated: March 18, 2026.
+            Updated for {siteConfig.legalName}. Last updated: June 30, 2026.
           </p>
           <p className="mt-1 text-sm text-ink-soft">
             If you have questions, contact{" "}
@@ -152,6 +152,56 @@ export default function PrivacyPage() {
                   className="font-medium text-teal"
                 >
                   SMS Messaging Terms
+                </Link>
+                .
+              </p>
+            </section>
+
+            <section className="border border-teal/40 bg-teal/10 p-5">
+              <h2 className="font-serif text-xl font-normal text-ink">
+                QuickBooks Online Integration
+              </h2>
+              <p className="mt-2">
+                Our software can connect to Intuit QuickBooks Online at your direction,
+                through Intuit&rsquo;s authorized OAuth&nbsp;2.0 connection. When you connect a
+                QuickBooks company, you authorize us to access and process data from that
+                company to power financial and accounts-receivable reporting.
+              </p>
+              <ul className="mt-3 list-disc space-y-2 pl-6">
+                <li>
+                  <strong>What we access:</strong> invoice records (amounts, due dates,
+                  balances, and status), customer records, and payment / accounts-receivable
+                  data from the QuickBooks company you authorize.
+                </li>
+                <li>
+                  <strong>How we use it:</strong> solely to display financial and
+                  accounts-receivable reporting (outstanding AR, aging, invoice status)
+                  within your business dashboard. We do not use QuickBooks data for
+                  advertising, and we never sell it.
+                </li>
+                <li>
+                  <strong>Sharing:</strong> we do not sell, rent, or share your QuickBooks
+                  data with third parties, except infrastructure providers that host our
+                  software under confidentiality obligations, or where required by law.
+                </li>
+                <li>
+                  <strong>Storage &amp; security:</strong> QuickBooks data is stored in our
+                  secured, access-controlled systems and encrypted in transit (HTTPS/TLS).
+                  Access tokens are stored encrypted and are never exposed to end users.
+                </li>
+                <li>
+                  <strong>Disconnection &amp; deletion:</strong> you can disconnect
+                  QuickBooks at any time from the integration settings, or from within
+                  QuickBooks (Apps &rarr; Connected apps). On disconnection or request, we
+                  delete the QuickBooks data and access tokens we hold for your company.
+                </li>
+              </ul>
+              <p className="mt-4">
+                Intuit&reg; and QuickBooks&reg; are trademarks of Intuit&nbsp;Inc. Our access
+                to and use of QuickBooks data is limited to the scopes you authorize and
+                complies with the Intuit Developer terms. See also our{" "}
+                <Link href="/eula" className="font-medium text-teal">
+                  End-User License Agreement
                 </Link>
                 .
               </p>
