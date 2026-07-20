@@ -93,6 +93,23 @@
   --font-spectral: var(--font-spectral), Georgia, serif;
 }
 
+/* Themis / cannabis-security package tokens (app/services/cannabis-security,
+   app/tools/themis) — self-contained CSS-module pages, own palette, --cl- prefixed
+   to avoid collisions with the --h-* heritage tokens above. */
+:root {
+  --cl-teal: #2a9187;
+  --cl-teal-deep: #1f6e66;
+  --cl-ink: #14201e;
+  --cl-paper: #fbfaf7;
+  --cl-cream: #ede5d6;
+  --cl-line: #e3e0d8;
+  --cl-hairline: #f0eee7;
+  --cl-muted: #5d6763;
+  --cl-dark-panel: #1b2b27;
+  --cl-dark-line: #263733;
+  --cl-dark-muted: #9fb3ac;
+}
+
 /* Base element rules MUST live in @layer base so Tailwind's utility layer
    (text-paper, text-teal, …) still wins on links etc. An unlayered `a {color}`
    would override every color utility on anchors. */

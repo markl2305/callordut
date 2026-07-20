@@ -1,104 +1,70 @@
-import Link from "next/link";
-import Image from "next/image";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { CTASection } from "../../components/CTASection";
-import { GlassPanel } from "../../components/GlassPanel";
-import { CannabisAssessmentForm } from "./CannabisAssessmentForm";
-import { CannabisChecklistForm } from "./CannabisChecklistForm";
 import { CANNABIS_CONTENT_ENABLED } from "@/config/flags";
+import s from "./page.module.css";
 
 const metadataBase: Metadata = {
-  title: "Cannabis Security Systems that pass inspection the first time",
+  title: "Cannabis Security & Compliance | CalLord Unified Technologies",
   description:
-    "Compliant cannabis security for licensed facilities in NM, CO, AZ. Camera, access, monitoring, and documentation designed to meet state requirements and protect your license.",
+    "Security compliance packages for New Mexico cannabis establishments, built straight from 16.8.2 NMAC — every camera, lock, log, and procedure traced to the rule it satisfies.",
 };
 const metadataHidden: Metadata = {
   title: "Security Services | CalLord",
   description: "Compliance-ready security design and documentation for high-security commercial environments.",
 };
 
-const bestFor = [
-  "Dispensaries heading to first inspection",
-  "Cultivation / processing sites that outgrew DIY",
-  "Multi-site operators standardizing templates",
-  "Teams burned by generic AV/security vendors",
+const DOSSIER = [
+  { n: "i.", t: "Limited-access areas", cite: "16.8.2.10 · intro, J" },
+  { n: "ii.", t: "Security alarm system", cite: "16.8.2.10 · A–C" },
+  { n: "iii.", t: "Video surveillance", cite: "16.8.2.10 · D–E" },
+  { n: "iv.", t: "Recording & retention", cite: "16.8.2.10 · F–G" },
+  { n: "v.", t: "Incident response", cite: "16.8.2.8 · M" },
+  { n: "vi.", t: "Diagrams & amendments", cite: "16.8.2.24 / .32 / .38" },
 ];
 
-const complianceFocus = [
-  "Designed to meet state cannabis security regulations (NM, CO, AZ)",
-  "Camera, access, intrusion, and monitoring inspectors understand",
-  "Full documentation for inspections and renewals",
+const RECEIPTS = [
+  { num: "1280×720", what: "Minimum camera resolution, every camera, permanently mounted and fixed.", src: "16.8.2.10(D) NMAC" },
+  { num: "15 fps", what: "Minimum frame rate — continuous 24 hours, or motion-activated.", src: "16.8.2.10(F)(1) NMAC" },
+  { num: "30 d / 12 mo", what: "Footage retention — thirty days standard, twelve months after any incident.", src: "16.8.2.10(F)(3) NMAC" },
+  { num: "5 min", what: "Alarm alert window to designated employees — and law enforcement if necessary.", src: "16.8.2.10(A) NMAC" },
+  { num: "24 hr", what: "Deadline to report any theft, robbery, break-in, or breach to the Division.", src: "16.8.2.8(M) NMAC" },
+  { num: "20 ft", what: "Lit, camera-recordable radius required at every perimeter entry point.", src: "16.8.2.10(L) NMAC" },
 ];
 
-const deliverables = [
-  "Camera coverage maps with risers and critical asset focus",
-  "Access control layouts, credentials, and policies inspectors can verify",
-  "Video retention + storage planning calibrated to state rules",
-  "Intrusion + monitoring-ready design with audit logging configured",
-  "Compliance-ready drawing set, device schedules, and documentation",
-  "Remediation roadmaps for existing deployments that need to pass",
-];
-
-const optionalUpgrades = [
-  "Centralized monitoring dashboards",
-  "Environmental sensors tied to alerting",
-  "Visitor management workflows with camera tie-ins",
-  "Integration with POS / inventory tracking",
-];
-
-const trustBand = [
-  "Video surveillance design + install experience",
-  "Access control & intrusion coordination",
-  "Remote monitoring ready (cloud-first stacks)",
-  "Locally owned in the Southwest",
-  "Specialized in cannabis facilities",
-];
-
-const whatYouGet = [
-  "Designs mapped to NM, CO, AZ cannabis requirements",
-  "Camera, access, and alarm layouts inspectors can verify",
-  "Documentation packages for regulators and renewals",
-  "Coordination with IT and monitoring providers",
-];
-
-const whatsAtStake = [
-  "Revenue loss during shutdowns if you fail inspection",
-  "Scrambling under inspector pressure without a plan",
-  "Higher costs when rushed upgrades are forced",
-];
-
-const howItWorks = [
-  "Share facility details: floor plan, license, notes, timeline",
-  "Map requirements to your layout: cameras, access, intrusion, retention",
-  "Deliver a clear plan + quote so you can move with confidence",
-];
-
-const inspectionChecklist = [
-  "Coverage map showing every critical asset and ingress",
-  "Retention policy proof (30/60/90-day) exported from Eagle Eye",
-  "Access control roster with role-based rules",
-  "Incident log + audit trail exported from Eagle Eye / Brivo",
-  "Visitor + delivery procedures tied to specific cameras",
-  "Contact tree for regulators and law enforcement",
-];
-
-const otherServices = [
+const PACKAGES = [
   {
-    title: "AV Integration & Systems",
-    copy: "We often pair security zones with operator-ready conference rooms so leadership and compliance keep the same language.",
-    href: "/services/av-integration",
+    rn: "i.", name: "License Application Security Plan", featured: false,
+    desc: "The complete security exhibit for your application, built from the rule text.",
+    items: ["Full facility security plan", "Surveillance & alarm specifications", "Required SOPs and training docs", "Citation index for the reviewer", "Revised free until accepted"],
+    cta: "Scope my application",
   },
   {
-    title: "Smart Room Design & Documentation",
-    copy: "Telehealth and consultation rooms in dispensaries or clinics benefit from the same drawings and narrative clarity.",
-    href: "/services/smart-rooms",
+    rn: "ii. — most requested", name: "Operational Compliance Package", featured: true,
+    desc: "For licensed operators: close every gap between how you run and what the rule requires.",
+    items: ["Scored gap assessment vs. the statute", "Remediation plan, prioritized by risk", "Updated SOPs, logs, and signage", "Deficiency-notice response support", "Staff walkthrough & handoff"],
+    cta: "Get my gap score",
   },
   {
-    title: "Remote Installation Project Management",
-    copy: "If you already have trusted local integrators, we’ll quarterback them so every site mirrors the same security template.",
-    href: "/services/project-management",
+    rn: "iii.", name: "Audit-Ready Retainer", featured: false,
+    desc: "Quarterly assurance that your posture matches the current rulebook.",
+    items: ["Quarterly mock inspections", "Rule-change monitoring & alerts", "SOP and document upkeep", "New-hire security training", "Priority response on notices"],
+    cta: "Talk retainers",
   },
+];
+
+const GUARDS = [
+  { t: "Statutory floors, enforced in code", p: 'Enter a 20-day retention period or a 12-fps camera and Themis refuses the entry — citing the subsection and the floor you missed. A package below the statute cannot be produced. Not "shouldn’t." Cannot.' },
+  { t: "Nothing skipped silently", p: "Every requirement resolves as compliant or not-applicable — and N/A demands a written justification that prints into the package the reviewer reads." },
+  { t: "Generation gated at 100%", p: "The package will not generate until every requirement is resolved. An incomplete filing is not an output the system can express." },
+  { t: "Every line carries its citation", p: "The finished package is a citation-mapped dossier — timestamped, versioned, and traceable to the exact rule each section satisfies." },
+  { t: "Rule changes get checked backward, not just forward", p: "When the rule map updates, run a backward compliance pass and Themis re-checks every package you've already signed off on — flagging anything the amendment knocked out of compliance, not just what you file next." },
+];
+
+const STEPS = [
+  { rn: "I", t: "Map the rulebook", p: "The regulation, decomposed requirement by requirement — the same list the reviewer works from." },
+  { rn: "II", t: "Assess the gap", p: "Your facility and procedures, scored against every requirement. You see what’s missing and what it risks." },
+  { rn: "III", t: "Build the package", p: "Plans, specs, SOPs, and training docs — assembled, cross-cited, submission-formatted in ten business days." },
+  { rn: "IV", t: "Defend it", p: "The Division has questions, we answer them. Anything kicked back, we revise free until accepted." },
 ];
 
 export function generateMetadata(): Metadata {
@@ -117,267 +83,161 @@ export default function CannabisSecurityPage() {
   }
 
   return (
-    <div className="min-h-screen bg-paper text-ink">
-      <main className="mx-auto max-w-5xl px-4 pb-24 pt-10 lg:px-0">
-        <section className="relative overflow-hidden border border-rule px-6 py-14 lg:px-12 lg:py-20">
-          <div className="absolute inset-0">
-            <Image
-              src="/cannabis-security-dispensary-interior.png"
-              alt="Modern cannabis dispensary with visible security cameras"
-              fill
-              priority
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-ink/80 via-ink/75 to-ink/90" aria-hidden />
-          </div>
-          <div className="relative">
-            <p className="font-mono text-[11px] font-normal uppercase tracking-[0.16em] text-teal">Security</p>
-            <h1 className="mt-4 font-serif text-4xl font-normal leading-tight tracking-tight text-paper sm:text-5xl lg:text-6xl">
-              Cannabis Security Systems that pass inspection the first time
-            </h1>
-            <p className="mt-4 text-lg leading-relaxed text-paper/80 lg:text-xl">
-              Compliant cannabis security for licensed facilities in NM, CO, AZ—camera, access, monitoring, and documentation designed to meet state requirements and protect your license. We still cover broader commercial security, but cannabis is a core specialization.
-            </p>
-            <p className="mt-3 text-sm text-paper/70">
-              Built on Eagle Eye Networks + Brivo for cloud audit trails inspectors understand. No mystery DVRs.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="#assessment-form"
-                className="h-btn inline-flex items-center justify-center bg-teal px-6 py-3.5 text-sm font-medium text-on-teal"
-                data-cta="hero-primary-compliance-assessment"
-              >
-                Schedule Free Assessment
-              </Link>
-              <Link
-                href="#checklist-form"
-                className="h-btn inline-flex items-center justify-center border border-paper px-6 py-3.5 text-sm font-medium text-paper"
-                data-cta="hero-secondary-checklist"
-              >
-                Get the Cannabis Security Checklist
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        <section className="mt-20 space-y-6 lg:mt-28">
-          <h2 className="font-serif text-2xl font-normal text-ink">Who this is for</h2>
-          <div className="flex flex-wrap gap-2">
-            {bestFor.map((item) => (
-              <span key={item} className="border border-rule px-4 py-2 font-mono text-[11px] uppercase tracking-[0.04em] text-ink">
-                {item}
-              </span>
-            ))}
-          </div>
-        </section>
-
-        <section className="mt-16 border border-rule bg-cream p-6 text-ink lg:mt-20">
-          <h3 className="font-serif text-2xl font-normal">Compliance focus</h3>
-          <ul className="mt-3 space-y-2 text-sm leading-relaxed text-ink-soft">
-            {complianceFocus.map((item) => (
-              <li key={item} className="flex items-start gap-2">
-                <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="mt-20 grid gap-6 lg:mt-28 lg:grid-cols-[1.1fr,0.9fr]">
-          <div className="border border-rule bg-cream p-6 text-ink">
-            <h3 className="font-serif text-2xl font-normal">What we deliver</h3>
-            <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-              Compliance is all about documentation, provable coverage, and clear operating procedures. We map every zone, build the
-              camera/door plan inside Eagle Eye + Brivo, and leave you with a package that makes inspectors nod instead of frown.
-            </p>
-          </div>
-          <GlassPanel title="Deliverables">
-            <ul className="space-y-2 text-sm">
-              {deliverables.map((deliverable) => (
-                <li key={deliverable} className="flex items-start gap-2">
-                  <span className="mt-1 h-1.5 w-1.5 bg-teal" aria-hidden />
-                  <span className="leading-relaxed text-ink-soft">{deliverable}</span>
-                </li>
-              ))}
-            </ul>
-          </GlassPanel>
-        </section>
-
-        <section className="mt-16 border border-rule bg-cream p-6 text-ink lg:mt-24">
-          <h3 className="font-serif text-2xl font-normal">Built on Eagle Eye Networks & Brivo</h3>
-          <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-            We exclusively design cannabis deployments on Eagle Eye Networks (video) and Brivo (access). That keeps your operations cloud-first,
-            makes remote management simple, and gives regulators the audit logs they now expect. No more on-site DVR closets that overheat or go unchecked for months.
-          </p>
-        </section>
-
-        <section className="mt-16 grid gap-4 border border-rule bg-cream p-6 text-sm text-ink lg:mt-24 lg:grid-cols-2">
+    <div>
+      {/* Site-wide <Header /> (rendered by the root layout) replaces the package's
+          own nav/strip here — this page starts directly at the hero. */}
+      <header className={s.hero} id="top">
+        <div className={`${s.wrap} ${s.heroGrid}`}>
           <div>
-            <h3 className="font-serif text-lg font-normal text-ink">Trusted in regulated environments</h3>
-            <p className="mt-2 leading-relaxed text-ink-soft">
-              We design and manage security for regulated operators and vendors—cannabis is a core focus, and we still support broader commercial security requirements.
+            <span className={s.eyebrow}>§ I · Cannabis Security &amp; Compliance</span>
+            <h1>The license lives or dies on the <em className={s.serifEm}>security plan.</em></h1>
+            <p className={s.lede}>
+              Every cannabis establishment in New Mexico stands or falls on 16.8.2 NMAC. We build security
+              compliance packages straight from the statute — every camera, lock, log, and procedure traced
+              to the rule it satisfies. <em className={s.serifEm}>The regulation is the spec.</em>
             </p>
+            <div className={s.ctas}>
+              <a className={s.btnSolid} href="#contact">Get your free gap score →</a>
+              <a className={s.btnGhost} href="#themis">See the engine</a>
+            </div>
+            <span className={s.fig}>Fixed price · Ten business days · Revised free until accepted</span>
           </div>
-          <div className="flex flex-wrap gap-2">
-            {trustBand.map((item) => (
-              <span key={item} className="border border-rule px-3 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.04em] text-ink">
-                {item}
+          <div>
+            <div className={s.dossier} aria-label="A compliance package assembling itself">
+              <div className={s.dossierHead}>
+                <b>Security Compliance Package</b>
+                <span>REF 26-0114 · NM RETAILER</span>
+              </div>
+              <ul>
+                {DOSSIER.map((row) => (
+                  <li key={row.n}>
+                    <span className={s.rn}>{row.n}</span>
+                    <span className={s.item}><b>{row.t}</b><span>{row.cite}</span></span>
+                    <span className={s.tick}>✓</span>
+                  </li>
+                ))}
+              </ul>
+              <div className={s.stampline}>SUBMISSION-READY · VALIDATED AGAINST THE STATUTE</div>
+            </div>
+            <p className={s.fig} style={{ marginTop: 12 }}>Fig. 01 · The package, assembling itself</p>
+          </div>
+        </div>
+      </header>
+
+      <div className={s.receipts} id="receipts">
+        <div className={s.wrap}>
+          <div className={s.receiptsHead}>
+            <span className={s.eyebrow} style={{ margin: 0 }}>§ II</span>
+            <h2>The Receipts.</h2>
+            <p>Every number below is the statute — in the open, not buried in the notes.</p>
+          </div>
+          <div className={s.recGrid}>
+            {RECEIPTS.map((r) => (
+              <div className={s.rec} key={r.src}>
+                <span className={s.num}>{r.num}</span>
+                <p>{r.what}</p>
+                <span className={s.src}>{r.src}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <section className={s.section} id="packages">
+        <div className={s.wrap}>
+          <div className={s.secHead}>
+            <span className={s.eyebrow}>§ III · The Packages</span>
+            <h2>Three ways in. <em className={s.serifEm}>One standard.</em></h2>
+            <p>Applying, operating, or preparing to be inspected — the package meets you where the Division will.</p>
+          </div>
+          <div className={s.pkgGrid}>
+            {PACKAGES.map((p) => (
+              <div className={p.featured ? s.pkgFeat : s.pkg} key={p.name}>
+                <span className={s.rn}>{p.rn}</span>
+                <h3>{p.name}</h3>
+                <p className={s.desc}>{p.desc}</p>
+                <ul>{p.items.map((it) => <li key={it}>{it}</li>)}</ul>
+                <a className={s.pkgBtn} href="#contact">{p.cta}</a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className={s.themis} id="themis">
+        <div className={s.wrap}>
+          <div className={s.secHead}>
+            <span className={s.eyebrow}>§ IV · Themis — the engine</span>
+            <h2>The tool that <em className={s.serifEm}>refuses</em> to file a mistake.</h2>
+            <p>
+              Themis is our in-house compliance engine — the rulebook, decomposed into a requirement map with
+              the statute&rsquo;s own floors wired in as validation. Try the builder yourself, or we&rsquo;ll
+              show it to you live on the first call. Watching it reject a non-compliant input is the whole pitch.
+            </p>
+            <div style={{ marginTop: 20 }}>
+              <a className={s.btnSolid} href="/tools/themis">Open the Themis builder →</a>
+            </div>
+          </div>
+          <div className={s.themisGrid}>
+            <ul className={s.guardList}>
+              {GUARDS.map((g) => (
+                <li key={g.t}><b>{g.t}</b><p>{g.p}</p></li>
+              ))}
+            </ul>
+            <div className={s.defect}>
+              <span className={s.figLabel}>Fig. 02 · Proof the map works</span>
+              <p>While mapping the current rule, Themis flagged a cross-reference defect in the state&rsquo;s own published regulation:</p>
+              <span className={s.monoLine}>
+                16.8.2.10(F)(3) → &ldquo;Subsection N of 16.8.2.8&rdquo;<br />
+                16.8.2.8(N) = license non-transferability.<br />
+                The reporting rule now sits at 16.8.2.8(M).
               </span>
-            ))}
-          </div>
-        </section>
-
-        <section className="mt-16 grid gap-6 lg:mt-24 lg:grid-cols-[1.05fr,0.95fr]">
-          <GlassPanel title="What you get">
-            <ul className="space-y-2 text-sm">
-              {whatYouGet.map((item) => (
-                <li key={item} className="flex items-start gap-2">
-                  <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
-                  <span className="leading-relaxed text-ink-soft">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </GlassPanel>
-          <div className="border border-rule bg-cream p-6 text-ink">
-            <h3 className="font-serif text-2xl font-normal">What’s at stake</h3>
-            <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-              Failed inspections can pause operations, incur fines, and force rushed upgrades. We design to pass the first time.
-            </p>
-            <ul className="mt-3 space-y-2 text-sm text-ink-soft">
-              {whatsAtStake.map((item) => (
-                <li key={item} className="flex items-start gap-2">
-                  <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-            <Link
-              href="#assessment-form"
-              className="h-btn mt-5 inline-flex w-full items-center justify-center bg-ink px-5 py-3.5 text-sm font-medium text-paper"
-              data-cta="stake-midpage"
-            >
-              Talk to a Cannabis Security Designer
-            </Link>
-          </div>
-        </section>
-
-        <section id="assessment-form" className="mt-16 space-y-4 lg:mt-24">
-          <h3 className="font-serif text-2xl font-normal text-ink">Request a Free Compliance Assessment</h3>
-          <p className="text-sm text-ink-soft">Higher intent? Share the essentials and we’ll map a compliant plan and schedule time.</p>
-          <CannabisAssessmentForm />
-        </section>
-
-        <section id="checklist-form" className="mt-16 space-y-4 lg:mt-24">
-          <h3 className="font-serif text-2xl font-normal text-ink">Get the Cannabis Security Checklist</h3>
-          <p className="text-sm text-ink-soft">Lower friction—tell us where you operate and we’ll send the checklist immediately.</p>
-          <CannabisChecklistForm />
-        </section>
-
-        <section className="mt-16 border border-rule bg-cream p-6 text-ink lg:mt-24">
-          <h3 className="font-serif text-2xl font-normal">How it works</h3>
-          <ol className="mt-3 space-y-3 text-sm text-ink-soft">
-            {howItWorks.map((step, idx) => (
-              <li key={step} className="flex items-start gap-3">
-                <span className="mt-0.5 flex h-6 w-6 items-center justify-center bg-teal text-center font-mono text-xs font-bold text-on-teal">{idx + 1}</span>
-                <span className="leading-relaxed">{step}</span>
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        <section className="mt-16 space-y-4 lg:mt-24">
-          <h3 className="font-serif text-2xl font-normal text-ink">Optional upgrades & variants</h3>
-          <ul className="space-y-2 text-sm text-ink-soft">
-            {optionalUpgrades.map((upgrade) => (
-              <li key={upgrade} className="flex items-start gap-2">
-                <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
-                <span>{upgrade}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="mt-16 space-y-6 lg:mt-24">
-          <h3 className="font-serif text-2xl font-normal text-ink">Before your next inspection</h3>
-          <GlassPanel>
-            <ul className="space-y-3 text-sm">
-              {inspectionChecklist.map((item) => (
-                <li key={item} className="flex items-start gap-2">
-                  <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
-                  <span className="leading-relaxed text-ink-soft">{item}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-4 text-sm text-ink-soft">
-              Want the full Cannabis Security Inspection Checklist? Request it via the form and select the checklist option—we’ll send the coverage, access, and documentation basics you need.
-            </p>
-          </GlassPanel>
-        </section>
-
-        <section className="mt-16 space-y-8 lg:mt-24">
-          <h3 className="font-serif text-2xl font-normal text-ink">How it fits with the other services</h3>
-          <div className="grid gap-4 md:grid-cols-2">
-            {otherServices.map((service) => (
-              <Link
-                key={service.title}
-                href={service.href}
-                className="h-hover-cream border border-rule bg-cream p-5 text-sm text-ink-soft"
-              >
-                <p className="font-serif text-base font-normal text-ink">{service.title}</p>
-                <p className="mt-2 leading-relaxed">{service.copy}</p>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        <section className="mt-16 border border-rule bg-cream p-6 text-ink lg:mt-24">
-          <h3 className="font-serif text-2xl font-normal">Testimonials</h3>
-          <p className="mt-3 text-sm leading-relaxed text-ink-soft">Client feedback coming soon.</p>
-        </section>
-
-        <section className="mt-16 space-y-6 lg:mt-24">
-          <h3 className="font-serif text-2xl font-normal text-ink">FAQs</h3>
-          <div className="space-y-4 text-sm text-ink-soft">
-            <div>
-              <p className="font-medium text-ink">Do you focus on cannabis only?</p>
-              <p className="mt-1 leading-relaxed">Cannabis is a core specialization. We also support broader commercial/enterprise security needs with the same documentation rigor.</p>
-            </div>
-            <div>
-              <p className="font-medium text-ink">Can you fix a failed inspection?</p>
-              <p className="mt-1 leading-relaxed">Yes. We audit what failed, remediate gaps, and deliver documentation inspectors expect.</p>
-            </div>
-            <div>
-              <p className="font-medium text-ink">Do you handle install?</p>
-              <p className="mt-1 leading-relaxed">We design and can manage installation partners, ensuring the build matches the approved plan.</p>
-            </div>
-            <div>
-              <p className="font-medium text-ink">Which states do you cover?</p>
-              <p className="mt-1 leading-relaxed">Cannabis focus in NM, CO, AZ. We also support broader security elsewhere as needed.</p>
-            </div>
-            <div>
-              <p className="font-medium text-ink">Can you work with existing systems?</p>
-              <p className="mt-1 leading-relaxed">Yes. We integrate or replace where needed and map everything to state requirements.</p>
-            </div>
-            <div>
-              <p className="font-medium text-ink">How fast can you move?</p>
-              <p className="mt-1 leading-relaxed">We prioritize urgent inspections and can stage a rapid plan with phased rollout.</p>
-            </div>
-            <div>
-              <p className="font-medium text-ink">Will you coordinate with legal/compliance teams?</p>
-              <p className="mt-1 leading-relaxed">Yes. We work directly with compliance and legal stakeholders to align on requirements and documentation.</p>
+              <p>
+                The 2024 amendment re-lettered 16.8.2.8 without updating the security rule&rsquo;s cross-reference.
+                We read the rulebook closely enough to catch the state&rsquo;s own drafting error — that&rsquo;s the
+                standard your filing gets.
+              </p>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <CTASection
-          title="Ready for a cannabis security plan that passes inspection?"
-          subtitle="Send your floor plans, license details, and timeline—we’ll map cameras, access, and monitoring to state requirements and get you ready for inspection."
-          primaryLabel="Schedule Free Assessment"
-          primaryHref="#assessment-form"
-          secondaryLabel="Get the Cannabis Security Checklist"
-          secondaryHref="#checklist-form"
-        />
-      </main>
+      <section className={s.method} id="method">
+        <div className={s.wrap}>
+          <div className={s.secHead}>
+            <span className={s.eyebrow}>§ V · The Method</span>
+            <h2>From walkthrough to <em className={s.serifEm}>accepted.</em></h2>
+          </div>
+          <div className={s.steps}>
+            {STEPS.map((st) => (
+              <div className={s.step} key={st.rn}>
+                <span className={s.rn}>{st.rn}</span>
+                <h3>{st.t}</h3>
+                <p>{st.p}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className={s.cta} id="contact">
+        <div className={s.wrap}>
+          <span className={s.eyebrow}>§ VI · The Ask</span>
+          <h2>Find out what the reviewer will find. <em className={s.serifEm}>First.</em></h2>
+          <p>
+            The gap score is a free, twenty-minute teardown of your security posture against the state&rsquo;s
+            requirement checklist. You keep the scorecard either way.
+          </p>
+          <div className={s.ctaRow}>
+            <a className={s.btnSolid} href="mailto:sales@callordut.com">Book the gap score →</a>
+            <a className={s.btnGhost} href="tel:+18666572383">(866) 657-2383</a>
+          </div>
+          <p className={`${s.fig} ${s.fine}`}>No hardware pitch · No obligation · Just the list</p>
+        </div>
+      </section>
+
+      {/* Site-wide <Footer /> (rendered by the root layout) closes the page —
+          the package's own standalone footer was dropped to avoid duplication. */}
     </div>
   );
 }
