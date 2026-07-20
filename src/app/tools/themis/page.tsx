@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { type Field, type Item, type Section } from "./rules";
-import { loadRuleMap } from "./engine";
+import { evaluateItemRemote, loadRuleMap, verifyPackageRemote, type ServerPackageVerdict } from "./engine";
 import { validateItemFields } from "./validate";
 import { auditPackage, needsReview, type PortfolioResult, type SavedPackage } from "./audit";
 import s from "./page.module.css";
@@ -32,6 +32,8 @@ export default function ThemisBuilder() {
   const [portfolio, setPortfolio] = useState<PortfolioResult[]>([]);
   const [auditExpanded, setAuditExpanded] = useState<Record<string, boolean>>({});
   const [auditBusy, setAuditBusy] = useState(false);
+  const [serverVerdict, setServerVerdict] = useState<ServerPackageVerdict>(null);
+  const [genBusy, setGenBusy] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -61,10 +63,16 @@ export default function ThemisBuilder() {
     setErr(id, "");
   };
 
-  function markDone(it: Item) {
+  async function markDone(it: Item) {
     const st = items[it.id];
     const err = validateItemFields(it, st.fields);
     if (err) return setErr(it.id, err);
+    // Local check passed — the engine holds the actual verdict. If it's
+    // unreachable the local pass stands (offline fallback).
+    const verdict = await evaluateItemRemote(it.id, st.fields);
+    if (verdict && !verdict.ok && verdict.violation) {
+      return setErr(it.id, `${verdict.violation.violation_message} (${verdict.violation.citation})`);
+    }
     setStatus(it.id, "done");
   }
 
@@ -78,8 +86,44 @@ export default function ThemisBuilder() {
     st.status === "na" ? "Marked N/A: " + st.na
       : it.fields.map((f) => (f.type === "check" ? "✓ " + f.label : `${f.label}: ${st.fields[f.k]}`)).join("\n");
 
+  async function generatePackage() {
+    setGenBusy(true);
+    try {
+      // The engine countersigns the package: every disposition is re-run
+      // server-side against the current rule map. A refusal shows exactly
+      // which items the statute knocks back. Engine unreachable → the
+      // package still generates, marked "local validation only".
+      const verdict = await verifyPackageRemote(lic, items);
+      if (verdict && !verdict.ready) {
+        const failed = verdict.items.filter((i) => !i.ok && i.violation);
+        for (const f of failed) setErr(f.itemId, `${f.violation!.violation_message} (${f.violation!.citation})`);
+        setItems((st) => {
+          const next = { ...st };
+          for (const f of failed) if (next[f.itemId]) next[f.itemId] = { ...next[f.itemId], status: "todo" };
+          return next;
+        });
+        alert(`The engine refused to certify this package: ${failed.length} item(s) fail the current rule map. Each is reopened with the statutory reason shown.`);
+        return;
+      }
+      setServerVerdict(verdict);
+      const now = new Date();
+      setGenDate(now.toLocaleDateString() + " " + now.toLocaleTimeString());
+      setView("pkg");
+      window.scrollTo({ top: 0 });
+    } finally {
+      setGenBusy(false);
+    }
+  }
+
   function exportJson() {
-    const payload = { client, lic, premise, items, savedAt: new Date().toISOString(), ruleMap: ruleMapVersion };
+    const payload = {
+      client, lic, premise, items,
+      savedAt: new Date().toISOString(),
+      ruleMap: ruleMapVersion,
+      serverVerification: serverVerdict
+        ? { verifiedAt: serverVerdict.verifiedAt, rulemapVersion: serverVerdict.rulemapVersion, counts: serverVerdict.counts }
+        : null,
+    };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
@@ -197,7 +241,7 @@ export default function ThemisBuilder() {
         <span className={s.brand}>
           <Image src="/brand/logo-monogram.png" alt="" width={26} height={24} />
           Themis · CalLord
-          <span className={s.ruleref}>NM — 16.8.2 NMAC · verify against current register before filing</span>
+          <span className={s.ruleref}>{ruleMapVersion}</span>
         </span>
         <span className={s.actions}>
           <button className={s.tbtn} onClick={() => setView(view === "audit" ? "builder" : "audit")} title="Re-check signed-off packages against the current rule map">
@@ -205,8 +249,8 @@ export default function ThemisBuilder() {
           </button>
           <button className={s.tbtn} onClick={exportJson} title="Download progress as JSON">Export progress</button>
           <button className={s.tbtn} onClick={importJson} title="Load a saved JSON file">Load</button>
-          <button className={s.tbtnPrimary} disabled={!allDone} onClick={() => { const now = new Date(); setGenDate(now.toLocaleDateString() + " " + now.toLocaleTimeString()); setView("pkg"); window.scrollTo({ top: 0 }); }}>
-            Generate package
+          <button className={s.tbtnPrimary} disabled={!allDone || genBusy} onClick={generatePackage}>
+            {genBusy ? "Verifying…" : "Generate package"}
           </button>
         </span>
       </div>
@@ -396,6 +440,14 @@ export default function ThemisBuilder() {
               <span>REQUIREMENTS RESOLVED<b>{total} of {total}</b></span>
               <span>MARKED N/A (JUSTIFIED)<b>{naCount}</b></span>
               <span>RULE MAP VERSION<b>{ruleMapVersion}</b></span>
+              <span>
+                SERVER VERIFICATION
+                <b>
+                  {serverVerdict
+                    ? `Engine-certified ${new Date(serverVerdict.verifiedAt).toLocaleString()} · ${serverVerdict.rulemapVersion}`
+                    : "Local validation only — engine unreachable at generation"}
+                </b>
+              </span>
             </div>
           </div>
           {sections.map((secn) => (
