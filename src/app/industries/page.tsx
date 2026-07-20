@@ -1,15 +1,22 @@
 import Link from "next/link";
+import { CANNABIS_CONTENT_ENABLED } from "@/config/flags";
 
 export const metadata = {
   title: "Industries | CalLord Unified Technologies",
-  description: "Explore how CalLord serves senior living, hospitality, and offices with smart rooms, AV, and security.",
+  description: "Explore how CalLord serves senior living, hospitality, offices, and cannabis operators with smart rooms, AV, and security.",
 };
 
-const industries = [
+const baseIndustries = [
   { label: "Senior Living", href: "/industries/senior-living" },
   { label: "Hospitality", href: "/industries/hospitality" },
   { label: "Offices", href: "/industries/offices" },
 ];
+
+// Kept in sync with the flag that gates /industries/cannabis itself — so this
+// index never links (or omits) a card the underlying page won't render.
+const industries = CANNABIS_CONTENT_ENABLED
+  ? [...baseIndustries, { label: "Cannabis", href: "/industries/cannabis" }]
+  : baseIndustries;
 
 export default function IndustriesIndexPage() {
   return (
