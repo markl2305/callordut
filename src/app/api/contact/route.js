@@ -1,5 +1,5 @@
 import { Resend } from "resend";
-import { rateLimit, getClientIp, isPlausibleEmail } from "@/lib/mail-guard";
+import { rateLimit, getClientIp, isPlausibleEmail, escapeSubject } from "@/lib/mail-guard";
 
 let _resend;
 function getResend() {
@@ -80,7 +80,11 @@ export async function POST(request) {
       );
     }
 
-    const subject = `New lead from callordut.com${source ? ` – ${source}` : ""}`;
+    // F-0066 — `source` is caller-supplied and was interpolated into a HEADER raw.
+    // escapeSubject (NOT escapeText, which deliberately preserves \n for bodies;
+    // NOT escapeHtml, which would render literal &amp; in a mail client) folds
+    // CR/LF/control characters to spaces and caps the length.
+    const subject = escapeSubject(`New lead from callordut.com${source ? ` – ${source}` : ""}`);
 
     const textLines = [
       "New lead from callordut.com",
@@ -100,8 +104,6 @@ export async function POST(request) {
       message || issues,
     ].filter(Boolean);
 
-    // The per-recipient window is checked HERE, after `email` is known and after
-    // the honeypot, so a bot-shaped request never consumes a real address's quota.
     // A non-plausible address is refused outright rather than handed to Resend.
     if (!isPlausibleEmail(email)) {
       return new Response(
@@ -109,19 +111,23 @@ export async function POST(request) {
         { status: 400, headers: { "Content-Type": "application/json" } }
       );
     }
-    if (!rateLimit(`callordut:contact:to:${String(email).toLowerCase()}`, 3, 3_600_000).allowed) {
-      return new Response(
-        JSON.stringify({ ok: false, error: "Too many requests. Please try again shortly." }),
-        { status: 429, headers: { "Content-Type": "application/json" } }
-      );
-    }
 
+    // ⛔⛔ THE CALLER-SUPPLIED ADDRESS IS GONE FROM THIS RECIPIENT LIST (F-0056).
+    // This was `to: [DEFAULT_RECIPIENT, email]`. That is the open relay the finding was
+    // filed for: an anonymous caller named a recipient and leads@callordut.com delivered
+    // to it. The merged branch METERED that (3/hour) but left the authority in place —
+    // metering an open relay is not closing it, and an in-process counter resets on every
+    // cold isolate. The authority is removed here, which is what the siblings did
+    // (cannabis-security b85c55b, conference-room-design 437b966).
+    //
+    // The body below is unchanged and now goes to the internal inbox ONLY.
     const { error } = await getResend().emails.send({
       from: FROM_EMAIL,
-      to: [DEFAULT_RECIPIENT, email],
+      to: [DEFAULT_RECIPIENT],
+      // replyTo is validated before use; an unusable value drops the header, never the lead.
+      replyTo: email,
       subject,
       text: textLines.join("\n"),
-      replyTo: email,
     });
 
     if (error) {
@@ -130,6 +136,35 @@ export async function POST(request) {
         status: 500,
         headers: { "Content-Type": "application/json" },
       });
+    }
+
+    // ⚠ BEHAVIOUR PRESERVED DELIBERATELY. Before this change the submitter received a
+    // copy of the internal notification above — that copy WAS their acknowledgement.
+    // Dropping `email` from those recipients would have left every submitter with no
+    // reply at all, so the acknowledgement is re-sent here as its own mail: recipient
+    // validated, per-recipient windowed, and carrying no caller-supplied content.
+    //
+    // THIS is where the per-recipient window belongs. The merged branch put it in front
+    // of the internal notification, so a 4th genuine enquiry in an hour would have been
+    // refused 429 and the LEAD LOST. A volume bound must never cost Mark a lead.
+    //
+    // A failure here is swallowed: the lead is already away and the submitter's receipt
+    // is not worth failing their request over.
+    if (rateLimit(`callordut:contact:ack:${String(email).toLowerCase()}`, 3, 3_600_000).allowed) {
+      try {
+        await getResend().emails.send({
+          from: FROM_EMAIL,
+          to: [email],
+          subject: "We received your request — CalLord Unified Technologies",
+          text: [
+            "Thanks for reaching out — we received your request and will reply shortly.",
+            "",
+            "— CalLord Unified Technologies",
+          ].join("\n"),
+        });
+      } catch (ackErr) {
+        console.error("Acknowledgement send error:", ackErr);
+      }
     }
 
     return new Response(JSON.stringify({ ok: true }), {
