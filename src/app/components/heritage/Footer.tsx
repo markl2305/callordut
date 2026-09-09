@@ -57,8 +57,8 @@ export function Footer() {
               designed, installed, and supported for the long term.
             </p>
             <div style={{ marginTop: 22 }}>
-              <a href="tel:+18666572383" style={{ fontFamily: FONT.serif, fontSize: 22, color: "var(--h-ink)", textDecoration: "none" }}>
-                (866) 657-2383
+              <a href="tel:+18668492113" style={{ fontFamily: FONT.serif, fontSize: 22, color: "var(--h-ink)", textDecoration: "none" }}>
+                (866) 849-2113
               </a>
               <a href="mailto:sales@callordut.com" style={{ display: "block", marginTop: 6, textDecoration: "none" }}>
                 <Mono>sales@callordut.com</Mono>
