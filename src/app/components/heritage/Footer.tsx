@@ -87,9 +87,10 @@ export function Footer() {
 
         {/* Compliance / 10DLC disclosure — load-bearing, preserved from prior footer */}
         <p style={{ fontFamily: FONT.sans, fontSize: 12.5, color: "var(--h-ink-faint)", lineHeight: 1.6, marginTop: 44, maxWidth: 820 }}>
-          By contacting us you agree we may call or text (SMS/MMS) about your request. Message frequency
-          varies. Message and data rates may apply. Reply STOP to opt out. Reply HELP for help. We do not
-          sell your information. See our{" "}
+          We text only people who opt in, either with the SMS consent box on our contact form or verbally
+          on a call. Contacting us does not by itself sign you up for texts. Message frequency varies. Message
+          and data rates may apply. Reply STOP to opt out. Reply HELP for help. We do not sell your
+          information. See our{" "}
           <Link href="/privacy" style={{ color: "var(--h-teal)", textDecoration: "none" }}>Privacy Policy</Link>{" "}
           and{" "}
           <Link href="/sms-terms" style={{ color: "var(--h-teal)", textDecoration: "none" }}>SMS Terms</Link>.

@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { trackLead } from "@/lib/analytics";
 import { event as gaEvent } from "@/lib/gtag";
+import { SmsConsentCheckbox } from "./SmsConsentCheckbox";
+import { CONTACT_NOTICE } from "@/lib/sms-consent";
 
 type HomeLeadFormProps = {
   roomTypes?: string[];
@@ -20,6 +22,7 @@ export function HomeLeadForm({ roomTypes = [] }: HomeLeadFormProps) {
   });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [error, setError] = useState("");
+  const [smsConsent, setSmsConsent] = useState(false);
 
   function updateField(field: keyof typeof form) {
     return (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -39,6 +42,7 @@ export function HomeLeadForm({ roomTypes = [] }: HomeLeadFormProps) {
         body: JSON.stringify({
           ...form,
           source: "Homepage Lead Form",
+          smsConsent,
           issues: form.message,
         }),
       });
@@ -175,8 +179,9 @@ export function HomeLeadForm({ roomTypes = [] }: HomeLeadFormProps) {
         >
           {status === "loading" ? "Sending…" : "Schedule Free Assessment"}
         </button>
+        <SmsConsentCheckbox checked={smsConsent} onChange={setSmsConsent} className="text-xs leading-relaxed text-ink-faint" linkClassName="text-teal hover:underline underline-offset-2" />
         <p className="mt-3 text-xs text-ink-faint">
-          By submitting, you agree to receive calls and text messages (SMS/MMS) about your request. Message and data rates may apply. We do not sell your information. See our{" "}
+          {CONTACT_NOTICE} See our{" "}
           <Link href="/privacy" className="text-teal hover:underline underline-offset-2">
             Privacy Policy
           </Link>

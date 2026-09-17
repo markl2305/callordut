@@ -6,6 +6,8 @@ import { trackLead } from "@/lib/analytics";
 import { event as gaEvent } from "@/lib/gtag";
 import { CANNABIS_CONTENT_ENABLED } from "@/config/flags";
 import { Mono, FONT } from "../components/heritage/primitives";
+import { SmsConsentCheckbox } from "../components/SmsConsentCheckbox";
+import { CONTACT_NOTICE } from "@/lib/sms-consent";
 
 const roomOptions = [
   "Executive Boardroom",
@@ -38,6 +40,7 @@ const labelWrap: CSSProperties = { display: "flex", flexDirection: "column", gap
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
+  const [smsConsent, setSmsConsent] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -74,6 +77,7 @@ export function ContactForm() {
         body: JSON.stringify({
           ...form,
           company_website: form.honeypot,
+          smsConsent,
           source: "Contact Page Form",
         }),
       });
@@ -94,6 +98,7 @@ export function ContactForm() {
       }
       trackLead({ formName: "Contact Page Form" });
       setForm({ name: "", email: "", phone: "", company: "", service: "", roomType: "", message: "", heardFrom: "", honeypot: "" });
+      setSmsConsent(false);
     } catch (err) {
       console.error("Contact form submission failed", err);
       setError(err instanceof Error ? err.message : "Something went wrong sending your message. Please try again or call us directly.");
@@ -178,14 +183,15 @@ export function ContactForm() {
       )}
       {error && <p style={{ fontFamily: FONT.sans, fontSize: 14, color: "#b4452a", margin: 0 }}>{error}</p>}
 
+      <SmsConsentCheckbox
+        checked={smsConsent}
+        onChange={setSmsConsent}
+        textStyle={{ fontFamily: FONT.sans, fontSize: 12, color: "var(--h-ink-faint)", lineHeight: 1.55, margin: "4px 0 0" }}
+        linkStyle={{ color: "var(--h-teal)", textDecoration: "none" }}
+      />
       <p style={{ fontFamily: FONT.sans, fontSize: 12, color: "var(--h-ink-faint)", lineHeight: 1.55, margin: "4px 0 0" }}>
-        By submitting, you agree to receive calls and text messages (SMS/MMS) from CalLord Unified
-        Technologies about your request. Message frequency varies. Message and data rates may apply. Reply
-        STOP to opt out. Reply HELP for help. Consent is not a condition of purchase. We do not sell your
-        information. See our{" "}
-        <Link href="/privacy" style={{ color: "var(--h-teal)", textDecoration: "none" }}>Privacy Policy</Link>{" "}
-        and{" "}
-        <Link href="/sms-terms" style={{ color: "var(--h-teal)", textDecoration: "none" }}>SMS Terms</Link>.
+        {CONTACT_NOTICE} See our{" "}
+        <Link href="/privacy" style={{ color: "var(--h-teal)", textDecoration: "none" }}>Privacy Policy</Link>.
       </p>
     </form>
   );

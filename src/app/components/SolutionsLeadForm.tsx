@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, type ChangeEvent, type FormEvent, type CSSProperties } from "react";
 import { trackLead } from "@/lib/analytics";
 import { event as gaEvent } from "@/lib/gtag";
+import { CONTACT_NOTICE } from "@/lib/sms-consent";
 import { Mono, FONT } from "./heritage/primitives";
 
 type SolutionsLeadFormProps = {
@@ -173,7 +174,7 @@ export function SolutionsLeadForm({ services }: SolutionsLeadFormProps) {
         {status === "loading" ? "Sending…" : "Schedule Free Assessment"}
       </button>
       <p style={{ fontFamily: FONT.sans, fontSize: 12, color: "var(--h-ink-faint)", lineHeight: 1.55, margin: "4px 0 0" }}>
-        By submitting, you agree to receive calls and text messages (SMS/MMS) about your request. Message and data rates may apply. We do not sell your information. See our{" "}
+        {CONTACT_NOTICE} See our{" "}
         <Link href="/privacy" style={{ color: "var(--h-teal)", textDecoration: "none" }}>
           Privacy Policy
         </Link>

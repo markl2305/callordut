@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import { buildConsentRecord, renderConsentForEmail } from "@/lib/sms-consent";
 import { rateLimit, getClientIp, isPlausibleEmail, escapeSubject } from "@/lib/mail-guard";
 
 let _resend;
@@ -68,6 +69,7 @@ export async function POST(request) {
       source = "",
       budget = "",
       timeline = "",
+      smsConsent = false,
     } = body || {};
 
     if (!name || !email || !(message || issues)) {
@@ -103,6 +105,12 @@ export async function POST(request) {
       "Message:",
       message || issues,
     ].filter(Boolean);
+
+    // 10DLC evidence: SMS consent is recorded server-side for EVERY submission,
+    // granted or not, with the exact disclosure text the checkbox rendered.
+    const consentRecord = buildConsentRecord({ raw: smsConsent, phone, sourceForm: source, req: request });
+    textLines.push(...renderConsentForEmail(consentRecord));
+    console.log("sms_consent_record " + JSON.stringify(consentRecord));
 
     // A non-plausible address is refused outright rather than handed to Resend.
     if (!isPlausibleEmail(email)) {
