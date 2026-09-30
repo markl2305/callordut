@@ -32,8 +32,8 @@ export function ThemeToggle() {
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
       title={dark ? "Light mode" : "Dark mode"}
       style={{
-        width: 38,
-        height: 38,
+        width: 44,
+        height: 44,
         display: "grid",
         placeItems: "center",
         background: "transparent",
