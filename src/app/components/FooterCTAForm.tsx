@@ -134,7 +134,7 @@ export function FooterCTAForm() {
           value={form.phone}
           onChange={updateField("phone")}
           className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal focus:outline-none"
-          placeholder="(866) 849-2113"
+          placeholder="(505) 520-1779"
         />
       </div>
       <div className="flex flex-col gap-2">

@@ -221,8 +221,8 @@ export default function SmartRoomDesignPage() {
               <Link href="/contact" className="h-btn bg-teal px-6 py-3.5 text-sm font-medium text-on-teal">
                 Schedule Free Assessment
               </Link>
-              <Link href="tel:+18668492113" className="h-btn border border-paper px-6 py-3.5 text-sm font-medium text-paper">
-                Call (866) 849-2113
+              <Link href="tel:+15055201779" className="h-btn border border-paper px-6 py-3.5 text-sm font-medium text-paper">
+                Call (505) 520-1779
               </Link>
             </div>
           </section>

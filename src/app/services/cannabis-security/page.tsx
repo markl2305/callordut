@@ -230,7 +230,7 @@ export default function CannabisSecurityPage() {
           </p>
           <div className={s.ctaRow}>
             <a className={s.btnSolid} href="mailto:sales@callordut.com">Book the gap score →</a>
-            <a className={s.btnGhost} href="tel:+18668492113">(866) 849-2113</a>
+            <a className={s.btnGhost} href="tel:+15055201779">(505) 520-1779</a>
           </div>
           <p className={`${s.fig} ${s.fine}`}>No hardware pitch · No obligation · Just the list</p>
         </div>

@@ -17,7 +17,7 @@ export function JsonLd() {
         name: siteConfig.shortName,
         legalName: siteConfig.legalName,
         url: base,
-        telephone: "+1-866-849-2113",
+        telephone: "+1-505-520-1779",
         email: siteConfig.email,
         slogan: siteConfig.tagline,
         description:

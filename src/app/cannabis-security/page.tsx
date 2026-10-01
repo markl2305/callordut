@@ -210,10 +210,10 @@ export default function CannabisSecurityPage() {
               Schedule Free Assessment
             </Link>
             <Link
-              href="tel:+18668492113"
+              href="tel:+15055201779"
               className="h-btn inline-flex items-center justify-center border border-ink px-6 py-3.5 text-sm font-medium text-ink"
             >
-              Call (866) 849-2113
+              Call (505) 520-1779
             </Link>
           </div>
         </section>

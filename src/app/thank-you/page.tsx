@@ -16,7 +16,7 @@ export default function ThankYouPage() {
           </p>
           <div className="mt-6 space-y-2 text-sm text-ink-soft">
             <p>
-            If you need to talk sooner, call us at <a className="font-medium text-teal" href="tel:+18668492113">(866) 849-2113</a> or email
+            If you need to talk sooner, call us at <a className="font-medium text-teal" href="tel:+15055201779">(505) 520-1779</a> or email
               <a className="font-medium text-teal" href="mailto:sales@callordut.com"> sales@callordut.com</a>.
             </p>
             <p>In the meantime, explore our services or room templates:</p>

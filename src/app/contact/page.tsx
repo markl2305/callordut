@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   const rows = [
-    { k: "Phone", v: "(866) 849-2113", href: "tel:+18668492113" },
+    { k: "Phone", v: "(505) 520-1779", href: "tel:+15055201779" },
     { k: "Email", v: "sales@callordut.com", href: "mailto:sales@callordut.com" },
     { k: "Response time", v: "Under 1 hour, business hours" },
   ];
