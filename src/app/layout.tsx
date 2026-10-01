@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Newsreader, Spectral, Space_Grotesk, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { Header } from "./components/heritage/Header";
 import { Footer } from "./components/heritage/Footer";
@@ -98,6 +99,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <RevealObserver />
         <main>{children}</main>
         <Footer />
+        {/* Vercel Web Analytics (Mark 2026-10-01). */}
+        <Analytics />
       </body>
     </html>
   );
