@@ -16,7 +16,7 @@ const processSteps = [
   { title: "Design & Documentation", description: "We turn requirements into schematics, elevations, and room templates that anyone on the project can understand." },
   { title: "Coordinate & Build", description: "We guide local installers, GCs, and IT teams so every trade knows what happens when." },
   { title: "Commission & Verify", description: "Room testing, labeling, punch lists, and recordings ensure the space works before anyone important walks in." },
-  { title: "Support & Iterate", description: "We stay available for tweaks, expansions, and ongoing documentation updates as your footprint expands." },
+  { title: "Support & Iterate", description: "We stay available for tweaks, expansions, and ongoing documentation updates as your footprint grows." },
 ];
 
 const audiences = [

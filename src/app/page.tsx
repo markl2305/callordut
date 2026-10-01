@@ -76,7 +76,7 @@ function HomePillars() {
   const pillars = [
     {
       num: "I", tag: "Security Systems", href: "/security", title: "See everything. Control access. Sleep at night.",
-      body: "Cloud video surveillance, access control, and intrusion detection — designed as one system and monitored as one. Eagle Eye and Brivo at the core, with a clean upgrade path as your needs change.",
+      body: "Cloud video surveillance, access control, and intrusion detection — designed as one system and monitored as one. Eagle Eye and Brivo at the core, with a clean upgrade path as you grow.",
       points: ["Cloud video surveillance", "Access control & credentials", "Intercom & visitor management", "Multi-site, single pane of glass"],
     },
     {
@@ -125,7 +125,7 @@ function HomeApproach() {
     { n: "I", t: "Discover", d: "We walk the space, map every room, and learn how your people actually use it." },
     { n: "II", t: "Design", d: "Signal flow, equipment, and access — specified in plain language and full drawings." },
     { n: "III", t: "Deliver", d: "Installed and commissioned by vetted crews, verified room by room before handoff." },
-    { n: "IV", t: "Support", d: "One number to call. We stay on as the building changes and expands." },
+    { n: "IV", t: "Support", d: "One number to call. We stay on as the building changes and grows." },
   ];
   return (
     <section style={{ background: "var(--h-cream)", borderTop: "1px solid var(--h-rule)" }}>

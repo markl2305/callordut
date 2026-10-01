@@ -40,7 +40,7 @@ const crossIndustryServices = [
   "Room templates, elevations, and documentation you can hand to any installer.",
   "Security layouts, compliance audits, and inspection-ready packages.",
   "Remote installation project management with punch lists + commissioning videos.",
-  "Support and maintenance retainer options as your footprint expands.",
+  "Support and maintenance retainer options as your footprint grows.",
 ];
 
 const services = [
