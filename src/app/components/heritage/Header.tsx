@@ -169,8 +169,8 @@ export function Header() {
             onClick={() => setMenuOpen((o) => !o)}
             style={{
               display: "none",
-              width: 38,
-              height: 38,
+              width: 44,
+              height: 44,
               placeItems: "center",
               background: "transparent",
               border: "1px solid var(--h-rule)",
@@ -199,7 +199,7 @@ export function Header() {
               <Link
                 href={entry.href}
                 onClick={() => setMenuOpen(false)}
-                style={{ fontFamily: FONT.serif, fontSize: 20, color: "var(--h-ink)", textDecoration: "none" }}
+                style={{ display: "flex", alignItems: "center", minHeight: 44, fontFamily: FONT.serif, fontSize: 20, color: "var(--h-ink)", textDecoration: "none" }}
               >
                 {entry.label}
               </Link>
@@ -210,7 +210,7 @@ export function Header() {
                       key={it.href}
                       href={it.href}
                       onClick={() => setMenuOpen(false)}
-                      style={{ fontFamily: FONT.sans, fontSize: 14, color: "var(--h-ink-soft)", textDecoration: "none" }}
+                      style={{ display: "flex", alignItems: "center", minHeight: 44, fontFamily: FONT.sans, fontSize: 14, color: "var(--h-ink-soft)", textDecoration: "none" }}
                     >
                       {it.label}
                     </Link>

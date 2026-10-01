@@ -20,13 +20,12 @@ const roomOptions = [
 
 const fieldStyle: CSSProperties = {
   fontFamily: FONT.sans,
-  fontSize: 15,
+  fontSize: 16,
   padding: "11px 0",
   background: "transparent",
   border: "none",
   borderBottom: "1px solid var(--h-ink)",
   color: "var(--h-ink)",
-  outline: "none",
   width: "100%",
 };
 
