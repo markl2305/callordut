@@ -6,14 +6,10 @@ import { useState } from "react";
 import { BrandLockup } from "./BrandMark";
 import { ThemeToggle } from "./ThemeToggle";
 import { FONT } from "./primitives";
-import { CANNABIS_CONTENT_ENABLED } from "@/config/flags";
 
 type Item = { label: string; href: string };
 type NavEntry = { label: string; href: string; items?: Item[] };
 
-// Cannabis entries are gated by the same flag that controls whether the
-// underlying pages render — otherwise the nav dead-ends into a redirect
-// with no explanation whenever the flag is off (see CANNABIS_CONTENT_ENABLED).
 const NAV: NavEntry[] = [
   {
     label: "Security",
@@ -22,7 +18,6 @@ const NAV: NavEntry[] = [
       { label: "Security Systems Overview", href: "/security" },
       { label: "Multifamily Security", href: "/solutions/multifamily-security" },
       { label: "Financial Institutions", href: "/solutions/financial-institutions" },
-      ...(CANNABIS_CONTENT_ENABLED ? [{ label: "Cannabis Facility Security", href: "/services/cannabis-security" }] : []),
     ],
   },
   {
@@ -42,7 +37,6 @@ const NAV: NavEntry[] = [
       { label: "Senior Living", href: "/industries/senior-living" },
       { label: "Hospitality", href: "/industries/hospitality" },
       { label: "Offices", href: "/industries/offices" },
-      ...(CANNABIS_CONTENT_ENABLED ? [{ label: "Cannabis", href: "/industries/cannabis" }] : []),
     ],
   },
   { label: "The Forge Partnership", href: "/partnerships/forge" },

@@ -26,8 +26,8 @@ brand-separated Forge co-brand block) from the `CalLord Website-2.zip` package.
   Resend `/api/contact` with honeypot + GA `lead_submit` + SMS consent text.
 
 ## TODO — re-skin remaining pages (Task #4)
-about, privacy, sms-terms, thank-you, services/* (av-integration, cannabis-security,
-custom-solutions, project-management, smart-rooms), industries/* (cannabis, hospitality,
+about, privacy, sms-terms, thank-you, services/* (av-integration,
+custom-solutions, project-management, smart-rooms), industries/* (hospitality,
 offices, senior-living), industries/page, solutions/* (financial-institutions,
 multifamily-security), solutions/page, room-types/* (6) + room-types/page + RoomTypeTemplate,
 partnerships/cooperative-purchasing, smart-room-design. Keep all content/SEO/forms; swap
@@ -37,7 +37,7 @@ dark Tailwind classes → heritage tokens, use heritage primitives where it read
 All ~20 long-tail pages re-skinned to heritage (about, privacy, sms-terms, thank-you,
 services/*, industries/*, solutions/*, room-types/* + RoomTypeTemplate, smart-room-design,
 partnerships/cooperative-purchasing) + lead forms (HomeLeadForm, FooterCTAForm,
-SolutionsLeadForm, Cannabis*Form) restyled to underline aesthetic. Shared presentational
+SolutionsLeadForm) restyled to underline aesthetic. Shared presentational
 components (SectionHeader, PillBadge, GlassPanel, CTASection, ServiceCard, RoomTypesShowcase,
 GlowCard) re-skinned. Old dead components (components/Header.tsx, Footer.tsx, BrandMark.tsx)
 deleted. **Systemic fix:** moved base element rules (incl. `a{color}`) into `@layer base`

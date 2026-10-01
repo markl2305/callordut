@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useState, type ChangeEvent, type FormEvent, type CSSProperties } from "react";
 import { trackLead } from "@/lib/analytics";
 import { event as gaEvent } from "@/lib/gtag";
-import { CANNABIS_CONTENT_ENABLED } from "@/config/flags";
 import { Mono, FONT } from "../components/heritage/primitives";
 import { SmsConsentCheckbox } from "../components/SmsConsentCheckbox";
 import { CONTACT_NOTICE } from "@/lib/sms-consent";
@@ -16,12 +15,8 @@ const roomOptions = [
   "Virtual Visit / Telehealth",
   "Small Hybrid / Focus Pod",
   "Custom Venue / Hospitality",
-  "Cannabis Security",
   "Other",
 ];
-const visibleRoomOptions = CANNABIS_CONTENT_ENABLED
-  ? roomOptions
-  : roomOptions.filter((option) => option !== "Cannabis Security");
 
 const fieldStyle: CSSProperties = {
   fontFamily: FONT.sans,
@@ -139,7 +134,7 @@ export function ContactForm() {
         <Mono>Room or space type (optional)</Mono>
         <select value={form.roomType} onChange={updateField("roomType")} style={fieldStyle}>
           <option value="">Choose a room type (optional)</option>
-          {visibleRoomOptions.map((option) => (
+          {roomOptions.map((option) => (
             <option key={option} value={option}>
               {option}
             </option>

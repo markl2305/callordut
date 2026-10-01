@@ -10,7 +10,6 @@ const COLS: { h: string; items: { label: string; href: string; external?: boolea
       { label: "AV Integration", href: "/av-integration" },
       { label: "Smart Room Design", href: "/smart-room-design" },
       { label: "Project Management", href: "/services/project-management" },
-      { label: "Cannabis Security", href: "/services/cannabis-security" },
     ],
   },
   {

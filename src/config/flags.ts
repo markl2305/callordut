@@ -1,1 +1,0 @@
-export const CANNABIS_CONTENT_ENABLED = process.env.NEXT_PUBLIC_CANNABIS_CONTENT === "true";

@@ -25,7 +25,7 @@ export async function POST(request) {
     // Two windows, because they stop different things:
     //   per-IP        5 / minute   — the volumetric case
     //   per-recipient 3 / hour     — the targeted case, which survives an IP rotation
-    // Ported verbatim from cannabis-security/src/lib/mail-guard.ts, which is
+    // Ported verbatim from the sibling security-lead repo's src/lib/mail-guard.ts, which is
     // the pattern already accepted on the sibling lead routes. Deliberately not
     // a new invention: a fifth hand-rolled limiter would drift from the other four.
     //
@@ -126,7 +126,7 @@ export async function POST(request) {
     // to it. The merged branch METERED that (3/hour) but left the authority in place —
     // metering an open relay is not closing it, and an in-process counter resets on every
     // cold isolate. The authority is removed here, which is what the siblings did
-    // (cannabis-security b85c55b, conference-room-design 437b966).
+    // (security-lead repo b85c55b, conference-room-design 437b966).
     //
     // The body below is unchanged and now goes to the internal inbox ONLY.
     const { error } = await getResend().emails.send({
