@@ -59,7 +59,7 @@ export function HomeLeadForm({ roomTypes = [] }: HomeLeadFormProps) {
         console.log("Firing GA lead_submit");
         gaEvent("lead_submit", {
           form_id: "callord_home_lead_form",
-          page_location: window.location.href,
+          page_location: window.location.origin + window.location.pathname, // never the query string
           page_path: window.location.pathname,
         });
       }

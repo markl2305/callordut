@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { siteConfig } from "../../config/site";
 import { SmsConsentRule } from "../components/SmsConsentRule";
+import ConsentChoice from "../components/consent/ConsentChoice";
 
 export const metadata = {
   title: "Privacy Policy | CalLord Unified Technologies",
@@ -39,8 +40,14 @@ export default function PrivacyPage() {
               <p>
                 We collect information you submit through our contact forms,
                 including name, email, phone number, company, room details, and
-                any message you provide. We may also receive basic analytics
-                data from our website traffic tools.
+                any message you provide. Our hosting provider&rsquo;s servers log
+                basic request data (IP address, browser, and the page requested)
+                to deliver and secure the site. Analytics and advertising data
+                reach Google only if you allow it; see{" "}
+                <a href="#analytics" className="font-medium text-teal">
+                  Analytics, Advertising and Cookies
+                </a>
+                .
               </p>
             </section>
 
@@ -72,8 +79,9 @@ export default function PrivacyPage() {
                 <li>
                   <strong>Service Providers:</strong> With trusted third-party
                   service providers who assist us in operating our website and
-                  conducting our business (e.g., email service providers,
-                  telecommunications providers, analytics tools). These
+                  conducting our business (our hosting provider, email
+                  delivery, and telecommunications providers, and, only if you
+                  allow it, Google Analytics and Google Ads). These
                   providers are contractually obligated to protect your
                   information.
                 </li>
@@ -262,17 +270,85 @@ export default function PrivacyPage() {
               </p>
             </section>
 
-            <section>
+            <section id="analytics">
               <h2 className="font-serif text-xl font-normal text-ink">
-                Cookies and Analytics
+                Analytics, Advertising and Cookies
               </h2>
               <p>
-                We use Google Analytics to analyze website traffic and may use
-                Google Ads to display advertisements. These services may collect
-                information about your online activities. You can opt out of
-                Google Analytics by installing the Google Analytics Opt-out
-                Browser Add-on.
+                This site uses two Google services, both provided by Google LLC,
+                and only after you press &ldquo;Allow analytics and ads&rdquo;:
               </p>
+              <ul className="mt-2 list-disc space-y-2 pl-6">
+                <li>
+                  <strong>Google Analytics</strong> tells us how the site is
+                  used: pages viewed, how you arrived, approximate location,
+                  device and browser.
+                </li>
+                <li>
+                  <strong>Google Ads</strong> measures whether our ads lead to
+                  visits and inquiries, and can be used to show our ads to
+                  people who have visited this site (remarketing). When a form
+                  is sent,
+                  Google&rsquo;s tag may also read the email address, phone
+                  number or postal address entered in it and send it to Google
+                  in hashed form to match the inquiry to an ad (Google calls
+                  this enhanced conversions).
+                </li>
+              </ul>
+              <p className="mt-3">
+                Until you choose, and if you choose &ldquo;No analytics or
+                ads&rdquo;, neither service loads and nothing is sent to Google.
+                With JavaScript off, nothing is sent either. Google uses what it
+                receives under its own terms; see{" "}
+                <a
+                  href="https://policies.google.com/technologies/partner-sites"
+                  className="font-medium text-teal"
+                >
+                  how Google uses information from sites that use its services
+                </a>
+                .
+              </p>
+              <p className="mt-3">
+                <strong>Cookies, only if you allow them:</strong>{" "}
+                <code>_ga</code> and <code>_ga_</code> followed by our property
+                id (Google Analytics), <code>_gcl_au</code> (Google Ads), and{" "}
+                <code>_gcl_ls</code> in your browser&rsquo;s storage (Google
+                Ads).
+              </p>
+              <p className="mt-3">
+                <strong>Always set, not used for tracking:</strong>{" "}
+                <code>callord-consent</code> remembers your choice for 180 days;{" "}
+                <code>consent_gpc</code> is set for one day only when your
+                browser sends a Global Privacy Control signal; and{" "}
+                <code>cl-theme</code> keeps your light or dark choice in your
+                browser.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="font-serif text-xl font-normal text-ink">
+                Global Privacy Control
+              </h2>
+              <p>
+                If your browser sends a Global Privacy Control signal, we treat
+                it as &ldquo;No analytics or ads&rdquo;: neither Google service
+                loads, we do not ask, and the signal overrides an earlier
+                &ldquo;Allow&rdquo;. We treat the signal as your request to opt
+                out of the sale or sharing of your personal information,
+                including sharing for targeted advertising.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="font-serif text-xl font-normal text-ink">
+                Your Analytics Choice
+              </h2>
+              <p>
+                You can change your choice here at any time. Withdrawing turns
+                both Google services off at once, removes the Google cookies
+                and browser storage this site can remove, and reloads the page.
+              </p>
+              <ConsentChoice />
             </section>
 
             <section>
@@ -333,12 +409,6 @@ export default function PrivacyPage() {
               </div>
             </section>
 
-            <div className="mt-8 border-t border-rule pt-6">
-              <p className="text-xs text-ink-faint">
-                By using our website and services, you acknowledge that you have
-                read and understood this Privacy Policy and agree to its terms.
-              </p>
-            </div>
           </div>
         </div>
       </main>

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Newsreader, Spectral, Space_Grotesk, Inter_Tight, JetBrains_Mono } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import { Header } from "./components/heritage/Header";
 import { Footer } from "./components/heritage/Footer";
@@ -8,6 +7,7 @@ import { ThemeScript } from "./components/heritage/ThemeScript";
 import { RevealObserver } from "./components/heritage/RevealObserver";
 import { JsonLd } from "./components/JsonLd";
 import { siteConfig } from "../config/site";
+import ConsentBar from "./components/consent/ConsentBar";
 
 const newsreader = Newsreader({
   variable: "--font-newsreader",
@@ -67,28 +67,30 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const gaMeasurementId =
     process.env.NEXT_PUBLIC_GA_ID || process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+  // Read by public/consent/consent.js (hiresabina.ai's gate file, copied byte-identical). The Google tag for this
+  // GA4 id also carries the Google Ads destination (AW-17409946688 is configured inside the Google tag, not in this
+  // repo), so gating this one loader gates both. ConsentBar renders this site's own bar (autoBar off).
+  const CONSENT_CONFIG = `window.CONSENT_CONFIG=${JSON.stringify({
+    storageKey: "callord-consent",
+    privacyHref: "/privacy",
+    ga4: gaMeasurementId || null,
+    linkedin: null,
+    vercel: false,
+    autoBar: false,
+    privatePaths: "^/api(/|$)",
+  })};`;
 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
         <ThemeScript />
-        {gaMeasurementId ? (
-          <>
-            <Script src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`} strategy="afterInteractive" />
-            <Script
-              id="ga4-init"
-              strategy="afterInteractive"
-              dangerouslySetInnerHTML={{
-                __html: `
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', '${gaMeasurementId}', { send_page_view: true });
-                `,
-              }}
-            />
-          </>
-        ) : null}
+        {/* Consent gate (compliance P1-1g, Mark 2026-10-12). Google Analytics 4 and Google Ads load ONLY after a
+            visitor presses "Allow analytics and ads", never under Global Privacy Control (the
+            navigator.globalPrivacyControl signal, or the consent_gpc cookie src/proxy.ts sets from Sec-GPC), and
+            never from the server: public/consent/consent.js creates the tag in the browser, so with JavaScript
+            off nothing is sent. */}
+        <script id="consent-config" dangerouslySetInnerHTML={{ __html: CONSENT_CONFIG }} />
+        <script async src="/consent/consent.js" />
       </head>
       <body
         className={`${newsreader.variable} ${spectral.variable} ${spaceGrotesk.variable} ${interTight.variable} ${jetbrainsMono.variable} antialiased`}
@@ -98,6 +100,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <RevealObserver />
         <main>{children}</main>
         <Footer />
+        <ConsentBar />
       </body>
     </html>
   );

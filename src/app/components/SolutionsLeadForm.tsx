@@ -69,7 +69,7 @@ export function SolutionsLeadForm({ services }: SolutionsLeadFormProps) {
         console.log("Firing GA lead_submit");
         gaEvent("lead_submit", {
           form_id: "callord_solutions_lead_form",
-          page_location: window.location.href,
+          page_location: window.location.origin + window.location.pathname, // never the query string
           page_path: window.location.pathname,
         });
       }

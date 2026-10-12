@@ -88,7 +88,7 @@ export function ContactForm() {
       if (typeof window !== "undefined") {
         gaEvent("lead_submit", {
           form_id: "callord_main_contact",
-          page_location: window.location.href,
+          page_location: window.location.origin + window.location.pathname, // never the query string
           page_path: window.location.pathname,
         });
       }
