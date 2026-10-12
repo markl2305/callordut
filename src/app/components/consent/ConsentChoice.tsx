@@ -5,9 +5,9 @@ import useSiteConsent, { chooseConsent } from "./useSiteConsent";
 // The withdraw / change control for public/consent/consent.js on /privacy (compliance P1-1g, Mark 2026-10-12).
 // Under Global Privacy Control the signal wins and there is nothing to change here.
 const SAYS = {
-  gpc: "Your browser is sending a Global Privacy Control signal, so Google Analytics and Google Ads stay off on this site and you will not be asked.",
-  accept: "You allowed Google Analytics and Google Ads on this browser.",
-  reject: "You chose no analytics or advertising tags on this browser.",
+  gpc: "Your browser is sending a Global Privacy Control signal, so Google Analytics and Google Ads measurement stay off on this site and you will not be asked.",
+  accept: "You allowed Google Analytics and cookieless Google Ads measurement on this browser.",
+  reject: "You chose no analytics on this browser: nothing is sent to Google Analytics or Google Ads.",
   none: "You have not made a choice on this browser, so nothing has been sent to Google Analytics or Google Ads.",
   nojs: "With JavaScript off, this site sends nothing to Google Analytics or Google Ads.",
 } as const;
@@ -36,12 +36,12 @@ export default function ConsentChoice() {
         <div className="mt-4 flex flex-wrap gap-3">
           {state !== "reject" && (
             <button type="button" style={BUTTON} data-consent-withdraw="" onClick={() => chooseConsent("reject")}>
-              {state === "accept" ? "Withdraw: no analytics or ads" : "No analytics or ads"}
+              {state === "accept" ? "Withdraw: no analytics" : "No thanks"}
             </button>
           )}
           {state !== "accept" && (
             <button type="button" style={BUTTON} data-consent-allow="" onClick={() => chooseConsent("accept")}>
-              Allow analytics and ads
+              Allow
             </button>
           )}
         </div>

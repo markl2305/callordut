@@ -275,8 +275,10 @@ export default function PrivacyPage() {
                 Analytics, Advertising and Cookies
               </h2>
               <p>
-                This site uses two Google services, both provided by Google LLC,
-                and only after you press &ldquo;Allow analytics and ads&rdquo;:
+                This site offers one choice, and it covers two Google services,
+                both provided by Google LLC: Google Analytics and cookieless
+                Google Ads measurement. Neither runs until you press
+                &ldquo;Allow&rdquo;.
               </p>
               <ul className="mt-2 list-disc space-y-2 pl-6">
                 <li>
@@ -285,20 +287,24 @@ export default function PrivacyPage() {
                   device and browser.
                 </li>
                 <li>
-                  <strong>Google Ads</strong> measures whether our ads lead to
-                  visits and inquiries, and can be used to show our ads to
-                  people who have visited this site (remarketing). When a form
-                  is sent,
-                  Google&rsquo;s tag may also read the email address, phone
-                  number or postal address entered in it and send it to Google
-                  in hashed form to match the inquiry to an ad (Google calls
-                  this enhanced conversions).
+                  <strong>Google Ads measurement</strong> tells us whether our
+                  ads lead to visits and inquiries. Our Google Analytics tag is
+                  linked to our Google Ads account, so allowing analytics also
+                  lets Google Ads receive measurement signals from this site.
+                  We tell Google not to store advertising cookies, not to use
+                  your data for ad personalization or remarketing, and not to
+                  use ad user data, so Google Ads sets no cookies here.
+                  Google&rsquo;s tag is also set up so that, after you allow it,
+                  it may read an email address, phone number or postal address
+                  typed into one of our forms and send it to Google Ads in
+                  hashed form to match an inquiry to an ad (Google calls this
+                  enhanced conversions).
                 </li>
               </ul>
               <p className="mt-3">
-                Until you choose, and if you choose &ldquo;No analytics or
-                ads&rdquo;, neither service loads and nothing is sent to Google.
-                With JavaScript off, nothing is sent either. Google uses what it
+                Until you choose, and if you choose &ldquo;No thanks&rdquo;,
+                neither service loads and nothing is sent to Google. With
+                JavaScript off, nothing is sent either. Google uses what it
                 receives under its own terms; see{" "}
                 <a
                   href="https://policies.google.com/technologies/partner-sites"
@@ -311,15 +317,17 @@ export default function PrivacyPage() {
               <p className="mt-3">
                 <strong>Cookies, only if you allow them:</strong>{" "}
                 <code>_ga</code> and <code>_ga_</code> followed by our property
-                id (Google Analytics), <code>_gcl_au</code> (Google Ads), and{" "}
-                <code>_gcl_ls</code> in your browser&rsquo;s storage (Google
-                Ads).
+                id (Google Analytics). Google Ads sets none.
               </p>
               <p className="mt-3">
-                <strong>Always set, not used for tracking:</strong>{" "}
-                <code>callord-consent</code> remembers your choice for 180 days;{" "}
-                <code>consent_gpc</code> is set for one day only when your
-                browser sends a Global Privacy Control signal; and{" "}
+                <strong>Always set, not used for tracking:</strong> your choice
+                is kept in two places on your browser. The{" "}
+                <code>callord-consent</code> cookie expires after 180 days; a
+                copy with the same name in your browser&rsquo;s local storage
+                has no expiry and stays until you clear your browser&rsquo;s
+                site data or change your choice below.{" "}
+                <code>consent_gpc</code> is a cookie set for one day only when
+                your browser sends a Global Privacy Control signal, and{" "}
                 <code>cl-theme</code> keeps your light or dark choice in your
                 browser.
               </p>
@@ -331,7 +339,7 @@ export default function PrivacyPage() {
               </h2>
               <p>
                 If your browser sends a Global Privacy Control signal, we treat
-                it as &ldquo;No analytics or ads&rdquo;: neither Google service
+                it as &ldquo;No thanks&rdquo;: neither Google service
                 loads, we do not ask, and the signal overrides an earlier
                 &ldquo;Allow&rdquo;. We treat the signal as your request to opt
                 out of the sale or sharing of your personal information,
@@ -345,8 +353,9 @@ export default function PrivacyPage() {
               </h2>
               <p>
                 You can change your choice here at any time. Withdrawing turns
-                both Google services off at once, removes the Google cookies
-                and browser storage this site can remove, and reloads the page.
+                Google Analytics and Google Ads measurement off at once, removes
+                the Google cookies and browser storage this site can remove, and
+                reloads the page.
               </p>
               <ConsentChoice />
             </section>

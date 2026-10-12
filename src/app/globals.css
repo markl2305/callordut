@@ -237,3 +237,51 @@
   }
 }
 
+
+/* ── Consent bar (compliance P1-1g, Mark 2026-10-12) ─────────────
+   Rendered by components/consent/ConsentBar.tsx as the LAST child of <body>. position:sticky keeps it at the
+   bottom of the viewport while it is shown AND keeps its own height in the document flow, so at the bottom of
+   the page it sits below the footer instead of on top of it: nothing at page bottom can be covered (the
+   dominusfoundry review's F1, a fixed bar over the footer's last link). It goes away once a choice is made.
+   Requires no overflow clipping on html/body (there is none). */
+.cl-consent-bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 10000;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  background: #1d1a15;
+  color: #efe7d8;
+  border-top: 1px solid rgba(239, 231, 216, 0.25);
+}
+.cl-consent-bar p {
+  margin: 0;
+  flex: 1 1 22rem;
+}
+.cl-consent-bar a {
+  color: inherit;
+  text-decoration: underline;
+}
+.cl-consent-bar button {
+  font: inherit;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border: 1px solid #efe7d8;
+  border-radius: 2px;
+  background: transparent;
+  color: #efe7d8;
+}
+.cl-consent-bar button[data-consent="accept"] {
+  background: #efe7d8;
+  color: #1d1a15;
+}
+.cl-consent-bar :focus-visible {
+  outline: 2px solid #efe7d8;
+  outline-offset: 2px;
+}
