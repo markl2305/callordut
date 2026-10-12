@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { BrandMark } from "./BrandMark";
 import { Mono, FONT } from "./primitives";
+import { SmsConsentRule } from "../SmsConsentRule";
 
 const COLS: { h: string; items: { label: string; href: string; external?: boolean }[] }[] = [
   {
@@ -85,11 +86,9 @@ export function Footer() {
         </div>
 
         {/* Compliance / 10DLC disclosure — load-bearing, preserved from prior footer */}
-        <p style={{ fontFamily: FONT.sans, fontSize: 12.5, color: "var(--h-ink-faint)", lineHeight: 1.6, marginTop: 44, maxWidth: 820 }}>
-          We text only people who opt in, either with the SMS consent box on our contact form or verbally
-          on a call. Contacting us does not by itself sign you up for texts. Message frequency varies. Message
-          and data rates may apply. Reply STOP to opt out. Reply HELP for help. We do not sell your
-          information. See our{" "}
+        <SmsConsentRule style={{ fontFamily: FONT.sans, fontSize: 12.5, color: "var(--h-ink-faint)", lineHeight: 1.6, marginTop: 44, maxWidth: 820 }} />
+        <p style={{ fontFamily: FONT.sans, fontSize: 12.5, color: "var(--h-ink-faint)", lineHeight: 1.6, marginTop: 8, maxWidth: 820 }}>
+          We do not sell your information. See our{" "}
           <Link href="/privacy" style={{ color: "var(--h-teal)", textDecoration: "none" }}>Privacy Policy</Link>{" "}
           and{" "}
           <Link href="/sms-terms" style={{ color: "var(--h-teal)", textDecoration: "none" }}>SMS Terms</Link>.

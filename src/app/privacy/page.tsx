@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { siteConfig } from "../../config/site";
+import { SmsConsentRule } from "../components/SmsConsentRule";
 
 export const metadata = {
   title: "Privacy Policy | CalLord Unified Technologies",
@@ -17,7 +18,7 @@ export default function PrivacyPage() {
             Privacy Policy
           </h1>
           <p className="mt-3 text-sm text-ink-soft">
-            Updated for {siteConfig.legalName}. Last updated: June 30, 2026.
+            Updated for {siteConfig.legalName}. Last updated: October 12, 2026.
           </p>
           <p className="mt-1 text-sm text-ink-soft">
             If you have questions, contact{" "}
@@ -97,26 +98,37 @@ export default function PrivacyPage() {
               <h2 className="font-serif text-xl font-normal text-ink">
                 SMS/Text Messaging Consent and Data
               </h2>
-              <p className="mt-2">
-                When you submit a form on callordut.com and provide your phone
-                number, or when you verbally consent during a phone call or
-                in-person meeting, you agree that CalLord Unified Technologies
-                may contact you via SMS text messages for service updates,
-                project coordination, scheduling, and follow-ups related to your
-                inquiry or project.
-              </p>
+              <SmsConsentRule className="mt-2 font-medium text-ink" />
               <ul className="mt-3 list-disc space-y-2 pl-6">
                 <li>
-                  <strong>Opt-in:</strong> You opt in by providing your phone
-                  number and submitting a form on our website at{" "}
+                  <strong>Opt-in on the web:</strong> provide your mobile number
+                  and check the separate SMS box on our contact form at{" "}
                   <Link
                     href="/contact"
                     className="font-medium text-teal"
                   >
                     callordut.com/contact
                   </Link>
-                  , by verbally agreeing during a phone call or meeting, or by
-                  texting a keyword to our business number.
+                  . The box starts unchecked. Submitting a form with a phone
+                  number and the box unchecked authorizes no text messages.
+                </li>
+                <li>
+                  <strong>Opt-in by phone or in person:</strong> agree out loud
+                  during a call or meeting with a CalLord Unified Technologies
+                  representative. We record that agreement, and it covers
+                  service messages only.
+                </li>
+                <li>
+                  <strong>What you can receive:</strong> service messages about
+                  your request or project, such as appointment, scheduling, and
+                  job updates. We do not send marketing text messages.
+                </li>
+                <li>
+                  <strong>What we keep:</strong> for each form submission we
+                  keep a consent record: whether the box was checked, the exact
+                  consent wording and its version, your number, the time, the
+                  seller (CalLord Unified Technologies LLC), the purpose, and
+                  the IP address and browser that sent the form.
                 </li>
                 <li>
                   <strong>Opt-out:</strong> You can reply STOP to any message to
@@ -125,8 +137,7 @@ export default function PrivacyPage() {
                 </li>
                 <li>
                   <strong>Frequency:</strong> Message frequency varies based on
-                  your interactions (typically 1–10 messages per month). We do
-                  not send unsolicited marketing blasts.
+                  your interactions (typically 1–10 messages per month).
                 </li>
                 <li>
                   <strong>Rates:</strong> Message and data rates may apply
@@ -134,8 +145,8 @@ export default function PrivacyPage() {
                 </li>
                 <li>
                   <strong>Consent not required:</strong> Consent to receive SMS
-                  messages is not required as a condition of purchasing any goods
-                  or services.
+                  messages is not required to request a quote or to purchase any
+                  goods or services.
                 </li>
               </ul>
               <p className="mt-4 font-medium text-ink">

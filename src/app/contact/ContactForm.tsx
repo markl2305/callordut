@@ -6,7 +6,7 @@ import { trackLead } from "@/lib/analytics";
 import { event as gaEvent } from "@/lib/gtag";
 import { Mono, FONT } from "../components/heritage/primitives";
 import { SmsConsentCheckbox } from "../components/SmsConsentCheckbox";
-import { CONTACT_NOTICE } from "@/lib/sms-consent";
+import { CONTACT_NOTICE, SMS_CONSENT_VERSION } from "@/lib/sms-consent";
 
 const roomOptions = [
   "Executive Boardroom",
@@ -73,6 +73,7 @@ export function ContactForm() {
           ...form,
           company_website: form.honeypot,
           smsConsent,
+          smsConsentVersion: SMS_CONSENT_VERSION,
           source: "Contact Page Form",
         }),
       });

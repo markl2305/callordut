@@ -3,6 +3,9 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { trackLead } from "@/lib/analytics";
 import { event as gaEvent } from "@/lib/gtag";
+import Link from "next/link";
+import { CONTACT_NOTICE, SMS_CONSENT_VERSION } from "@/lib/sms-consent";
+import { SmsConsentCheckbox } from "./SmsConsentCheckbox";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -17,6 +20,7 @@ const spaceTypes = [
 export function FooterCTAForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
+  const [smsConsent, setSmsConsent] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -50,6 +54,8 @@ export function FooterCTAForm() {
           source: "Homepage Footer Form",
           issues: form.message,
           honeypot: form.honeypot,
+          smsConsent,
+          smsConsentVersion: SMS_CONSENT_VERSION,
         }),
       });
 
@@ -76,6 +82,7 @@ export function FooterCTAForm() {
         message: "",
         honeypot: "",
       });
+      setSmsConsent(false);
     } catch (err) {
       console.error(err);
       setStatus("error");
@@ -179,6 +186,14 @@ export function FooterCTAForm() {
         >
           {status === "loading" ? "Sending…" : "Schedule Free Assessment"}
         </button>
+        <SmsConsentCheckbox checked={smsConsent} onChange={setSmsConsent} className="mt-4 text-xs leading-relaxed text-ink-faint" linkClassName="text-teal hover:underline underline-offset-2" />
+        <p className="mt-3 text-xs text-ink-faint">
+          {CONTACT_NOTICE} See our{" "}
+          <Link href="/privacy" className="text-teal hover:underline underline-offset-2">
+            Privacy Policy
+          </Link>
+          .
+        </p>
       </div>
       {status === "success" ? (
         <p className="lg:col-span-2 text-sm font-medium text-teal">Thanks — we’ll reach out with a simple plan.</p>

@@ -5,7 +5,7 @@ import { useState, type ChangeEvent, type FormEvent } from "react";
 import { trackLead } from "@/lib/analytics";
 import { event as gaEvent } from "@/lib/gtag";
 import { SmsConsentCheckbox } from "./SmsConsentCheckbox";
-import { CONTACT_NOTICE } from "@/lib/sms-consent";
+import { CONTACT_NOTICE, SMS_CONSENT_VERSION } from "@/lib/sms-consent";
 
 type HomeLeadFormProps = {
   roomTypes?: string[];
@@ -43,6 +43,7 @@ export function HomeLeadForm({ roomTypes = [] }: HomeLeadFormProps) {
           ...form,
           source: "Homepage Lead Form",
           smsConsent,
+          smsConsentVersion: SMS_CONSENT_VERSION,
           issues: form.message,
         }),
       });
@@ -71,6 +72,7 @@ export function HomeLeadForm({ roomTypes = [] }: HomeLeadFormProps) {
         roomType: "",
         message: "",
       });
+      setSmsConsent(false);
     } catch (err) {
       console.error(err);
       setStatus("error");

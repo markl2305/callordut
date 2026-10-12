@@ -70,6 +70,7 @@ export async function POST(request) {
       budget = "",
       timeline = "",
       smsConsent = false,
+      smsConsentVersion = "",
     } = body || {};
 
     if (!name || !email || !(message || issues)) {
@@ -106,9 +107,18 @@ export async function POST(request) {
       message || issues,
     ].filter(Boolean);
 
-    // 10DLC evidence: SMS consent is recorded server-side for EVERY submission,
-    // granted or not, with the exact disclosure text the checkbox rendered.
-    const consentRecord = buildConsentRecord({ raw: smsConsent, phone, sourceForm: source, req: request });
+    // 10DLC evidence: an SMS consent receipt is recorded server-side for EVERY
+    // submission, granted or not: seller, purpose, the affirmative action, the
+    // number, and the exact disclosure text of the version the form showed.
+    // It lands in the lead email to DEFAULT_RECIPIENT and the function log;
+    // this repo has no database.
+    const consentRecord = buildConsentRecord({
+      raw: smsConsent,
+      version: smsConsentVersion,
+      phone,
+      sourceForm: source,
+      req: request,
+    });
     textLines.push(...renderConsentForEmail(consentRecord));
     console.log("sms_consent_record " + JSON.stringify(consentRecord));
 

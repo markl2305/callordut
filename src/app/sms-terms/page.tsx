@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { siteConfig } from "../../config/site";
+import { SmsConsentRule } from "../components/SmsConsentRule";
 
 export const metadata = {
   title: "SMS Messaging Terms | CalLord Unified Technologies",
@@ -20,7 +21,7 @@ export default function SmsTermsPage() {
             CalLord Unified Technologies — Mobile Messaging Program
           </p>
           <p className="mt-1 text-xs text-ink-faint">
-            Last updated: March 18, 2026
+            Last updated: October 12, 2026
           </p>
 
           <div className="mt-8 space-y-6 text-sm leading-relaxed text-ink-soft">
@@ -29,13 +30,14 @@ export default function SmsTermsPage() {
                 Program Description
               </h2>
               <p>
-                CalLord Unified Technologies (&ldquo;we,&rdquo;
+                CalLord Unified Technologies LLC (&ldquo;we,&rdquo;
                 &ldquo;us,&rdquo; or &ldquo;our&rdquo;) offers an SMS
-                messaging program to communicate with customers and prospective
-                clients regarding service inquiries, project updates,
-                appointment confirmations, scheduling coordination, follow-ups,
-                and customer support. By opting in to our messaging program, you
-                agree to the terms outlined below.
+                messaging program for service messages to customers and
+                prospective clients: responses to service inquiries, project
+                updates, appointment confirmations, scheduling coordination,
+                follow-ups, and customer support. We do not send marketing text
+                messages. By opting in to our messaging program, you agree to the
+                terms outlined below.
               </p>
             </section>
 
@@ -43,38 +45,31 @@ export default function SmsTermsPage() {
               <h2 className="font-serif text-xl font-normal text-ink">
                 How to Opt In
               </h2>
-              <p>
-                You may opt in to receive SMS messages from CalLord Unified
-                Technologies by any of the following methods:
-              </p>
+              <SmsConsentRule className="font-medium text-ink" />
+              <p className="mt-3">There are two ways to opt in:</p>
               <ul className="mt-2 list-disc space-y-2 pl-6">
                 <li>
-                  <strong>Web Form Submission:</strong> By entering your mobile
-                  phone number on any form on our website (callordut.com),
-                  including our contact form at{" "}
+                  <strong>Web Form:</strong> Provide your mobile number and
+                  check the separate SMS box on our contact form at{" "}
                   <Link
                     href="/contact"
                     className="font-medium text-teal"
                   >
                     callordut.com/contact
                   </Link>
-                  . The form displays SMS consent language near the submit
-                  button.
+                  . The box starts unchecked and sits next to the full SMS
+                  disclosure. Submitting a form with a phone number and the box
+                  unchecked authorizes no text messages.
                 </li>
                 <li>
-                  <strong>Verbal Consent:</strong> By verbally providing your
-                  phone number and agreeing to receive text messages during a
-                  phone call or in-person meeting with a CalLord Unified
-                  Technologies representative. Our representatives inform you
-                  that message frequency varies, message and data rates may
-                  apply, you can reply STOP to opt out and HELP for assistance,
-                  and direct you to our privacy policy at callordut.com/privacy.
-                </li>
-                <li>
-                  <strong>Text-In:</strong> By texting a keyword (e.g.,
-                  &ldquo;START&rdquo; or &ldquo;INFO&rdquo;) to our business
-                  number. You will receive a confirmation message with program
-                  details.
+                  <strong>Verbal Consent:</strong> Agree out loud to receive
+                  text messages during a phone call or in-person meeting with a
+                  CalLord Unified Technologies representative. Our
+                  representatives tell you that message frequency varies,
+                  message and data rates may apply, you can reply STOP to opt
+                  out and HELP for assistance, and direct you to our privacy
+                  policy at callordut.com/privacy. We record that agreement, and
+                  verbal consent covers service messages only.
                 </li>
               </ul>
               <p className="mt-3">
@@ -89,7 +84,7 @@ export default function SmsTermsPage() {
               <h2 className="font-serif text-xl font-normal text-ink">
                 Types of Messages
               </h2>
-              <p>Messages you may receive include:</p>
+              <p>All messages are service messages. They include:</p>
               <ul className="mt-2 list-disc space-y-1 pl-6">
                 <li>Responses to your inquiries and service requests</li>
                 <li>Appointment and meeting confirmations or reminders</li>
@@ -100,6 +95,11 @@ export default function SmsTermsPage() {
                 <li>Scheduling coordination</li>
                 <li>Customer support communications</li>
               </ul>
+              <p className="mt-3">
+                We do not send marketing text messages. If we ever offer them,
+                they will need their own, separate permission; consent to
+                service messages will not cover them.
+              </p>
             </section>
 
             <section>
@@ -111,8 +111,7 @@ export default function SmsTermsPage() {
                 Unified Technologies. You will only receive messages that are
                 relevant to your inquiry or ongoing project. Typical frequency
                 ranges from 1 to 10 messages per month depending on your level
-                of engagement with our team. You will not receive unsolicited
-                marketing blasts.
+                of engagement with our team.
               </p>
             </section>
 
@@ -196,8 +195,8 @@ export default function SmsTermsPage() {
               </h2>
               <p>
                 Consent to receive SMS messages is <strong>not</strong> required
-                as a condition of purchasing any goods or services from CalLord
-                Unified Technologies. You may choose not to opt in and still do
+                to request a quote or as a condition of purchasing any goods or
+                services from CalLord Unified Technologies. You may choose not to opt in and still do
                 business with us.
               </p>
             </section>
@@ -284,7 +283,7 @@ export default function SmsTermsPage() {
 
             <div className="mt-8 border-t border-rule pt-6">
               <p className="text-xs text-ink-faint">
-                Last updated: March 18, 2026. By opting in to receive SMS
+                Last updated: October 12, 2026. By opting in to receive SMS
                 messages from CalLord Unified Technologies, you acknowledge that
                 you have read and agree to these SMS Messaging Terms.
               </p>
