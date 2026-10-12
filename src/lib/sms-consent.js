@@ -20,6 +20,10 @@
  * no marketing program). A marketing SMS program would need its own,
  * separate permission — nothing here grants it.
  *
+ * Mark, 2026-10-12: there is no keyword (START/INFO) opt-in, and staff do not
+ * record verbal consent. So the rule says only that we may ask on the phone,
+ * and the checkbox is the only consent on the website.
+ *
  * Carrier requirements this encodes (TCR / CTIA):
  *   - SMS consent is its own affirmative act, never bundled with calls or email.
  *   - Unchecked by default: the component sets no `checked`/`defaultChecked`.
@@ -37,15 +41,24 @@ export const SMS_PURPOSE_SERVICE = "service";
 
 /**
  * THE RULE, in plain language. Footer, /privacy and /sms-terms render these
- * sentences verbatim; the forms render RULE_HEADLINE in their notice.
+ * sentences verbatim. The forms' CONTACT_NOTICE is built from RULE_HEADLINE
+ * and RULE_WEB, so a form cannot say something the rule does not.
  */
 export const RULE_HEADLINE = "A phone number alone is never permission to text you.";
 
+export const RULE_WEB =
+  "On our website, the only way to agree to texts is the separate SMS box on our contact form, which starts unchecked. Leaving it unchecked authorizes no text messages.";
+
+export const RULE_PHONE =
+  "On a call, we may ask whether you want service texts about your request, and you can say no.";
+
 export const SMS_RULE = [
   RULE_HEADLINE,
-  `${SELLER} sends text messages only if you check the separate SMS box on our contact form, which starts unchecked, or if you agree out loud during a call or meeting with us. We record that agreement, and verbal agreement covers service messages only.`,
-  "Service messages (appointment, scheduling, and job updates about your request) and marketing messages are separate purposes that need separate permission. We do not send marketing text messages, and checking the SMS box does not sign you up for any.",
-  "Leaving the box unchecked authorizes no text messages. You can still request a quote, and we will reply by phone or email.",
+  `${SELLER} texts you only with your permission.`,
+  RULE_WEB,
+  RULE_PHONE,
+  "Service messages (appointment, scheduling, and job updates about your request) and marketing messages are separate purposes that need separate permission. We do not send marketing text messages, and agreeing to service texts does not sign you up for any.",
+  "You can request a quote without agreeing to texts, and we will reply by phone or email.",
   "Message frequency varies. Message and data rates may apply. Reply STOP to opt out, or HELP for help.",
 ];
 
@@ -71,22 +84,32 @@ export const SMS_CONSENT_VERSION = "2026-10-12.v2";
 
 /**
  * Every disclosure text that has ever been shown next to the checkbox, by
- * version. A receipt stores the text of the version the form says it showed;
- * a version not listed here cannot be tied to any text and is not a grant.
+ * version. A receipt stores the text of the version the form says it showed.
+ * A Map, not an object: a caller-supplied version such as "__proto__",
+ * "constructor" or "toString" must not resolve to an inherited property.
  */
-export const DISCLOSURE_HISTORY = {
-  "2026-09-17.v1":
+export const DISCLOSURE_HISTORY = new Map([
+  [
+    "2026-09-17.v1",
     "I agree to receive SMS/text messages from CalLord Unified Technologies at the phone " +
-    "number provided. Message frequency varies (typically 1–10 msgs/mo). " +
-    "Message and data rates may apply. Reply STOP to opt out, HELP for help. " +
-    "Consent is not a condition of purchase. View our SMS Terms and Privacy Policy.",
-  [SMS_CONSENT_VERSION]: SMS_CONSENT_TEXT,
-};
+      "number provided. Message frequency varies (typically 1–10 msgs/mo). " +
+      "Message and data rates may apply. Reply STOP to opt out, HELP for help. " +
+      "Consent is not a condition of purchase. View our SMS Terms and Privacy Policy.",
+  ],
+  [SMS_CONSENT_VERSION, SMS_CONSENT_TEXT],
+]);
+
+/** Exact disclosure text for a version, or null if the version is not one we showed. */
+export function disclosureFor(version) {
+  if (typeof version !== "string" || version === "" || !DISCLOSURE_HISTORY.has(version)) return null;
+  const text = DISCLOSURE_HISTORY.get(version);
+  return typeof text === "string" && text !== "" ? text : null;
+}
 
 /** The non-SMS notice shown under every form. Texts are NOT covered by it. */
 export const CONTACT_NOTICE =
   `By submitting, you agree that ${SELLER} may contact you by phone or email about your request. ` +
-  `${RULE_HEADLINE} We text you only if you check the SMS box. We do not sell your information.`;
+  `${RULE_HEADLINE} ${RULE_WEB} We do not sell your information.`;
 
 /**
  * Only a genuinely ticked box counts: `true` from a React boolean, or `"on"`
@@ -105,13 +128,14 @@ export function readSmsConsent(raw) {
 export function buildConsentRecord({ raw, version, phone = "", sourceForm = "", req }) {
   const checked = readSmsConsent(raw);
   const number = String(phone).trim();
-  const versionShown = typeof version === "string" && version ? version : null;
-  const textShown = versionShown ? DISCLOSURE_HISTORY[versionShown] ?? null : null;
+  const versionShown = typeof version === "string" && version !== "" ? version : null;
+  const textShown = disclosureFor(versionShown);
   const granted = checked && number !== "" && textShown !== null;
 
   let note = null;
-  if (checked && number === "") note = "box checked but no phone number supplied; not consent";
-  else if (checked && textShown === null) note = "box checked but disclosure version unknown; not consent";
+  if (!checked) note = "box not checked; no SMS consent";
+  else if (number === "") note = "box checked but no phone number supplied; not consent";
+  else if (textShown === null) note = "box checked but disclosure version unknown; not consent";
 
   return {
     consent_id: globalThis.crypto?.randomUUID?.() ?? `c-${Date.now()}`,
@@ -123,6 +147,7 @@ export function buildConsentRecord({ raw, version, phone = "", sourceForm = "", 
     affirmative_action: checked ? "checkbox_checked" : "none",
     phone: number,
     recorded_at: new Date().toISOString(),
+    // a version we never showed is kept as a string for the record, never resolved
     disclosure_version: versionShown,
     disclosure_text: textShown,
     note,

@@ -46,32 +46,16 @@ export default function SmsTermsPage() {
                 How to Opt In
               </h2>
               <SmsConsentRule className="font-medium text-ink" />
-              <p className="mt-3">There are two ways to opt in:</p>
-              <ul className="mt-2 list-disc space-y-2 pl-6">
-                <li>
-                  <strong>Web Form:</strong> Provide your mobile number and
-                  check the separate SMS box on our contact form at{" "}
-                  <Link
-                    href="/contact"
-                    className="font-medium text-teal"
-                  >
-                    callordut.com/contact
-                  </Link>
-                  . The box starts unchecked and sits next to the full SMS
-                  disclosure. Submitting a form with a phone number and the box
-                  unchecked authorizes no text messages.
-                </li>
-                <li>
-                  <strong>Verbal Consent:</strong> Agree out loud to receive
-                  text messages during a phone call or in-person meeting with a
-                  CalLord Unified Technologies representative. Our
-                  representatives tell you that message frequency varies,
-                  message and data rates may apply, you can reply STOP to opt
-                  out and HELP for assistance, and direct you to our privacy
-                  policy at callordut.com/privacy. We record that agreement, and
-                  verbal consent covers service messages only.
-                </li>
-              </ul>
+              <p className="mt-3">
+                The SMS box is on our contact form at{" "}
+                <Link
+                  href="/contact"
+                  className="font-medium text-teal"
+                >
+                  callordut.com/contact
+                </Link>
+                , next to the full SMS disclosure.
+              </p>
               <p className="mt-3">
                 By opting in, you confirm that you are the owner or authorized
                 user of the mobile phone number provided, and you consent to
@@ -90,7 +74,7 @@ export default function SmsTermsPage() {
                 <li>Appointment and meeting confirmations or reminders</li>
                 <li>Project status updates and milestones</li>
                 <li>
-                  Follow-up messages related to proposals or consultations
+                  Follow-ups on a proposal or consultation you asked for
                 </li>
                 <li>Scheduling coordination</li>
                 <li>Customer support communications</li>

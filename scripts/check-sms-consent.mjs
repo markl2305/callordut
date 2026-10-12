@@ -28,7 +28,20 @@ const OLD_SENTENCES = [
   "entering your mobile phone number on any form",
   "When you submit a form on callordut.com and provide your phone number",
   "You opt in by providing your phone number and submitting a form",
+  // round 2: the form notice that contradicted the phone route (F2), the
+  // unsupported verbal-record promise (F3), and the keyword path Mark ruled out
+  "We text you only if you check the SMS box",
+  "We record that agreement",
+  "texting a keyword",
 ];
+// round 2: the web and phone sentences of the rule, hardcoded so a build
+// whose shared source says something else fails rather than agrees with itself
+const RULE_WEB_TEXT =
+  "On our website, the only way to agree to texts is the separate SMS box on our contact form, which starts unchecked. Leaving it unchecked authorizes no text messages.";
+const RULE_PHONE_TEXT = "On a call, we may ask whether you want service texts about your request, and you can say no.";
+const FORM_PAGES = ["/contact", "/solutions"];
+// F1: caller-chosen versions that must never resolve to disclosure text
+const BAD_VERSIONS = ["__proto__", "constructor", "toString", "hasOwnProperty", "valueOf", `made-up-${Date.now()}`];
 const CONTROL = "CalLord Unified Technologies";
 const RULE = "A phone number alone is never permission to text you.";
 
@@ -97,6 +110,16 @@ async function main() {
     }
     const rule = count(pages[p].text, RULE);
     check(`(a) ${p} states the rule`, rule > 0, `count=${rule}`);
+    const web = count(pages[p].text, RULE_WEB_TEXT);
+    const phone = count(pages[p].text, RULE_PHONE_TEXT);
+    check(`(a) ${p} states the web sentence of the rule`, web > 0, `count=${web}`);
+    check(`(a) ${p} states the phone sentence of the rule`, phone > 0, `count=${phone}`);
+  }
+  // F2: each form's notice repeats the rule's web sentence, so the page shows
+  // it twice (footer rule + notice) and nothing that contradicts it
+  for (const p of FORM_PAGES) {
+    const web = count(pages[p].text, RULE_WEB_TEXT);
+    check(`(a) ${p} form notice uses the rule's web sentence`, web >= 2, `count=${web}`);
   }
 
   // (b) checkbox renders unchecked
@@ -107,10 +130,13 @@ async function main() {
 
   // (c) submissions → receipts
   const run = `chk-${Date.now()}`;
+  let n = 0;
   const submit = async (tag, extra) => {
+    n += 1;
     const r = await fetch(`${base}/api/contact`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      // one address per request so the route's 5/min per-IP limit never refuses a probe
+      headers: { "Content-Type": "application/json", "x-forwarded-for": `198.51.100.${n}` },
       body: JSON.stringify({
         name: "Consent Check",
         email: "consent-check@example.com",
@@ -124,8 +150,9 @@ async function main() {
   };
   // the version the candidate's form sends; absent on origin/main
   let version = "";
+  let mod = null;
   try {
-    const mod = await import(pathToFileURL(path.join(appDir, "src/lib/sms-consent.js")).href);
+    mod = await import(pathToFileURL(path.join(appDir, "src/lib/sms-consent.js")).href);
     version = mod.SMS_CONSENT_VERSION || "";
   } catch (e) {
     console.log(`note: could not import sms-consent.js (${e.message})`);
@@ -133,7 +160,11 @@ async function main() {
   const st1 = await submit("unchecked", { smsConsent: false, smsConsentVersion: version });
   const st2 = await submit("checked", { smsConsent: true, smsConsentVersion: version });
   const st3 = await submit("noversion", { smsConsent: true });
-  console.log(`note: route statuses ${st1}/${st2}/${st3} (500 expected: no Resend key, so nothing is sent)`);
+  const stN = [];
+  for (const v of BAD_VERSIONS) stN.push(await submit(`badver-${v}`, { smsConsent: true, smsConsentVersion: v }));
+  stN.push(await submit("emptyphone", { smsConsent: true, smsConsentVersion: version, phone: "" }));
+  stN.push(await submit("blankphone", { smsConsent: true, smsConsentVersion: version, phone: "   " }));
+  console.log(`note: route statuses ${[st1, st2, st3, ...stN].join("/")} (500 expected: no Resend key, so nothing is sent; 400 = refused before the receipt)`);
   await sleep(500);
 
   const records = {};
@@ -179,6 +210,37 @@ async function main() {
 
   const nv = records.noversion;
   check("(c) checked but no disclosure version → not consent", !!nv && nv.granted === false, nv && `granted=${nv.granted} note=${nv.note}`);
+
+  // F1 negatives through the real route: no grant, no purposes, no text, a note
+  const denied = (r) =>
+    !!r && r.granted === false && Array.isArray(r.purposes) && r.purposes.length === 0 && r.disclosure_text == null && typeof r.note === "string" && r.note !== "";
+  const show = (r) => r && `granted=${r.granted} purposes=${JSON.stringify(r.purposes)} text=${JSON.stringify(r.disclosure_text)} note=${r.note}`;
+  for (const v of BAD_VERSIONS) {
+    const r = records[`badver-${v}`];
+    check(`(c) API version "${v}" → no grant, no text, a note`, denied(r), r ? show(r) : "no receipt logged");
+  }
+  // empty-phone cases keep a known version, so their text may be present; the grant must not be
+  for (const tag of ["emptyphone", "blankphone"]) {
+    const r = records[tag];
+    const ok = !!r && r.granted === false && Array.isArray(r.purposes) && r.purposes.length === 0 && typeof r.note === "string" && r.note !== "";
+    check(`(c) API ${tag} → no grant, a note`, ok, r ? show(r) : "no receipt logged");
+  }
+
+  // F1 negatives against the module directly (no route, no rate limit)
+  if (!mod?.buildConsentRecord) {
+    check("(c) module buildConsentRecord importable", false, "not importable");
+  } else {
+    const req = { headers: new Headers() };
+    for (const v of BAD_VERSIONS) {
+      const r = mod.buildConsentRecord({ raw: true, version: v, phone: "+15055550100", sourceForm: "direct", req });
+      check(`(c) module version "${v}" → no grant, no text, a note`, denied(r), show(r));
+    }
+    for (const ph of ["", "   "]) {
+      const r = mod.buildConsentRecord({ raw: true, version, phone: ph, sourceForm: "direct", req });
+      const ok = r.granted === false && r.purposes.length === 0 && typeof r.note === "string" && r.note !== "";
+      check(`(c) module phone ${JSON.stringify(ph)} → no grant, a note`, ok, show(r));
+    }
+  }
 
   const failed = results.filter((r) => !r.ok).length;
   console.log(`\n${results.length - failed} of ${results.length} checks passed`);

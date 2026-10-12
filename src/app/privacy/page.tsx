@@ -101,22 +101,15 @@ export default function PrivacyPage() {
               <SmsConsentRule className="mt-2 font-medium text-ink" />
               <ul className="mt-3 list-disc space-y-2 pl-6">
                 <li>
-                  <strong>Opt-in on the web:</strong> provide your mobile number
-                  and check the separate SMS box on our contact form at{" "}
+                  <strong>Where to opt in:</strong> the SMS box is on our
+                  contact form at{" "}
                   <Link
                     href="/contact"
                     className="font-medium text-teal"
                   >
                     callordut.com/contact
                   </Link>
-                  . The box starts unchecked. Submitting a form with a phone
-                  number and the box unchecked authorizes no text messages.
-                </li>
-                <li>
-                  <strong>Opt-in by phone or in person:</strong> agree out loud
-                  during a call or meeting with a CalLord Unified Technologies
-                  representative. We record that agreement, and it covers
-                  service messages only.
+                  .
                 </li>
                 <li>
                   <strong>What you can receive:</strong> service messages about
