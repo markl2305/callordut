@@ -237,3 +237,21 @@
   }
 }
 
+
+/* Privacy notice: the two links added with the analytics section (review F2, 2026-10-13). text-teal on the notice's
+   cream box is 3.13:1 in light; teal-deep there is 5.97:1, and in dark text-teal is 5.94:1 (teal-deep only 4.24:1),
+   so the colour follows the theme. Underlined so the link does not rely on colour alone. Used by these links only. */
+.cl-notice-link {
+  color: var(--h-teal-deep);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+:root[data-theme="dark"] .cl-notice-link {
+  color: var(--h-teal);
+}
+.cl-notice-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  border-radius: 2px;
+}

@@ -89,7 +89,15 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     // no _gcl cookies or storage, no remarketing; Ads receives only restricted, cookieless measurement pings.
     `(function(){var w=window;w.dataLayer=w.dataLayer||[];function g(){w.dataLayer.push(arguments)}` +
     `g('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'granted'});` +
-    `g('set','ads_data_redaction',true);})();`;
+    `g('set','ads_data_redaction',true);})();` +
+    // The gate is loaded FROM THIS SAME INLINE BLOCK, after the config and the defaults above have run (review F1,
+    // 2026-10-13). A JSX <script async src> is hoisted by React ahead of the config in the built HTML, and under a
+    // slow HTML response the gate then ran with no config: no bar, wrong storage key. A script this block creates
+    // cannot exist before the block has executed, so the order holds whatever React, caching or chunk timing do.
+    // Dynamically inserted, it is async (the gate's documented Next mode); data-consent-gate makes this idempotent.
+    `(function(d){if(d.querySelector('script[data-consent-gate]'))return;var s=d.createElement('script');` +
+    `s.src='/consent/consent.js';s.async=true;s.setAttribute('data-consent-gate','');` +
+    `(d.head||d.documentElement).appendChild(s);})(document);`;
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -100,8 +108,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             navigator.globalPrivacyControl signal, or the consent_gpc cookie src/proxy.ts sets from Sec-GPC), and
             never from the server: public/consent/consent.js creates the tag in the browser, so with JavaScript
             off nothing is sent. */}
+        {/* One inline block: config, Consent Mode defaults, then it inserts the gate. No separate gate tag. */}
         <script id="consent-config" dangerouslySetInnerHTML={{ __html: CONSENT_CONFIG }} />
-        <script async src="/consent/consent.js" />
       </head>
       <body
         className={`${newsreader.variable} ${spectral.variable} ${spaceGrotesk.variable} ${interTight.variable} ${jetbrainsMono.variable} antialiased`}

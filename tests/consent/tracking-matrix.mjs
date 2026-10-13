@@ -27,7 +27,10 @@
  * pages, and CONSENT_SKIP section names so long suites split into separate foreground runs. Without this site's own
  * container fixture (tests/consent/fixtures/gtag-js-G-564V54PB0V.js) every check that needs the real GA/Ads container to
  * EXECUTE is recorded NOT_MEASURED, naming that file, never passed. Sections: initial, reject, accept, withdraw, gpc,
- * gpc-stored, forged, expiry, private, noscript, form, privacy, referrer, layout.
+ * gpc-stored, forged, expiry, private, noscript, form, privacy, referrer, layout, order.
+ * order (review F1, 2026-10-13): every route's SERVED HTML carries the config block before every /consent/consent.js
+ * reference, and no <script src="/consent/consent.js"> tag exists outside that block (React hoists an async JSX
+ * script tag ahead of inline scripts; tests/consent/stream-order.mjs proves the consequence under a slow response).
  */
 import { readFileSync, writeFileSync } from 'node:fs';
 import { chromium } from 'playwright';
@@ -260,6 +263,21 @@ async function main() {
       ok(bar > 0, 'initial: the consent bar is shown');
       finish(matrix, 'initial', rec, { hosts, bar_shown: bar > 0 });
       await context.close(); }
+
+    // 1b order: config block before any gate reference in the served HTML of every route
+    if (run('order')) {
+      const rows = {};
+      for (const r of ALL_ROUTES) {
+        const res = await fetch(ORIGIN + r); const html = await res.text();
+        const cfg = html.indexOf('<script id="consent-config"'); const cfgEnd = cfg === -1 ? -1 : html.indexOf('</script>', cfg);
+        const refs = []; let i = -1; while ((i = html.indexOf('/consent/consent.js', i + 1)) !== -1) refs.push(i);
+        const tags = [...html.matchAll(/<script\b[^>]*\bsrc="\/consent\/consent\.js"[^>]*>/g)].map((m) => m.index);
+        rows[r] = { status: res.status, config_at: cfg, gate_refs: refs, gate_script_tags_outside_config: tags.filter((t) => !(t > cfg && t < cfgEnd)) };
+        ok(res.status === 200 && cfg !== -1 && refs.length > 0 && refs.every((x) => x > cfg) && rows[r].gate_script_tags_outside_config.length === 0,
+          `order ${r}: config block (byte ${cfg}) precedes every gate reference (${refs.join(', ') || 'none'}); gate <script> tags outside it: ${rows[r].gate_script_tags_outside_config.length}`);
+      }
+      matrix.states.order = { routes: ALL_ROUTES.length, rows };
+    }
 
     // 2 reject
     if (run('reject')) { const { context, page, rec } = await fresh(browser);

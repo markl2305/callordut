@@ -44,7 +44,7 @@ export default function PrivacyPage() {
                 basic request data (IP address, browser, and the page requested)
                 to deliver and secure the site. Analytics and advertising data
                 reach Google only if you allow it; see{" "}
-                <a href="#analytics" className="font-medium text-teal">
+                <a href="#analytics" className="cl-notice-link">
                   Analytics, Advertising and Cookies
                 </a>
                 .
@@ -56,10 +56,13 @@ export default function PrivacyPage() {
                 How We Use Your Info
               </h2>
               <p>
-                We use your information solely to respond to inquiries, scope
-                projects, and deliver services. We do not sell or rent your
-                information. Relevant details may be shared with trusted vendors
-                or subcontractors only when necessary to fulfill project work.
+                We use the information you submit to us, such as through our
+                contact forms, only to respond to inquiries, scope projects, and
+                deliver services. We do not sell or rent it. Relevant details may
+                be shared with trusted vendors or subcontractors only when needed
+                to fulfill project work. Analytics and advertising data are
+                separate: they are collected only if you allow it, as described
+                in Analytics, Advertising and Cookies below.
               </p>
             </section>
 
@@ -308,7 +311,7 @@ export default function PrivacyPage() {
                 receives under its own terms; see{" "}
                 <a
                   href="https://policies.google.com/technologies/partner-sites"
-                  className="font-medium text-teal"
+                  className="cl-notice-link"
                 >
                   how Google uses information from sites that use its services
                 </a>
