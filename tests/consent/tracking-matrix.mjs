@@ -171,7 +171,9 @@ async function fresh(browser, opts = {}) {
       if (u.pathname.startsWith('/api/book-with-mark/')) return route.fulfill({ status: 503, contentType: 'application/json', body: '{"ok":false}' });
       return route.fulfill({ status: 204, body: '' });
     }
-    const entry = { phase: rec.phase, kind: c.kind, host: c.host, origin: u.origin, method: q.method(), url: q.url(), body: q.postData() || '', action: '' };
+    // type: the browser's resource type, i.e. the transport (fetch, xhr, ping = sendBeacon, image, script, document =
+    // iframe, ...). The gate's guard covers fetch/beacon/XHR/image only (consent.js rule 8); script/iframe are NOT covered.
+    const entry = { phase: rec.phase, kind: c.kind, host: c.host, origin: u.origin, method: q.method(), url: q.url(), body: q.postData() || '', type: q.resourceType(), action: '' };
     rec.ledger.push(entry);
     if (c.kind === 'fixture') {
       entry.action = 'fixture';
