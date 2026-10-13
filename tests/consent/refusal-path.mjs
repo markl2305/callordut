@@ -40,6 +40,10 @@ let GTAG = null; try { GTAG = fx(`gtag-js-${GA_ID}.js`); } catch (e) { /* no fix
 const ALLOWED_HOSTS = new Set((process.env.CONSENT_ALLOWED_HOSTS ?? 'locatefaith.com,fonts.googleapis.com,fonts.gstatic.com').split(',').filter(Boolean));
 const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36';
 const TARGETS = (process.env.CONSENT_REFUSAL_TARGETS || 'react:/privacy,static:/evaluate-improved/index.html').split(',').map((x) => x.split(':'));
+// callordut port (V2 sync 2026-10-13): this site renders no Vercel <Analytics />, so its control has nothing that posts
+// a view by itself. With CONSENT_VENDORS lacking 'vercel', the control mounts the real Vercel loader BY HAND, the same
+// injection R3 uses below, so control and refusal differ only by the referrer lock. Default (unset) keeps hiresabina's.
+const SITE_HAS_VERCEL = !process.env.CONSENT_VENDORS || process.env.CONSENT_VENDORS.split(',').includes('vercel');
 
 const results = []; let failures = 0;
 const ok = (c, label, detail) => { results.push({ ok: !!c, label, detail }); console.log(`  ${c ? 'ok  ' : 'FAIL'} ${label}`); if (!c) failures += 1; };
@@ -111,8 +115,19 @@ try {
       await arrive(page, rec, target);
       const sent = rec.navs.find((n) => n.phase === 'arrival');
       ok(sent && sent.referer === `${REF}/source?refSecret=1`, `${mode} control: the browser sent the query-bearing Referer by real navigation (${sent && sent.referer})`);
+      if (!SITE_HAS_VERCEL) {
+        await page.evaluate(() => {
+          window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+          const s = document.createElement('script'); s.src = '/_vercel/insights/script.js'; document.head.appendChild(s);
+        });
+        await page.waitForTimeout(2500);
+      }
       const views = rec.vendor.filter((h) => h.url === `${ORIGIN}/_vercel/insights/view` && h.method === 'POST').map((h) => { try { return JSON.parse(h.body); } catch (e) { return {}; } });
-      ok(views.length > 0 && views.every((b) => b.r === `${REF}/source` && !String(b.o).includes('Secret')), `${mode} control: the real Vercel loader posted a view, r is origin + path (${JSON.stringify(views.map((b) => b.r))})`);
+      // A hand-mounted loader has no beforeSend URL filter (on hiresabina the site's <Analytics beforeSend> strips the
+      // page query from `o`; that is the site's, not the gate's), so here only the gate's part is asserted: the view
+      // fires and its referrer r is narrowed. `o` is recorded in the output, not asserted.
+      if (SITE_HAS_VERCEL) ok(views.length > 0 && views.every((b) => b.r === `${REF}/source` && !String(b.o).includes('Secret')), `${mode} control: the real Vercel loader posted a view, r is origin + path (${JSON.stringify(views.map((b) => b.r))})`);
+      else ok(views.length > 0 && views.every((b) => b.r === `${REF}/source`), `${mode} control: the hand-mounted real Vercel loader posted a view, r is origin + path (${JSON.stringify(views.map((b) => ({ r: b.r, o: b.o })))})`);
       const w = await withdraw(page, rec, mode);
       ok(w.reloaded && w.st.state === 'reject' && w.st.allowed === false, `${mode} control: withdrawing reloads, state reject, allowed() false (${JSON.stringify(w)})`.slice(0, 300));
       ok(collection(w.after).length === 0, `${mode} control: va('event') after the withdrawal sends nothing (${collection(w.after).map((h) => h.url).join(', ') || 'none'})`);
