@@ -322,10 +322,10 @@ export default function PrivacyPage() {
               <p className="mt-3">
                 <strong>Always set, not used for tracking:</strong> your choice
                 is kept in two places on your browser. The{" "}
-                <code>callord-consent</code> cookie expires after 180 days; a
-                copy with the same name in your browser&rsquo;s local storage
-                has no expiry and stays until you clear your browser&rsquo;s
-                site data or change your choice below.{" "}
+                <code>callord-consent</code> cookie and a copy with the same
+                name in your browser&rsquo;s local storage are each honoured
+                for 180 days from when you chose; after that you are asked
+                again, and changing your choice below replaces both.{" "}
                 <code>consent_gpc</code> is a cookie set for one day only when
                 your browser sends a Global Privacy Control signal, and{" "}
                 <code>cl-theme</code> keeps your light or dark choice in your

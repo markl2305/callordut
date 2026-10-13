@@ -67,17 +67,21 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const gaMeasurementId =
     process.env.NEXT_PUBLIC_GA_ID || process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
-  // Read by public/consent/consent.js (hiresabina.ai's gate file at d0c2a21, copied byte-identical). The Google tag
+  // Read by public/consent/consent.js (hiresabina.ai's gate v2 at 02ab7f0, copied byte-identical). The Google tag
   // for this GA4 id also carries the Google Ads destination (AW-17409946688 is configured inside the Google tag, not
-  // in this repo), so gating this one loader gates both. The bar's wording is this site's (ConsentBar, autoBar off).
+  // in this repo), so gating this one loader gates both. The bar is the gate's own; its wording is this config's.
   const CONSENT_CONFIG = `window.CONSENT_CONFIG=${JSON.stringify({
     storageKey: "callord-consent",
     privacyHref: "/privacy",
     ga4: gaMeasurementId || null,
     linkedin: null,
     vercel: false,
-    autoBar: false,
+    autoBar: false, // ConsentBar calls SiteConsent.mountBar() after hydration
     privatePaths: "^/api(/|$)",
+    // Mark 2026-10-13: Google Ads is linked to this GA4 tag, so the one choice is named as covering both.
+    barText: "We use Google Analytics and cookieless Google Ads measurement only if you allow it. Nothing is sent until you choose.",
+    acceptLabel: "Allow",
+    rejectLabel: "No thanks",
   })};` +
     // Google Consent Mode defaults, queued before any tag exists (no network: gtag.js loads only after Allow).
     // Mark 2026-10-13: Google Ads linked in GA4 is one choice, named honestly as "Google Analytics and cookieless

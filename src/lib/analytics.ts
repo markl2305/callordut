@@ -9,6 +9,8 @@ type LeadEventPayload = {
 
 function gtagSafe(...args: unknown[]) {
   if (typeof window === "undefined") return;
+  // The consent gate's one answer (public/consent/consent.js rule 7), never the stored choice.
+  if (!(window as typeof window & { SiteConsent?: { allowed: () => boolean } }).SiteConsent?.allowed()) return;
   const gtagFn = (window as typeof window & { gtag?: (...a: unknown[]) => void }).gtag;
   if (typeof gtagFn !== "function") return;
   gtagFn(...args);
