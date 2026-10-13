@@ -65,6 +65,9 @@ const UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (
 // The same normalised family classification the gate uses (tests/consent/vendor-hosts.mjs mirrors consent.js rule 8):
 // regional google.<cc>, trailing-dot, mixed-case, port and IDNA spellings are all trackers.
 const isTrackerHost = (host) => vendorHost(host);
+// GA4 collection hosts. callordut port: this site's container also posts GA4 to analytics.google.com/g/collect
+// (observed on the gate-fixture page, 2026-10-13), an alias hiresabina's container never used; both count as GA4.
+const GA_HOST = /(^|\.)(google-analytics\.com|analytics\.google\.com)$/;
 const BLOCK_LOADERS = process.env.CONSENT_BLOCK_LOADERS === '1';
 const fixture = (f) => readFileSync(new URL(`./fixtures/${f}`, import.meta.url), 'utf8');
 // The real gtag.js container for this site's GA id, cached once (fixtures/README.md). No live loader exception.
@@ -277,7 +280,7 @@ async function main() {
       const after = hostsIn(rec, 'after');
       ok(clicked && before.length === 0, `accept: nothing before the click (${before.join(', ') || 'none'})`);
       ok(after.includes('www.googletagmanager.com'), 'accept: GA4 loader requested after accept');
-      needsGa(after.some((h) => /google-analytics\.com$/.test(h)), 'accept: a GA4 collection request is made after accept (answered locally, never delivered)');
+      needsGa(after.some((h) => GA_HOST.test(h)), 'accept: a GA4 collection request is made after accept (answered locally, never delivered)');
       if (VENDORS.has('linkedin')) ok(after.includes('snap.licdn.com'), 'accept: LinkedIn Insight loader requested after accept (pages that render the app layout)');
       else ok(!after.some((h) => /licdn|linkedin/.test(h)), `accept: no LinkedIn request (this site has no LinkedIn tag) (${after.join(', ')})`);
       if (VENDORS.has('vercel')) {
@@ -287,7 +290,7 @@ async function main() {
       // Linked Google Ads (sibling notes §3): the Ads collection after Accept can only be observed by EXECUTING this
       // site's real container. Without its committed fixture that is NOT_MEASURED, never a pass.
       needsGa(trackers(rec, 'after').some((h) => /googlesyndication|googleadservices|doubleclick|google\.[a-z.]+$/.test(h.host) && /AW-17409946688|17409946688/.test(h.url + h.body)), 'accept: linked Google Ads (AW-17409946688) collection requests occur after Accept, answered locally');
-      const leaky = trackers(rec).filter((h) => /google-analytics/.test(h.host) && /[?&]dl=[^&]*(%3F|%23)/.test(h.url));
+      const leaky = trackers(rec).filter((h) => GA_HOST.test(h.host) && /[?&]dl=[^&]*(%3F|%23)/.test(h.url));
       ok(leaky.length === 0, 'accept: no GA4 hit carries a query string or fragment in its page location');
       needsGa(rec.ledger.some((h) => h.url.startsWith('https://www.googletagmanager.com/gtag/js') && h.action === 'cached-loader'), `accept: the GA4 loader is the committed fixture for ${GA_ID}, not a live fetch`);
       // Linked-Ads observation (anvil gate-v2 R1 F2): every Google endpoint the real container asked for, by host+path.
@@ -436,7 +439,7 @@ async function main() {
       const gaEvents = [...new Set(trackers(rec).flatMap((h) => [...(h.url + '\n' + h.body).matchAll(/(?:^|[?&\n])en=([^&\n]+)/g)].map((x) => decodeURIComponent(x[1]))))].sort();
       ok(rec.assess.length === 1, 'form: exactly one POST /api/assess');
       ok(saved && !ANALYTICS_KEYS.test(keys) && !/_ga|gclid|client_id|li_fat_id/.test(saved.raw), `form: the save payload carries no analytics identifier (keys ${keys})`);
-      needsLoader(trackers(rec).some((h) => /google-analytics\.com$/.test(h.host)), 'form: a GA4 collection request was made on this page (so the leak check below is not vacuous)');
+      needsLoader(trackers(rec).some((h) => GA_HOST.test(h.host)), 'form: a GA4 collection request was made on this page (so the leak check below is not vacuous)');
       needsLoader(leaks.length === 0, `form: no off-origin or analytics request contains anything typed into the form (${leaks.length})`);
       ok(privacyHref === '/privacy', `form: the "Privacy Policy" label points at /privacy (${privacyHref})`);
       finish(matrix, 'evaluate_form_after_accept', rec, {
@@ -491,7 +494,7 @@ async function main() {
         const refLeaks = all.filter((h) => blob(h).includes(REF_SECRET));
         const vercelViews = t.filter((h) => h.url === ORIGIN + '/_vercel/insights/view' && h.method === 'POST');
         const vercelBodies = vercelViews.map((h) => { try { return JSON.parse(h.body); } catch (e) { return {}; } });
-        const gaHits = t.filter((h) => /google-analytics\.com$/.test(h.host) && /\/g\/collect/.test(h.url));
+        const gaHits = t.filter((h) => GA_HOST.test(h.host) && /\/g\/collect/.test(h.url));
         const gaDr = gaHits.map((h) => { const u = new URL(h.url); return u.searchParams.get('dr') || (new URLSearchParams(h.body.split('\n')[0] || '')).get('dr') || ''; });
         const pageLeaks = [...gaHits, ...vercelViews].filter((h) => blob(h).includes(PAGE_SECRET) || blob(h).includes(FRAG_SECRET));
         const linkedinCollect = t.filter((h) => /linkedin\.com$/.test(h.host) && /\/collect/.test(h.url));
