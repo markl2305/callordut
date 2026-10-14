@@ -13,8 +13,8 @@ export const metadata: Metadata = {
 function AvHero() {
   return (
     <section>
-      <Wrap style={{ padding: "64px clamp(24px, 5vw, 56px) 0" }}>
-        <Mono style={{ color: "var(--h-teal)" }}>Discipline II · AV Integration</Mono>
+      <Wrap style={{ padding: "clamp(56px, 8vw, 104px) 16px 0" }}>
+        <p className="cl-eyebrow">Discipline II · AV Integration</p>
         <h1 style={{ fontFamily: FONT.serif, fontSize: "clamp(46px, 6vw, 80px)", lineHeight: 1.0, fontWeight: 400, color: "var(--h-ink)", margin: "20px 0 0", letterSpacing: "-0.02em", maxWidth: 1000 }}>
           Rooms where the technology<br />
           <span style={{ fontStyle: "italic", color: "var(--h-teal)" }}>simply disappears.</span>
@@ -28,12 +28,12 @@ function AvHero() {
           <Btn href="/security" variant="outline">See Security Systems</Btn>
         </div>
       </Wrap>
-      <Wrap style={{ padding: "40px clamp(24px, 5vw, 56px) 0" }}>
-        <figure className="cl-reveal" style={{ margin: 0, border: "1px solid var(--h-rule)", background: "var(--h-cream)", padding: 10 }}>
-          <div style={{ position: "relative", overflow: "hidden", aspectRatio: "16 / 8" }}>
+      <Wrap style={{ padding: "40px 16px 0" }}>
+        <figure className="cl-reveal" style={{ margin: 0 }}>
+          <div style={{ position: "relative", overflow: "hidden", aspectRatio: "16 / 8", borderRadius: 24, boxShadow: "var(--shadow)", background: "#0d0f0e" }}>
             <Image src="/heritage/nmfa-chamber.jpg" alt="New Mexico Finance Authority council chamber" fill priority sizes="(max-width: 1340px) 100vw, 1320px" style={{ objectFit: "cover" }} />
           </div>
-          <figcaption style={{ display: "flex", justifyContent: "space-between", paddingTop: 10, flexWrap: "wrap", gap: 8 }}>
+          <figcaption style={{ display: "flex", justifyContent: "space-between", paddingTop: 14, flexWrap: "wrap", gap: 8 }}>
             <Mono>New Mexico Finance Authority · council chamber</Mono>
             <Mono style={{ color: "var(--h-teal)" }}>Dual displays · ceiling-mount confidence monitors · dais audio · PTZ</Mono>
           </figcaption>
@@ -52,7 +52,7 @@ function AvCase() {
   ];
   return (
     <section>
-      <Wrap style={{ padding: "88px clamp(24px, 5vw, 56px)" }}>
+      <Wrap style={{ padding: "clamp(80px, 10vw, 128px) 16px" }}>
         <Roman label="Flagship · New Mexico Finance Authority" />
         <div className="cl-grid-split" style={{ display: "grid", gridTemplateColumns: "0.9fr 1.1fr", gap: 56, alignItems: "start" }}>
           <div>
@@ -65,7 +65,7 @@ function AvCase() {
               and acoustics as one coordinated system, then documented every component for the long term.
             </p>
           </div>
-          <div style={{ border: "1px solid var(--h-rule)" }}>
+          <div style={{ border: "1px solid var(--h-rule)", borderRadius: 22, overflow: "hidden" }}>
             {specs.map((s, i) => (
               <div key={s.k} style={{ display: "grid", gridTemplateColumns: "140px 1fr", gap: 16, padding: "18px 24px", borderTop: i > 0 ? "1px solid var(--h-rule)" : "none" }}>
                 <Mono style={{ color: "var(--h-teal)" }}>{s.k}</Mono>
@@ -88,9 +88,9 @@ function AvCapabilities() {
   ];
   return (
     <section style={{ background: "var(--h-cream)", borderTop: "1px solid var(--h-rule)" }}>
-      <Wrap style={{ padding: "88px clamp(24px, 5vw, 56px)" }}>
+      <Wrap style={{ padding: "clamp(80px, 10vw, 128px) 16px" }}>
         <Roman label="Capabilities" />
-        <div className="cl-grid-2 cl-reveal" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0, border: "1px solid var(--h-rule)", background: "var(--h-paper)" }}>
+        <div className="cl-grid-2 cl-reveal" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0, border: "1px solid var(--h-rule)", borderRadius: 22, overflow: "hidden", background: "var(--h-paper)" }}>
           {caps.map((c, i) => (
             <div key={c.n} style={{ padding: 36, borderRight: i % 2 === 0 ? "1px solid var(--h-rule)" : "none", borderBottom: i < 2 ? "1px solid var(--h-rule)" : "none" }}>
               <div style={{ display: "flex", alignItems: "baseline", gap: 14 }}>
@@ -100,7 +100,7 @@ function AvCapabilities() {
               <p style={{ fontFamily: FONT.sans, fontSize: 15, color: "var(--h-ink-soft)", lineHeight: 1.6, margin: "16px 0 0" }}>{c.d}</p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 22 }}>
                 {c.specs.map((s) => (
-                  <span key={s} style={{ fontFamily: FONT.mono, fontSize: 10.5, color: "var(--h-ink)", border: "1px solid var(--h-rule)", padding: "5px 10px", letterSpacing: "0.04em" }}>{s}</span>
+                  <span key={s} style={{ fontFamily: FONT.mono, fontSize: 10.5, color: "var(--h-ink)", border: "1px solid var(--h-rule)", padding: "5px 10px", letterSpacing: "0.04em", borderRadius: 999 }}>{s}</span>
                 ))}
               </div>
             </div>

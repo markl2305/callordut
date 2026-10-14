@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 function ForgeHero() {
   return (
     <section>
-      <Wrap style={{ padding: "64px clamp(24px, 5vw, 56px) 0" }}>
-        <Mono style={{ color: "var(--h-teal)" }}>An exclusive partnership</Mono>
+      <Wrap style={{ padding: "clamp(56px, 8vw, 104px) 16px 0" }}>
+        <p className="cl-eyebrow">An exclusive partnership</p>
         <h1 style={{ fontFamily: FONT.serif, fontSize: "clamp(46px, 6vw, 80px)", lineHeight: 1.0, fontWeight: 400, color: "var(--h-ink)", margin: "20px 0 0", letterSpacing: "-0.02em", maxWidth: 1040 }}>
           The tools most integrators<br />
           <span style={{ fontStyle: "italic", color: "var(--h-teal)" }}>don&apos;t bring to the table.</span>
@@ -36,7 +36,7 @@ function ForgeValue() {
   ];
   return (
     <section>
-      <Wrap style={{ padding: "88px clamp(24px, 5vw, 56px)" }}>
+      <Wrap style={{ padding: "clamp(80px, 10vw, 128px) 16px" }}>
         <Roman label="What it means for your project" />
         <div className="cl-grid-3 cl-reveal" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 0, borderTop: "1px solid var(--h-rule)" }}>
           {items.map((it, i) => (

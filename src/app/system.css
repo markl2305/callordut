@@ -248,6 +248,22 @@ main .border.border-rule.bg-cream\/60,
 main .border.border-teal\/40 {
   border-radius: 22px;
 }
+main .border.bg-teal\/10,
+main section.bg-ink,
+main .overflow-hidden.border.border-rule,
+main .bg-ink.p-8 {
+  border-radius: 22px;
+}
+main .bg-teal\/10:not(.border) {
+  border-radius: 999px;
+}
+main .h-1\.5.w-1\.5.bg-teal {
+  border-radius: 50%;
+}
+main .border.border-rule input,
+main .border.border-rule select {
+  border-radius: 12px;
+}
 main img.border,
 main .border.border-rule > img:only-child {
   border-radius: 18px;

@@ -17,10 +17,10 @@ export default function ContactPage() {
   ];
   return (
     <section>
-      <Wrap style={{ padding: "64px clamp(24px, 5vw, 56px) 90px" }}>
+      <Wrap style={{ padding: "clamp(56px, 8vw, 104px) 16px clamp(80px, 10vw, 128px)" }}>
         <div className="cl-grid-split" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64 }}>
           <div>
-            <Mono style={{ color: "var(--h-teal)" }}>Contact</Mono>
+            <p className="cl-eyebrow">Contact</p>
             <h1 style={{ fontFamily: FONT.serif, fontSize: "clamp(46px, 5.6vw, 68px)", fontWeight: 400, color: "var(--h-ink)", margin: "20px 0 0", letterSpacing: "-0.025em", lineHeight: 1 }}>
               Tell us about<br />
               <span style={{ fontStyle: "italic", color: "var(--h-teal)" }}>one space.</span>
