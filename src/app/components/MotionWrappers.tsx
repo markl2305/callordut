@@ -1,7 +1,8 @@
-"use client";
+import type { CSSProperties, ReactNode } from "react";
 
-import { motion, useInView, useSpring, useMotionValue, useTransform } from "framer-motion";
-import { useRef, useEffect, type ReactNode } from "react";
+/* Reveal-once wrappers on the site system (.cl-reveal in system.css, driven by
+   heritage/RevealObserver). Server-rendered and visible with JS off; the earlier
+   framer-motion versions rendered opacity:0 into the HTML. Signatures kept. */
 
 interface FadeInProps {
   children: ReactNode;
@@ -11,29 +12,12 @@ interface FadeInProps {
   duration?: number;
 }
 
-export function FadeIn({ children, className = "", delay = 0, direction = "up", duration = 0.6 }: FadeInProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
-
-  const directionMap = {
-    up: { y: 30, x: 0 },
-    down: { y: -30, x: 0 },
-    left: { x: 30, y: 0 },
-    right: { x: -30, y: 0 },
-  };
-
-  const { x, y } = directionMap[direction];
-
+export function FadeIn({ children, className = "", delay = 0 }: FadeInProps) {
+  const style = delay ? ({ transitionDelay: `${Math.round(delay * 1000)}ms` } as CSSProperties) : undefined;
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, x, y }}
-      animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x, y }}
-      transition={{ duration, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
-      className={className}
-    >
+    <div className={`cl-reveal ${className}`.trim()} style={style}>
       {children}
-    </motion.div>
+    </div>
   );
 }
 
@@ -43,38 +27,12 @@ interface StaggerProps {
   staggerDelay?: number;
 }
 
-export function Stagger({ children, className = "", staggerDelay = 0.1 }: StaggerProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-40px" });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={{
-        hidden: {},
-        visible: { transition: { staggerChildren: staggerDelay } },
-      }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
+export function Stagger({ children, className = "" }: StaggerProps) {
+  return <div className={className}>{children}</div>;
 }
 
 export function StaggerItem({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return (
-    <motion.div
-      variants={{
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] } },
-      }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className={`cl-reveal ${className}`.trim()}>{children}</div>;
 }
 
 interface CounterProps {
@@ -85,26 +43,15 @@ interface CounterProps {
   duration?: number;
 }
 
-export function AnimatedCounter({ target, prefix = "", suffix = "", className = "", duration = 2 }: CounterProps) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true });
-  const motionValue = useMotionValue(0);
-  const springValue = useSpring(motionValue, { duration: duration * 1000 });
-  const display = useTransform(springValue, (v) => `${prefix}${Math.round(v)}${suffix}`);
-
-  useEffect(() => {
-    if (isInView) {
-      motionValue.set(target);
-    }
-  }, [isInView, motionValue, target]);
-
-  return <motion.span ref={ref} className={className}>{display}</motion.span>;
+/* No count-ups in the system: the final value, always. */
+export function AnimatedCounter({ target, prefix = "", suffix = "", className = "" }: CounterProps) {
+  return <span className={className}>{`${prefix}${target}${suffix}`}</span>;
 }
 
 export function GlowCard({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
     <div className={`group relative ${className}`}>
-      <div className="relative h-full border border-rule bg-cream p-6 transition-colors duration-300 group-hover:border-teal/40">
+      <div className="relative h-full rounded-[22px] border border-rule bg-cream p-6 transition-colors duration-300 group-hover:border-teal/40">
         {children}
       </div>
     </div>

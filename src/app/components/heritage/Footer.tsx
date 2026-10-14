@@ -1,6 +1,5 @@
+import Image from "next/image";
 import Link from "next/link";
-import { BrandMark } from "./BrandMark";
-import { Mono, FONT } from "./primitives";
 import { SmsConsentRule } from "../SmsConsentRule";
 
 const COLS: { h: string; items: { label: string; href: string; external?: boolean }[] }[] = [
@@ -37,66 +36,63 @@ const COLS: { h: string; items: { label: string; href: string; external?: boolea
 
 export function Footer() {
   return (
-    <footer style={{ background: "var(--h-cream)", borderTop: "1px solid var(--h-rule)" }}>
-      <div style={{ maxWidth: 1340, margin: "0 auto", padding: "64px clamp(24px, 5vw, 56px) 36px" }}>
-        <div className="cl-grid-footer" style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr 1fr 1fr", gap: 40 }}>
-          <div>
-            <div style={{ display: "flex", alignItems: "center", gap: 13 }}>
-              <BrandMark size={46} haloBg="var(--h-logo-bg-alt)" />
-              <div style={{ lineHeight: 1 }}>
-                <div style={{ fontFamily: FONT.display, fontSize: 23, color: "var(--h-logo-name)", fontWeight: 600, letterSpacing: "-0.01em" }}>
-                  CalLord
-                </div>
-                <div style={{ fontFamily: FONT.display, fontSize: 9, color: "var(--h-logo-sub)", fontWeight: 400, letterSpacing: "0.22em", marginTop: 4, textTransform: "uppercase" }}>
-                  Unified Technologies
-                </div>
-              </div>
-            </div>
-            <p style={{ fontFamily: FONT.sans, fontSize: 14.5, color: "var(--h-ink-soft)", lineHeight: 1.6, marginTop: 20, maxWidth: 340 }}>
+    <footer className="cl-foot">
+      <div className="cl-shell">
+        <div className="cl-foot-grid">
+          <div className="cl-foot-brand">
+            <Link className="cl-brand" href="/" aria-label="CalLord Unified Technologies, home">
+              <span className="mk">
+                <Image src="/heritage/cl-mark-black.png" alt="" width={30} height={30} />
+              </span>
+              <span>
+                <b>CalLord</b>
+                <small>Unified Technologies</small>
+              </span>
+            </Link>
+            <p>
               Commercial security and audiovisual integration. Two disciplines, one accountable partner —
               designed, installed, and supported for the long term.
             </p>
-            <div style={{ marginTop: 22 }}>
-              <a href="tel:+15055201779" style={{ fontFamily: FONT.serif, fontSize: 22, color: "var(--h-ink)", textDecoration: "none" }}>
-                (505) 520-1779
-              </a>
-              <a href="mailto:sales@callordut.com" style={{ display: "block", marginTop: 6, textDecoration: "none" }}>
-                <Mono>sales@callordut.com</Mono>
-              </a>
-            </div>
+            <a className="tel" href="tel:+15055201779">
+              (505) 520-1779
+            </a>
+            <br />
+            <a className="mail" href="mailto:sales@callordut.com">
+              sales@callordut.com
+            </a>
           </div>
           {COLS.map((c) => (
-            <div key={c.h}>
-              <Mono>{c.h}</Mono>
-              <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 18 }}>
-                {c.items.map((it) =>
-                  it.external ? (
-                    <a key={it.label} href={it.href} target="_blank" rel="noopener noreferrer" className="h-link" style={{ fontFamily: FONT.sans, fontSize: 15, color: "var(--h-ink)", textDecoration: "none" }}>
-                      {it.label}
-                    </a>
-                  ) : (
-                    <Link key={it.label} href={it.href} className="h-link" style={{ fontFamily: FONT.sans, fontSize: 15, color: "var(--h-ink)", textDecoration: "none" }}>
-                      {it.label}
-                    </Link>
-                  )
-                )}
-              </div>
-            </div>
+            <nav key={c.h} className="cl-foot-col" aria-label={c.h}>
+              <h2>{c.h}</h2>
+              {c.items.map((it) =>
+                it.external ? (
+                  <a key={it.label} href={it.href} target="_blank" rel="noopener noreferrer">
+                    {it.label}
+                  </a>
+                ) : (
+                  <Link key={it.label} href={it.href}>
+                    {it.label}
+                  </Link>
+                )
+              )}
+            </nav>
           ))}
         </div>
 
-        {/* Compliance / 10DLC disclosure — load-bearing, preserved from prior footer */}
-        <SmsConsentRule style={{ fontFamily: FONT.sans, fontSize: 12.5, color: "var(--h-ink-faint)", lineHeight: 1.6, marginTop: 44, maxWidth: 820 }} />
-        <p style={{ fontFamily: FONT.sans, fontSize: 12.5, color: "var(--h-ink-faint)", lineHeight: 1.6, marginTop: 8, maxWidth: 820 }}>
-          We do not sell your information. See our{" "}
-          <Link href="/privacy" style={{ color: "var(--h-teal)", textDecoration: "none" }}>Privacy Policy</Link>{" "}
-          and{" "}
-          <Link href="/sms-terms" style={{ color: "var(--h-teal)", textDecoration: "none" }}>SMS Terms</Link>.
-        </p>
+        {/* Compliance / 10DLC disclosure — load-bearing, rendered verbatim from src/lib/sms-consent.js */}
+        <div className="cl-legal">
+          <SmsConsentRule />
+          <p>
+            We do not sell your information. See our{" "}
+            <Link href="/privacy">Privacy Policy</Link>{" "}
+            and{" "}
+            <Link href="/sms-terms">SMS Terms</Link>.
+          </p>
+        </div>
 
-        <div style={{ marginTop: 32, paddingTop: 24, borderTop: "1px solid var(--h-rule)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
-          <Mono>CalLord Unified Technologies LLC · © 2026</Mono>
-          <Mono style={{ color: "var(--h-teal)" }}>Exclusive Forge partner</Mono>
+        <div className="cl-foot-end">
+          <span>CalLord Unified Technologies LLC · © 2026</span>
+          <span>Exclusive Forge partner</span>
         </div>
       </div>
     </footer>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Newsreader, Spectral, Space_Grotesk, Inter_Tight, JetBrains_Mono } from "next/font/google";
+import { Inter_Tight, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import "./system.css";
 import { Header } from "./components/heritage/Header";
 import { Footer } from "./components/heritage/Footer";
 import { ThemeScript } from "./components/heritage/ThemeScript";
@@ -9,30 +10,11 @@ import { JsonLd } from "./components/JsonLd";
 import { siteConfig } from "../config/site";
 import ConsentBar from "./components/consent/ConsentBar";
 
-const newsreader = Newsreader({
-  variable: "--font-newsreader",
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
-const spectral = Spectral({
-  variable: "--font-spectral",
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  display: "swap",
-});
 const interTight = Inter_Tight({
   variable: "--font-inter-tight",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 const jetbrainsMono = JetBrains_Mono({
@@ -100,7 +82,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     `(d.head||d.documentElement).appendChild(s);})(document);`;
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={`${interTight.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <head>
         <ThemeScript />
         {/* Consent gate (compliance P1-1g, Mark 2026-10-12). Google Analytics 4 and Google Ads load ONLY after a
@@ -111,13 +93,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         {/* One inline block: config, Consent Mode defaults, then it inserts the gate. No separate gate tag. */}
         <script id="consent-config" dangerouslySetInnerHTML={{ __html: CONSENT_CONFIG }} />
       </head>
-      <body
-        className={`${newsreader.variable} ${spectral.variable} ${spaceGrotesk.variable} ${interTight.variable} ${jetbrainsMono.variable} antialiased`}
-      >
+      <body className="antialiased">
         <JsonLd />
         <Header />
         <RevealObserver />
-        <main>{children}</main>
+        <main id="main">{children}</main>
         <Footer />
         <ConsentBar />
       </body>

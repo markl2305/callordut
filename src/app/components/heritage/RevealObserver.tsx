@@ -3,45 +3,31 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
-/* Mounts once in the layout. Observes every .cl-reveal element and adds .cl-in
-   when it scrolls into view (fade/slide up). Re-scans on route change. Safety:
-   reveals everything after 900ms in case nothing intersects. */
+/* Reveal once. Mounts in the layout, re-scans on each route. Anything already on
+   screen shows at once; the rest fades up the first time it scrolls in, then is
+   left alone. Hiding is CSS gated on [data-js] (system.css), so with JS off
+   everything is visible; with reduced motion it is an opacity fade only. */
 export function RevealObserver() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
-    const els = Array.from(document.querySelectorAll<HTMLElement>(".cl-reveal"));
-    if (reduce) {
+    const els = Array.from(document.querySelectorAll<HTMLElement>(".cl-reveal:not(.cl-in)"));
+    if (typeof IntersectionObserver === "undefined") {
       els.forEach((el) => el.classList.add("cl-in"));
       return;
     }
-
     const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("cl-in");
-            io.unobserve(entry.target);
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("cl-in");
+            io.unobserve(e.target);
           }
-        });
-      },
-      { threshold: 0.08, rootMargin: "0px 0px -8% 0px" }
+        }),
+      { rootMargin: "0px 0px -10% 0px" }
     );
-
-    els.forEach((el) => {
-      if (!el.classList.contains("cl-in")) io.observe(el);
-    });
-
-    const safety = window.setTimeout(() => {
-      els.forEach((el) => el.classList.add("cl-in"));
-    }, 900);
-
-    return () => {
-      io.disconnect();
-      window.clearTimeout(safety);
-    };
+    els.forEach((el) => (el.getBoundingClientRect().top < window.innerHeight ? el.classList.add("cl-in") : io.observe(el)));
+    return () => io.disconnect();
   }, [pathname]);
 
   return null;

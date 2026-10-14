@@ -1,63 +1,86 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
+type Choice = "system" | "light" | "dark";
+const OPTS: { v: Choice; label: string }[] = [
+  { v: "system", label: "Auto" },
+  { v: "light", label: "Light" },
+  { v: "dark", label: "Dark" },
+];
+
+const EVT = "cl-theme-change";
+
+function apply(c: Choice) {
+  const d = document.documentElement;
+  const dark = window.matchMedia?.("(prefers-color-scheme: dark)").matches;
+  d.setAttribute("data-theme-choice", c);
+  d.setAttribute("data-theme", c === "system" ? (dark ? "dark" : "light") : c);
+}
+
+/* Auto / Light / Dark segmented control. Every instance (nav, menu sheet) stays in sync. */
 export function ThemeToggle() {
-  const [mode, setMode] = useState<"light" | "dark">("light");
-  const [mounted, setMounted] = useState(false);
+  const [choice, setChoice] = useState<Choice | null>(null);
+  const segRef = useRef<HTMLDivElement>(null);
+  const thumbRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    const current = (document.documentElement.getAttribute("data-theme") as "light" | "dark") || "light";
-    setMode(current);
-    setMounted(true);
+    const read = () => (document.documentElement.getAttribute("data-theme-choice") as Choice) || "system";
+    setChoice(read());
+    const onChange = () => setChoice(read());
+    window.addEventListener(EVT, onChange);
+    const mq = window.matchMedia?.("(prefers-color-scheme: dark)");
+    const onSys = () => {
+      if (read() === "system") apply("system");
+    };
+    mq?.addEventListener?.("change", onSys);
+    return () => {
+      window.removeEventListener(EVT, onChange);
+      mq?.removeEventListener?.("change", onSys);
+    };
   }, []);
 
-  const toggle = () => {
-    setMode((m) => {
-      const next = m === "dark" ? "light" : "dark";
-      try {
-        localStorage.setItem("cl-theme", next);
-      } catch {
-        /* ignore */
+  useEffect(() => {
+    const place = () => {
+      const seg = segRef.current;
+      const th = thumbRef.current;
+      const on = seg?.querySelector<HTMLButtonElement>('[aria-pressed="true"]');
+      if (seg && th && on && on.offsetWidth) {
+        th.style.width = on.offsetWidth + "px";
+        th.style.transform = `translateX(${on.offsetLeft - 3}px)`;
       }
-      document.documentElement.setAttribute("data-theme", next);
-      return next;
-    });
+    };
+    place();
+    const ro = typeof ResizeObserver !== "undefined" && segRef.current ? new ResizeObserver(place) : null;
+    if (ro && segRef.current) ro.observe(segRef.current);
+    document.fonts?.ready.then(place);
+    return () => ro?.disconnect();
+  }, [choice]);
+
+  const pick = (c: Choice) => {
+    try {
+      if (c === "system") localStorage.removeItem("cl-theme");
+      else localStorage.setItem("cl-theme", c);
+    } catch {
+      /* storage unavailable: the choice still applies to this page */
+    }
+    const go = () => apply(c);
+    const doc = document as Document & { startViewTransition?: (cb: () => void) => unknown };
+    const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (doc.startViewTransition && !reduce) doc.startViewTransition(go);
+    else go();
+    setChoice(c);
+    window.dispatchEvent(new Event(EVT));
   };
 
-  const dark = mode === "dark";
   return (
-    <button
-      onClick={toggle}
-      aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
-      title={dark ? "Light mode" : "Dark mode"}
-      style={{
-        width: 38,
-        height: 38,
-        display: "grid",
-        placeItems: "center",
-        background: "transparent",
-        border: "1px solid var(--h-rule)",
-        color: "var(--h-ink)",
-        cursor: "pointer",
-        padding: 0,
-        flexShrink: 0,
-      }}
-    >
-      {/* Render a stable icon until mounted to avoid hydration mismatch */}
-      {mounted && dark ? (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-          <circle cx="12" cy="12" r="4.2" />
-          <path
-            d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.2 5.2l1.7 1.7M17.1 17.1l1.7 1.7M18.8 5.2l-1.7 1.7M6.9 17.1l-1.7 1.7"
-            strokeLinecap="round"
-          />
-        </svg>
-      ) : (
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
-          <path d="M20 14.5A8.2 8.2 0 0 1 9.5 4 6.6 6.6 0 1 0 20 14.5z" strokeLinejoin="round" />
-        </svg>
-      )}
-    </button>
+    <div className="cl-seg" role="group" aria-label="Appearance" ref={segRef}>
+      <span className="thumb" aria-hidden="true" ref={thumbRef} style={choice ? undefined : { width: 0 }} />
+      {OPTS.map((o) => (
+        <button key={o.v} type="button" aria-pressed={choice === o.v} onClick={() => pick(o.v)}>
+          {o.label}
+        </button>
+      ))}
+    </div>
   );
 }

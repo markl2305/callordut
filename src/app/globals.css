@@ -39,15 +39,15 @@
   --h-cream: #1d1a13;
   --h-cream-deep: #272117;
   --h-ink: #ece4d6;
-  --h-ink-soft: rgba(236, 228, 214, 0.66);
-  --h-ink-faint: rgba(236, 228, 214, 0.44);
+  --h-ink-soft: rgba(236, 228, 214, 0.68);
+  --h-ink-faint: rgba(236, 228, 214, 0.46);
   --h-teal: #2ba89c;
   --h-teal-deep: #1c8c82;
   --h-teal-bright: #42c8b7;
   --h-rule: rgba(236, 228, 214, 0.16);
   --h-rule-soft: rgba(236, 228, 214, 0.08);
   --h-nav-bg: rgba(21, 19, 14, 0.86);
-  --h-on-teal: #15130e;
+  --h-on-teal: #10120f;
   /* logo suite (dark) */
   --h-logo-disc: #0a0a0a;
   --h-logo-c: #2ba89c;
@@ -86,11 +86,13 @@
   --color-accent-amber: #e2632a;
   --color-brand-sand: var(--h-cream);
 
-  --font-serif: var(--font-newsreader), Georgia, serif;
+  /* 2026-10-14 redesign: one family. Serif/display names are kept so existing
+     classes resolve, and all point at Inter Tight. */
+  --font-serif: var(--font-inter-tight), -apple-system, system-ui, sans-serif;
   --font-sans: var(--font-inter-tight), -apple-system, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
-  --font-display: var(--font-space-grotesk), sans-serif;
-  --font-spectral: var(--font-spectral), Georgia, serif;
+  --font-display: var(--font-inter-tight), -apple-system, system-ui, sans-serif;
+  --font-spectral: var(--font-inter-tight), -apple-system, system-ui, sans-serif;
 }
 
 /* Base element rules MUST live in @layer base so Tailwind's utility layer
@@ -126,27 +128,7 @@
   }
 }
 
-/* ── Reveal-on-scroll (replaces motion.js) ──────────────────── */
-.cl-reveal {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.3, 1),
-    transform 0.8s cubic-bezier(0.2, 0.7, 0.3, 1);
-}
-.cl-reveal.cl-in {
-  opacity: 1;
-  transform: none;
-}
-@media (prefers-reduced-motion: reduce) {
-  .cl-reveal {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-  html {
-    scroll-behavior: auto;
-  }
-}
+/* Reveal-once motion lives in system.css (hidden only when JS runs). */
 
 /* ── Shared interaction helpers (keep server components hover-able) ── */
 .h-hover-cream {
@@ -158,9 +140,6 @@
 .h-btn {
   transition: transform 0.18s ease, box-shadow 0.2s ease, background 0.2s ease,
     color 0.2s ease, border-color 0.2s ease;
-}
-.h-btn:hover {
-  transform: translateY(-1px);
 }
 .h-link {
   transition: color 0.2s ease;
