@@ -92,7 +92,7 @@ function Hero() {
         <div className="hero-cap">
           <span>
             <span className="dot" aria-hidden="true" />
-            Flagship install · New Mexico Finance Authority
+            FLAGSHIP INSTALL · NEW MEXICO FINANCE AUTHORITY
           </span>
           <button className="replay" id="replay" type="button">
             Systems on ↻<span className="cl-sr"> — play the room&apos;s systems switching on again</span>
@@ -116,7 +116,7 @@ function Flagship() {
               height={1463}
               sizes="(max-width: 1232px) 100vw, 1200px"
             />
-            <span className="fig-flag">Flagship install · New Mexico Finance Authority</span>
+            <span className="fig-flag">FLAGSHIP INSTALL · NEW MEXICO FINANCE AUTHORITY</span>
             {HOTSPOTS.map((h) => (
               <div key={h.n} className="hs" style={{ left: h.left, top: h.top }}>
                 <button type="button" aria-expanded="false" aria-describedby={`t${h.n}`}>
@@ -130,7 +130,7 @@ function Flagship() {
             ))}
           </div>
           <figcaption className="fig-cap">
-            <span>FIG. 01 · Council chamber — dual presentation, ceiling displays, dais audio</span>
+            <span>Fig. 01 · Council chamber — dual presentation, ceiling displays, dais audio</span>
             <span className="r">Q-SYS · Shure · PTZ camera</span>
           </figcaption>
         </figure>

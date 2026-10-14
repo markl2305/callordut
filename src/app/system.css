@@ -432,15 +432,24 @@ main .border.border-rule > img:only-child {
 .cl-nav-right {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 10px;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+.cl-nav-right > * {
   flex: none;
+}
+.cl-nav-right > .cl-where {
+  flex: 0 1 auto;
+  min-width: 0;
 }
 .cl-where {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   min-height: 40px;
-  max-width: 46vw;
+  max-width: 100%;
   padding: 0 14px;
   border-radius: 999px;
   border: 1px solid var(--rule);
@@ -1758,4 +1767,30 @@ dialog.cl-sheet[open] .cl-sheet-in.in {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
+}
+
+/* JS off: the hotspot labels are also listed under the photo at every width. */
+html:not([data-js]) .cl-home .fig-legend {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+html:not([data-js]) .cl-home .fig-legend li {
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  gap: 10px;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+html:not([data-js]) .cl-home .fig-legend li span {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font: 500 0.66rem var(--mono);
+  color: var(--teal);
+  border: 1px solid var(--teal);
 }
