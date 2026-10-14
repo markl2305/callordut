@@ -26,7 +26,7 @@ export function ThemeToggle() {
 
   useEffect(() => {
     const read = () => (document.documentElement.getAttribute("data-theme-choice") as Choice) || "system";
-    setChoice(read());
+    const first = requestAnimationFrame(() => setChoice(read()));
     const onChange = () => setChoice(read());
     window.addEventListener(EVT, onChange);
     const mq = window.matchMedia?.("(prefers-color-scheme: dark)");
@@ -35,6 +35,7 @@ export function ThemeToggle() {
     };
     mq?.addEventListener?.("change", onSys);
     return () => {
+      cancelAnimationFrame(first);
       window.removeEventListener(EVT, onChange);
       mq?.removeEventListener?.("change", onSys);
     };

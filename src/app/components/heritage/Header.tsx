@@ -98,8 +98,10 @@ export function Header() {
 
   /* Re-read the page's sections on each route. */
   useEffect(() => {
-    setPopOpen(false);
-    const id = requestAnimationFrame(() => setSections(collectSections()));
+    const id = requestAnimationFrame(() => {
+      setPopOpen(false);
+      setSections(collectSections());
+    });
     return () => cancelAnimationFrame(id);
   }, [pathname]);
 

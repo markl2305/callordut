@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Wrap, Mono, Roman, FONT } from "../../components/heritage/primitives";
+import { Wrap, Roman, FONT } from "../../components/heritage/primitives";
 import { ForgeBlock, ClosingCTA } from "../../components/heritage/sections";
 
 export const metadata: Metadata = {
