@@ -38,7 +38,6 @@ const NAV: NavEntry[] = [
       { label: "Offices", href: "/industries/offices" },
     ],
   },
-  { label: "The Forge Partnership", href: "/partnerships/forge" },
   { label: "About", href: "/about" },
 ];
 

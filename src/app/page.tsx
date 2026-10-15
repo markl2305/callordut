@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ForgeBlock, ClosingCTA, TrustStrip } from "./components/heritage/sections";
+import { ClosingCTA, TrustStrip } from "./components/heritage/sections";
 import { HomeEffects } from "./HomeEffects";
 
 const HOTSPOTS = [
@@ -288,7 +288,6 @@ export default function HomePage() {
       <Flagship />
       <Disciplines />
       <HowWeWork />
-      <ForgeBlock variant="home" />
       <ClosingCTA />
       <HomeEffects />
     </div>

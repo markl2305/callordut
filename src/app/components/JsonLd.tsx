@@ -21,7 +21,7 @@ export function JsonLd() {
         email: siteConfig.email,
         slogan: siteConfig.tagline,
         description:
-          "CalLord Unified Technologies designs, installs, and supports commercial security systems and audiovisual integration — two disciplines, one accountable partner, and an exclusive Forge platform partner.",
+          "CalLord Unified Technologies designs, installs, and supports commercial security systems and audiovisual integration — two disciplines, one accountable partner.",
         address: {
           "@type": "PostalAddress",
           streetAddress: "13170 Central Ave SE Suite B537",

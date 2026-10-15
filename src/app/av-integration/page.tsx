@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Wrap, Mono, Roman, Btn, FONT } from "../components/heritage/primitives";
-import { ForgeBlock, ClosingCTA } from "../components/heritage/sections";
+import { ClosingCTA } from "../components/heritage/sections";
 
 export const metadata: Metadata = {
   title: "AV Integration & Smart Rooms | CalLord Unified Technologies",
@@ -117,7 +117,6 @@ export default function AvPage() {
       <AvHero />
       <AvCase />
       <AvCapabilities />
-      <ForgeBlock variant="inner" />
       <ClosingCTA />
     </>
   );

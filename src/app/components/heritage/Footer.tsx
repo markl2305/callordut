@@ -26,10 +26,8 @@ const COLS: { h: string; items: { label: string; href: string; external?: boolea
     h: "Company",
     items: [
       { label: "About", href: "/about" },
-      { label: "The Forge Partnership", href: "/partnerships/forge" },
       { label: "Cooperative Purchasing", href: "/partnerships/cooperative-purchasing" },
       { label: "Contact", href: "/contact" },
-      { label: "buildwithforge.app", href: "https://buildwithforge.app", external: true },
     ],
   },
 ];
@@ -101,7 +99,6 @@ export function Footer() {
 
         <div className="cl-foot-end">
           <span>CalLord Unified Technologies LLC · © 2026</span>
-          <span>Exclusive Forge partner</span>
         </div>
       </div>
     </footer>

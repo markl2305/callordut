@@ -28,7 +28,6 @@ const ROUTES = [
   "/room-types/team-meeting-room",
   "/room-types/training-all-hands",
   "/room-types/virtual-visit-telehealth",
-  "/partnerships/forge",
   "/partnerships/cooperative-purchasing",
   "/contact",
   "/privacy",

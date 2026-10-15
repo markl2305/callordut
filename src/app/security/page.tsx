@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Wrap, Roman, Btn, FONT } from "../components/heritage/primitives";
-import { TrustStrip, ForgeBlock, ClosingCTA } from "../components/heritage/sections";
+import { TrustStrip, ClosingCTA } from "../components/heritage/sections";
 
 export const metadata: Metadata = {
   title: "Commercial Security Systems | CalLord Unified Technologies",
@@ -96,7 +96,6 @@ export default function SecurityPage() {
       <TrustStrip />
       <SecCapabilities />
       <SecOutcomes />
-      <ForgeBlock variant="inner" />
       <ClosingCTA />
     </>
   );

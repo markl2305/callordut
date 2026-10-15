@@ -27,7 +27,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Commercial Security & AV Integration | CalLord Unified Technologies",
   description:
-    "CalLord Unified Technologies designs, installs, and supports commercial security systems and audiovisual integration. Two disciplines, one accountable partner — and an exclusive Forge platform partner.",
+    "CalLord Unified Technologies designs, installs, and supports commercial security systems and audiovisual integration. Two disciplines, one accountable partner.",
   icons: { icon: "/icon.svg" },
   metadataBase: new URL(siteConfig.website),
   openGraph: {

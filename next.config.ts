@@ -21,6 +21,12 @@ const nextConfig: NextConfig = {
         destination: "/solutions/multifamily-security",
         permanent: true,
       },
+      // Removed 2026-10-15 (Mark): the Forge partnership is not formalized.
+      {
+        source: "/partnerships/forge",
+        destination: "/",
+        permanent: true,
+      },
       ...REMOVED_TO_SECURITY.map((source) => ({
         source,
         destination: "/security",
