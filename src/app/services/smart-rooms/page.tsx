@@ -1,8 +1,7 @@
-import Link from "next/link";
-import Image from "next/image";
 import type { Metadata } from "next";
 import { CTASection } from "../../components/CTASection";
 import { GlassPanel } from "../../components/GlassPanel";
+import { PageHero, Section, Cards, Dashes, Figure } from "../../components/system/Blocks";
 
 export const metadata: Metadata = {
   title: "Smart Room Design & Documentation | CalLord UT",
@@ -49,111 +48,78 @@ const otherServices = [
 
 export default function SmartRoomsPage() {
   return (
-    <div className="min-h-screen bg-paper text-ink">
-      <main className="mx-auto max-w-5xl px-4 pb-24 pt-10 lg:px-0">
-        <section className="relative overflow-hidden border border-rule bg-cream px-6 py-14 lg:px-12 lg:py-20">
-          <div className="absolute inset-0">
-            <Image
-              src="/smart-room-virtual-visit-interior.png"
-              alt="Small hybrid meeting room with display and camera"
-              fill
-              priority
-              className="object-cover opacity-15"
-            />
-            <div className="absolute inset-0 bg-cream/80" aria-hidden />
-          </div>
-          <div className="relative">
-            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-teal">Core service</p>
-            <h1 className="mt-4 font-serif text-4xl font-normal leading-tight text-ink sm:text-5xl lg:text-6xl">
-              Smart Room Design & Documentation
-            </h1>
-            <p className="mt-4 text-lg leading-relaxed text-ink-soft lg:text-xl">
-              Virtual visit suites, hybrid pods, and executive spaces become effortless when the choreography, signage, and documentation are in place.
-              We design the room experience and leave a repeatable recipe so every site feels familiar.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/contact"
-                className="h-btn bg-teal px-6 py-3.5 text-sm font-medium text-on-teal"
-              >
-                Schedule Free Assessment
-              </Link>
-              <Link
-                href="/services"
-                className="h-btn border border-ink bg-transparent px-6 py-3.5 text-sm font-medium text-ink"
-              >
-                Back to all services
-              </Link>
-            </div>
-          </div>
-        </section>
+    <>
+      <PageHero
+        eyebrow="Core service"
+        title="Smart Room Design & Documentation"
+        lead={
+          <p>
+            Virtual visit suites, hybrid pods, and executive spaces become effortless when the choreography, signage, and documentation are in place.
+            We design the room experience and leave a repeatable recipe so every site feels familiar.
+          </p>
+        }
+        primary={{ label: "Schedule Free Assessment", href: "/contact" }}
+        secondary={{ label: "Back to all services", href: "/services" }}
+      >
+        <Figure
+          src="/smart-room-virtual-visit-interior.png"
+          alt="Small hybrid meeting room with display and camera"
+          priority
+          ratio="16 / 7"
+        />
+      </PageHero>
 
-        <section className="mt-20 space-y-6 lg:mt-28">
-          <h2 className="font-serif text-2xl font-normal text-ink">Who this is for</h2>
-          <div className="flex flex-wrap gap-2">
-            {bestFor.map((item) => (
-              <span key={item} className="border border-rule px-4 py-2 text-sm font-medium text-teal">
-                {item}
-              </span>
-            ))}
-          </div>
-        </section>
+      <Section title="Who this is for">
+        <div className="cl-chips cl-reveal">
+          {bestFor.map((item) => (
+            <span key={item} className="cl-chip">
+              {item}
+            </span>
+          ))}
+        </div>
+      </Section>
 
-        <section className="mt-20 grid gap-6 lg:mt-28 lg:grid-cols-[1.1fr,0.9fr]">
-          <div className="border border-rule bg-cream p-6 text-ink">
-            <h3 className="font-serif text-2xl font-normal text-ink">What we deliver</h3>
-            <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-              Smart rooms are defined by clarity: signage, touchpoints, and documentation that make staff feel confident. We prototype the
-              experience, translate it into drawings and storyboards, and hand installers a package they can replicate anywhere.
-            </p>
-          </div>
-          <GlassPanel title="Deliverables">
-            <ul className="space-y-2 text-sm">
-              {deliverables.map((deliverable) => (
-                <li key={deliverable} className="flex items-start gap-2">
-                  <span className="mt-1 h-1.5 w-1.5 bg-teal" aria-hidden />
-                  <span className="leading-relaxed text-ink-soft">{deliverable}</span>
-                </li>
-              ))}
-            </ul>
-          </GlassPanel>
-        </section>
-
-        <section className="mt-20 space-y-4 lg:mt-28">
-          <h3 className="font-serif text-2xl font-normal text-ink">Optional upgrades & variants</h3>
-          <ul className="space-y-2 text-sm text-ink-soft">
-            {optionalUpgrades.map((upgrade) => (
-              <li key={upgrade} className="flex items-start gap-2">
-                <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
-                <span>{upgrade}</span>
-              </li>
+      <Section
+        tone="cream"
+        title="What we deliver"
+        lead={
+          <p>
+            Smart rooms are defined by clarity: signage, touchpoints, and documentation that make staff feel confident. We prototype the
+            experience, translate it into drawings and storyboards, and hand installers a package they can replicate anywhere.
+          </p>
+        }
+        split
+      >
+        <GlassPanel title="Deliverables">
+          <ul className="cl-dash">
+            {deliverables.map((deliverable) => (
+              <li key={deliverable}>{deliverable}</li>
             ))}
           </ul>
-        </section>
+        </GlassPanel>
+      </Section>
 
-        <section className="mt-20 space-y-8 lg:mt-28">
-          <h3 className="font-serif text-2xl font-normal text-ink">How it fits with the other services</h3>
-          <div className="grid gap-6 md:grid-cols-2">
-            {otherServices.map((service) => (
-              <Link
-                key={service.title}
-                href={service.href}
-                className="h-link border border-rule bg-cream p-5 text-sm text-ink transition hover:border-teal"
-              >
-                <p className="text-base font-medium text-ink">{service.title}</p>
-                <p className="mt-2 leading-relaxed text-ink-soft">{service.copy}</p>
-              </Link>
-            ))}
-          </div>
-        </section>
+      <Section title="Optional upgrades & variants">
+        <Dashes cols={2} items={optionalUpgrades.map((upgrade) => ({ text: upgrade }))} />
+      </Section>
 
-        <CTASection
-          title="Ready to plan your next smart room rollout?"
-          subtitle="Send us the rooms, use cases, and timeline—we’ll deliver the documentation and choreography that makes them effortless."
-          primaryLabel="Schedule Free Assessment"
-          primaryHref="/contact"
+      <Section tone="cream" title="How it fits with the other services">
+        <Cards
+          cols={2}
+          items={otherServices.map((service) => ({
+            title: service.title,
+            body: <p>{service.copy}</p>,
+            href: service.href,
+          }))}
         />
-      </main>
-    </div>
+      </Section>
+
+      <CTASection
+        title="Ready to plan your next smart room rollout?"
+        subtitle="Send us the rooms, use cases, and timeline—we’ll deliver the documentation and choreography that makes them effortless."
+        primaryLabel="Schedule Free Assessment"
+        primaryHref="/contact"
+      />
+    </>
   );
 }

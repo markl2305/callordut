@@ -2,8 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { CTASection } from "../components/CTASection";
 import { RoomTypesShowcase } from "../components/RoomTypesShowcase";
-import { SectionHeader } from "../components/SectionHeader";
 import { ServiceCard } from "../components/ServiceCard";
+import { PageHero, Section, Cards, Dashes } from "../components/system/Blocks";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -101,158 +101,119 @@ const services = [
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-paper text-ink">
-      <main className="mx-auto max-w-6xl px-4 pb-20 pt-6 lg:px-6">
-        <section className="border border-rule bg-cream px-6 py-14 lg:px-12 lg:py-20">
-          <div className="space-y-4">
-            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-teal">Our services</p>
-            <h1 className="font-serif text-4xl font-normal leading-tight text-ink sm:text-5xl lg:text-6xl">
-              One partner for AV, smart rooms, and security.
-            </h1>
-            <p className="text-lg leading-relaxed text-ink-soft lg:text-xl">
-              No more juggling AV vendors, IT contractors, and security integrators. CalLord designs the stack, documents every detail, and coordinates the install so your team can get back to actual work.
-            </p>
-            <div className="flex flex-wrap items-center gap-3">
-              <Link
-                href="/contact"
-                className="h-btn bg-teal px-6 py-3.5 text-sm font-medium text-on-teal"
-              >
-                Schedule Free Assessment
-              </Link>
-              <Link
-                href="#room-types"
-                className="h-btn border border-ink bg-transparent px-6 py-3.5 text-sm font-medium text-ink"
-              >
-                Explore room types
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        <section className="mt-20 space-y-6 lg:mt-28">
-          <SectionHeader
-            title="Tailored AV, smart rooms, and security for every environment"
-            subtitle="From small businesses and senior communities to hospitality venues and member clubs, we design cohesive systems that feel finished—without resurrecting industry silos."
-          />
-          <p className="text-sm leading-relaxed text-ink-soft">
-            Whether it’s a boardroom, a private speakeasy, or a statewide rollout of telehealth suites, the toolkit stays the same: documented design,
-            repeatable room patterns, and support that extends well past day-one turnover.
+    <>
+      <PageHero
+        eyebrow="Our services"
+        title="One partner for AV, smart rooms,"
+        accent="and security."
+        lead={
+          <p>
+            No more juggling AV vendors, IT contractors, and security integrators. CalLord designs the stack, documents every detail, and coordinates the install so your team can get back to actual work.
           </p>
-        </section>
+        }
+        primary={{ label: "Schedule Free Assessment", href: "/contact" }}
+        secondary={{ label: "Explore room types", href: "#room-types" }}
+      />
 
-        <section className="mt-20 space-y-8 lg:mt-28">
-          <div className="grid gap-6 lg:grid-cols-2">
-            <div className="border border-rule bg-cream p-6 text-ink">
-              <h3 className="font-serif text-2xl font-normal text-ink">Common challenges</h3>
-              <ul className="mt-4 space-y-3 text-sm text-ink-soft">
-                {challenges.map((item) => (
-                  <li key={item.title}>
-                    <p className="font-medium text-ink">{item.title}</p>
-                    <p className="leading-relaxed">{item.body}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="border border-rule bg-cream p-6 text-ink">
-              <h3 className="font-serif text-2xl font-normal text-ink">How we solve it</h3>
-              <ul className="mt-4 space-y-3 text-sm text-ink-soft">
-                {challenges.map((item) => (
-                  <li key={item.solution}>
-                    <p className="font-medium text-ink">{item.title}</p>
-                    <p className="leading-relaxed">{item.solution}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
+      <Section
+        title="Tailored AV, smart rooms, and security for every environment"
+        lead={
+          <p>
+            From small businesses and senior communities to hospitality venues and member clubs, we design cohesive systems that feel finished—without resurrecting industry silos.
+          </p>
+        }
+      >
+        <p className="cl-lead cl-reveal">
+          Whether it’s a boardroom, a private speakeasy, or a statewide rollout of telehealth suites, the toolkit stays the same: documented design,
+          repeatable room patterns, and support that extends well past day-one turnover.
+        </p>
+      </Section>
 
-        <section className="mt-20 space-y-6 lg:mt-28">
-          <SectionHeader
-            title="Cross-industry services"
-            subtitle="A consistent set of services supports every deployment, whether it’s a hospitality suite or member clubhouse."
-          />
-          <div className="border border-rule bg-cream p-6 text-ink">
-            <ul className="space-y-3 text-sm text-ink-soft">
-              {crossIndustryServices.map((item) => (
-                <li key={item} className="flex items-start gap-2">
-                  <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
-                  <span className="leading-relaxed">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
+      <Section tone="cream">
+        <Cards
+          cols={2}
+          items={[
+            {
+              title: "Common challenges",
+              extra: (
+                <Dashes items={challenges.map((item) => ({ lead: item.title, text: item.body }))} />
+              ),
+            },
+            {
+              title: "How we solve it",
+              extra: (
+                <Dashes items={challenges.map((item) => ({ lead: item.title, text: item.solution }))} />
+              ),
+            },
+          ]}
+        />
+      </Section>
 
-        <section className="mt-20 lg:mt-24">
-          <div className="border border-rule bg-cream p-6 text-ink">
-            <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-              <div>
-                <p className="font-mono text-[11px] font-medium text-teal uppercase tracking-[0.16em]">Custom & hospitality builds</p>
-                <p className="mt-2 font-serif text-lg font-normal text-ink">Need something outside the template?</p>
-                <p className="text-sm leading-relaxed text-ink-soft">
-                  From bespoke hospitality venues to mixed-use community spaces, we map custom AV + security plans that stay serviceable.
-                </p>
-                <ul className="mt-3 space-y-2 text-sm text-ink-soft">
-                  <li className="flex items-start gap-2">
-                    <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
-                    <span>Protect the guest experience with discreet installs, lighting cues, and operator-friendly controls.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
-                    <span>Coordinate with architects and fabricators so tech disappears into the design intent.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
-                    <span>Document service paths and support plans that keep boutique venues calm after opening night.</span>
-                  </li>
-                </ul>
-              </div>
-              <Link
-                href="/services/custom-solutions"
-                className="h-btn inline-flex items-center border border-ink bg-transparent px-6 py-3.5 text-sm font-medium text-ink"
-              >
-                Explore custom solutions
-              </Link>
-            </div>
-          </div>
-        </section>
+      <Section
+        title="Cross-industry services"
+        lead={<p>A consistent set of services supports every deployment, whether it’s a hospitality suite or member clubhouse.</p>}
+        split
+      >
+        <Dashes items={crossIndustryServices.map((item) => ({ text: item }))} />
+      </Section>
 
-        <section className="mt-20 space-y-8 lg:mt-28">
-          <SectionHeader
-            title="Four core offerings"
-            subtitle="Each service stands alone, but they’re strongest when combined into a single roadmap."
-          />
-          <div className="grid gap-6 md:grid-cols-2">
-            {services.map((service) => (
-              <ServiceCard key={service.title} {...service} tone="sand" />
-            ))}
-          </div>
-          <div className="border border-rule bg-cream p-5 text-sm text-ink-soft">
+      <Section
+        tone="cream"
+        mark="Custom & hospitality builds"
+        title="Need something outside the template?"
+        lead={
+          <p>
+            From bespoke hospitality venues to mixed-use community spaces, we map custom AV + security plans that stay serviceable.
+          </p>
+        }
+        split
+      >
+        <Dashes
+          items={[
+            { text: "Protect the guest experience with discreet installs, lighting cues, and operator-friendly controls." },
+            { text: "Coordinate with architects and fabricators so tech disappears into the design intent." },
+            { text: "Document service paths and support plans that keep boutique venues calm after opening night." },
+          ]}
+        />
+        <div className="cl-actions" style={{ marginTop: 28 }}>
+          <Link href="/services/custom-solutions" className="cl-btn cl-btn-ghost">
+            Explore custom solutions
+          </Link>
+        </div>
+      </Section>
+
+      <Section
+        title="Four core offerings"
+        lead={<p>Each service stands alone, but they’re strongest when combined into a single roadmap.</p>}
+      >
+        <div className="cl-cards cl-cols-2">
+          {services.map((service) => (
+            <ServiceCard key={service.title} {...service} tone="sand" />
+          ))}
+        </div>
+        <div className="cl-cardx cl-cardx-accent cl-reveal" style={{ marginTop: 24 }}>
+          <p className="cl-cardx-body">
             Have a hospitality venue or unusual space?{" "}
-            <Link href="/services/custom-solutions" className="font-medium text-teal">
+            <Link href="/services/custom-solutions" className="cl-textlink">
               Explore our custom solutions →
             </Link>
-          </div>
-        </section>
+          </p>
+        </div>
+      </Section>
 
-        <section
-          id="room-types"
-          className="mt-20 space-y-8 border-t border-rule pt-12 lg:mt-28 lg:pt-16"
-        >
-          <RoomTypesShowcase
-            heading="Systems and rooms we build again and again"
-            subheading="Years of repeatable deployments mean your next space benefits from every lesson learned."
-          />
-        </section>
-
-        <CTASection
-          title="Tell us what you’re building next"
-          subtitle="Share a quick brief about your rooms or upcoming rollout—we’ll reply with a plan and options."
-          primaryLabel="Schedule Free Assessment"
-          primaryHref="/contact"
+      <Section id="room-types" tone="cream">
+        <RoomTypesShowcase
+          heading="Systems and rooms we build again and again"
+          subheading="Years of repeatable deployments mean your next space benefits from every lesson learned."
         />
-      </main>
-    </div>
+      </Section>
+
+      <CTASection
+        title="Tell us what you’re building next"
+        subtitle="Share a quick brief about your rooms or upcoming rollout—we’ll reply with a plan and options."
+        primaryLabel="Schedule Free Assessment"
+        primaryHref="/contact"
+      />
+    </>
   );
 }

@@ -1,7 +1,7 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import { CTASection } from "../../components/CTASection";
 import { GlassPanel } from "../../components/GlassPanel";
+import { PageHero, Section, Cards, Dashes } from "../../components/system/Blocks";
 
 export const metadata: Metadata = {
   title: "Remote Installation Project Management | CalLord UT",
@@ -62,118 +62,75 @@ const otherServices = [
 
 export default function ProjectManagementPage() {
   return (
-    <div className="min-h-screen bg-paper text-ink">
-      <main className="mx-auto max-w-5xl px-4 pb-24 pt-10 lg:px-0">
-        <section className="border border-rule bg-cream px-6 py-14 lg:px-12 lg:py-20">
-          <p className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-teal">Core service</p>
-          <h1 className="mt-4 font-serif text-4xl font-normal leading-tight text-ink sm:text-5xl lg:text-6xl">
-            Remote Installation Project Management
-          </h1>
-          <p className="mt-4 text-lg leading-relaxed text-ink-soft lg:text-xl">
+    <>
+      <PageHero
+        eyebrow="Core service"
+        title="Remote Installation Project Management"
+        lead={
+          <p>
             Keep the installers you trust. We handle the technical coordination, issue tracking, and documentation so every AV, smart room, or
             security rollout feels turnkey—without you becoming an integrator.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/contact"
-              className="h-btn bg-teal px-6 py-3.5 text-sm font-medium text-on-teal"
-            >
-              Schedule Free Assessment
-            </Link>
-            <Link
-              href="/services"
-              className="h-btn border border-ink bg-transparent px-6 py-3.5 text-sm font-medium text-ink"
-            >
-              Back to all services
-            </Link>
-          </div>
-        </section>
+        }
+        primary={{ label: "Schedule Free Assessment", href: "/contact" }}
+        secondary={{ label: "Back to all services", href: "/services" }}
+       />
 
-        <section className="mt-20 space-y-6 lg:mt-28">
-          <h2 className="font-serif text-2xl font-normal text-ink">Who this is for</h2>
-          <div className="flex flex-wrap gap-2">
-            {bestFor.map((item) => (
-              <span key={item} className="border border-rule px-4 py-2 text-sm font-medium text-teal">
-                {item}
-              </span>
-            ))}
-          </div>
-        </section>
+      <Section title="Who this is for">
+        <div className="cl-chips cl-reveal">
+          {bestFor.map((item) => (
+            <span key={item} className="cl-chip">
+              {item}
+            </span>
+          ))}
+        </div>
+      </Section>
 
-        <section className="mt-20 grid gap-6 lg:mt-28 lg:grid-cols-[1.1fr,0.9fr]">
-          <div className="border border-rule bg-cream p-6 text-ink">
-            <h3 className="font-serif text-2xl font-normal text-ink">What we deliver</h3>
-            <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-              We become the remote PM desk for AV, smart room, and security scopes—reviewing bids, chasing subs, signing off on punch lists,
-              and packaging everything for leadership sign-off. You get one contact who speaks technical and operator language.
-            </p>
-          </div>
-          <GlassPanel title="Deliverables">
-            <ul className="space-y-2 text-sm">
-              {deliverables.map((deliverable) => (
-                <li key={deliverable} className="flex items-start gap-2">
-                  <span className="mt-1 h-1.5 w-1.5 bg-teal" aria-hidden />
-                  <span className="leading-relaxed text-ink-soft">{deliverable}</span>
-                </li>
-              ))}
-            </ul>
-          </GlassPanel>
-        </section>
-
-        <section className="mt-20 space-y-4 lg:mt-28">
-          <h3 className="font-serif text-2xl font-normal text-ink">Optional program layers</h3>
-          <ul className="space-y-2 text-sm text-ink-soft">
-            {optionalUpgrades.map((upgrade) => (
-              <li key={upgrade} className="flex items-start gap-2">
-                <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
-                <span>{upgrade}</span>
-              </li>
+      <Section
+        tone="cream"
+        title="What we deliver"
+        lead={
+          <p>
+            We become the remote PM desk for AV, smart room, and security scopes—reviewing bids, chasing subs, signing off on punch lists,
+            and packaging everything for leadership sign-off. You get one contact who speaks technical and operator language.
+          </p>
+        }
+        split
+      >
+        <GlassPanel title="Deliverables">
+          <ul className="cl-dash">
+            {deliverables.map((deliverable) => (
+              <li key={deliverable}>{deliverable}</li>
             ))}
           </ul>
-        </section>
+        </GlassPanel>
+      </Section>
 
-        <section className="mt-16 space-y-6 lg:mt-24">
-          <h3 className="font-serif text-2xl font-normal text-ink">For owners, GCs, and IT</h3>
-          <div className="grid gap-4 md:grid-cols-3">
-            {roleBenefits.map((role) => (
-              <div key={role.title} className="border border-rule bg-cream-deep p-5 text-ink">
-                <p className="text-base font-medium text-ink">{role.title}</p>
-                <ul className="mt-2 space-y-2 text-sm text-ink-soft">
-                  {role.bullets.map((bullet) => (
-                    <li key={bullet} className="flex items-start gap-2">
-                      <span className="mt-1 h-1.5 w-1.5 bg-teal" aria-hidden />
-                      <span>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </section>
+      <Section title="Optional program layers">
+        <Dashes cols={2} items={optionalUpgrades.map((upgrade) => ({ text: upgrade }))} />
+      </Section>
 
-        <section className="mt-16 space-y-8 lg:mt-24">
-          <h3 className="font-serif text-2xl font-normal text-ink">How it fits with the other services</h3>
-          <div className="grid gap-6 md:grid-cols-2">
-            {otherServices.map((service) => (
-              <Link
-                key={service.title}
-                href={service.href}
-                className="h-link border border-rule bg-cream p-5 text-sm text-ink transition hover:border-teal"
-              >
-                <p className="text-base font-medium text-ink">{service.title}</p>
-                <p className="mt-2 leading-relaxed text-ink-soft">{service.copy}</p>
-              </Link>
-            ))}
-          </div>
-        </section>
+      <Section tone="cream" title="For owners, GCs, and IT">
+        <Cards cols={3} items={roleBenefits.map((role) => ({ title: role.title, bullets: role.bullets }))} />
+      </Section>
 
-        <CTASection
-          title="Ready to plan your remote project management play?"
-          subtitle="Send us the installer roster, scopes, and schedule—we’ll build the coordination plan and keep everyone honest."
-          primaryLabel="Schedule Free Assessment"
-          primaryHref="/contact"
+      <Section tone="paper" title="How it fits with the other services">
+        <Cards
+          cols={2}
+          items={otherServices.map((service) => ({
+            title: service.title,
+            body: <p>{service.copy}</p>,
+            href: service.href,
+          }))}
         />
-      </main>
-    </div>
+      </Section>
+
+      <CTASection
+        title="Ready to plan your remote project management play?"
+        subtitle="Send us the installer roster, scopes, and schedule—we’ll build the coordination plan and keep everyone honest."
+        primaryLabel="Schedule Free Assessment"
+        primaryHref="/contact"
+      />
+    </>
   );
 }

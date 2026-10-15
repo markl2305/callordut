@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { coreRoomTypes, type RoomTypeDefinition } from "../data/roomTypes";
+import { Cards } from "./system/Blocks";
 
 interface RoomTypesShowcaseProps {
   roomTypes?: RoomTypeDefinition[];
@@ -8,6 +8,7 @@ interface RoomTypesShowcaseProps {
   id?: string;
 }
 
+/* Room recipes in the site system: § mark, section head, linked cards. */
 export function RoomTypesShowcase({
   roomTypes = coreRoomTypes,
   heading = "Systems and rooms we build again and again",
@@ -15,41 +16,28 @@ export function RoomTypesShowcase({
   id,
 }: RoomTypesShowcaseProps) {
   return (
-    <section id={id} className="space-y-8">
-      <div className="space-y-3">
-        <p className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-teal">Room recipes</p>
-        <h2 className="font-serif text-3xl font-normal text-ink lg:text-4xl">{heading}</h2>
-        <p className="max-w-3xl text-lg leading-relaxed text-ink-soft">{subheading}</p>
+    <div id={id}>
+      <p className="cl-secmark">
+        <span className="s">§</span>
+        Room recipes
+      </p>
+      <div className="cl-sec-head">
+        <h2 className="cl-h2 cl-reveal">{heading}</h2>
+        <p className="cl-lead cl-sec-lead cl-reveal">{subheading}</p>
       </div>
-      <div className="grid gap-px border border-rule bg-rule md:grid-cols-2">
-        {roomTypes.map((room) => (
-          <Link
-            key={room.id}
-            href={`/room-types/${room.slug}`}
-            className="group block bg-paper p-6 text-ink transition hover:bg-cream focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal"
-          >
-            <div className="flex items-center justify-between gap-4">
-              <div>
-                <h3 className="font-serif text-xl font-normal text-ink">{room.name}</h3>
-                <p className="text-sm text-ink-soft">{room.summary}</p>
-              </div>
-              <span className="border border-rule px-3 py-1 font-mono text-[11px] uppercase tracking-[0.08em] text-ink-soft">
-                {room.capacity}
-              </span>
-            </div>
-            <div className="mt-4 flex flex-wrap gap-2 font-mono text-[11px] text-teal">
-              {room.idealUseCases.slice(0, 3).map((useCase) => (
-                <span key={useCase} className="border border-teal/40 px-3 py-1">
-                  {useCase}
-                </span>
-              ))}
-            </div>
-            <div className="mt-4 inline-flex items-center text-sm font-medium text-teal">
-              View template →
-            </div>
-          </Link>
-        ))}
+      <div className="cl-sec-body">
+        <Cards
+          cols={2}
+          items={roomTypes.map((room) => ({
+            title: room.name,
+            body: <p>{room.summary}</p>,
+            k: room.capacity,
+            chips: room.idealUseCases.slice(0, 3),
+            href: `/room-types/${room.slug}`,
+            linkLabel: "View template →",
+          }))}
+        />
       </div>
-    </section>
+    </div>
   );
 }

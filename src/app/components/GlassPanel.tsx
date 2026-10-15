@@ -6,11 +6,12 @@ interface GlassPanelProps {
   className?: string;
 }
 
+/* Panel in the site system: a card with an optional title. */
 export function GlassPanel({ title, children, className = "" }: GlassPanelProps) {
   return (
-    <div className={`border border-rule bg-cream p-8 ${className}`}>
-      {title ? <h3 className="font-serif text-lg font-normal text-ink">{title}</h3> : null}
-      <div className="mt-3 text-ink-soft">{children}</div>
+    <div className={`cl-cardx cl-reveal ${className}`.trim()}>
+      {title ? <h3 className="cl-cardx-title">{title}</h3> : null}
+      <div className="cl-cardx-body">{children}</div>
     </div>
   );
 }

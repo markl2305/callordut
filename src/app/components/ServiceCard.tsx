@@ -9,36 +9,49 @@ interface ServiceCardProps {
   tone?: "dark" | "sand";
 }
 
+/* Service card in the site system: icon tile, display title, lead, dash list, link. */
 export function ServiceCard({ title, description, bullets, href, icon }: ServiceCardProps) {
   const content = (
-    <div className="h-hover-cream flex h-full flex-col border border-rule bg-paper p-6">
-      <div className="flex items-center gap-3">
-        {icon ? <div className="border border-teal/30 bg-teal/10 p-3 text-teal">{icon}</div> : null}
-        <h3 className="font-serif text-xl font-normal text-ink">{title}</h3>
+    <>
+      <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+        {icon ? (
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: 10,
+              borderRadius: 14,
+              color: "var(--teal)",
+              background: "color-mix(in srgb, var(--teal) 10%, transparent)",
+              border: "1px solid color-mix(in srgb, var(--teal) 30%, transparent)",
+            }}
+          >
+            {icon}
+          </div>
+        ) : null}
+        <h3 className="cl-cardx-title">{title}</h3>
       </div>
-      <p className="mt-3 text-sm leading-relaxed text-ink-soft">{description}</p>
-      <ul className="mt-4 space-y-2 text-sm text-ink">
+      <p className="cl-cardx-body">{description}</p>
+      <ul className="cl-dash">
         {bullets.map((bullet) => (
-          <li key={bullet} className="flex items-start gap-2">
-            <span className="mt-1 font-mono text-xs text-teal" aria-hidden>—</span>
-            <span className="leading-relaxed">{bullet}</span>
-          </li>
+          <li key={bullet}>{bullet}</li>
         ))}
       </ul>
-      <div className="mt-5 inline-flex items-center text-sm font-medium text-teal">
+      <span className="cl-textlink cl-cardx-link">
         Learn more
-        <span aria-hidden className="ml-1">→</span>
-      </div>
-    </div>
+        <span aria-hidden style={{ marginLeft: 4 }}>→</span>
+      </span>
+    </>
   );
 
   if (href) {
     return (
-      <Link href={href} className="block h-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal">
+      <Link href={href} className="cl-cardx cl-cardx-a cl-reveal">
         {content}
       </Link>
     );
   }
 
-  return content;
+  return <div className="cl-cardx cl-reveal">{content}</div>;
 }
