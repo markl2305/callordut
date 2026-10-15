@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 
-export type ConsentState = "gpc" | "accept" | "reject" | null;
+// 'default': no choice yet in the default-on region (outside the EU/EEA, UK and Switzerland), where analytics run
+// unless turned off (public/consent/consent.js rule 12). null: no choice yet in the ask-first region.
+export type ConsentState = "gpc" | "accept" | "reject" | "default" | null;
 export type SiteConsentWindow = {
   SiteConsent?: {
     state: () => ConsentState;
@@ -12,7 +14,7 @@ export type SiteConsentWindow = {
   };
 };
 
-// The visitor's analytics choice from public/consent/consent.js: 'gpc' | 'accept' | 'reject' | null, or
+// The visitor's analytics choice from public/consent/consent.js: 'gpc' | 'accept' | 'reject' | 'default' | null, or
 // 'loading' until the (async) gate has run. Re-renders on every change.
 export default function useSiteConsent(): ConsentState | "loading" {
   const [state, setState] = useState<ConsentState | "loading">("loading");

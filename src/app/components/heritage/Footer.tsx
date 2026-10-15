@@ -88,6 +88,15 @@ export function Footer() {
             and{" "}
             <Link href="/sms-terms">SMS Terms</Link>.
           </p>
+          {/* Mark 2026-10-14/15 (shared memory 77550c45): on every page, in every region. public/consent/consent.js
+              re-opens the Allow / No thanks choice on click (data-consent-open); with JavaScript off or under Global
+              Privacy Control it is an ordinary link to the choice on the privacy notice. A plain <a>, not <Link>, so
+              the gate's capture-phase handler sees the click before the client-side router. */}
+          <p>
+            <a href="/privacy#analytics-choice" data-consent-open="">
+              Your privacy choices
+            </a>
+          </p>
         </div>
 
         <div className="cl-foot-end">

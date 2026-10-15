@@ -88,7 +88,7 @@ async function visit(browser, origin, { seed = null, accept = false }) {
   let after = null;
   if (accept && barShown) {
     await page.locator('[data-consent-bar] [data-consent="accept"]').first().click(); await page.waitForTimeout(400);
-    after = await page.evaluate((k) => ({ storage: (() => { try { return localStorage.getItem(k); } catch (e) { return null; } })(), cookie: (document.cookie.match(new RegExp('(?:^|; )' + k + '=([^;]*)')) || [])[1] || null, state: window.SiteConsent.state(), gtag: typeof window.gtag === 'function' }), KEY);
+    after = await page.evaluate((k) => ({ storage: (() => { try { return localStorage.getItem(k); } catch (e) { return null; } })(), cookie: (document.cookie.match(new RegExp('(?:^|; )__Host-' + k + '=([^;]*)')) || [])[1] || null, state: window.SiteConsent.state(), gtag: typeof window.gtag === 'function' }), KEY);
   }
   await ctx.close();
   return { barShown, before, after, errors };

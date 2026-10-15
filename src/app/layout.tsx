@@ -60,12 +60,19 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     vercel: false,
     autoBar: false, // ConsentBar calls SiteConsent.mountBar() after hydration
     privatePaths: "^/api(/|$)",
+    // src/proxy.ts sets __Host-consent_region on every document, so this site may be default-on outside the ask-first
+    // region. Set only together with that edge step: a site without it must not set this (hiresabina review F2).
+    regionalDefault: true,
     // Mark 2026-10-13: Google Ads is linked to this GA4 tag, so the one choice is named as covering both.
     barText: "We use Google Analytics and cookieless Google Ads measurement only if you allow it. Nothing is sent until you choose.",
+    // Consent by region (Mark 2026-10-14/15, shared memory 77550c45): outside the EU/EEA, UK and Switzerland analytics
+    // are on by default, so the choice re-opened there from "Your privacy choices" must not say "only if you allow it".
+    // It names the same two Google services as barText (Mark 2026-10-13).
+    optOutText: "We use Google Analytics and cookieless Google Ads measurement to understand how this site is used and whether our ads lead to visits. You can turn them off here at any time.",
     acceptLabel: "Allow",
     rejectLabel: "No thanks",
   })};` +
-    // Google Consent Mode defaults, queued before any tag exists (no network: gtag.js loads only after Allow).
+    // Google Consent Mode defaults, queued before any tag exists (no network: gtag.js loads only once the gate allows it).
     // Mark 2026-10-13: Google Ads linked in GA4 is one choice, named honestly as "Google Analytics and cookieless
     // Google Ads measurement". So even after Allow, ad storage, ad user data and ad personalization stay DENIED:
     // no _gcl cookies or storage, no remarketing; Ads receives only restricted, cookieless measurement pings.
@@ -85,8 +92,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" className={`${interTight.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <head>
         <ThemeScript />
-        {/* Consent gate (compliance P1-1g, Mark 2026-10-12). Google Analytics 4 and Google Ads load ONLY after a
-            visitor presses "Allow", never under Global Privacy Control (the
+        {/* Consent gate (compliance P1-1g, Mark 2026-10-12; by region, Mark 2026-10-14/15). Google Analytics 4 and
+            Google Ads load ONLY after a visitor presses "Allow" in the EU/EEA, UK, Switzerland or an unknown country,
+            and by default elsewhere unless turned off, never under Global Privacy Control (the
             navigator.globalPrivacyControl signal, or the consent_gpc cookie src/proxy.ts sets from Sec-GPC), and
             never from the server: public/consent/consent.js creates the tag in the browser, so with JavaScript
             off nothing is sent. */}

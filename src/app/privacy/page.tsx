@@ -19,7 +19,7 @@ export default function PrivacyPage() {
             Privacy Policy
           </h1>
           <p className="mt-3 text-sm text-ink-soft">
-            Updated for {siteConfig.legalName}. Last updated: October 12, 2026.
+            Updated for {siteConfig.legalName}. Last updated: October 15, 2026.
           </p>
           <p className="mt-1 text-sm text-ink-soft">
             If you have questions, contact{" "}
@@ -42,8 +42,11 @@ export default function PrivacyPage() {
                 including name, email, phone number, company, room details, and
                 any message you provide. Our hosting provider&rsquo;s servers log
                 basic request data (IP address, browser, and the page requested)
-                to deliver and secure the site. Analytics and advertising data
-                reach Google only if you allow it; see{" "}
+                to deliver and secure the site. In the European Union, the
+                wider EEA, the United Kingdom and Switzerland, analytics and
+                advertising data reach Google only if you allow it. Elsewhere
+                they do unless you turn them off with Your privacy choices or
+                your browser sends a Global Privacy Control signal; see{" "}
                 <a href="#analytics" className="cl-notice-link">
                   Analytics, Advertising and Cookies
                 </a>
@@ -61,8 +64,9 @@ export default function PrivacyPage() {
                 deliver services. We do not sell or rent it. Relevant details may
                 be shared with trusted vendors or subcontractors only when needed
                 to fulfill project work. Analytics and advertising data are
-                separate: they are collected only if you allow it, as described
-                in Analytics, Advertising and Cookies below.
+                separate: they are collected unless you turn them off (or, in
+                the EU, EEA, UK and Switzerland, only if you allow it), as
+                described in Analytics, Advertising and Cookies below.
               </p>
             </section>
 
@@ -83,8 +87,9 @@ export default function PrivacyPage() {
                   <strong>Service Providers:</strong> With trusted third-party
                   service providers who assist us in operating our website and
                   conducting our business (our hosting provider, email
-                  delivery, and telecommunications providers, and, only if you
-                  allow it, Google Analytics and Google Ads). These
+                  delivery, and telecommunications providers, and, under the
+                  analytics choice described below, Google Analytics and Google
+                  Ads). These
                   providers are contractually obligated to protect your
                   information.
                 </li>
@@ -280,8 +285,11 @@ export default function PrivacyPage() {
               <p>
                 This site offers one choice, and it covers two Google services,
                 both provided by Google LLC: Google Analytics and cookieless
-                Google Ads measurement. Neither runs until you press
-                &ldquo;Allow&rdquo;.
+                Google Ads measurement. In the European Union, the wider EEA,
+                the United Kingdom and Switzerland, neither runs until you press
+                &ldquo;Allow&rdquo;. Elsewhere both are on unless you turn them
+                off with Your privacy choices or your browser sends a Global
+                Privacy Control signal.
               </p>
               <ul className="mt-2 list-disc space-y-2 pl-6">
                 <li>
@@ -297,16 +305,17 @@ export default function PrivacyPage() {
                   We tell Google not to store advertising cookies, not to use
                   your data for ad personalization or remarketing, and not to
                   use ad user data, so Google Ads sets no cookies here.
-                  Google&rsquo;s tag is also set up so that, after you allow it,
-                  it may read an email address, phone number or postal address
+                  Google&rsquo;s tag is also set up so that, while it is on, it
+                  may read an email address, phone number or postal address
                   typed into one of our forms and send it to Google Ads in
                   hashed form to match an inquiry to an ad (Google calls this
                   enhanced conversions).
                 </li>
               </ul>
               <p className="mt-3">
-                Until you choose, and if you choose &ldquo;No thanks&rdquo;,
-                neither service loads and nothing is sent to Google. With
+                In the EU, EEA, UK and Switzerland until you choose, and
+                anywhere if you choose &ldquo;No thanks&rdquo;, neither service
+                loads and nothing is sent to Google. With
                 JavaScript off, nothing is sent either. Google uses what it
                 receives under its own terms; see{" "}
                 <a
@@ -318,19 +327,23 @@ export default function PrivacyPage() {
                 .
               </p>
               <p className="mt-3">
-                <strong>Cookies, only if you allow them:</strong>{" "}
+                <strong>Cookies, only while analytics are on:</strong>{" "}
                 <code>_ga</code> and <code>_ga_</code> followed by our property
                 id (Google Analytics). Google Ads sets none.
               </p>
               <p className="mt-3">
                 <strong>Always set, not used for tracking:</strong> your choice
                 is kept in two places on your browser. The{" "}
-                <code>callord-consent</code> cookie and a copy with the same
-                name in your browser&rsquo;s local storage are each honoured
+                <code>__Host-callord-consent</code> cookie and a copy named{" "}
+                <code>callord-consent</code> in your browser&rsquo;s local
+                storage are each honoured
                 for 180 days from when you chose; after that you are asked
                 again, and changing your choice below replaces both.{" "}
                 <code>consent_gpc</code> is a cookie set for one day only when
-                your browser sends a Global Privacy Control signal, and{" "}
+                your browser sends a Global Privacy Control signal,{" "}
+                <code>__Host-consent_region</code> is a cookie set for one day
+                on each page you load that records only whether you are in the
+                region where we ask first, and{" "}
                 <code>cl-theme</code> keeps your light or dark choice in your
                 browser.
               </p>
@@ -346,11 +359,13 @@ export default function PrivacyPage() {
                 loads, we do not ask, and the signal overrides an earlier
                 &ldquo;Allow&rdquo;. We treat the signal as your request to opt
                 out of the sale or sharing of your personal information,
-                including sharing for targeted advertising.
+                including sharing for targeted advertising. Outside the EU, EEA,
+                UK and Switzerland, where analytics are otherwise on, the signal
+                turns them off in the same way.
               </p>
             </section>
 
-            <section>
+            <section id="analytics-choice">
               <h2 className="font-serif text-xl font-normal text-ink">
                 Your Analytics Choice
               </h2>
@@ -361,6 +376,10 @@ export default function PrivacyPage() {
                 reloads the page.
               </p>
               <ConsentChoice />
+              <p className="mt-3">
+                Use Your privacy choices at the foot of any page to allow
+                analytics or turn them off at any time.
+              </p>
             </section>
 
             <section>

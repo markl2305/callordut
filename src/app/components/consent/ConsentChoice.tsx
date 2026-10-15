@@ -9,6 +9,10 @@ const SAYS = {
   accept: "You allowed Google Analytics and cookieless Google Ads measurement on this browser.",
   reject: "You chose no analytics on this browser: nothing is sent to Google Analytics or Google Ads.",
   none: "You have not made a choice on this browser, so nothing has been sent to Google Analytics or Google Ads.",
+  // Consent by region (Mark 2026-10-14/15): shown only outside the EU/EEA, UK and Switzerland before any choice, where
+  // analytics run unless turned off. Same meaning as hiresabina's approved status line, this site's services and label.
+  default:
+    "Google Analytics and cookieless Google Ads measurement are on for this browser because you have not turned them off. Choose No thanks to stop them.",
   nojs: "With JavaScript off, this site sends nothing to Google Analytics or Google Ads.",
 } as const;
 
