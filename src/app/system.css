@@ -1812,3 +1812,438 @@ html:not([data-js]) .cl-home .fig-legend li span {
     display: inline-flex;
   }
 }
+
+/* ============================================================
+   Page blocks (components/system/Blocks.tsx) — the composition
+   used by inner routes: hero band, sections, cards, rows,
+   dashes, sequence rail, readout, figure, link pills, close band.
+   ============================================================ */
+.cl-hero-band {
+  padding-bottom: clamp(56px, 8vw, 104px);
+  border-bottom: 1px solid var(--rule);
+}
+.cl-hero-band .cl-display {
+  margin: 16px 0 22px;
+  max-width: 15em;
+}
+.cl-hero-lead {
+  margin: 0;
+  max-width: 38em;
+}
+.cl-hero-lead p {
+  margin: 0 0 0.8em;
+}
+.cl-hero-extra {
+  margin-top: clamp(36px, 5vw, 56px);
+}
+.cl-tone-cream {
+  background: var(--cream);
+}
+.cl-sec + .cl-sec.cl-tone-paper,
+.cl-sec.cl-tone-paper + .cl-sec.cl-tone-paper {
+  padding-top: clamp(24px, 4vw, 48px);
+}
+.cl-sec-head {
+  max-width: 46em;
+}
+.cl-sec-head .cl-h2 {
+  margin-bottom: 18px;
+}
+.cl-sec-lead {
+  margin: 0;
+}
+.cl-sec-lead p {
+  margin: 0 0 0.8em;
+}
+.cl-sec-body {
+  margin-top: clamp(32px, 4vw, 48px);
+}
+.cl-split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(28px, 6vw, 96px);
+  align-items: start;
+}
+.cl-split-head {
+  position: sticky;
+  top: calc(var(--nav-h) + 8vh);
+}
+
+/* Cards */
+.cl-cards {
+  display: grid;
+  gap: 12px;
+}
+.cl-cards.cl-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.cl-cards.cl-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.cl-cards.cl-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.cl-cardx {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: clamp(22px, 2.4vw, 32px);
+  border-radius: 22px;
+  border: 1px solid var(--rule);
+  background: var(--panel);
+  color: var(--ink);
+  text-decoration: none;
+  min-width: 0;
+}
+.cl-tone-cream .cl-cardx {
+  background: var(--paper);
+}
+.cl-cardx-a {
+  transition: border-color 200ms ease, transform 140ms var(--ease-out), opacity 400ms var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .cl-cardx-a:hover {
+    border-color: color-mix(in srgb, var(--teal) 55%, transparent);
+  }
+}
+.cl-cardx-a:active {
+  transform: scale(0.99);
+}
+.cl-cardx-top {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.cl-cardx-top .n {
+  font: italic 400 1.4rem/1 var(--f);
+  color: var(--teal);
+}
+.cl-cardx-top .k {
+  font: 500 0.72rem/1.3 var(--f);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+.cl-cardx-title {
+  font: 400 clamp(1.35rem, 2vw, 1.7rem) / 1.15 var(--f) !important;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.cl-cardx-body {
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+.cl-cardx-body p {
+  margin: 0 0 0.7em;
+}
+.cl-cardx-body p:last-child {
+  margin-bottom: 0;
+}
+.cl-cardx-media {
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--cream);
+}
+.cl-cardx-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.cl-cardx-link {
+  margin-top: auto;
+  padding-top: 6px;
+}
+.cl-dash {
+  list-style: none;
+  padding: 14px 0 0;
+  margin: 0;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  gap: 10px;
+}
+.cl-dash li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 0.96rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.cl-dash li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--teal);
+}
+.cl-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.cl-chip {
+  font: 500 0.66rem/1.3 var(--mono);
+  letter-spacing: 0.04em;
+  padding: 6px 11px;
+  border: 1px solid var(--rule);
+  color: var(--ink);
+}
+
+/* Rows */
+.cl-rows {
+  border: 1px solid var(--rule);
+  border-radius: 22px;
+  overflow: hidden;
+  background: var(--panel);
+}
+.cl-tone-cream .cl-rows {
+  background: var(--paper);
+}
+.cl-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.38fr) 1fr;
+  gap: 16px;
+  padding: 18px 24px;
+}
+.cl-row + .cl-row {
+  border-top: 1px solid var(--rule);
+}
+.cl-row .k {
+  font: 500 0.7rem/1.5 var(--mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+.cl-row .v {
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+/* Dashes (ruled list) */
+.cl-dashes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  border-top: 1px solid var(--rule);
+}
+.cl-dashes.cl-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(24px, 4vw, 56px);
+}
+.cl-dashes li {
+  position: relative;
+  padding: 18px 0 18px 30px;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+.cl-dashes li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--teal);
+}
+.cl-dashes li strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* Sequence rail (static, lit) */
+.cl-seq {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 40px;
+  position: relative;
+}
+.cl-seq::before {
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--teal);
+}
+.cl-seq-step {
+  position: relative;
+  padding: 6px 0 clamp(36px, 6vh, 64px);
+}
+.cl-seq-step:last-child {
+  padding-bottom: 0;
+}
+.cl-seq-step::before {
+  content: "";
+  position: absolute;
+  left: -36px;
+  top: 0.9em;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--teal) 18%, transparent);
+}
+.cl-seq-step .rn {
+  font: italic 400 1.2rem var(--f);
+  color: var(--teal);
+}
+.cl-seq-step h3 {
+  font: 400 clamp(1.45rem, 2.6vw, 2.1rem) / 1.12 var(--f);
+  letter-spacing: -0.025em;
+  margin: 6px 0 10px;
+}
+.cl-seq-body {
+  color: var(--ink-soft);
+  max-width: 34em;
+}
+.cl-seq-body p {
+  margin: 0 0 0.6em;
+}
+
+/* Readout */
+.cl-readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  border-block: 1px solid var(--rule);
+}
+.cl-readout div {
+  padding: 26px 24px 22px 0;
+}
+.cl-readout b {
+  display: block;
+  font: 400 clamp(1.8rem, 3.4vw, 2.8rem) / 1.05 var(--f);
+  letter-spacing: -0.035em;
+}
+.cl-readout span {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+
+/* Figure */
+.cl-figure {
+  margin: 0;
+}
+.cl-figure-frame {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: var(--cream);
+}
+.cl-figure figcaption {
+  margin-top: 14px;
+  font: 500 0.68rem/1.5 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* Link pills */
+.cl-linkrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.cl-linkpill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  color: var(--teal);
+  font: 500 0.92rem var(--f);
+  text-decoration: none;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .cl-linkpill:hover {
+    border-color: var(--teal);
+  }
+}
+
+/* Close band */
+.cl-closeband h2 {
+  margin-bottom: 20px;
+}
+.cl-close-lead {
+  margin: 0 auto;
+  text-align: center;
+}
+.cl-close-actions {
+  justify-content: center;
+  margin-top: 30px;
+}
+
+@media (max-width: 1000px) {
+  .cl-cards.cl-cols-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 900px) {
+  .cl-split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cl-split-head {
+    position: relative;
+    top: 0;
+  }
+  .cl-cards.cl-cols-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 640px) {
+  .cl-cards.cl-cols-2,
+  .cl-cards.cl-cols-3,
+  .cl-cards.cl-cols-4,
+  .cl-dashes.cl-cols-2 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cl-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+  }
+}
+
+/* Team cards, accent card, even split */
+.cl-team {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 18px;
+}
+.cl-team-photo {
+  width: 72px;
+  height: 72px;
+  flex: none;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.cl-team-role {
+  margin: 0 0 6px;
+  font: 500 0.7rem/1.4 var(--f);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal);
+}
+.cl-team .cl-cardx-body {
+  margin: 10px 0 0;
+}
+.cl-cardx-accent {
+  background: color-mix(in srgb, var(--teal) 10%, var(--panel));
+  border-color: color-mix(in srgb, var(--teal) 40%, transparent);
+}
+.cl-split.cl-split-even {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+}
+@media (max-width: 900px) {
+  .cl-split.cl-split-even {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .cl-team {
+    flex-direction: column;
+  }
+}
