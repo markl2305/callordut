@@ -29,7 +29,7 @@ const mdxComponents = {
   h1: (p: React.ComponentProps<"h1">) => <h1 className="mt-10 mb-4 font-[family-name:var(--font-newsreader)] text-3xl font-medium tracking-tight" {...p} />,
   h2: (p: React.ComponentProps<"h2">) => <h2 className="mt-10 mb-3 font-[family-name:var(--font-newsreader)] text-2xl font-medium tracking-tight" {...p} />,
   h3: (p: React.ComponentProps<"h3">) => <h3 className="mt-8 mb-2 text-xl font-semibold" {...p} />,
-  p: (p: React.ComponentProps<"p">) => <p className="my-4 leading-relaxed text-[var(--ink-2,#3a3a3a)]" {...p} />,
+  p: (p: React.ComponentProps<"p">) => <p className="my-4 leading-relaxed text-ink-soft" {...p} />,
   ul: (p: React.ComponentProps<"ul">) => <ul className="my-4 list-disc space-y-2 pl-6" {...p} />,
   ol: (p: React.ComponentProps<"ol">) => <ol className="my-4 list-decimal space-y-2 pl-6" {...p} />,
   li: (p: React.ComponentProps<"li">) => <li className="leading-relaxed" {...p} />,

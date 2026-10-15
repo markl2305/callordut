@@ -30,7 +30,7 @@ export function RoomTypeTemplate({ room }: RoomTypeTemplateProps) {
       alt: "Top-down layout of a training and all-hands space",
     },
     "virtual-visit-telehealth": {
-      src: "/room-virtual-visit-topdown.png",
+      src: "/smart-room-virtual-visit-interior.png",
       alt: "Top-down layout of a virtual visit room",
     },
     "small-hybrid-focus-pod": {

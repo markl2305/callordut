@@ -558,13 +558,16 @@ main .border.border-rule > img:only-child {
     margin-left: auto;
   }
 }
+/* The Menu button covers the whole range where the route links are hidden. */
+@media (max-width: 1140px) {
+  .cl-menu-btn {
+    display: grid;
+  }
+}
 @media (max-width: 760px) {
   .cl-nav .cl-seg,
   .cl-nav .cl-btn {
     display: none;
-  }
-  .cl-menu-btn {
-    display: grid;
   }
 }
 .cl-index-pop {
@@ -1793,4 +1796,19 @@ html:not([data-js]) .cl-home .fig-legend li span {
   font: 500 0.66rem var(--mono);
   color: var(--teal);
   border: 1px solid var(--teal);
+}
+
+/* Reduced transparency: the home nav over the photo is opaque material with ink
+   text too (outranks [data-js] .cl-nav.cl-over by coming later at equal specificity). */
+@media (prefers-reduced-transparency: reduce) {
+  [data-js] .cl-nav.cl-over {
+    color: var(--ink);
+  }
+  [data-js] .cl-nav.cl-over::before {
+    opacity: 1;
+    background: var(--paper);
+  }
+  [data-js] .cl-nav.cl-over .cl-where {
+    display: inline-flex;
+  }
 }
