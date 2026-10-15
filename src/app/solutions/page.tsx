@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { SolutionsLeadForm } from "../components/SolutionsLeadForm";
+import { PageHero, Section, Cards, Dashes } from "../components/system/Blocks";
 
 export const metadata: Metadata = {
   title: "Services | AV Integration, Smart Rooms & Security",
@@ -56,117 +57,98 @@ const faq = [
 
 export default function SolutionsPage() {
   return (
-    <div className="min-h-screen bg-paper text-ink">
-      <main className="mx-auto max-w-5xl px-4 pb-24 pt-10 lg:px-0">
-        <section className="border border-rule bg-cream px-6 py-14 lg:px-12 lg:py-20">
-          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-teal">Campaign landing</p>
-          <h1 className="mt-4 font-serif text-4xl font-normal leading-tight text-ink sm:text-5xl lg:text-6xl">
-            AV, smart rooms, and security that feel finished—day one.
-          </h1>
-          <p className="mt-4 text-lg leading-relaxed text-ink-soft lg:text-xl">
+    <>
+      <PageHero
+        eyebrow="Campaign landing"
+        title="AV, smart rooms, and security that feel"
+        accent="finished—day one."
+        lead={
+          <p>
             CalLord Unified Technologies designs operator-friendly rooms, security, and remote-friendly project management for teams that can’t afford failed calls or messy inspections.
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <Link
-              href="/contact"
-              className="h-btn bg-teal px-6 py-3.5 text-sm font-medium text-on-teal"
-            >
-              Schedule Free Assessment
-            </Link>
-            <Link
-              href="#contact"
-              className="h-btn border border-ink px-6 py-3.5 text-sm font-medium text-ink"
-            >
-              Download sample room layouts
-            </Link>
-          </div>
-        </section>
+        }
+        primary={{ label: "Schedule Free Assessment", href: "/contact" }}
+        secondary={{ label: "Download sample room layouts", href: "#contact" }}
+      />
 
-        <section className="mt-20 border border-rule bg-cream px-6 py-10 text-ink">
-          <h2 className="font-serif text-2xl font-normal text-ink">Why teams choose CalLord</h2>
-          <ul className="mt-4 space-y-3 text-sm text-ink-soft">
-            <li>Design-first, documentation-heavy approach so nothing is tribal knowledge.</li>
-            <li>Remote-friendly project guidance with async video walkthroughs and clear status.</li>
-            <li>Security and compliance delivered with <strong>Eagle Eye Networks</strong> + <strong>Brivo</strong>.</li>
-            <li>Built for teams that can’t afford failed calls, sloppy rooms, or inspection drama.</li>
-          </ul>
-        </section>
+      <Section title="Why teams choose CalLord" split>
+        <Dashes
+          items={[
+            { text: "Design-first, documentation-heavy approach so nothing is tribal knowledge." },
+            { text: "Remote-friendly project guidance with async video walkthroughs and clear status." },
+            {
+              text: (
+                <>
+                  Security and compliance delivered with <strong>Eagle Eye Networks</strong> + <strong>Brivo</strong>.
+                </>
+              ),
+            },
+            { text: "Built for teams that can’t afford failed calls, sloppy rooms, or inspection drama." },
+          ]}
+        />
+      </Section>
 
-        <section className="mt-20 space-y-8">
-          <div>
-            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-teal">Which fits you?</p>
-            <h2 className="mt-3 font-serif text-3xl font-normal text-ink">Three pathways, one partner.</h2>
-            <p className="mt-2 text-lg text-ink-soft">Pick the track that matches your current pain. We can start with one—or combine them into a rollout plan.</p>
-          </div>
-          <div className="grid gap-4 md:grid-cols-2">
-            {croOfferings.map((offering) => (
-              <div
-                key={offering.title}
-                className="flex h-full flex-col border border-rule bg-cream p-5 text-ink"
-              >
-                <div className="font-mono text-[11px] uppercase tracking-[0.16em] text-teal">{offering.title}</div>
-                <p className="mt-3 text-sm text-ink-soft">{offering.pain}</p>
-                <p className="mt-2 text-base font-medium text-ink">{offering.promise}</p>
-                <ul className="mt-3 space-y-2 text-sm text-ink-soft">
-                  {offering.bullets.map((bullet) => (
-                    <li key={bullet} className="flex items-start gap-2">
-                      <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
-                      <span>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-3 font-mono text-[11px] uppercase tracking-[0.16em] text-teal">This is for you if…</div>
-                <ul className="mt-2 space-y-1 text-sm text-ink-soft">
+      <Section
+        tone="cream"
+        mark="Which fits you?"
+        title="Three pathways, one partner."
+        lead={<p>Pick the track that matches your current pain. We can start with one—or combine them into a rollout plan.</p>}
+      >
+        <Cards
+          cols={3}
+          items={croOfferings.map((offering) => ({
+            k: offering.title,
+            body: (
+              <>
+                <p>{offering.pain}</p>
+                <p>
+                  <strong>{offering.promise}</strong>
+                </p>
+              </>
+            ),
+            bullets: offering.bullets,
+            extra: (
+              <div style={{ marginTop: 16 }}>
+                <p className="cl-team-role">This is for you if…</p>
+                <ul className="cl-cardx-body" style={{ listStyle: "none", padding: 0, margin: 0 }}>
                   {offering.fit.map((fit) => (
                     <li key={fit}>• {fit}</li>
                   ))}
                 </ul>
-                <Link
-                  href={offering.href}
-                  className="h-link mt-4 inline-flex items-center text-sm font-medium text-teal"
-                >
-                  Learn more →
-                </Link>
               </div>
-            ))}
-          </div>
-          <div className="text-center">
-            <Link
-              href="#contact"
-              className="h-btn inline-flex bg-teal px-6 py-3.5 text-sm font-medium text-on-teal"
-            >
-              Schedule Free Assessment
-            </Link>
-          </div>
-        </section>
+            ),
+            href: offering.href,
+            linkLabel: "Learn more →",
+          }))}
+        />
+        <div className="cl-actions" style={{ marginTop: 28, justifyContent: "center" }}>
+          <Link href="#contact" className="cl-btn cl-btn-teal">
+            Schedule Free Assessment
+          </Link>
+        </div>
+      </Section>
 
-        <section className="mt-20 border border-rule bg-cream p-6 text-ink">
-          <h3 className="font-serif text-2xl font-normal text-ink">“They documented everything so well that our staff stopped texting IT for help.”</h3>
-          <p className="mt-3 text-sm text-ink-soft">Director of Operations, regional senior-living group</p>
-        </section>
+      <Section>
+        <div className="cl-cardx cl-cardx-accent cl-reveal">
+          <h3 className="cl-cardx-title">“They documented everything so well that our staff stopped texting IT for help.”</h3>
+          <p className="cl-cardx-body">Director of Operations, regional senior-living group</p>
+        </div>
+      </Section>
 
-        <section id="contact" className="mt-20 space-y-6">
-          <div className="border border-rule bg-cream p-6 text-ink">
-            <h3 className="font-serif text-2xl font-normal text-ink">Ready for a plan?</h3>
-            <p className="mt-2 text-sm text-ink-soft">
-              No hard sell. We’ll review your rooms, ask a few questions, and recommend a path—even if that means a different partner.
-            </p>
-            <SolutionsLeadForm services={croOfferings.map((offering) => offering.title)} />
-          </div>
-        </section>
+      <Section tone="cream" title="Questions we get from campaigns">
+        <Cards cols={2} items={faq.map((item) => ({ title: item.q, body: <p>{item.a}</p> }))} />
+      </Section>
 
-        <section className="mt-20 space-y-6">
-          <h3 className="font-serif text-2xl font-normal text-ink">Questions we get from campaigns</h3>
-          <div className="space-y-4">
-            {faq.map((item) => (
-              <div key={item.q} className="border border-rule bg-cream p-4 text-ink">
-                <p className="text-sm font-medium text-ink">{item.q}</p>
-                <p className="mt-2 text-sm text-ink-soft">{item.a}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-      </main>
-    </div>
+      <Section
+        id="contact"
+        title="Ready for a plan?"
+        lead={<p>No hard sell. We’ll review your rooms, ask a few questions, and recommend a path—even if that means a different partner.</p>}
+        split
+      >
+        <div className="cl-cardx cl-reveal">
+          <SolutionsLeadForm services={croOfferings.map((offering) => offering.title)} />
+        </div>
+      </Section>
+    </>
   );
 }
