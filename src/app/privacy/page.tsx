@@ -336,14 +336,18 @@ export default function PrivacyPage() {
                 is kept in two places on your browser. The{" "}
                 <code>__Host-callord-consent</code> cookie and a copy named{" "}
                 <code>callord-consent</code> in your browser&rsquo;s local
-                storage are each honoured
-                for 180 days from when you chose; after that you are asked
-                again, and changing your choice below replaces both.{" "}
+                storage hold it, and changing your choice below replaces both. Your
+                choice is honoured for 180 days. After it expires, the regional
+                defaults described above apply again: in the EU, EEA, UK and
+                Switzerland you are asked again, and elsewhere an expired
+                &ldquo;No thanks&rdquo; returns to analytics on unless another
+                current choice or a Global Privacy Control signal applies.{" "}
                 <code>consent_gpc</code> is a cookie set for one day only when
                 your browser sends a Global Privacy Control signal,{" "}
                 <code>__Host-consent_region</code> is a cookie set for one day
-                on each page you load that records only whether you are in the
-                region where we ask first, and{" "}
+                on each page you load that records the consent-region decision
+                (whether you are in the region where we ask first) and the time
+                it was made, and{" "}
                 <code>cl-theme</code> keeps your light or dark choice in your
                 browser.
               </p>
