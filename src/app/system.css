@@ -826,9 +826,6 @@ dialog.cl-sheet[open] .cl-sheet-in.in {
   }
 }
 @media (max-width: 560px) {
-  .cl-ftiles {
-    grid-template-columns: 1fr;
-  }
   .cl-foot-grid {
     grid-template-columns: 1fr;
   }
