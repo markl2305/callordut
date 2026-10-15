@@ -1,7 +1,7 @@
-import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { coreRoomTypes } from "../data/roomTypes";
+import { PageHero, Section, Cards } from "../components/system/Blocks";
 
 export const metadata: Metadata = {
   title: "Room Templates & Recipes | CalLord Unified Technologies",
@@ -23,7 +23,7 @@ const roomImages: Record<string, { src: string; alt: string }> = {
   },
   "virtual-visit-telehealth": {
     src: "/smart-room-virtual-visit-interior.png",
-    alt: "Top-down layout of a virtual visit room",
+    alt: "Virtual visit room interior",
   },
   "small-hybrid-focus-pod": {
     src: "/room-small-hybrid-focus-pod-topdown.png",
@@ -37,67 +37,53 @@ const roomImages: Record<string, { src: string; alt: string }> = {
 
 export default function RoomTypesHubPage() {
   return (
-    <div className="min-h-screen bg-paper text-ink">
-      <main className="mx-auto max-w-6xl px-4 pb-24 pt-10 lg:px-6">
-        <section className="border border-rule bg-cream px-6 py-14 lg:px-12 lg:py-20">
-          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-teal">Room recipes</p>
-          <h1 className="mt-4 font-serif text-4xl font-normal leading-tight text-ink sm:text-5xl lg:text-6xl">
-            Room types we build again and again.
-          </h1>
-          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-ink-soft lg:text-xl">
+    <>
+      <PageHero
+        eyebrow="Room recipes"
+        title="Room types we build"
+        accent="again and again."
+        lead={
+          <p>
             Each template captures the AV, smart-room, and security details needed to go from sketch to first call—then scale across other sites.
           </p>
-        </section>
-
-        <section className="mt-16 space-y-8 lg:mt-24">
-          <div className="space-y-3">
-            <h2 className="font-serif text-3xl font-normal text-ink lg:text-4xl">Room Types</h2>
-            <p className="max-w-3xl text-lg leading-relaxed text-ink-soft">
-              Proven configurations we build again and again. Start with a template, customize for your space, and skip the trial-and-error.
-            </p>
-          </div>
-          <div className="grid gap-4 md:grid-cols-2">
-            {coreRoomTypes.map((room) => (
-              <Link
-                key={room.slug}
-                href={`/room-types/${room.slug}`}
-                className="group h-hover-cream block border border-rule bg-cream p-5 text-ink"
-              >
-                <div className="mb-3 flex items-center gap-3">
-                  <div className="border border-rule bg-cream p-2">
-                    <Image
-                      src={(roomImages[room.slug] ?? roomImages.default).src}
-                      alt={(roomImages[room.slug] ?? roomImages.default).alt}
-                      width={96}
-                      height={96}
-                      className="h-16 w-16 object-contain"
-                    />
-                  </div>
-                  <span className="border border-rule px-3 py-1 font-mono text-[11px] uppercase tracking-[0.16em] text-teal">
-                    {room.capacity}
-                  </span>
+        }
+      />
+      <Section
+        tone="cream"
+        mark="Room recipes"
+        title="Room Types"
+        lead={
+          <p>
+            Proven configurations we build again and again. Start with a template, customize for your space, and skip the trial-and-error.
+          </p>
+        }
+      >
+        <Cards
+          cols={2}
+          items={coreRoomTypes.map((room) => {
+            const img = roomImages[room.slug] ?? roomImages.default;
+            return {
+              media: (
+                <div style={{ position: "relative", aspectRatio: "16 / 10" }}>
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 560px"
+                    style={{ objectFit: "contain", padding: 16 }}
+                  />
                 </div>
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <h3 className="font-serif text-xl font-normal text-ink">{room.name}</h3>
-                    <p className="text-sm text-ink-soft">{room.summary}</p>
-                  </div>
-                </div>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {room.idealUseCases.slice(0, 3).map((useCase) => (
-                    <span key={useCase} className="border border-rule px-3 py-1 font-mono text-[11px] uppercase tracking-[0.16em] text-teal">
-                      {useCase}
-                    </span>
-                  ))}
-                </div>
-                <span className="mt-4 inline-flex items-center text-sm font-medium text-teal">
-                  View template →
-                </span>
-              </Link>
-            ))}
-          </div>
-        </section>
-      </main>
-    </div>
+              ),
+              k: room.capacity,
+              title: room.name,
+              body: <p>{room.summary}</p>,
+              chips: room.idealUseCases.slice(0, 3),
+              href: `/room-types/${room.slug}`,
+              linkLabel: "View template →",
+            };
+          })}
+        />
+      </Section>
+    </>
   );
 }

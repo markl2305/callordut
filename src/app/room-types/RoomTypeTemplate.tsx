@@ -1,9 +1,9 @@
-import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import type { RoomTypeDefinition } from "../data/roomTypes";
 import { getRoomTypeBySlug, coreRoomTypes } from "../data/roomTypes";
 import { siteConfig } from "../../config/site";
+import { PageHero, Section, Cards, Dashes, LinkRow, CloseBand } from "../components/system/Blocks";
 
 const serviceLinkMap: Record<string, string> = {
   "AV Integration & Systems": "/av-integration",
@@ -31,7 +31,7 @@ export function RoomTypeTemplate({ room }: RoomTypeTemplateProps) {
     },
     "virtual-visit-telehealth": {
       src: "/smart-room-virtual-visit-interior.png",
-      alt: "Top-down layout of a virtual visit room",
+      alt: "Virtual visit room interior",
     },
     "small-hybrid-focus-pod": {
       src: "/room-small-hybrid-focus-pod-topdown.png",
@@ -45,156 +45,103 @@ export function RoomTypeTemplate({ room }: RoomTypeTemplateProps) {
   const selectedImage = roomImages[room.slug] ?? roomImages.default;
 
   return (
-    <div className="min-h-screen bg-paper text-ink">
-      <main className="mx-auto max-w-5xl px-4 pb-24 pt-10 lg:px-0">
-        <section className="border border-rule bg-cream px-6 py-14 lg:px-12 lg:py-20">
-          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-teal">Room template</p>
-          <h1 className="mt-4 font-serif text-4xl font-normal leading-tight text-ink sm:text-5xl lg:text-6xl">{room.name}</h1>
-          <p className="mt-4 text-lg leading-relaxed text-ink-soft lg:text-xl">{room.summary}</p>
-          <ul className="mt-6 space-y-2 text-sm text-ink-soft">
-            {room.heroHighlights.map((highlight) => (
-              <li key={highlight} className="flex items-start gap-2">
-                <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
-                <span>{highlight}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/contact"
-              className="h-btn bg-teal px-6 py-3.5 text-sm font-medium text-on-teal"
-            >
-              Plan this room
-            </Link>
-            <Link
-              href="/room-types"
-              className="h-btn border border-ink px-6 py-3.5 text-sm font-medium text-ink"
-            >
-              Explore all room types
-            </Link>
-          </div>
-        </section>
+    <>
+      <PageHero
+        eyebrow="Room template"
+        title={room.name}
+        lead={<p>{room.summary}</p>}
+        primary={{ label: "Plan this room", href: "/contact" }}
+        secondary={{ label: "Explore all room types", href: "/room-types" }}
+      >
+        <Dashes items={room.heroHighlights.map((highlight) => ({ text: highlight }))} />
+      </PageHero>
 
-        <section className="mt-16 space-y-6 lg:mt-24">
-          <h2 className="font-serif text-2xl font-normal text-ink">Best for</h2>
-          <div className="flex flex-wrap gap-2">
-            {room.idealUseCases.map((useCase) => (
-              <span key={useCase} className="border border-rule px-4 py-2 font-mono text-[11px] uppercase tracking-[0.16em] text-teal">
-                {useCase}
-              </span>
-            ))}
-          </div>
-        </section>
+      <Section tone="cream" title="Best for">
+        <div className="cl-chips cl-reveal">
+          {room.idealUseCases.map((useCase) => (
+            <span key={useCase} className="cl-chip">
+              {useCase}
+            </span>
+          ))}
+        </div>
+      </Section>
 
-        <section className="mt-16 grid gap-6 lg:mt-24 lg:grid-cols-[1.2fr,0.8fr]">
-          <div className="border border-rule bg-cream p-6 text-ink">
-            <div className="mb-4 flex items-center gap-4">
-              <div className="border border-rule bg-cream p-2">
-                <Image
-                  src={selectedImage.src}
-                  alt={selectedImage.alt}
-                  width={140}
-                  height={140}
-                  className="h-24 w-24 object-contain"
-                />
-              </div>
-              <div>
-                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-teal">Layout</p>
-                <p className="text-sm text-ink-soft">Top-down reference for this room type</p>
-              </div>
-            </div>
-            <h2 className="font-serif text-2xl font-normal text-ink">Core design pattern</h2>
-            <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-              {room.description}
-              <br />
-              <span className="text-ink-faint">Capacity: {room.capacity}</span>
-            </p>
-          </div>
-          <div className="border border-rule bg-cream-deep p-6 text-ink">
-            <h3 className="font-serif text-lg font-normal text-ink">Core AV features</h3>
-            <ul className="mt-3 space-y-2 text-sm text-ink-soft">
-              {room.coreFeatures.map((feature) => (
-                <li key={feature} className="flex items-start gap-2">
-                  <span className="mt-1 h-1.5 w-1.5 bg-teal" aria-hidden />
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.16em] text-ink-faint">Capacity: {room.capacity}</p>
-          </div>
-        </section>
+      <Section
+        title="Core design pattern"
+        lead={
+          <p>
+            {room.description}
+            <br />
+            <span className="text-ink-faint">Capacity: {room.capacity}</span>
+          </p>
+        }
+      >
+        <Cards
+          cols={2}
+          items={[
+            {
+              media: (
+                <div style={{ position: "relative", aspectRatio: "4 / 3" }}>
+                  <Image
+                    src={selectedImage.src}
+                    alt={selectedImage.alt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 560px"
+                    style={{ objectFit: "contain", padding: 20 }}
+                  />
+                </div>
+              ),
+              k: "Layout",
+              body: <p>Top-down reference for this room type</p>,
+            },
+            {
+              title: "Core AV features",
+              bullets: room.coreFeatures,
+              extra: <p className="cl-chip" style={{ display: "inline-block", marginTop: 16 }}>Capacity: {room.capacity}</p>,
+            },
+          ]}
+        />
+      </Section>
 
-        <section className="mt-16 space-y-6 lg:mt-24">
-          <h2 className="font-serif text-2xl font-normal text-ink">Recommended services</h2>
-          <div className="grid gap-4 md:grid-cols-2">
-            {room.recommendedServices.map((service) => (
-              <Link
-                key={service}
-                href={serviceLinkMap[service] ?? "/services"}
-                className="h-hover-cream border border-rule bg-cream px-5 py-4 text-sm font-medium text-ink"
-              >
-                {service}
-              </Link>
-            ))}
-          </div>
-        </section>
+      <Section tone="cream" title="Recommended services">
+        <LinkRow
+          links={room.recommendedServices.map((service) => ({
+            label: service,
+            href: serviceLinkMap[service] ?? "/services",
+          }))}
+        />
+      </Section>
 
-        {room.optionalUpgrades ? (
-          <section className="mt-16 space-y-4 lg:mt-24">
-            <h2 className="font-serif text-2xl font-normal text-ink">Optional upgrades &amp; variants</h2>
-            <ul className="space-y-2 text-sm text-ink-soft">
-              {room.optionalUpgrades.map((upgrade) => (
-                <li key={upgrade} className="flex items-start gap-2">
-                  <span className="mt-2 h-1.5 w-1.5 bg-teal" aria-hidden />
-                  <span>{upgrade}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
-        ) : null}
+      {room.optionalUpgrades ? (
+        <Section title="Optional upgrades &amp; variants" split>
+          <Dashes items={room.optionalUpgrades.map((upgrade) => ({ text: upgrade }))} />
+        </Section>
+      ) : null}
 
-        <section className="mt-16 grid gap-4 border border-rule bg-cream p-6 text-ink lg:mt-24 lg:grid-cols-2">
-          <div className="space-y-2">
-            <h3 className="font-serif text-xl font-normal text-ink">Get this room designed</h3>
-            <p className="text-sm text-ink-soft">We’ll document and spec this room template for your space.</p>
-            <Link
-              href="/smart-room-design"
-              className="h-btn inline-flex items-center justify-center bg-teal px-6 py-3.5 text-sm font-medium text-on-teal"
-            >
-              Get Room Design
-            </Link>
-          </div>
-          <div className="space-y-2">
-            <h3 className="font-serif text-xl font-normal text-ink">Need full-service install?</h3>
-            <p className="text-sm text-ink-soft">We handle design + installation + commissioning end to end.</p>
-            <Link
-              href="/av-integration"
-              className="h-btn inline-flex items-center justify-center border border-ink px-6 py-3.5 text-sm font-medium text-ink"
-            >
-              Explore AV Integration
-            </Link>
-          </div>
-        </section>
+      <Section tone={room.optionalUpgrades ? "cream" : "paper"} title="Related room types">
+        <LinkRow
+          links={coreRoomTypes
+            .filter((r) => r.slug !== room.slug)
+            .slice(0, 3)
+            .map((related) => ({
+              label: `${related.name} →`,
+              href: `/room-types/${related.slug}`,
+            }))}
+        />
+      </Section>
 
-        <section className="mt-16 space-y-4 lg:mt-24">
-          <h3 className="font-serif text-2xl font-normal text-ink">Related room types</h3>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {coreRoomTypes
-              .filter((r) => r.slug !== room.slug)
-              .slice(0, 3)
-              .map((related) => (
-                <Link
-                  key={related.slug}
-                  href={`/room-types/${related.slug}`}
-                  className="h-hover-cream border border-rule bg-cream p-4 text-sm font-medium text-teal"
-                >
-                  {related.name} →
-                </Link>
-              ))}
-          </div>
-        </section>
-      </main>
-    </div>
+      <CloseBand
+        title="Get this room designed"
+        lead={<p>We’ll document and spec this room template for your space.</p>}
+        primary={{ label: "Get Room Design", href: "/smart-room-design" }}
+        secondary={{ label: "Explore AV Integration", href: "/av-integration" }}
+      >
+        <div className="cl-lead cl-close-lead cl-reveal" style={{ marginTop: 20 }}>
+          <h3 style={{ font: "inherit", fontWeight: 600, margin: 0 }}>Need full-service install?</h3>
+          <p>We handle design + installation + commissioning end to end.</p>
+        </div>
+      </CloseBand>
+    </>
   );
 }
 
