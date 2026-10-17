@@ -76,9 +76,19 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     // Mark 2026-10-13: Google Ads linked in GA4 is one choice, named honestly as "Google Analytics and cookieless
     // Google Ads measurement". So even after Allow, ad storage, ad user data and ad personalization stay DENIED:
     // no _gcl cookies or storage, no remarketing; Ads receives only restricted, cookieless measurement pings.
+    // B-19 (Mark 2026-10-17, "Turn it off"): automatic user-provided-data collection is OFF in code, whatever the
+    // Google console says. The Google tag ships it ON (__ogt_1p_data_v2: auto email, phone and address) for the GA4 id
+    // and the linked AW-17409946688. user_data: null declares "this page provides no user data": where a Google tag
+    // attaches user data (__ccd_add_1p_data) it then attaches nothing, automatic included. It is a global `set`,
+    // queued before the gate's `config` call, so it holds for every config and event of both ids (the Ads id has no
+    // config call of its own); src/lib/gtag.ts also passes it on its own config call. tests/consent/user-data-off.mjs
+    // proves it. Google's separate field-detection report on Ads conversion hits (__ccd_pre_auto_pii: ec_sel/ec_meta,
+    // where an email field is and its length, not its value) has no gtag switch; it runs only when ad_storage is
+    // granted, which the default above never grants.
     `(function(){var w=window;w.dataLayer=w.dataLayer||[];function g(){w.dataLayer.push(arguments)}` +
     `g('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'granted'});` +
-    `g('set','ads_data_redaction',true);})();` +
+    `g('set','ads_data_redaction',true);` +
+    `g('set','user_data',null);})();` +
     // The gate is loaded FROM THIS SAME INLINE BLOCK, after the config and the defaults above have run (review F1,
     // 2026-10-13). A JSX <script async src> is hoisted by React ahead of the config in the built HTML, and under a
     // slow HTML response the gate then ran with no config: no bar, wrong storage key. A script this block creates

@@ -20,6 +20,8 @@ export const pageview = (url: string) => {
   if (typeof window.gtag !== "function") return;
   window.gtag("config", GA_MEASUREMENT_ID, {
     page_path: url,
+    // B-19: automatic user-provided-data collection stays off on every config call (src/app/layout.tsx).
+    user_data: null,
   });
 };
 
