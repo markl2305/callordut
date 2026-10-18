@@ -152,11 +152,19 @@ export function Header() {
       const t = e.target as Node;
       if (!popRef.current?.contains(t) && !whereRef.current?.contains(t)) closePop();
     };
+    /* Keyboard focus leaving the index and its trigger closes it, so the fixed panel never sits over
+       the control that now has focus (B-03: Shift+Tab to the header Menu, then Home). */
+    const onFocusIn = (e: FocusEvent) => {
+      const t = e.target as Node;
+      if (!popRef.current?.contains(t) && !whereRef.current?.contains(t)) closePop();
+    };
     window.addEventListener("keydown", onKey);
     window.addEventListener("click", onClick);
+    document.addEventListener("focusin", onFocusIn);
     return () => {
       window.removeEventListener("keydown", onKey);
       window.removeEventListener("click", onClick);
+      document.removeEventListener("focusin", onFocusIn);
     };
   }, [popOpen, closePop]);
 
