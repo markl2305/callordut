@@ -18,6 +18,11 @@
   --shell: 1200px;
   --nav-h: 64px;
   --glow: #3fe0cc;
+  /* B-03 R2: the focus ring colour. --teal suits the page surfaces of either theme (5.0:1+ on paper, cream, panel);
+     surfaces that stay dark in both themes set their own below, so the ring keeps 3:1 against what is beside it.
+     --focus-halo is the band drawn under the ring where what is behind it varies (skip link, theme switch, hotspots). */
+  --focus: var(--teal);
+  --focus-halo: var(--paper);
   --paper: var(--h-paper);
   --cream: var(--h-cream);
   --cream-deep: var(--h-cream-deep);
@@ -50,9 +55,13 @@ body {
   overflow-x: clip;
 }
 :focus-visible {
-  outline: 2px solid var(--teal);
+  outline: 2px solid var(--focus);
   outline-offset: 3px;
   border-radius: 6px;
+}
+/* B-03 R2: the consent bar (public/consent/consent.js) is #1d1a15 in both themes; teal-bright there is 5.9:1. */
+[data-consent-bar] {
+  --focus: var(--teal-bright);
 }
 .cl-skip {
   position: absolute;
@@ -66,6 +75,11 @@ body {
 }
 .cl-skip:focus {
   top: 12px;
+}
+/* B-03 R2: the skip link opens over whatever is at the top (the consent bar, the home photo, the nav); the halo band
+   under the ring keeps the ring on paper (5.6:1 light, 6.2:1 dark) whatever is behind it. */
+.cl-skip:focus-visible {
+  box-shadow: 0 0 0 8px var(--focus-halo);
 }
 .cl-sr {
   position: absolute;
@@ -310,6 +324,8 @@ main .border.border-rule > img:only-child {
 /* Clear only over a photo hero (the home page), until scrolled past it. */
 [data-js] .cl-nav.cl-over {
   color: #fff;
+  --focus: var(--glow);
+  --focus-halo: #0d0f0e;
 }
 [data-js] .cl-nav.cl-over::before {
   opacity: 0;
@@ -409,6 +425,8 @@ main .border.border-rule > img:only-child {
   transition-delay: 0s;
 }
 .cl-drop-in {
+  --focus: var(--teal);
+  --focus-halo: var(--paper);
   min-width: 240px;
   padding: 8px;
   border-radius: 18px;
@@ -518,6 +536,13 @@ main .border.border-rule > img:only-child {
 }
 .cl-seg button[aria-pressed="true"] {
   opacity: 1;
+}
+/* B-03 R2: the focused segment is drawn at full opacity (0.7 faded its ring with the label) and above its neighbours,
+   with the halo band under the ring, so the ring never sits on the neighbouring thumb. */
+.cl-seg button:focus-visible {
+  opacity: 1;
+  z-index: 2;
+  box-shadow: 0 0 0 8px var(--focus-halo);
 }
 .cl-seg .thumb {
   position: absolute;
@@ -629,6 +654,8 @@ main .border.border-rule > img:only-child {
 /* B-03: z-index draws nothing differently (a modal dialog is already in the top layer); it states the order for
    tools that model stacking by z-index, which otherwise put the hero CTA above the sheet's Appearance control. */
 dialog.cl-sheet {
+  --focus: var(--teal);
+  --focus-halo: var(--paper);
   z-index: 1000;
   border: 0;
   padding: 0;
@@ -888,6 +915,8 @@ dialog.cl-sheet[open] .cl-sheet-in.in {
    disciplines switch + room plan, walkthrough rail.
    ============================================================ */
 .cl-home .hero {
+  --focus: var(--glow);
+  --focus-halo: #0d0f0e;
   position: relative;
   min-height: 100svh;
   margin-top: calc(-1 * (var(--nav-h) + env(safe-area-inset-top)));
@@ -1108,6 +1137,15 @@ dialog.cl-sheet[open] .cl-sheet-in.in {
   place-items: center;
   box-shadow: 0 0 0 1.5px rgba(63, 224, 204, 0.85), 0 0 18px rgba(63, 224, 204, 0.45);
   transition: transform 160ms var(--ease-out), background-color 160ms ease;
+}
+/* B-03 R2: hotspots sit on the photo, which runs from near black to near white; the ring is drawn in glow on a band of
+   the hero's own dark, so it keeps 3:1 whatever part of the photo is behind it. */
+.cl-home .hs {
+  --focus: var(--glow);
+  --focus-halo: #0d0f0e;
+}
+.cl-home .hs button:focus-visible {
+  box-shadow: 0 0 0 8px var(--focus-halo);
 }
 .cl-home .hs button::before {
   content: "";
@@ -1668,6 +1706,8 @@ html:not([data-js]) .cl-home .fig-legend li span {
 @media (prefers-reduced-transparency: reduce) {
   [data-js] .cl-nav.cl-over {
     color: var(--ink);
+    --focus: var(--teal);
+    --focus-halo: var(--paper);
   }
   [data-js] .cl-nav.cl-over::before {
     opacity: 1;
