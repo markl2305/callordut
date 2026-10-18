@@ -111,7 +111,7 @@ export function FooterCTAForm() {
           required
           value={form.name}
           onChange={updateField("name")}
-          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal focus:outline-none"
+          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal"
           placeholder="Your name"
         />
       </div>
@@ -126,7 +126,7 @@ export function FooterCTAForm() {
           required
           value={form.email}
           onChange={updateField("email")}
-          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal focus:outline-none"
+          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal"
           placeholder="you@company.com"
         />
       </div>
@@ -140,7 +140,7 @@ export function FooterCTAForm() {
           name="phone"
           value={form.phone}
           onChange={updateField("phone")}
-          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal focus:outline-none"
+          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal"
           placeholder="(505) 555-0100"
         />
       </div>
@@ -153,7 +153,7 @@ export function FooterCTAForm() {
           name="spaceType"
           value={form.spaceType}
           onChange={updateField("spaceType")}
-          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink focus:border-teal focus:outline-none"
+          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink focus:border-teal"
         >
           <option value="">Choose a space</option>
           {spaceTypes.map((type) => (
@@ -174,7 +174,7 @@ export function FooterCTAForm() {
           required
           value={form.message}
           onChange={updateField("message")}
-          className="w-full resize-y border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal focus:outline-none"
+          className="w-full resize-y border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal"
           placeholder="Give us a room or area, rough budget, and how you use it today."
         />
       </div>

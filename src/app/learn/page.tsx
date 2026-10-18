@@ -18,7 +18,7 @@ export default function LearnIndex() {
         Straight answers on commercial AV, security, and smart rooms.
       </p>
       {articles.length === 0 ? (
-        <p className="opacity-60">New guides are on the way.</p>
+        <p className="text-ink-soft">New guides are on the way.</p>
       ) : (
         <ul className="space-y-6">
           {articles.map((a) => (

@@ -92,7 +92,7 @@ export function HomeLeadForm({ roomTypes = [] }: HomeLeadFormProps) {
           required
           value={form.name}
           onChange={updateField("name")}
-          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal focus:outline-none"
+          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal"
           placeholder="Your name"
         />
       </div>
@@ -106,7 +106,7 @@ export function HomeLeadForm({ roomTypes = [] }: HomeLeadFormProps) {
           required
           value={form.company}
           onChange={updateField("company")}
-          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal focus:outline-none"
+          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal"
           placeholder="e.g., Willow Grove Senior Living"
         />
       </div>
@@ -121,7 +121,7 @@ export function HomeLeadForm({ roomTypes = [] }: HomeLeadFormProps) {
           required
           value={form.email}
           onChange={updateField("email")}
-          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal focus:outline-none"
+          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal"
           placeholder="you@company.com"
         />
       </div>
@@ -135,7 +135,7 @@ export function HomeLeadForm({ roomTypes = [] }: HomeLeadFormProps) {
           type="tel"
           value={form.phone}
           onChange={updateField("phone")}
-          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal focus:outline-none"
+          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal"
           placeholder="(555) 123-4567"
         />
       </div>
@@ -148,7 +148,7 @@ export function HomeLeadForm({ roomTypes = [] }: HomeLeadFormProps) {
           name="room-type"
           value={form.roomType}
           onChange={updateField("roomType")}
-          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink focus:border-teal focus:outline-none"
+          className="w-full border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink focus:border-teal"
         >
           <option value="">Choose a room type</option>
           {roomTypes.map((room) => (
@@ -169,7 +169,7 @@ export function HomeLeadForm({ roomTypes = [] }: HomeLeadFormProps) {
         required
         value={form.message}
         onChange={updateField("message")}
-        className="w-full resize-y border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal focus:outline-none"
+        className="w-full resize-y border-0 border-b border-ink bg-transparent py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-teal"
         placeholder="Describe the room, usage, and current pain points."
         />
       </div>

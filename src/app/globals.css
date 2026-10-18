@@ -16,8 +16,10 @@
   --h-cream-deep: #ded4c2;
   --h-ink: #171513;
   --h-ink-soft: #5a534b;
-  --h-ink-faint: #8a8177;
-  --h-teal: #1c8c82;
+  /* B-03: ink-faint and teal darkened (same hue) so text in them clears WCAG AA 4.5:1 on paper, cream and panel;
+     was #8a8177 / #1c8c82 (2.9-3.5:1). The logo keeps its own #1c8c82 below. */
+  --h-ink-faint: #69625a;
+  --h-teal: #156860;
   --h-teal-deep: #0f5c55;
   --h-teal-bright: #2ba89c;
   --h-rule: rgba(23, 21, 19, 0.14);
@@ -40,7 +42,8 @@
   --h-cream-deep: #272117;
   --h-ink: #ece4d6;
   --h-ink-soft: rgba(236, 228, 214, 0.68);
-  --h-ink-faint: rgba(236, 228, 214, 0.46);
+  /* B-03: was 0.46 (3.9:1 on cream); 0.54 clears 4.5:1 on paper, cream, cream-deep and panel. */
+  --h-ink-faint: rgba(236, 228, 214, 0.54);
   --h-teal: #2ba89c;
   --h-teal-deep: #1c8c82;
   --h-teal-bright: #42c8b7;

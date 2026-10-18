@@ -50,7 +50,7 @@ body {
   overflow-x: clip;
 }
 :focus-visible {
-  outline: 2px solid var(--teal-bright);
+  outline: 2px solid var(--teal);
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -253,6 +253,11 @@ main section.bg-ink,
 main .overflow-hidden.border.border-rule,
 main .bg-ink.p-8 {
   border-radius: 22px;
+}
+/* B-03: teal text inside a light teal-tinted box is 4.4:1; teal-deep there clears 4.5:1 (as .cl-notice-link does).
+   In dark, teal on its tint is already 5:1+, and teal-deep would fall below it, so this is light only. */
+:root:not([data-theme="dark"]) main .bg-teal\/10 .text-teal {
+  color: var(--teal-deep);
 }
 main .bg-teal\/10:not(.border) {
   border-radius: 999px;
@@ -621,7 +626,10 @@ main .border.border-rule > img:only-child {
   background: var(--cream);
   color: var(--ink);
 }
+/* B-03: z-index draws nothing differently (a modal dialog is already in the top layer); it states the order for
+   tools that model stacking by z-index, which otherwise put the hero CTA above the sheet's Appearance control. */
 dialog.cl-sheet {
+  z-index: 1000;
   border: 0;
   padding: 0;
   margin: 0;
@@ -790,6 +798,8 @@ dialog.cl-sheet[open] .cl-sheet-in.in {
 }
 .cl-legal a {
   color: var(--ink-soft);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 .cl-foot-end {
   display: flex;

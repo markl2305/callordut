@@ -19,7 +19,6 @@ const fieldStyle: CSSProperties = {
   border: "none",
   borderBottom: "1px solid var(--h-ink)",
   color: "var(--h-ink)",
-  outline: "none",
   width: "100%",
 };
 
@@ -175,7 +174,7 @@ export function SolutionsLeadForm({ services }: SolutionsLeadFormProps) {
       </button>
       <p style={{ fontFamily: FONT.sans, fontSize: 12, color: "var(--h-ink-faint)", lineHeight: 1.55, margin: "4px 0 0" }}>
         {CONTACT_NOTICE} See our{" "}
-        <Link href="/privacy" style={{ color: "var(--h-teal)", textDecoration: "none" }}>
+        <Link href="/privacy" style={{ color: "var(--h-teal)", textDecoration: "underline", textUnderlineOffset: 2 }}>
           Privacy Policy
         </Link>
         .

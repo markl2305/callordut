@@ -26,7 +26,6 @@ const fieldStyle: CSSProperties = {
   border: "none",
   borderBottom: "1px solid var(--h-ink)",
   color: "var(--h-ink)",
-  outline: "none",
   width: "100%",
 };
 
@@ -183,11 +182,11 @@ export function ContactForm() {
         checked={smsConsent}
         onChange={setSmsConsent}
         textStyle={{ fontFamily: FONT.sans, fontSize: 12, color: "var(--h-ink-faint)", lineHeight: 1.55, margin: "4px 0 0" }}
-        linkStyle={{ color: "var(--h-teal)", textDecoration: "none" }}
+        linkStyle={{ color: "var(--h-teal)", textDecoration: "underline", textUnderlineOffset: 2 }}
       />
       <p style={{ fontFamily: FONT.sans, fontSize: 12, color: "var(--h-ink-faint)", lineHeight: 1.55, margin: "4px 0 0" }}>
         {CONTACT_NOTICE} See our{" "}
-        <Link href="/privacy" style={{ color: "var(--h-teal)", textDecoration: "none" }}>Privacy Policy</Link>.
+        <Link href="/privacy" style={{ color: "var(--h-teal)", textDecoration: "underline", textUnderlineOffset: 2 }}>Privacy Policy</Link>.
       </p>
     </form>
   );

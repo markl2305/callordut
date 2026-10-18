@@ -61,7 +61,7 @@ export default async function LearnArticlePage(
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
-      <Link href="/learn" className="text-sm opacity-60 hover:opacity-100">← Learn</Link>
+      <Link href="/learn" className="text-sm text-ink-soft hover:text-ink">← Learn</Link>
       <h1 className="mt-4 mb-6 font-[family-name:var(--font-newsreader)] text-4xl font-medium tracking-tight">{a.title}</h1>
       {a.description ? <p className="mb-8 text-lg opacity-75">{a.description}</p> : null}
       <article className="text-[15px]">
